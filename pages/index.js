@@ -2,8 +2,6 @@ import HeadlinesCard from "../components/home/HeadlinesCard";
 import HighlightsCard from "../components/home/HighlightsCard";
 import LatestUpdates from "../components/home/LatestUpdates";
 import FixturesBrief from "../components/shared/FixturesBrief";
-import Footer from "../components/shared/Footer";
-import Navbar from "../components/shared/Navbar";
 import SideBar from "../components/shared/SideBar";
 import Sponsors from "../components/shared/Sponsors";
 
@@ -26,7 +24,7 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-8 text-black">
+        <div className="max-w-7xl mx-auto py-10 text-black">
           <div className="flex gap-8 justify-between">
             <div className="w-9/12">
               <LatestUpdates />

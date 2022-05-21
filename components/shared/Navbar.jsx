@@ -64,7 +64,7 @@ const Navbar = () => {
           </Link>
           <nav className="flex gap-5 items-center">
             {navLinks.map(({ name, links }, i) => (
-              <p className="flex gap-2 items-center cursor-pointer" onClick={() => setActiveTab(i)}>
+              <p className="flex gap-2 items-center cursor-pointer" onClick={() => setActiveTab(i)} key={i}>
                 <span>{name}</span>
                 <Image src="/arrow-down.png" alt="" width={7} height={5} />
               </p>

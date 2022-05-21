@@ -9,6 +9,7 @@ const HeadlinesCard = () => {
     { img: "/headline-img.png", desc: "LaLiga presents HiFL the iconic soccer balls for matches" },
     { img: "/headline-img.png", desc: "Unical Malabites becomes the winners of the 2019 HiFL final" },
   ];
+
   return (
     <div className="bg-accent h-full text-white">
       <div className="p-5">
