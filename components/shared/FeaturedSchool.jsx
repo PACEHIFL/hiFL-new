@@ -42,7 +42,7 @@ const FeaturedSchool = () => {
 
       <div className="flex justify-end text-sm">
         <Link href="#">
-          <a className="flex gap-2 py-2 font-redhat">
+          <a className="flex gap-2 py-2 px-3 font-redhat">
             <span>School Profile</span>
             <Image src="/right-arrow.png" alt="" width={11} height={14} />
           </a>
