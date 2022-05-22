@@ -16,7 +16,10 @@ const FixturesBrief = () => {
         <h2 className="text-[#000229] text-md font-bold p-5">Wednesday 29 September</h2>
         <div className="">
           {fixtures.map(({ img1, school1, time, img2, school2 }, i) => (
-            <div className="flex gap-4 items-center py-5 border-[0.5px] border-[#BFBFBF] border-b border-x-0 border-t-0">
+            <div
+              className="flex gap-4 items-center py-5 border-[0.5px] border-[#BFBFBF] border-b border-x-0 border-t-0"
+              key={i}
+            >
               <div className="flex gap-3 items-center">
                 <h3 className="font-bold text-sm">{school1}</h3>
                 <Image src={img1} alt="" width={35} height={35} />

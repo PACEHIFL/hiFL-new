@@ -1,6 +1,7 @@
 import HeadlinesCard from "../components/home/HeadlinesCard";
 import HighlightsCard from "../components/home/HighlightsCard";
 import LatestUpdates from "../components/home/LatestUpdates";
+import Store from "../components/home/Store";
 import FixturesBrief from "../components/shared/FixturesBrief";
 import SideBar from "../components/shared/SideBar";
 import Sponsors from "../components/shared/Sponsors";
@@ -33,6 +34,11 @@ export default function Home() {
               <SideBar />
             </div>
           </div>
+        </div>
+      </div>
+      <div className="bg-[#D0D0D0">
+        <div className="max-w-7xl mx-auto py-10 text-black">
+          <Store />
         </div>
       </div>
       <Sponsors />

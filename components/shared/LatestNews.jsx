@@ -40,7 +40,7 @@ const LatestNews = () => {
       </div>
       <div className="flex gap-2 justify-between">
         {news.map(({ img, type, title, desc, link }, i) => (
-          <Link href={link}>
+          <Link href={link} key={i}>
             <a className="w-full">
               <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
               <h3 className="text-accent font-bold italic text-xs py-1">{type}</h3>

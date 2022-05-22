@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -43,7 +43,7 @@ const Footer = () => {
                   <h2 className="font-bold mb-5 text-lg">{name}</h2>
                   <div className="flex flex-col gap-4">
                     {links.map(({ title, path }) => (
-                      <Link href={path} key={i}>
+                      <Link href={path} key={useId()}>
                         <a>{title}</a>
                       </Link>
                     ))}

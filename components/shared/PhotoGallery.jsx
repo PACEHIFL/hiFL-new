@@ -10,7 +10,7 @@ const PhotoGallery = () => {
     { img: "/news.png", desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals", link: "#" },
   ];
   return (
-    <div className="border border-x-0 border-[#D0D0D0] font-redhat text-[#000229] pb-8">
+    <div className="border-t border-[#D0D0D0] font-redhat text-[#000229] pb-8">
       <div className="flex justify-between items-center py-2">
         <h2 className="text-[#000229] font-bold text-lg font-redhat py-3">Photo Gallery</h2>
         <Link href="/gallery">
@@ -37,7 +37,7 @@ const PhotoGallery = () => {
 
         <div className="grid grid-cols-2 gap-2 w-1/2">
           {news.map(({ img, desc, link }, i) => (
-            <Link href={link}>
+            <Link href={link} key={i}>
               <a className="">
                 <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
                 <p className="text-xs font-extralight pt-1">{desc}</p>
