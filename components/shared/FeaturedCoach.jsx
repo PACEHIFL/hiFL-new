@@ -41,12 +41,12 @@ const FeaturedCoach = () => {
       </div>
 
       <div className="flex justify-end text-sm">
-        <div className="flex gap-2 py-2 font-redhat">
-          <Link href="#">
-            <a>Coach Profile</a>
-          </Link>
-          <Image src="/right-arrow.png" alt="" width={11} height={14} />
-        </div>
+        <Link href="#">
+          <a className="flex gap-2 py-2 font-redhat">
+            <span>Coach Profile</span>
+            <Image src="/right-arrow.png" alt="" width={11} height={14} />
+          </a>
+        </Link>
       </div>
     </div>
   );

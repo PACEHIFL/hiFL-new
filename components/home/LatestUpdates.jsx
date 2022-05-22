@@ -1,5 +1,7 @@
 import React from "react";
 import LatestNews from "../shared/LatestNews";
+import LatestVideos from "../shared/LatestVideos";
+import PhotoGallery from "../shared/PhotoGallery";
 import RectangularBanner from "../shared/RectangularBanner";
 
 const LatestUpdates = () => {
@@ -10,6 +12,15 @@ const LatestUpdates = () => {
       </div>
       <div className="px-20">
         <RectangularBanner source="/rect-banner.png" link="#" />
+      </div>
+      <div>
+        <LatestVideos />
+      </div>
+      <div className="px-20">
+        <RectangularBanner source="/rect-banner.png" link="/#" />
+      </div>
+      <div>
+        <PhotoGallery />
       </div>
     </div>
   );

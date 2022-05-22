@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const SquareBanner = ({ source, link }) => {
+const SquareBanner = ({ source, link, passHref }) => {
   return (
-    <Link href={link}>
+    <Link href={link} passHref={passHref}>
       <a className="rounded">
-        <Image src={source} alt="" width="100%" height="100%" layout="responsive" objectFit="cover" />
+        <Image src={source} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
       </a>
     </Link>
   );
