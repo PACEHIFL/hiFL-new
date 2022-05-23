@@ -65,7 +65,7 @@ const Store = () => {
       <div className="flex justify-center">
         <div className="mt-3 flex gap-5 ">
           {producsts.map(({ img, name, discountType, discountPrice, price, discount, url }, i) => (
-            <Link href={url}>
+            <Link href={url} key={i}>
               <a className="bg-white">
                 <div className="flex justify-center">
                   <Image src={img} alt="" width={175} height={200} />
