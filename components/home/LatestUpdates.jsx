@@ -10,13 +10,13 @@ const LatestUpdates = () => {
       <div>
         <LatestNews />
       </div>
-      <div className="px-20">
+      <div className="max-w-[85%] mx-auto">
         <RectangularBanner source="/rect-banner.png" link="#" />
       </div>
       <div>
         <LatestVideos />
       </div>
-      <div className="px-20">
+      <div className="max-w-[85%] mx-auto">
         <RectangularBanner source="/rect-banner.png" link="/#" />
       </div>
       <div>

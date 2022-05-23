@@ -14,7 +14,7 @@ const HeadlinesCard = () => {
     <div className="bg-accent h-full text-white">
       <div className="p-5">
         <h2 className="text-white font-bold text-lg mb-5 font-redhat">Headlines</h2>
-        <div className="flex flex-col gap-1 text-sm font-redhat justify-end h-full">
+        <div className="flex flex-col gap-1 text-sm font-redhat justify-end h-auto">
           {headlines.map(({ img, desc }, i) => (
             <Link href="#" key={i}>
               <a className="flex gap-3 items-center" key={i}>

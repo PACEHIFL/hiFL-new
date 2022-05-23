@@ -54,7 +54,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-secondary text-white font-redhat">
-        <div className="flex justify-between items-center md:max-w-3xl lg:max-w-4xl xl:max-w-7xl mx-auto">
+        <div className="container flex justify-between items-center max-w-[94%] md:max-w-[90%] mx-auto">
           <Link href="/">
             <a onClick={() => setActiveTab(null)}>
               <div className="bg-white px-4 pt-8 rounded-tr-[65px] rounded-br-[5px]">
@@ -62,7 +62,7 @@ const Navbar = () => {
               </div>
             </a>
           </Link>
-          <nav className="flex gap-5 items-center">
+          <nav className="gap-5 items-center hidden lg:flex">
             {navLinks.map(({ name, links }, i) => (
               <p className="flex gap-2 items-center cursor-pointer" onClick={() => setActiveTab(i)} key={i}>
                 <span>{name}</span>
@@ -71,11 +71,19 @@ const Navbar = () => {
             ))}
           </nav>
           <Link href="/signup">
-            <a className="">Signin/Signup</a>
+            <a className="hidden lg:block">Signin/Signup</a>
           </Link>
+
+          {/* Mobile Menu button */}
+          <div className=" lg:hidden">
+            <Image src="/hamburger.png" alt="" width={24.5} height={16.5} className="cursor-pointer" />
+          </div>
+          {/* Mobile Menu Button */}
         </div>
       </div>
-      <SubMenuTabs navLinks={navLinks} activeTab={activeTab} />
+      <div className="hidden lg:block">
+        <SubMenuTabs navLinks={navLinks} activeTab={activeTab} />
+      </div>
     </>
   );
 };

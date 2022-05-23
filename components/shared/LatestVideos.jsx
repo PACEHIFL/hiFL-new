@@ -28,8 +28,9 @@ const LatestVideos = () => {
           </a>
         </Link>
       </div>
-      <div className="flex gap-2">
-        <div className="w-1/2 h-auto">
+
+      <div className="flex flex-col md:flex-row gap-2 h-full">
+        <div className="w-full h-[350px] md:h-auto md:w-1/2">
           <div className="h-[60%]">
             {!isLoading && (
               <ReactPlayer
@@ -51,11 +52,14 @@ const LatestVideos = () => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-2 w-1/2">
-          {videos.map(({ img, desc, link }, i) => (
-            <div className="" key={i}>
-              <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
-              <p className="text-xs font-extralight pt-1">{desc}</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full md:w-1/2">
+          {videos.slice(0, 4).map(({ img, desc, link }, i) => (
+            <div className="flex flex-row md:flex-col items-center gap-2" key={i}>
+              <div className="w-1/2 md:w-full">
+                <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
+              </div>
+              <p className="text-xs font-extralight pt-1 w-[75%] md:w-full">{desc}</p>
             </div>
           ))}
         </div>

@@ -38,8 +38,8 @@ const LatestNews = () => {
           </a>
         </Link>
       </div>
-      <div className="flex gap-2 justify-between">
-        {news.map(({ img, type, title, desc, link }, i) => (
+      <div className="flex flex-col md:flex-row gap-2 justify-between">
+        {news.slice(0, 2).map(({ img, type, title, desc, link }, i) => (
           <Link href={link} key={i}>
             <a className="w-full">
               <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />

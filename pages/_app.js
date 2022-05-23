@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import Head from "next/head";
-import Navbar from "../components/shared/Navbar";
-import Footer from "../components/shared/Footer";
+import DefaultLayout from "../components/layout/DefaultLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,9 +17,9 @@ function MyApp({ Component, pageProps }) {
         <title>HiFL | Higher Institutions Football League </title>
       </Head>
       <>
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
+        <DefaultLayout>
+          <Component {...pageProps} />
+        </DefaultLayout>
       </>
     </>
   );
