@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <>
       <div className="bg-[url('/footer-bg.png')] text-white bg-cover bg-centers font-redhat">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-0 py-20 md:max-w-3xl lg:max-w-4xl xl:max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-0 py-20 max-w-[94%] md:max-w-[90%] mx-auto">
           <div className="w-full flex flex-col items-center lg:items-start">
             <div>
               <Image src="/hifl-footer.png" alt="HiFL Logo" width={179} height={102} />
@@ -37,7 +37,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="w-full flex justify-center lg:justify-start">
-            <div className="flex justify-evenly w-[80%] gap-5 lg:w-full">
+            <div className="flex justify-evenly text-center md:text-left w-[80%] gap-5 lg:w-full">
               {footerLinks.map(({ name, links }, i) => (
                 <div key={i} className="w-full">
                   <h2 className="font-bold mb-5 text-lg">{name}</h2>

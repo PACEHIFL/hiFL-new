@@ -15,7 +15,7 @@ const Sponsors = () => {
   ];
   return (
     <div className="bg-white py-10 font-redhat">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[94%] md:max-w-[90%] mx-auto">
         <div className="flex gap-8 items-center divide-x-[1px] divide-[#D0D0D0]">
           <div className="flex justify-around items-center gap-6 w-8/12">
             {minorSponsors.map(({ img, title }, i) => (

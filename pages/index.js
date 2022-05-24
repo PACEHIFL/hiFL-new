@@ -37,7 +37,7 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-[#D0D0D0]">
-        <div className="max-w-7xl mx-auto py-10 text-black">
+        <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           <Store />
         </div>
       </div>

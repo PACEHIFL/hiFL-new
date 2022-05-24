@@ -63,7 +63,7 @@ const Store = () => {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="mt-3 flex gap-5 ">
+        <div className="mt-3 flex flex-wrap gap-5 ">
           {producsts.map(({ img, name, discountType, discountPrice, price, discount, url }, i) => (
             <Link href={url} key={i}>
               <a className="bg-white">
