@@ -38,7 +38,7 @@ const Signup = () => {
           <div className="border border-x-0 border-[#F4C316] pt-6 pb-12">
             <h2 className="text-3xl text-[#000229] uppercase font-bold">Sign Up</h2>
             <form onSubmit={handleSubmit} className="mt-8">
-              <div className="flex gap-12 justify-between items-center mb-8">
+              <div className="flex gap-12 justify-between items-center mb-10">
                 <div className="w-full relative">
                   <InputField
                     type="text"
@@ -49,7 +49,7 @@ const Signup = () => {
                     required
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full relative">
                   <InputField
                     type="text"
                     name="lastName"
@@ -60,8 +60,8 @@ const Signup = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-12 justify-between items-center mb-8">
-                <div className="w-full">
+              <div className="flex gap-12 justify-between items-center mb-10">
+                <div className="w-full relative">
                   <InputField
                     type="email"
                     name="email"
@@ -71,7 +71,7 @@ const Signup = () => {
                     required
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full relative">
                   <InputField
                     type="tel"
                     name="phoneNumber"
@@ -82,8 +82,8 @@ const Signup = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-12 justify-between items-center mb-8">
-                <div className="w-full">
+              <div className="flex gap-12 justify-between items-center mb-10">
+                <div className="w-full relative">
                   <InputField
                     type="password"
                     name="password"
@@ -93,7 +93,7 @@ const Signup = () => {
                     required
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full relative">
                   <InputField
                     type="password"
                     name="confirmPassword"
@@ -104,7 +104,7 @@ const Signup = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-12 justify-between items-center mb-3">
+              <div className="flex gap-12 justify-between items-center mb-5">
                 <div className="w-full">
                   <select
                     name="supportingInst"

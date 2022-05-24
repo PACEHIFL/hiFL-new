@@ -26,7 +26,7 @@ const Signin = () => {
             <h2 className="text-3xl text-[#000229] uppercase font-bold">Log In</h2>
             <form onSubmit={handleSubmit} className="mt-8">
               <div className="flex gap-12 justify-between items-center">
-                <div className="w-full">
+                <div className="w-full relative">
                   <InputField
                     type="text"
                     name="email"
@@ -36,7 +36,7 @@ const Signin = () => {
                     required
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full relative">
                   <InputField
                     type="password"
                     name="password"
