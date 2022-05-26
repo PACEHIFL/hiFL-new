@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const SubMenuTabs = ({ activeTab }) => {
+const SubMenuTabs = ({ activeTab, setActiveTab }) => {
   const router = useRouter();
   const pathname = router.pathname;
   const subPaths = [
@@ -35,6 +35,19 @@ const SubMenuTabs = ({ activeTab }) => {
       { title: "GameTime", path: "/gametime" },
     ],
   ];
+
+  //DISPLAY THE SUBMENU IF THE PATHNAME IS INCLUDED IN THE SUBMENU ARRAY
+  const detectRoute = () => {
+    subPaths.map((path, i) => {
+      if (path.find((p) => p.path == pathname)) {
+        setActiveTab(i);
+      }
+    });
+  };
+
+  useEffect(() => {
+    detectRoute();
+  }, [pathname]);
 
   return (
     <div className="max-w-5xl mx-auto flex justify-center h-14">

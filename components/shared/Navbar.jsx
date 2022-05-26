@@ -82,7 +82,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="hidden lg:block">
-        <SubMenuTabs navLinks={navLinks} activeTab={activeTab} />
+        <SubMenuTabs navLinks={navLinks} activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
     </>
   );
