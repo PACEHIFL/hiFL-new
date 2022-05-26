@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
-  const id = useId();
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
@@ -44,7 +43,7 @@ const Footer = () => {
                   <h2 className="font-bold mb-5 text-lg">{name}</h2>
                   <div className="flex flex-col gap-4">
                     {links.map(({ title, path }) => (
-                      <Link href={path} key={id}>
+                      <Link href={path} key={path}>
                         <a>{title}</a>
                       </Link>
                     ))}
