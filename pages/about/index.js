@@ -10,7 +10,7 @@ const About = () => {
       <PageTitle name="About HiFL" />
       <div className="max-w-[95%] md:max-w-[90%] mx-auto min-h-[300px] py-8">
         <div className="">
-          <Image src="/about.png" width="100%" height="40vh" layout="responsive" objectFit="cover" />
+          <Image src="/about.png" alt="" width="100%" height="40vh" layout="responsive" objectFit="cover" />
         </div>
         <div className="text-[#000229] space-y-3 mt-4 text-justify">
           <p>
