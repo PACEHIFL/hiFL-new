@@ -1,11 +1,10 @@
 import React from "react";
+import PageTitle from "../shared/PageTitle";
 
 const AuthLayout = ({ children }) => {
   return (
     <div className="font-redhat">
-      <div className="bg-[url('/title-bg.png')] bg-top h-[125px] flex items-center">
-        <h2 className="text-white text-5xl px-20 font-bold">Your Account</h2>
-      </div>
+      <PageTitle name="Your Account" />
       <div className="max-w-[95%] md:max-w-[90%] mx-auto min-h-[300px] py-8">{children}</div>
     </div>
   );

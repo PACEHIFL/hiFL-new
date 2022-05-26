@@ -2,13 +2,12 @@ import React from "react";
 import Image from "next/image";
 import LatestNews from "../../components/shared/LatestNews";
 import Sponsors from "../../components/shared/Sponsors";
+import PageTitle from "../../components/shared/PageTitle";
 
 const About = () => {
   return (
     <div className="font-redhat">
-      <div className="bg-[url('/title-bg.png')] bg-top h-[125px] flex items-center">
-        <h2 className="text-white text-5xl px-20 font-bold">About HiFL</h2>
-      </div>
+      <PageTitle name="About HiFL" />
       <div className="max-w-[95%] md:max-w-[90%] mx-auto min-h-[300px] py-8">
         <div className="">
           <Image src="/about.png" width="100%" height="40vh" layout="responsive" objectFit="cover" />
