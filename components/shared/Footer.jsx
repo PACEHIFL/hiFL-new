@@ -61,10 +61,18 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white flex justify-center items-center font-redhat py-3">
-        <h6 className="text-[#3A3A3A] text-sm">
-          ALL RIGHT RESERVED Higher Institutions Football League © 2018 - {currentYear} | Privacy Policy | Terms of Use
-        </h6>
+      <div className="bg-white flex justify-center items-center font-redhat p-3">
+        <div className="text-[#3A3A3A] text-sm flex flex-col lg:flex-row gap-3 items-center">
+          <h6 className="text-center">ALL RIGHT RESERVED Higher Institutions Football League © 2018 - {currentYear}</h6>
+          <div className="flex gap-3 items-center font-semibold">
+            <Link href="/privacy-policy">
+              <a>Privacy Policy</a>
+            </Link>
+            <Link href="/terms-of-use">
+              <a>Terms of Use</a>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );

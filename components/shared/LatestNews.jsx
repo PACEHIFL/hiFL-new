@@ -25,6 +25,13 @@ const LatestNews = () => {
       desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
       link: "#",
     },
+    {
+      img: "/news.png",
+      type: "Referees",
+      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
+      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
+      link: "#",
+    },
   ];
 
   return (
@@ -39,7 +46,7 @@ const LatestNews = () => {
         </Link>
       </div>
       <div className="flex flex-col md:flex-row gap-2 justify-between">
-        {news.slice(0, 2).map(({ img, type, title, desc, link }, i) => (
+        {news.slice(0, 5).map(({ img, type, title, desc, link }, i) => (
           <Link href={link} key={i}>
             <a className="w-full">
               <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
