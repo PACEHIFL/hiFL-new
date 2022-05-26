@@ -1,7 +1,7 @@
 import React from "react";
 
-const [id] = () => {
-  return <div>[id]</div>;
+const Id = () => {
+  return <div></div>;
 };
 
-export default [id];
+export default Id;

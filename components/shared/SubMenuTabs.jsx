@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -21,7 +21,7 @@ const SubMenuTabs = ({ activeTab }) => {
     ],
     [
       { title: "Sponsors", path: "/sponsors" },
-      { title: "Partner", path: "/partner" },
+      { title: "Partner", path: "/partners" },
     ],
     [
       { title: "Kits", path: "/kits" },
@@ -46,7 +46,7 @@ const SubMenuTabs = ({ activeTab }) => {
             <Link href={path} key={i}>
               <a
                 className={`${
-                  pathname == path && "border border-b-primary border-x-0 border-t-0"
+                  pathname == path && "border-[3px] border-b-primary border-x-0 border-t-0"
                 } cursor-pointer text-[#7E7E7E] py-3`}>
                 {title}
               </a>
