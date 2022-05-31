@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useFetch = (url) => {
-  const [data, setData] = useState(null);
+const useFetch = (url, header, payload) => {
+  const [data1, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const baseURL = process.env.BASE_URL;
 
   useEffect(() => {
-    const fetchData = async () => {
+    const postData = async () => {
       setLoading(true);
 
-      await axios(`${baseURL}${url}`)
+      await axios
+        .post(`${baseURL}${url}`, payload)
         .then((res) => {
           setData(res.data);
           setLoading(false);
@@ -23,10 +24,10 @@ const useFetch = (url) => {
         });
     };
 
-    fetchData();
-  }, [url]);
+    postData();
+  }, [url, payload]);
 
-  return { loading, error, data };
+  return { loading, error, data1 };
 };
 
 export default useFetch;

@@ -71,7 +71,7 @@ const Navbar = () => {
             ))}
           </nav>
           <Link href="/signup">
-            <a className="hidden lg:block">Signin/Signup</a>
+            <a className="hidden lg:block">Sign In/Sign Up</a>
           </Link>
 
           {/* Mobile Menu button */}
