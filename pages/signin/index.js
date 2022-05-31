@@ -19,13 +19,13 @@ const Signin = () => {
 
   return (
     <AuthLayout>
-      <div className="px-8 text-[#000229] ">
-        <h2 className="text-2xl text-[#000229] mb-3">Manage your HiFL Account</h2>
-        <div className="w-[80%]">
+      <div className="px-4 lg:px-8 text-[#000229] ">
+        <h2 className="text-lg lg:text-2xl text-[#000229] mb-3">Manage your HiFL Account</h2>
+        <div className="w-full lg:w-[80%]">
           <div className="border border-x-0 border-[#F4C316] pt-6 pb-12">
-            <h2 className="text-3xl text-[#000229] uppercase font-bold">Log In</h2>
-            <form onSubmit={handleSubmit} className="mt-8">
-              <div className="flex gap-12 justify-between items-center">
+            <h2 className="text-xl lg:text-3xl text-[#000229] uppercase font-bold">Log In</h2>
+            <form onSubmit={handleSubmit} className="mt-4 lg:mt-8">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center">
                 <div className="w-full relative">
                   <InputField
                     type="text"
@@ -61,17 +61,19 @@ const Signin = () => {
                 </div>
               </div>
 
-              <div className="flex justify-between items-center mt-3">
+              <div className="flex flex-col md:flex-row justify-between items-center mt-3">
                 <button className="btn btn-wide btn-primary capitalize font-bold"> Sign In</button>
                 <Link href="#">
-                  <a className="text-primary">Forgot your password? click here to reset</a>
+                  <a className="text-primary mt-4 md:mt-0 text-sm md:text-base">
+                    Forgot your password? click here to reset
+                  </a>
                 </Link>
               </div>
             </form>
           </div>
 
-          <div className="flex justify-center pt-12 pb-4">
-            <div className="flex items-center gap-12">
+          <div className="flex justify-center pt-6 md:pt-12 pb-2 md:pb-4">
+            <div className="flex flex-col md:flex-row items-center gap-6 lg:gap-12">
               <h3 className="text-[#000229] text-lg">Don't have an account ?</h3>
               <Link href="/signup">
                 <a className="btn btn-wide btn-accent capitalize font-bold">Sign Up</a>

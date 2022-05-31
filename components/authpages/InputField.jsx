@@ -27,7 +27,7 @@ const InputField = ({ type, name, onChange, placeholder, data, required }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         required={required ? true : false}
-        className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB]"
+        className="w-full border-b border-[#767670] py-2 px-4 outline-none rounded bg-[#E8E8E8] focus:bg-[#FBFBFB]"
       />
     </>
   );

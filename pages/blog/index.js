@@ -1,7 +1,8 @@
 import React from "react";
+import PostsLayout from "../../components/layout/PostsLayout";
 
 const Blog = () => {
-  return <div>Blog post </div>;
+  return <PostsLayout name="blog"></PostsLayout>;
 };
 
 export default Blog;

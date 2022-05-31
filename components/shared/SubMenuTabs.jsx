@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const SubMenuTabs = ({ activeTab }) => {
+const SubMenuTabs = ({ activeTab, setActiveTab }) => {
   const router = useRouter();
   const pathname = router.pathname;
   const subPaths = [
@@ -21,7 +21,7 @@ const SubMenuTabs = ({ activeTab }) => {
     ],
     [
       { title: "Sponsors", path: "/sponsors" },
-      { title: "Partner", path: "/partner" },
+      { title: "Partner", path: "/partners" },
     ],
     [
       { title: "Kits", path: "/kits" },
@@ -36,17 +36,30 @@ const SubMenuTabs = ({ activeTab }) => {
     ],
   ];
 
+  //DISPLAY THE SUBMENU IF THE PATHNAME IS INCLUDED IN THE SUBMENU ARRAY
+  const detectRoute = () => {
+    subPaths.map((path, i) => {
+      if (pathname) {
+        if (path.find((p) => p.path == pathname)) {
+          setActiveTab(i);
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    detectRoute();
+  }, [pathname]);
+
   return (
     <div className="max-w-5xl mx-auto flex justify-center h-14">
-      {activeTab == null ? (
-        ""
-      ) : (
+      {activeTab !== null && (
         <div className="flex gap-5">
           {subPaths[activeTab]?.map(({ title, path }, i) => (
             <Link href={path} key={i}>
               <a
                 className={`${
-                  pathname == path && "border border-b-primary border-x-0 border-t-0"
+                  pathname == path && "border-[3px] border-b-primary border-x-0 border-t-0"
                 } cursor-pointer text-[#7E7E7E] py-3`}>
                 {title}
               </a>

@@ -43,7 +43,7 @@ const Footer = () => {
                   <h2 className="font-bold mb-5 text-lg">{name}</h2>
                   <div className="flex flex-col gap-4">
                     {links.map(({ title, path }) => (
-                      <Link href={path} key={useId()}>
+                      <Link href={path} key={path}>
                         <a>{title}</a>
                       </Link>
                     ))}
