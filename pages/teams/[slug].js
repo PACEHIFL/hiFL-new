@@ -1,7 +1,7 @@
 import React from "react";
 
-const Id = () => {
+const Slug = () => {
   return <div>[id]</div>;
 };
 
-export default Id;
+export default Slug;
