@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import AuthLayout from "../../components/layout/AuthLayout";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/features/auth.slice";
-import { toast } from "react-toastify";
 
 const Signin = () => {
   const initialState = { email: "", password: "", rememberMe: false };
   const [data, setData] = useState(initialState);
+  const router = useRouter();
 
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -21,9 +23,9 @@ const Signin = () => {
     }
 
     if (data.email && data.password) {
-      const payload = JSON.stringify({ Email: data.email, Password: data.password });
-      console.log(payload, "pay");
-      dispatch(login({ payload, toast }));
+      const payload = { Email: data.email, Password: data.password };
+      console.log(payload);
+      dispatch(login({ payload, toast, router }));
     }
   };
 

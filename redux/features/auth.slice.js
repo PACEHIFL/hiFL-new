@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
 
-export const login = createAsyncThunk("/auth/login", async ({ formData, toast }, { rejectWithValue }) => {
+export const login = createAsyncThunk("/auth/login", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
-    const response = await api.signIn(formData);
+    const response = await api.signIn(payload);
     toast.success("Login Successfully");
-    // router.push("/");
+    router.push("/account");
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -13,11 +13,11 @@ export const login = createAsyncThunk("/auth/login", async ({ formData, toast },
   }
 });
 
-export const register = createAsyncThunk("/auth/register", async ({ formData, toast }, { rejectWithValue }) => {
+export const register = createAsyncThunk("/auth/register", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
-    const response = await api.register(formData);
+    const response = await api.register(payload);
     toast.success("Registration Successfull");
-    // router.push("/");
+    router.push("/account");
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -37,7 +37,7 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
-    setLogout: (state) => {
+    logout: (state) => {
       localStorage.clear();
       state.user = null;
     },
@@ -71,6 +71,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, setLogout } = authSlice.actions;
+export const { setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;
