@@ -5,7 +5,6 @@ import InputField from "../../components/authpages/InputField";
 import useFetch from "../../hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/features/auth.slice";
-import { toast } from "react-toastify";
 
 const heardAboutUs = ["Social Media", "Press", "Adverts", "School Blog"];
 

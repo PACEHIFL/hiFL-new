@@ -4,8 +4,7 @@ import * as api from "../api";
 export const login = createAsyncThunk("/auth/login", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.signIn(payload);
-    toast.success("Login Successfully");
-    router.push("/account");
+    toast.success("Login Successfull", { onClose: () => router.push("/account") });
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -13,17 +12,27 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, toast, ro
   }
 });
 
-export const register = createAsyncThunk("/auth/register", async ({ payload, toast, router }, { rejectWithValue }) => {
+export const register = createAsyncThunk("/auth/register", async ({ payload, toast }, { rejectWithValue }) => {
   try {
     const response = await api.register(payload);
-    toast.success("Registration Successfull");
-    router.push("/account");
-    return response.data;
+    toast.success("Registration Successfull", { onClose: () => router.push("/account") });
+    return response;
   } catch (err) {
     toast.error(err.response.data.message);
     return rejectWithValue(err.response.data);
   }
 });
+
+//RETURN USER OBJECT IF LOGGED IN
+export const isLoggedIn = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  if (localStorage.getItem("user")) {
+    return JSON.parse(localStorage.getItem("user"));
+  }
+  return false;
+};
 
 const authSlice = createSlice({
   name: "auth",
