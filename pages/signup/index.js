@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
 import useFetch from "../../hooks/useFetch";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/features/auth.slice";
 
@@ -25,6 +27,8 @@ const Signup = () => {
     userData;
   const { data } = useFetch("/institutions");
 
+  const router = useRouter();
+
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -37,8 +41,15 @@ const Signup = () => {
 
     const payload = { Firstname: firstName, Lastname: lastName, Email: email, Password: password, Role: "User" };
 
-    if (firstName && lastName && email && password) {
-      dispatch(register({ payload, toast }));
+    if (!consent) {
+      toast.error("Please accept terms and conditions");
+    }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    }
+
+    if (firstName && lastName && email && password && phoneNumber && confirmPassword == password && consent) {
+      dispatch(register({ payload, toast, router }));
     }
   };
 

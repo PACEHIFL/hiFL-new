@@ -12,7 +12,7 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, toast, ro
   }
 });
 
-export const register = createAsyncThunk("/auth/register", async ({ payload, toast }, { rejectWithValue }) => {
+export const register = createAsyncThunk("/auth/register", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.register(payload);
     toast.success("Registration Successfull", { onClose: () => router.push("/account") });
