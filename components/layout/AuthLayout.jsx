@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../shared/PageTitle";
+import { isLoggedIn } from "../../redux/features/auth.slice";
+import { useRouter } from "next/router";
 
 const AuthLayout = ({ children }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      router.push("/account");
+      return;
+    }
+  }, []);
+
   return (
     <div className="font-redhat">
       <PageTitle name="Your Account" />

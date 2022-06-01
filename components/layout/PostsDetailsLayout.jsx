@@ -1,10 +1,17 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../shared/PageTitle";
 import SideBar from "../shared/SideBar";
 import FixturesBrief from "../shared/FixturesBrief";
 
 const PostsDetailsLayout = ({ name }) => {
+  //TESTING
+  // const mediaQuery = window.matchMedia("(min-width: 768px)");
+  // if (mediaQuery.matches) {
+  //   console.log("Media Query Matched!");
+  // }
+  //TESTING
+
   return (
     <div className="font-redhat">
       <PageTitle name={name || "add a title"} />
