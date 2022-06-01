@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
+import useFetch from "../../hooks/useFetch";
 
-const institutions = ["ABUAD", "UNN", "UNILAG", "UNIBEN"];
 const heardAboutUs = ["Social Media", "Press", "Adverts", "School Blog"];
 
 const Signup = () => {
@@ -18,7 +18,9 @@ const Signup = () => {
     hearAbtUs: "",
     consent: false,
   };
-  const [data, setData] = useState(initialState);
+
+  const [userData, setUserData] = useState(initialState);
+  const { data } = useFetch("/institutions");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const Signup = () => {
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
-    setData({ ...data, [name]: val });
+    setUserData({ ...userData, [name]: val });
   };
 
   return (
@@ -45,7 +47,7 @@ const Signup = () => {
                     name="firstName"
                     onChange={handleChange}
                     placeholder="First Name"
-                    data={data}
+                    data={userData}
                     required
                   />
                 </div>
@@ -55,7 +57,7 @@ const Signup = () => {
                     name="lastName"
                     onChange={handleChange}
                     placeholder="Last Name"
-                    data={data}
+                    data={userData}
                     required
                   />
                 </div>
@@ -67,7 +69,7 @@ const Signup = () => {
                     name="email"
                     onChange={handleChange}
                     placeholder="Email Address"
-                    data={data}
+                    data={userData}
                     required
                   />
                 </div>
@@ -77,7 +79,7 @@ const Signup = () => {
                     name="phoneNumber"
                     onChange={handleChange}
                     placeholder="Phone Number"
-                    data={data}
+                    data={userData}
                     required
                   />
                 </div>
@@ -89,7 +91,7 @@ const Signup = () => {
                     name="password"
                     onChange={handleChange}
                     placeholder="Password"
-                    data={data}
+                    data={userData}
                     required
                   />
                 </div>
@@ -99,7 +101,7 @@ const Signup = () => {
                     name="confirmPassword"
                     onChange={handleChange}
                     placeholder="Confirm Password"
-                    data={data}
+                    data={userData}
                     required
                   />
                 </div>
@@ -108,24 +110,24 @@ const Signup = () => {
                 <div className="w-full">
                   <select
                     name="supportingInst"
-                    value={data.supportingInst}
+                    value={userData.supportingInst}
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
                     <option value="">Which Institution are you supporting?</option>
-                    {institutions.map((sch, i) => (
-                      <option value={sch} key={i}>
-                        {sch}
+                    {data?.data.map(({ InstitutionName }, i) => (
+                      <option value={InstitutionName} key={i}>
+                        {InstitutionName}
                       </option>
                     ))}
                   </select>
                 </div>
                 <div className="w-full">
                   <select
-                    value={data.hearAbtUs}
+                    value={userData.hearAbtUs}
                     name="hearAbtUs"
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
-                    <option value="">How did you hear about us ?</option>
+                    <option value="">How did you hear about us?</option>
                     {heardAboutUs.map((medium, i) => (
                       <option value={medium} key={i}>
                         {medium}
@@ -139,7 +141,7 @@ const Signup = () => {
                 <input
                   type="checkbox"
                   name="consent"
-                  checked={data.consent}
+                  checked={userData.consent}
                   onChange={handleChange}
                   className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
                 />
@@ -152,7 +154,7 @@ const Signup = () => {
 
           <div className="flex justify-center pt-6 md:pt-12 pb-2 md:pb-4">
             <div className="flex flex-col md:flex-row items-center gap-6 lg:gap-12">
-              <h3 className="text-[#000229] text-lg">Already have an account ?</h3>
+              <h3 className="text-[#000229] text-lg">Already have an account?</h3>
               <Link href="/signin">
                 <a className="btn btn-wide btn-accent capitalize font-bold">Sign In</a>
               </Link>
