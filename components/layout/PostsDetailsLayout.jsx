@@ -6,10 +6,10 @@ import FixturesBrief from "../shared/FixturesBrief";
 
 const PostsDetailsLayout = ({ name }) => {
   //TESTING
-  const mediaQuery = window.matchMedia("(min-width: 768px)");
-  if (mediaQuery.matches) {
-    console.log("Media Query Matched!");
-  }
+  // const mediaQuery = window.matchMedia("(min-width: 768px)");
+  // if (mediaQuery.matches) {
+  //   console.log("Media Query Matched!");
+  // }
   //TESTING
 
   return (
