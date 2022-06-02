@@ -41,7 +41,7 @@ const AccountOverview = () => {
 
   useEffect(() => {
     if (isLoggedIn()) {
-      setData(isLoggedIn().data.User);
+      setData({ ...data, ...isLoggedIn().data.User });
     }
   }, []);
 
