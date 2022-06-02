@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import SignUpModal from "./SignUpModal";
 
 const VolunteerWelcome = () => {
   return (
@@ -19,9 +20,21 @@ const VolunteerWelcome = () => {
             <button className={`btn btn-wide btn-secondary text-white capitalize font-bold`}>Learn More</button>
           </a>
         </Link>
-
-        <button className={`btn btn-wide btn-secondary text-white capitalize font-bold`}>Sign Up</button>
+        <label
+          htmlFor="signup-modal"
+          className="btn btn-wide btn-secondary text-white capitalize font-bold modal-button">
+          Sign Up
+        </label>
       </div>
+
+      {/* Modal Popup */}
+      <input type="checkbox" id="signup-modal" className="modal-toggle" />
+      <label htmlFor="signup-modal" className="modal cursor-pointer">
+        <label className="modal-box relative md:max-w-[80%] lg:max-w-[60%]" htmlFor="">
+          <SignUpModal />
+        </label>
+      </label>
+      {/* Modal Popup */}
     </div>
   );
 };

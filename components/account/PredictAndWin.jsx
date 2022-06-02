@@ -63,7 +63,7 @@ const PredictAndWin = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
         {data?.map(
           ({ stage, date, time, homeTeamLogo, homeTeamName, homeScore, awayTeamLogo, awayTeamName, awayScore }, i) => (
-            <div className="bg-white rounded-md p-4">
+            <div className="bg-white rounded-md p-4" key={i}>
               <div className="flex justify-between text-sm">
                 <div className="flex gap-2">
                   <img src="/hifl-icon.png" alt="HiFL" />
