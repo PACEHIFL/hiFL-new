@@ -8,7 +8,7 @@ import AccountOverview from "../../components/account/AccountOverview";
 import Store from "../../components/account/Store";
 import VolunteerForce from "../../components/account/VolunteerForce";
 import Unifest from "../../components/account/Unifest";
-import PredictandWin from "../../components/account/PredictandWin";
+import PredictAndWin from "../../components/account/PredictAndWin";
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -33,7 +33,7 @@ const Account = () => {
             {activeTab === 1 && <Store />}
             {activeTab === 2 && <VolunteerForce />}
             {activeTab === 3 && <Unifest />}
-            {activeTab === 4 && <PredictandWin />}
+            {activeTab === 4 && <PredictAndWin />}
           </div>
         </div>
       </div>
