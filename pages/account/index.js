@@ -14,6 +14,8 @@ const Account = () => {
   const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
 
+  //const view = [<AccountOverview />, <Store />, <VolunteerForce />, <Unifest />, <PredictAndWin />];
+
   useEffect(() => {
     if (!isLoggedIn()) {
       router.push("signin");
