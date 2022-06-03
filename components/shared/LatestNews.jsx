@@ -25,13 +25,7 @@ const LatestNews = () => {
       desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
       link: "#",
     },
-    {
-      img: "/news.png",
-      type: "Referees",
-      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
+    
   ];
 
   return (
