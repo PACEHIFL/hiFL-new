@@ -51,7 +51,7 @@ const AccountOverview = () => {
   }, []);
 
   return (
-    <AccountLayout name="account overview">
+    <AccountLayout name="profile">
       <div className="p-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center mb-4">
