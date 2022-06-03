@@ -53,7 +53,7 @@ const Navbar = () => {
 
           <div className="hidden lg:block">
             {loggedIn ? (
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <Link href="/account">
                   <a>My Account</a>
                 </Link>
