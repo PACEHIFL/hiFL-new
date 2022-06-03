@@ -35,7 +35,7 @@ const VolunteerResources = () => {
   return (
     <div className="grid grid-cols-2 gap-8 p-5">
       {news.map(({ img, type, title, link }, i) => (
-        <div>
+        <div key={i}>
           <img src={img} alt={title} className="w-full" />
           <h3 className="text-accent italic text-sm pt-1">{type}</h3>
           <h2 className="py-2">{title}</h2>
