@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import AccountLayout from "../layout/AccountLayout";
 import InputField from "./InputField";
-import { isLoggedIn } from "../../redux/features/auth.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { isLoggedIn, update } from "../../redux/features/auth.slice";
 import { states, countries } from "../../helpers/data";
 
 const AccountOverview = () => {
@@ -16,9 +18,13 @@ const AccountOverview = () => {
     Address: "",
     State: "",
     Country: "",
+    _id: null,
   };
   const [data, setData] = useState(initialState);
-  const [loading, setLoading] = useState(false);
+  const { Firstname, Lastname, Email, Phonenumber, Institution, Gender, Birthday, Address, State, Country, _id } = data;
+
+  const { loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -29,14 +35,13 @@ const AccountOverview = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (data.email == "" || data.password == "") {
-    //   return toast.error("Please all fields are required");
-    // }
-
-    // if (data.email && data.password) {
-    //   const payload = { Email: data.email, Password: data.password };
-    //   dispatch(login({ payload, toast, router }));
-    // }
+    const propsPayload = { Gender, Birthday, Address, State, Country };
+    const payload = {
+      _id,
+      params: { Firstname, Lastname, Phonenumber: +Phonenumber, Institution, props: { ...propsPayload } },
+    };
+    console.log(payload, "payload");
+    dispatch(update({ payload, toast }));
   };
 
   useEffect(() => {
@@ -115,7 +120,9 @@ const AccountOverview = () => {
                 value={data.Gender}
                 onChange={handleChange}
                 className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
-                <option value="">Select Gender</option>
+                <option value="" disabled>
+                  Select Gender
+                </option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -153,7 +160,9 @@ const AccountOverview = () => {
                 value={data.State}
                 onChange={handleChange}
                 className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
-                <option value="">Select State</option>
+                <option value="" disabled>
+                  Select State
+                </option>
                 {states?.map((state, i) => (
                   <option value={state} key={i}>
                     {state}
@@ -170,7 +179,9 @@ const AccountOverview = () => {
                 value={data.Country}
                 onChange={handleChange}
                 className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
-                <option value="Nigeria">Nigeria</option>
+                <option value="" disabled>
+                  Select Country
+                </option>
                 {countries?.map((country, i) => (
                   <option value={country} key={i}>
                     {country}
