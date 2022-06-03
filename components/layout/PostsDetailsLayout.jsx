@@ -20,7 +20,7 @@ const PostsDetailsLayout = ({ name }) => {
           <div className="flex gap-10 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div className="">
-                <h2 className="text-2xl mb-2">Stenoväling ossade. Hyrade suprar. Reans biogen. Sov. </h2>
+                <h2 className="text-2xl mb-2 font-semibold">Stenoväling ossade. Hyrade suprar. Reans biogen. Sov. </h2>
                 <h3 className="text-accent text-base mb-5">HiFL Games</h3>
                 <div className="">
                   <Image src="/about.png" alt="" width="100%" height="40vh" layout="responsive" objectFit="cover" />

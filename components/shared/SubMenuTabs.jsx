@@ -53,20 +53,20 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
 
   return (
     <div className="max-w-5xl mx-auto flex justify-center h-14">
-      {activeTab !== null && (
-        <div className="flex gap-5">
-          {subPaths[activeTab]?.map(({ title, path }, i) => (
-            <Link href={path} key={i}>
-              <a
-                className={`${
-                  pathname == path && "border-[3px] border-b-primary border-x-0 border-t-0"
-                } cursor-pointer text-[#7E7E7E] py-3`}>
-                {title}
-              </a>
-            </Link>
-          ))}
-        </div>
-      )}
+      {/* {activeTab !== null && ( */}
+      <div className="flex gap-5">
+        {subPaths[activeTab]?.map(({ title, path }, i) => (
+          <Link href={path} key={i}>
+            <a
+              className={`${
+                pathname == path && "border-[3px] border-b-primary border-x-0 border-t-0"
+              } cursor-pointer text-[#7E7E7E] py-3`}>
+              {title}
+            </a>
+          </Link>
+        ))}
+      </div>
+      {/* )} */}
     </div>
   );
 };

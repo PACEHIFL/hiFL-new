@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [showTab, setShowTabs] = useState(false);
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState(0);
   const [loggedIn, setLoggedIn] = useState(null);
 
   const router = useRouter();
@@ -23,7 +23,7 @@ const Navbar = () => {
     toast.success("Logged Out Successfully");
     setInterval(() => {
       router.reload();
-    }, 3000);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="bg-secondary text-white font-redhat">
         <div className="container flex justify-between items-center max-w-[94%] md:max-w-[90%] mx-auto">
           <Link href="/">
-            <a onClick={() => setActiveTab(null)}>
+            <a>
               <div className="bg-white px-4 pt-8 rounded-tr-[65px rounded-br-[10px] rounded-bl-[10px]">
                 <Image src="/hifl-logo.png" alt="HiFL Logo" width={75} height={39} />
               </div>
@@ -53,7 +53,7 @@ const Navbar = () => {
 
           <div className="hidden lg:block">
             {loggedIn ? (
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <Link href="/account">
                   <a>My Account</a>
                 </Link>
@@ -61,7 +61,7 @@ const Navbar = () => {
                 <button onClick={handleLogout}>Sign Out</button>
               </div>
             ) : (
-              <Link href="/signup">
+              <Link href="/signin">
                 <a>Sign In/Sign Up</a>
               </Link>
             )}

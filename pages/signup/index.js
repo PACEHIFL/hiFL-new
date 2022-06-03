@@ -39,7 +39,16 @@ const Signup = () => {
     //   return toast.error("Please all fields are required");
     // }
 
-    const payload = { Firstname: firstName, Lastname: lastName, Email: email, Password: password, Role: "User" };
+    const propsPayload = { Supportinginstitution: supportingInst, Hearaboutus: hearAbtUs };
+    const payload = {
+      Firstname: firstName,
+      Lastname: lastName,
+      Email: email,
+      Phonenumber: +phoneNumber,
+      Password: password,
+      Role: "User",
+      props: { ...propsPayload },
+    };
 
     if (!consent) {
       toast.error("Please accept terms and conditions");
