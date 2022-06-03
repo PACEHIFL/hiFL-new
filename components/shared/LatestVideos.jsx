@@ -39,7 +39,7 @@ const LatestVideos = () => {
                 light="/news.png"
                 width="100%"
                 height="100%"
-                playIcon={<Image src="/play.png" alt="" width="54" height="62" />}
+                playIcon={<img src="/play.png" alt="" width="13%" />}
               />
             )}
           </div>
@@ -54,14 +54,23 @@ const LatestVideos = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full md:w-1/2">
-          {videos.slice(0, 4).map(({ img, desc, link }, i) => (
-            <div className="flex flex-row md:flex-col items-center gap-2" key={i}>
-              <div className="w-1/2 md:w-full">
-                <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
+          {!isLoading &&
+            videos.slice(0, 4).map(({ img, desc, link }, i) => (
+              <div className="flex flex-row md:flex-col items-center gap-2" key={i}>
+                <div className="w-1/2 md:w-full h-auto">
+                  {/* <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" /> */}
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    controls={true}
+                    light="/news.png"
+                    width="100%"
+                    height="135px"
+                    playIcon={<img src="/play.png" alt="" width="13%" />}
+                  />
+                </div>
+                <p className="text-xs font-extralight pt-1 w-[75%] md:w-full">{desc}</p>
               </div>
-              <p className="text-xs font-extralight pt-1 w-[75%] md:w-full">{desc}</p>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
