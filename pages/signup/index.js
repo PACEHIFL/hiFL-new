@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
 import useFetch from "../../hooks/useFetch";
+
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../redux/features/auth.slice";
 
 const heardAboutUs = ["Social Media", "Press", "Adverts", "School Blog"];
 
@@ -20,10 +25,43 @@ const Signup = () => {
   };
 
   const [userData, setUserData] = useState(initialState);
+  const { firstName, lastName, email, phoneNumber, password, confirmPassword, supportingInst, hearAbtUs, consent } =
+    userData;
   const { data } = useFetch("/institutions");
+
+  const router = useRouter();
+
+  const { loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // if (data.email == "" || data.password == "") {
+    //   return toast.error("Please all fields are required");
+    // }
+
+    const propsPayload = { Supportinginstitution: supportingInst, Hearaboutus: hearAbtUs };
+    const payload = {
+      Firstname: firstName,
+      Lastname: lastName,
+      Email: email,
+      Phonenumber: +phoneNumber,
+      Password: password,
+      Role: "User",
+      props: { ...propsPayload },
+    };
+
+    if (!consent) {
+      toast.error("Please accept terms and conditions");
+    }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    }
+
+    if (firstName && lastName && email && password && phoneNumber && confirmPassword == password && consent) {
+      dispatch(register({ payload, toast, router }));
+    }
   };
 
   const handleChange = (e) => {
@@ -110,7 +148,8 @@ const Signup = () => {
                 <div className="w-full">
                   <select
                     name="supportingInst"
-                    value={userData.supportingInst}
+
+                    value={supportingInst}
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
                     <option value="">Which Institution are you supporting?</option>
@@ -123,7 +162,8 @@ const Signup = () => {
                 </div>
                 <div className="w-full">
                   <select
-                    value={userData.hearAbtUs}
+
+                    value={hearAbtUs}
                     name="hearAbtUs"
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
@@ -140,15 +180,17 @@ const Signup = () => {
               <div className="flex gap-3 items-center py-3">
                 <input
                   type="checkbox"
-                  name="consent"
-                  checked={userData.consent}
+
+                  checked={consent}
                   onChange={handleChange}
                   className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
                 />
                 <p>I have read, understand and agree to terms and conditions and privacy policy of HiFL.</p>
               </div>
 
-              <button className="btn btn-wide btn-primary capitalize font-bold mt-3"> Sign Up</button>
+              <button className={`${loading && "loading"} btn btn-wide btn-primary capitalize font-bold mt-3`}>
+                {loading ? "" : "Sign Up"}
+              </button>
             </form>
           </div>
 

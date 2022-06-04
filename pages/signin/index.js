@@ -1,14 +1,31 @@
 import React, { useState } from "react";
-import AuthLayout from "../../components/layout/AuthLayout";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/features/auth.slice";
 
 const Signin = () => {
   const initialState = { email: "", password: "", rememberMe: false };
   const [data, setData] = useState(initialState);
+  const router = useRouter();
+
+  const { loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (data.email == "" || data.password == "") {
+      return toast.error("Please all fields are required");
+    }
+    // console.log(data)
+    if (data.email && data.password) {
+      const payload = { Email: data.email, Password: data.password };
+      dispatch(login({ payload, toast, router }));
+    }
   };
 
   const handleChange = (e) => {
@@ -33,7 +50,7 @@ const Signin = () => {
                     onChange={handleChange}
                     placeholder="Email Address"
                     data={data}
-                    required
+                    //required
                   />
                 </div>
                 <div className="w-full relative">
@@ -43,7 +60,7 @@ const Signin = () => {
                     onChange={handleChange}
                     placeholder="Password"
                     data={data}
-                    required
+                    //required
                   />
                 </div>
               </div>
@@ -62,7 +79,9 @@ const Signin = () => {
               </div>
 
               <div className="flex flex-col md:flex-row justify-between items-center mt-3">
-                <button className="btn btn-wide btn-primary capitalize font-bold"> Sign In</button>
+                <button className={`${loading && "loading"} btn btn-wide btn-primary capitalize font-bold`}>
+                  {loading ? "" : "Sign In"}
+                </button>
                 <Link href="#">
                   <a className="text-primary mt-4 md:mt-0 text-sm md:text-base">
                     Forgot your password? click here to reset
