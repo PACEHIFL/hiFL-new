@@ -12,10 +12,10 @@ const PostsItem = ({ post: { id, Title, CoverImage, category, Excerpt } }) => {
       </div>
       <div className="w-full md:w-[60%] flex flex-col justify-between">
         <div>
-          <h2 className="text-xl 2xl:text-2xl mb-1 font-semibold">{Title}</h2>
+          <h2 className="text-xl 2xl:text-2xl mb-1">{Title}</h2>
           <h3 className="text-accent text-sm md:text-base mb-3">{category}</h3>
           {/* <p >{Excerpt}</p> */}
-          <div dangerouslySetInnerHTML={{ __html: Excerpt }} className="text-base font-redhat"></div>
+          <div dangerouslySetInnerHTML={{ __html: Excerpt }} className="text-base text-secondary font-redhat"></div>
         </div>
         <div>
           <Link href={`${path}/${id}`}>

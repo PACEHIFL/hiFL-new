@@ -26,7 +26,7 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, Content } }) => {
                 </div>
                 <div
                   dangerouslySetInnerHTML={{ __html: Content }}
-                  className="text-[#000229] space-y-3 mt-4 text-justify"></div>
+                  className="text-[#000229] space-y-3 mt-8 text-justify font-redhat"></div>
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
