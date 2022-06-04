@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/dist/client/image";
 import Link from "next/link";
 
 const InnerSection = ({ title, img, parag, lower, arrow, bg }) => {

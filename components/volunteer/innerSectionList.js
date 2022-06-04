@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "next/dist/client/image";
-import Link from "next/link";
+
 
 const InnerSectionList = ({  img, title, list1, list2, list3 }) => {
   return (
