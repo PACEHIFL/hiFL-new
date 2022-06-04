@@ -25,7 +25,6 @@ const LatestNews = () => {
       desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
       link: "#",
     },
-    
   ];
 
   return (
