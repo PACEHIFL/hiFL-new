@@ -1,7 +1,6 @@
 import React from "react";
 
-
-const InnerSectionList = ({  img, title, list1, list2, list3 }) => {
+const InnerSectionList = ({ img, title, list1, list2, list3 }) => {
   return (
     <div className="flex align-top mb-5 h-[100%] ">
       <div className="hidden md:inline w-1/2">
@@ -18,7 +17,6 @@ const InnerSectionList = ({  img, title, list1, list2, list3 }) => {
           <li>{list3}</li>
         </ul>
         <div></div>
-        
       </div>
     </div>
   );
