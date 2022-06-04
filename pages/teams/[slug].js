@@ -21,5 +21,5 @@ const Slug = () => {
       </div>
     </div>
   );
-
+};
 export default Slug;
