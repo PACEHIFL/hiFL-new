@@ -4,39 +4,7 @@ import FixturesBrief from "../shared/FixturesBrief";
 import PageTitle from "../shared/PageTitle";
 import SideBar from "../shared/SideBar";
 
-const PostsLayout = ({ name }) => {
-  const posts = [
-    {
-      img: "/about.png",
-      title: "Stenoväling ossade. Hyrade suprar. Reans biogen. Sov.",
-      category: "HiFL Games",
-      excerpt: "Nitir dejarade. Sode didod. Embrejsa sodide. Vajanat. Fejkade nyheter ren. Seminat terratopi.",
-    },
-    {
-      img: "/invitational.png",
-      title: "Eurolig heteroskade. Nena tegen. Tehevar. ",
-      category: "HiFL e-invitational",
-      excerpt: "Vejpa planona. Spevis jade. Runing duseren. Trarat lanöbel. Viling ekotos. Polyosmos geokessa.",
-    },
-    {
-      img: "/about.png",
-      title: "Stenoväling ossade. Hyrade suprar. Reans biogen. Sov.",
-      category: "HiFL Games",
-      excerpt: "Nitir dejarade. Sode didod. Embrejsa sodide. Vajanat. Fejkade nyheter ren. Seminat terratopi.",
-    },
-    {
-      img: "/invitational.png",
-      title: "Eurolig heteroskade. Nena tegen. Tehevar. ",
-      category: "HiFL e-invitational",
-      excerpt: "Vejpa planona. Spevis jade. Runing duseren. Trarat lanöbel. Viling ekotos. Polyosmos geokessa.",
-    },
-    {
-      img: "/about.png",
-      title: "Stenoväling ossade. Hyrade suprar. Reans biogen. Sov.",
-      category: "HiFL Games",
-      excerpt: "Nitir dejarade. Sode didod. Embrejsa sodide. Vajanat. Fejkade nyheter ren. Seminat terratopi.",
-    },
-  ];
+const PostsLayout = ({ name, posts }) => {
   return (
     <div className="font-redhat">
       <PageTitle name={name || "add a title"} />
@@ -45,7 +13,7 @@ const PostsLayout = ({ name }) => {
           <div className="flex gap-7 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div className="flex flex-col gap-8">
-                {posts.map((post, i) => (
+                {posts?.map((post, i) => (
                   <PostsItem post={post} key={i} />
                 ))}
               </div>
