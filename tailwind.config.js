@@ -23,6 +23,8 @@ module.exports = {
           secondary: "#000229",
           accent: "#EA1D24",
           "accent-content": "#ffffff",
+          "overlay": "#000229",
+          
           // info: "#ccd6f6",
           warning: "#F4C316",
           // icon: "#a8b2d0",
