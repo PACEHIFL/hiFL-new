@@ -1,4 +1,5 @@
 import React from "react";
+
 import SideBar from "../../components/shared/SideBar";
 import TeamsHeader from "../../components/teams/TeamsHeader";
 
@@ -20,6 +21,5 @@ const Slug = () => {
       </div>
     </div>
   );
-};
 
 export default Slug;
