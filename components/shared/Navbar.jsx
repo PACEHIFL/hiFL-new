@@ -66,7 +66,6 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-
           {/* Mobile Menu button */}
           <div className=" lg:hidden">
             <Image src="/hamburger.png" alt="" width={24.5} height={16.5} className="cursor-pointer" />
