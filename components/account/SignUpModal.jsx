@@ -5,18 +5,20 @@ import InputField from "./InputField";
 const SignUpModal = () => {
   const initialState = {
     University: "",
-    Department: "",
+    department: "",
     Program: "",
-    Matricno: "",
-    Level: "",
-    Nextofkinname: "",
-    Nextofkinphone: "",
-    Heardaboutus: "",
+    matricNo: "",
+    level: "",
+    expectedYearOfGrad: "",
+    nextOfKinName: "",
+    nextOfKinPhone: "",
+    whyJoinVolunteer: "",
   };
   const [userData, setUserData] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
-  const { data } = useFetch("/institutions");
+  const baseURL = process.env.BASE_URL;
+  const { data } = useFetch(`${baseURL}/institutions`);
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -52,7 +54,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="Department"
+            name="department"
             onChange={handleChange}
             placeholder="Department"
             data={userData}
@@ -71,7 +73,9 @@ const SignUpModal = () => {
             onChange={handleChange}
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
-            <option value="">Select Program</option>
+            <option value="" disabled>
+              Select Program
+            </option>
             <option value="undergraduate">Undergraduate</option>
             <option value="postgraduate">Postgraduate</option>
           </select>
@@ -79,7 +83,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="Matricno"
+            name="matricNo"
             onChange={handleChange}
             placeholder="Matric No"
             data={userData}
@@ -93,23 +97,27 @@ const SignUpModal = () => {
             Level
           </label>
           <select
-            name="Level"
-            value={userData.Level}
+            name="level"
+            value={userData.level}
             onChange={handleChange}
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
-            <option value="">Select Level</option>
+            <option value="" disabled>
+              Select Level
+            </option>
             <option value="100">100 Level</option>
             <option value="200">200 Level</option>
             <option value="300">300 Level</option>
             <option value="400">400 Level</option>
             <option value="500">500 Level</option>
+            <option value="Msc">Msc</option>
+            <option value="PhD">PhD</option>
           </select>
         </div>
         <div className="w-full">
           <InputField
             type="text"
-            name="Expectedyearofgrad"
+            name="expectedYearOfGrad"
             onChange={handleChange}
             required
             placeholder="Expected Year of Graduation"
@@ -124,7 +132,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="Nextofkinname"
+            name="nextOfKinName"
             onChange={handleChange}
             required
             placeholder="Full Name"
@@ -134,7 +142,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="tel"
-            name="Nextofkinphone"
+            name="nextOfKinPhone"
             onChange={handleChange}
             required
             placeholder="Phone Number"
@@ -145,12 +153,12 @@ const SignUpModal = () => {
 
       <div className="w-full">
         <label htmlFor="Heardaboutus" className="font-bold text-sm">
-          How did you hear about us?
+          Why do you want to volunteer?
         </label>
         <textarea
-          name="Heardaboutus"
+          name="whyJoinVolunteer"
           onChange={handleChange}
-          placeholder="How do you know about HiFL?"
+          placeholder="Please type your message"
           className="w-full border text-sm mt-1 py-3 px-4 outline-none rounded"
           data={userData}
           rows={4}

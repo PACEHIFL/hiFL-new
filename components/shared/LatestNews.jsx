@@ -49,7 +49,7 @@ const LatestNews = () => {
         <Link href="/news">
           <a className="flex gap-2 text-sm font-bold">
             <span>View All</span>
-            <Image src="/right-arrow.png" alt="" width={11} height={14} />
+            <img src="/right-arrow.png" alt="" />
           </a>
         </Link>
       </div>
