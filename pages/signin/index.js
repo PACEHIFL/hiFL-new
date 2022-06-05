@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import React, { useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";

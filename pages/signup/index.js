@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
 import useFetch from "../../hooks/useFetch";
+
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/features/auth.slice";
@@ -22,6 +23,7 @@ const Signup = () => {
     hearAbtUs: "",
     consent: false,
   };
+
   const [userData, setUserData] = useState(initialState);
   const { firstName, lastName, email, phoneNumber, password, confirmPassword, supportingInst, hearAbtUs, consent } =
     userData;
@@ -148,6 +150,7 @@ const Signup = () => {
                 <div className="w-full">
                   <select
                     name="supportingInst"
+
                     value={supportingInst}
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
@@ -161,6 +164,7 @@ const Signup = () => {
                 </div>
                 <div className="w-full">
                   <select
+
                     value={hearAbtUs}
                     name="hearAbtUs"
                     onChange={handleChange}
@@ -178,7 +182,7 @@ const Signup = () => {
               <div className="flex gap-3 items-center py-3">
                 <input
                   type="checkbox"
-                  name="consent"
+
                   checked={consent}
                   onChange={handleChange}
                   className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
