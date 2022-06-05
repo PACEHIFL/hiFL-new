@@ -5,9 +5,9 @@ import InnerSectionList from "../../components/volunteer/InnerSectionList";
 import SideBar from "../../components/shared/SideBar";
 import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";
-import Image from "next/dist/client/image";
+import Image from "next/image";
 
-const volunteer = () => {
+const Volunteer = () => {
   return (
     <div className=" ">
       <div className="max-w-[94%] md:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
@@ -75,7 +75,6 @@ const volunteer = () => {
                     list1="Tingar endoplastisk."
                     list2=" Donade letungen en treter och "
                     list3="Pararysk blingbling sperad."
-                   
                   />
                 </div>
                 <div className="  ">
@@ -108,4 +107,4 @@ const volunteer = () => {
   );
 };
 
-export default volunteer;
+export default Volunteer;
