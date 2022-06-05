@@ -6,41 +6,10 @@ import PostsSkelenton from "../posts/PostsSkelenton";
 
 const LatestNews = () => {
   const baseURL = process.env.CMS_URL;
-  const { data, loading, error } = useFetch(`${baseURL}/posts?populate=*`);
+  const { data, loading } = useFetch(`${baseURL}/posts?populate=*`);
 
   const newsPosts = data?.data.filter((post) => post.categories[0].CategoryName.includes("News"));
   const latestNews = newsPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-
-  const news = [
-    {
-      img: "/news.png",
-      type: "Latest News",
-      title: "HiFLt 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "3",
-    },
-    {
-      img: "/news.png",
-      type: "News",
-      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
-    {
-      img: "/news.png",
-      type: "Referees",
-      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
-    {
-      img: "/news.png",
-      type: "Referees",
-      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
-  ];
 
   return (
     <div className="border border-x-0 border-[#D0D0D0] font-redhat text-[#000229] pb-8">
