@@ -1,15 +1,23 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import useFetch from "../../hooks/useFetch";
+import PostsSkelenton from "../posts/PostsSkelenton";
 
 const LatestNews = () => {
+  const baseURL = process.env.CMS_URL;
+  const { data, loading, error } = useFetch(`${baseURL}/posts?populate=*`);
+
+  const newsPosts = data?.data.filter((post) => post.categories[0].CategoryName.includes("News"));
+  const latestNews = newsPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
   const news = [
     {
       img: "/news.png",
       type: "Latest News",
-      title: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
+      title: "HiFLt 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
       desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
+      link: "3",
     },
     {
       img: "/news.png",
@@ -46,16 +54,26 @@ const LatestNews = () => {
         </Link>
       </div>
       <div className="flex flex-col md:flex-row gap-2 justify-between">
-        {news.slice(0, 5).map(({ img, type, title, desc, link }, i) => (
-          <Link href={link} key={i}>
-            <a className="w-full">
-              <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" />
-              <h3 className="text-accent font-bold italic text-xs py-1">{type}</h3>
-              <h2 className="text-sm font-semibold">{title}</h2>
-              <p className="text-xs font-extralight pt-1">{desc}</p>
-            </a>
-          </Link>
-        ))}
+        {loading ? (
+          <>
+            <PostsSkelenton />
+            <PostsSkelenton />
+            <PostsSkelenton />
+          </>
+        ) : (
+          latestNews?.slice(0, 3).map(({ id, Title, CoverImage, categories, Excerpt }, i) => (
+            <Link href={`news/${id}`} key={i}>
+              <a className="w-full">
+                <img src={CoverImage.url} alt={Title} className="w-full" />
+                <h3 className="text-accent font-bold italic text-xs py-1">{categories[0].CategoryName}</h3>
+                <h2 className="text-sm font-semibold">{Title}</h2>
+                <div
+                  dangerouslySetInnerHTML={{ __html: Excerpt }}
+                  className="text-[#000229] text-xs text-justify font-extralight font-redhat pt-1"></div>
+              </a>
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

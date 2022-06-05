@@ -25,7 +25,9 @@ const Signup = () => {
   const [userData, setUserData] = useState(initialState);
   const { firstName, lastName, email, phoneNumber, password, confirmPassword, supportingInst, hearAbtUs, consent } =
     userData;
-  const { data } = useFetch("/institutions");
+
+  const baseURL = process.env.BASE_URL;
+  const { data } = useFetch(`${baseURL}/institutions`);
 
   const router = useRouter();
 
