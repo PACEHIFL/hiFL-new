@@ -150,8 +150,7 @@ const Signup = () => {
                 <div className="w-full">
                   <select
                     name="supportingInst"
-
-                    value={supportingInst}
+                    value={userData.supportingInst}
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
                     <option value="">Which Institution are you supporting?</option>
@@ -164,8 +163,7 @@ const Signup = () => {
                 </div>
                 <div className="w-full">
                   <select
-
-                    value={hearAbtUs}
+                    value={userData.hearAbtUs}
                     name="hearAbtUs"
                     onChange={handleChange}
                     className="w-full border-b border-[#767670] py-2 px-4 outline-none bg-[#E8E8E8] focus:bg-[#FBFBFB] cursor-pointer">
@@ -182,8 +180,8 @@ const Signup = () => {
               <div className="flex gap-3 items-center py-3">
                 <input
                   type="checkbox"
-
-                  checked={consent}
+                  name="consent"
+                  checked={userData.consent}
                   onChange={handleChange}
                   className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
                 />
