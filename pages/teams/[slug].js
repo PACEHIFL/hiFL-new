@@ -1,15 +1,10 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import Fixtures from "../../components/teams/Fixtures";
 import Overview from "../../components/teams/Overview";
 import Results from "../../components/teams/Result";
 import Squad from "../../components/teams/Squad";
 import Tabs from "../../components/teams/Tabs";
-=======
-import React from "react";
-
 import SideBar from "../../components/shared/SideBar";
->>>>>>> development
 import TeamsHeader from "../../components/teams/TeamsHeader";
 import Stats from '../../components/teams/Stats';
 import Store from '../../components/teams/Store';
