@@ -8,20 +8,23 @@ import { states, countries } from "../../helpers/data";
 
 const AccountOverview = () => {
   const initialState = {
+    _id: null,
     Firstname: "",
     Lastname: "",
     Email: "",
     Phonenumber: "",
     Institution: "",
-    Gender: "",
-    Birthday: "",
-    Address: "",
-    State: "",
-    Country: "",
-    _id: null,
+    props: {
+      Gender: "",
+      Birthday: "",
+      Address: "",
+      State: "",
+      Country: "",
+    },
   };
   const [data, setData] = useState(initialState);
-  const { Firstname, Lastname, Email, Phonenumber, Institution, Gender, Birthday, Address, State, Country, _id } = data;
+  const [propsData, setPropsData] = useState({ Gender: "", Birthday: "", Address: "", State: "", Country: "" });
+  const { Firstname, Lastname, Email, Phonenumber, Institution, _id } = data;
 
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -31,22 +34,24 @@ const AccountOverview = () => {
     const val = type === "checkbox" ? checked : value;
     setData({ ...data, [name]: val });
   };
-
+  const handlePropsChange = (e) => {
+    const { name, value } = e.target;
+    setPropsData({ ...propsData, [name]: value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const propsPayload = { Gender, Birthday, Address, State, Country };
     const payload = {
       _id,
-      params: { Firstname, Lastname, Phonenumber: +Phonenumber, Institution, props: { ...propsPayload } },
+      params: { Firstname, Lastname, Phonenumber: +Phonenumber, Institution, props: { ...propsData } },
     };
-    console.log(payload, "payload");
     dispatch(update({ payload, toast }));
   };
 
   useEffect(() => {
     if (isLoggedIn()) {
       setData({ ...data, ...isLoggedIn().data.User });
+      setPropsData({ ...propsData, ...isLoggedIn().data.User.props });
     }
   }, []);
 
@@ -117,14 +122,14 @@ const AccountOverview = () => {
               </label>
               <select
                 name="Gender"
-                value={data.Gender}
-                onChange={handleChange}
+                value={propsData.Gender}
+                onChange={handlePropsChange}
                 className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
                 <option value="" disabled>
                   Select Gender
                 </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
           </div>
@@ -133,9 +138,9 @@ const AccountOverview = () => {
               <InputField
                 type="date"
                 name="Birthday"
-                onChange={handleChange}
+                onChange={handlePropsChange}
                 placeholder="Birthday"
-                data={data}
+                data={propsData}
                 //required
               />
             </div>
@@ -143,9 +148,9 @@ const AccountOverview = () => {
               <InputField
                 type="text"
                 name="Address"
-                onChange={handleChange}
+                onChange={handlePropsChange}
                 placeholder="Address"
-                data={data}
+                data={propsData}
                 //required
               />
             </div>
@@ -157,8 +162,8 @@ const AccountOverview = () => {
               </label>
               <select
                 name="State"
-                value={data.State}
-                onChange={handleChange}
+                value={propsData.State}
+                onChange={handlePropsChange}
                 className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
                 <option value="" disabled>
                   Select State
@@ -176,8 +181,8 @@ const AccountOverview = () => {
               </label>
               <select
                 name="Country"
-                value={data.Country}
-                onChange={handleChange}
+                value={propsData.Country}
+                onChange={handlePropsChange}
                 className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
                 <option value="" disabled>
                   Select Country
