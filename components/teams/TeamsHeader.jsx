@@ -3,6 +3,7 @@ import React from "react";
 
 const TeamsHeader = () => {
   return (
+<<<<<<< HEAD
     <div className="flex h-full bg-[#7e4275] text-white font-redhat">
       <div className="hidden lg:block w-[50%] h-full">
         {/* <Image src="/about.png" alt="" width="100%" height="100%" layout="fixed" objectFit="contain" /> */}
@@ -29,6 +30,15 @@ const TeamsHeader = () => {
             <Image src="/instagram.png" alt="" width="60" className="cursor-pointer mr-3" height="60" layout="fixed" />
           </div>
         </div>
+=======
+    <div className="flex">
+      <div>
+        <Image src="/about.png" alt="" width="100%" height="40vh" layout="responsive" objectFit="cover" />
+      </div>
+      <div className="bg-[#7e4275] h-screen">
+        <h1>Hello People</h1>
+        <h1>Hello People</h1>
+>>>>>>> development
       </div>
     </div>
   );
