@@ -4,6 +4,29 @@ import useFetch from "../../hooks/useFetch";
 import PostsSkelenton from "../posts/PostsSkelenton";
 
 const LatestNews = () => {
+  const news = [
+    {
+      img: "/news.png",
+      type: "Latest News",
+      title: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
+      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
+      link: "#",
+    },
+    {
+      img: "/news.png",
+      type: "News",
+      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
+      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
+      link: "#",
+    },
+    {
+      img: "/news.png",
+      type: "Referees",
+      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
+      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
+      link: "#",
+    },
+  ];
   const baseURL = process.env.CMS_URL;
   const { data, loading } = useFetch(`${baseURL}/posts?populate=*`);
 
