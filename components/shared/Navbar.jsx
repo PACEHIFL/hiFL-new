@@ -20,10 +20,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    toast.success("Logged Out Successfully");
-    setInterval(() => {
-      router.reload();
-    }, 1000);
+    router.reload();
   };
 
   useEffect(() => {
@@ -33,12 +30,12 @@ const Navbar = () => {
   }, [user]);
   return (
     <>
-      <div className="bg-secondary text-white font-redhat">
+      <div className="bg-secondary text-white font-redhat mb-14 lg:mb-0">
         <div className="container flex justify-between items-center max-w-[94%] md:max-w-[90%] mx-auto">
           <Link href="/">
             <a>
               <div className="bg-white px-4 pt-8 rounded-tr-[65px rounded-br-[10px] rounded-bl-[10px]">
-                <Image src="/hifl-logo.png" alt="HiFL Logo" width={75} height={39} />
+                <img src="/hifl-logo.png" alt="HiFL Logo" />
               </div>
             </a>
           </Link>

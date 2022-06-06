@@ -4,7 +4,7 @@ import * as api from "../api";
 export const login = createAsyncThunk("/auth/login", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.signIn(payload);
-    toast.success("Login Successfull", { onClose: () => router.push("/account") });
+    toast.success("Login Successfull", { onClose: () => router.push("/account"), autoClose: 2000 });
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);

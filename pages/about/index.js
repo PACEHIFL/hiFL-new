@@ -63,9 +63,6 @@ const About = () => {
         <div className="mt-6">
           <LatestNews />
         </div>
-        <div className="bg-white">
-          <Sponsors />
-        </div>
       </div>
     </div>
   );
