@@ -5,7 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import PostsSkelenton from "../posts/PostsSkelenton";
 
 const LatestNews = () => {
-<<<<<<< HEAD
   const news = [
     {
       img: "/news.png",
@@ -29,13 +28,11 @@ const LatestNews = () => {
       link: "#",
     },
   ];
-=======
   const baseURL = process.env.CMS_URL;
   const { data, loading } = useFetch(`${baseURL}/posts?populate=*`);
 
   const newsPosts = data?.data.filter((post) => post.categories[0].CategoryName.includes("News"));
   const latestNews = newsPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
->>>>>>> development
 
   return (
     <div className="border border-x-0 border-[#D0D0D0] font-redhat text-[#000229] pb-8">
