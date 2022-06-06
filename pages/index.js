@@ -41,11 +41,11 @@ export default function Home() {
           <Store />
         </div>
       </div>
-      <div className="bg-white">
+      {/* <div className="bg-white">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto">
           <Sponsors />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
