@@ -3,7 +3,7 @@ import PostsDetailsLayout from "../../components/layout/PostsDetailsLayout";
 import axios from "axios";
 
 const Post = ({ data }) => {
-  return <PostsDetailsLayout name="blog" post={data} />;
+  return <PostsDetailsLayout name="press release" post={data} />;
 };
 
 export default Post;
