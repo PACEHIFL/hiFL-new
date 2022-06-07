@@ -1,9 +1,12 @@
 import React from "react";
+import AllTeams from '../../components/teams/AllTeams';
 
 const index = () => {
+  
   return (
     <div>
-      <h1 className="text-2xl"> Hello World </h1>
+      <AllTeams />
+      
     </div>
   );
 };
