@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import InputField from "./InputField";
+import { toast } from "react-toastify";
+
+import { useDispatch, useSelector } from "react-redux";
+import { isLoggedIn } from "../../redux/features/auth.slice";
+import { register } from "../../redux/features/volunteer.slice";
 
 const SignUpModal = () => {
   const initialState = {
+    User: "",
     University: "",
     department: "",
     Program: "",
@@ -15,23 +21,46 @@ const SignUpModal = () => {
     whyJoinVolunteer: "",
   };
   const [userData, setUserData] = useState(initialState);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.volunteer);
 
   const baseURL = process.env.BASE_URL;
   const { data } = useFetch(`${baseURL}/institutions`);
+  const seasons = useFetch(`${baseURL}/leagues/seasons`)?.data?.data;
+  const currentSeasonID = seasons?.[0]?._id;
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
     setUserData({ ...userData, [name]: val });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+
+    if (seasons !== undefined) {
+      const participation = { season: currentSeasonID };
+      const payload = { ...userData, participations: [participation] };
+      console.log(payload);
+      dispatch(register({ payload, toast }));
+    }
   };
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      setUserData({ ...userData, User: isLoggedIn().data.User._id });
+    }
+  }, []);
+
   return (
-    <form className="p-8" onSubmit={handleSubmit}>
+    <form className="px-2 lg:p-6" onSubmit={handleSubmit}>
+      <div className="flex justify-end">
+        <label
+          htmlFor="signup-modal"
+          className="absolute right-2 top-2 lg:right-5 lg:top-5 p-4 lg:hover:bg-[#f5f5f5] lg:hover:rounded-full  cursor-pointer modal-button">
+          <img src="/close-accent.svg" alt="" className="w-[12px]" />
+        </label>
+      </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center mb-4">
         <div className="w-full">
           <label htmlFor="University" className="font-bold text-sm">
@@ -44,8 +73,8 @@ const SignUpModal = () => {
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
             <option value="">Select University</option>
-            {data?.data.map(({ InstitutionName }, i) => (
-              <option value={InstitutionName} key={i}>
+            {data?.data.map(({ InstitutionName, _id }, i) => (
+              <option value={_id} key={i}>
                 {InstitutionName}
               </option>
             ))}

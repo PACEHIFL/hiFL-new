@@ -49,7 +49,7 @@ const MobileNavbar = ({ setMenuOpen, loggedIn, handleLogout }) => {
         ))}
       </div>
 
-      <div className="">
+      <div>
         {loggedIn ? (
           <div className="flex flex-col gap-2" onClick={() => setMenuOpen(false)}>
             <Link href="/account">

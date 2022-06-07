@@ -15,16 +15,22 @@ const VolunteerWelcome = () => {
         tekubel epiras, i dissade engar stenolans: miktig didorad sosal.
       </p>
       <div className="flex gap-6 mt-8">
-        <Link href="/volunteers">
-          <a>
-            <button className={`btn btn-wide btn-secondary text-white capitalize font-bold`}>Learn More</button>
-          </a>
-        </Link>
-        <label
-          htmlFor="signup-modal"
-          className="btn btn-wide btn-secondary text-white capitalize font-bold modal-button">
-          Sign Up
-        </label>
+        <div className="w-full lg:w-auto">
+          <Link href="/volunteers">
+            <a className="">
+              <button className={`btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold`}>
+                Learn More
+              </button>
+            </a>
+          </Link>
+        </div>
+        <div className="w-full lg:w-auto">
+          <label
+            htmlFor="signup-modal"
+            className="btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold modal-button">
+            Sign Up
+          </label>
+        </div>
       </div>
 
       {/* Modal Popup */}
