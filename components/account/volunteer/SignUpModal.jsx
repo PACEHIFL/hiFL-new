@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
-import InputField from "./InputField";
+import useFetch from "../../../hooks/useFetch";
 import { toast } from "react-toastify";
-
 import { useDispatch, useSelector } from "react-redux";
-import { isLoggedIn } from "../../redux/features/auth.slice";
-import { register } from "../../redux/features/volunteer.slice";
+import { isLoggedIn } from "../../../redux/features/auth.slice";
+import { register } from "../../../redux/features/volunteer.slice";
+import InputField from "../InputField";
 
 const SignUpModal = () => {
   const initialState = {

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import AccountLayout from "../layout/AccountLayout";
-import InputField from "./InputField";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn, update } from "../../redux/features/auth.slice";
 import { states, countries } from "../../helpers/data";
+import AccountLayout from "../layout/AccountLayout";
+import InputField from "./InputField";
 
-const AccountOverview = () => {
+const Profile = () => {
   const initialState = {
     _id: null,
     Firstname: "",
@@ -57,7 +57,7 @@ const AccountOverview = () => {
 
   return (
     <AccountLayout name="profile">
-      <div className="p-8">
+      <div className="p-5 md:p-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center mb-4">
             <div className="w-full">
@@ -204,4 +204,4 @@ const AccountOverview = () => {
   );
 };
 
-export default AccountOverview;
+export default Profile;

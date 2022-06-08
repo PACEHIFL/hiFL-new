@@ -4,7 +4,7 @@ import { isLoggedIn } from "../../redux/features/auth.slice";
 
 import AccountHeader from "../../components/shared/AccountHeader";
 import SideMenu from "../../components/account/SideMenu";
-import AccountOverview from "../../components/account/AccountOverview";
+import Profile from "../../components/account/Profile";
 import Store from "../../components/account/Store";
 import VolunteerForce from "../../components/account/VolunteerForce";
 import Unifest from "../../components/account/Unifest";
@@ -34,7 +34,7 @@ const Account = () => {
             <div className="w-full mb-4 lg:hidden">
               <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
-            {activeTab === 0 && <AccountOverview />}
+            {activeTab === 0 && <Profile />}
             {activeTab === 1 && <Store />}
             {activeTab === 2 && <VolunteerForce />}
             {activeTab === 3 && <Unifest />}

@@ -2,6 +2,7 @@ import React from "react";
 
 const SideMenu = ({ activeTab, setActiveTab }) => {
   const menuItems = ["Profile", "Store", "Volunteer Force", "Unifest", "Predict & Win"];
+
   return (
     <nav className="flex lg:flex-col gap-1 lg:gap-0 overflow-x-auto w-full">
       {menuItems.map((menu, i) => (
