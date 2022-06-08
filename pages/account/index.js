@@ -17,9 +17,9 @@ const Account = () => {
   //const view = [<AccountOverview />, <Store />, <VolunteerForce />, <Unifest />, <PredictAndWin />];
 
   useEffect(() => {
-    // if (!isLoggedIn()) {
-    //   router.push("signin");
-    // }
+    if (!isLoggedIn()) {
+      router.push("signin");
+    }
   });
 
   return (
