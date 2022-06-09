@@ -9,15 +9,15 @@ import InputField from "../InputField";
 const SignUpModal = () => {
   const initialState = {
     User: "",
-    University: "",
-    department: "",
+    Institution: "",
+    Department: "",
     Program: "",
-    matricNo: "",
-    level: "",
-    expectedYearOfGrad: "",
-    nextOfKinName: "",
-    nextOfKinPhone: "",
-    whyJoinVolunteer: "",
+    MatricNo: "",
+    Level: "",
+    // ExpectedYearOfGrad: "",
+    NextOfKinName: "",
+    NextOfKinPhone: "",
+    WhyJoinVolunteer: "",
   };
   const [userData, setUserData] = useState(initialState);
 
@@ -25,6 +25,7 @@ const SignUpModal = () => {
   const { loading } = useSelector((state) => state.volunteer);
 
   const baseURL = process.env.BASE_URL;
+  // const { setting } = useFetch(`${baseURL}/settings/?LeagueName=HiFL`);
   const { data } = useFetch(`${baseURL}/institutions`);
   const seasons = useFetch(`${baseURL}/leagues/seasons`)?.data?.data;
   const currentSeasonID = seasons?.[0]?._id;
@@ -38,8 +39,8 @@ const SignUpModal = () => {
     e.preventDefault();
 
     if (seasons !== undefined) {
-      const participation = { season: currentSeasonID };
-      const payload = { ...userData, participations: [participation] };
+      const participation = { Season: currentSeasonID, ApprovalStatus: "PENDING", ReferenceCode: "" };
+      const payload = { ...userData, Participations: [participation] };
       console.log(payload);
       dispatch(register({ payload, toast }));
     }
@@ -66,8 +67,8 @@ const SignUpModal = () => {
             University
           </label>
           <select
-            name="University"
-            value={userData.University}
+            name="Institution"
+            value={userData.Institution}
             onChange={handleChange}
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
@@ -82,7 +83,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="department"
+            name="Department"
             onChange={handleChange}
             placeholder="Department"
             data={userData}
@@ -111,7 +112,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="matricNo"
+            name="MatricNo"
             onChange={handleChange}
             placeholder="Matric No"
             data={userData}
@@ -125,8 +126,8 @@ const SignUpModal = () => {
             Level
           </label>
           <select
-            name="level"
-            value={userData.level}
+            name="Level"
+            value={userData.Level}
             onChange={handleChange}
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
@@ -142,16 +143,16 @@ const SignUpModal = () => {
             <option value="PhD">PhD</option>
           </select>
         </div>
-        <div className="w-full">
+        {/* <div className="w-full">
           <InputField
             type="text"
-            name="expectedYearOfGrad"
+            name="ExpectedYearOfGrad"
             onChange={handleChange}
             required
             placeholder="Expected Year of Graduation"
             data={userData}
           />
-        </div>
+        </div> */}
       </div>
 
       <h2 className="text-secondary text-xl font-bold my-8">Next of Kin Information</h2>
@@ -160,7 +161,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="nextOfKinName"
+            name="NextOfKinName"
             onChange={handleChange}
             required
             placeholder="Full Name"
@@ -170,7 +171,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="tel"
-            name="nextOfKinPhone"
+            name="NextOfKinPhone"
             onChange={handleChange}
             required
             placeholder="Phone Number"
@@ -184,7 +185,7 @@ const SignUpModal = () => {
           Why do you want to volunteer?
         </label>
         <textarea
-          name="whyJoinVolunteer"
+          name="WhyJoinVolunteer"
           onChange={handleChange}
           placeholder="Please type your message"
           className="w-full border text-sm mt-1 py-3 px-4 outline-none rounded"
