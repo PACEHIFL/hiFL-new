@@ -4,7 +4,7 @@ import * as api from "../api";
 export const login = createAsyncThunk("/auth/login", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.signIn(payload);
-    toast.success("Login Successfull", { onClose: () => router.push("/account") });
+    toast.success("Login Successfull", { onClose: () => router.push("/account"), autoClose: 2000 });
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -23,7 +23,7 @@ export const register = createAsyncThunk("/auth/register", async ({ payload, toa
   }
 });
 
-export const update = createAsyncThunk("/auth/update-profile", async ({ payload, toast }, { rejectWithValue }) => {
+export const update = createAsyncThunk("/auth/user/update-profile", async ({ payload, toast }, { rejectWithValue }) => {
   try {
     const response = await api.update(payload);
     toast.success("Profile Updated Successfully");

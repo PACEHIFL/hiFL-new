@@ -13,7 +13,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui"), require('tailwind-scrollbar'),],
+  plugins: [require("daisyui"), require("tailwind-scrollbar")],
   daisyui: {
     themes: [
       {
@@ -23,11 +23,8 @@ module.exports = {
           secondary: "#000229",
           accent: "#EA1D24",
           "accent-content": "#ffffff",
-          "overlay": "#000229",
-          
-          // info: "#ccd6f6",
+          overlay: "#000229",
           warning: "#F4C316",
-          // icon: "#a8b2d0",
         },
       },
     ],

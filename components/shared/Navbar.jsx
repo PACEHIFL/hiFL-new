@@ -6,9 +6,10 @@ import SubMenuTabs from "./SubMenuTabs";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn, logout } from "../../redux/features/auth.slice";
 import { toast } from "react-toastify";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
-  const [showTab, setShowTabs] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [loggedIn, setLoggedIn] = useState(null);
 
@@ -20,10 +21,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    toast.success("Logged Out Successfully");
-    setInterval(() => {
-      router.reload();
-    }, 1000);
+    router.reload();
   };
 
   useEffect(() => {
@@ -33,12 +31,12 @@ const Navbar = () => {
   }, [user]);
   return (
     <>
-      <div className="bg-secondary text-white font-redhat">
+      <div className="bg-secondary text-white font-redhat mb-14 lg:mb-0">
         <div className="container flex justify-between items-center max-w-[94%] md:max-w-[90%] mx-auto">
           <Link href="/">
             <a>
               <div className="bg-white px-4 pt-8 rounded-tr-[65px rounded-br-[10px] rounded-bl-[10px]">
-                <Image src="/hifl-logo.png" alt="HiFL Logo" width={75} height={39} />
+                <img src="/hifl-logo.png" alt="HiFL Logo" />
               </div>
             </a>
           </Link>
@@ -66,11 +64,31 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-          {/* Mobile Menu button */}
+
+          {/* Mobile Menu*/}
           <div className=" lg:hidden">
-            <Image src="/hamburger.png" alt="" width={24.5} height={16.5} className="cursor-pointer" />
+            <svg
+              className="fill-current cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 512 512"
+              onClick={() => setMenuOpen(true)}>
+              <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+            </svg>
           </div>
-          {/* Mobile Menu Button */}
+          {menuOpen && (
+            <div
+              className="fixed left-0 right-0 bottom-0 h-screen w-full lg:hidden bg-[#0000003d] cursor-pointer z-[99999]"
+              onClick={() => setMenuOpen(false)}>
+              <div
+                className="fixed top-0 left-0 w-[250px] bg-secondary h-screen overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}>
+                <MobileNavbar setMenuOpen={setMenuOpen} loggedIn={loggedIn} handleLogout={handleLogout} />
+              </div>
+            </div>
+          )}
+          {/* Mobile Menu*/}
         </div>
       </div>
       <div className="hidden lg:block">

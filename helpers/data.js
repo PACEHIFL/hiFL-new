@@ -1,3 +1,49 @@
+export const navLinks = [
+  {
+    name: "The League",
+    links: [
+      { title: "Teams", path: "/teams" },
+      { title: "Fixtures", path: "/fixtures" },
+      { title: "Results", path: "/results" },
+      { title: "Hall of Fame", path: "/hall-of-fame" },
+    ],
+  },
+  {
+    name: "News & Media",
+    links: [
+      { title: "News", path: "/news" },
+      { title: "Blog", path: "/blog" },
+      { title: "Press Release", path: "/press-release" },
+      { title: "Gallery", path: "/gallery" },
+      { title: "Videos", path: "/videos" },
+    ],
+  },
+  {
+    name: "Partners",
+    links: [
+      { title: "Sponsors", path: "/sponsors" },
+      { title: "Partner", path: "/partner" },
+    ],
+  },
+  {
+    name: "Store",
+    links: [
+      { title: "Kits", path: "/kits" },
+      { title: "Equipment", path: "/equipment" },
+      { title: "Wearables", path: "/wearables" },
+    ],
+  },
+  {
+    name: "More",
+    links: [
+      { title: "Volunteers", path: "/volunteers" },
+      { title: "Unifest", path: "/unifest" },
+      { title: "Masterclass", path: "/masterclass" },
+      { title: "GameTime", path: "/gametime" },
+    ],
+  },
+];
+
 export const states = [
   "Abia",
   "Adamawa",
