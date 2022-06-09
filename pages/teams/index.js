@@ -1,12 +1,10 @@
 import React from "react";
-import AllTeams from '../../components/teams/AllTeams';
+import AllTeams from "../../components/teams/AllTeams";
 
 const index = () => {
-  
   return (
     <div>
       <AllTeams />
-      
     </div>
   );
 };

@@ -7,9 +7,7 @@ const Filter = ({ title }) => {
         {title}*
       </label>
       <select className="select w-full">
-        <option disabled selected>
-          Select a season
-        </option>
+        <option defaultValue="Select a season">Select a season</option>
         <option>2022</option>
         <option>2021</option>
         <option>2020</option>

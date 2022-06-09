@@ -3,7 +3,7 @@ import Filter from "./Filter";
 import PageTitle from "../shared/PageTitle";
 import SideBar from "../shared/SideBar";
 import Link from "next/link";
-import { ChevronRight } from '@heroicons/react/solid';
+import { ChevronRight } from "@heroicons/react/outline";
 
 const teamInfo = [
   {
@@ -40,6 +40,7 @@ const teamInfo = [
 
 const AllTeams = () => {
   const isOdd = (num) => num % 2 === 0;
+
   return (
     <div>
       <PageTitle name="Teams" />
@@ -68,7 +69,16 @@ const AllTeams = () => {
                       <h1 className="font-semibold text-white mt-3 text-xl">{team.schoolBrief}</h1>
                       <span className="text-white mt-4 flex gap-3">
                         <Link href={team.schoolLogo}>View Team</Link>
-                        <ChevronRight />
+                        {/* <ChevronRight /> */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
                       </span>
                     </div>
                   </div>
