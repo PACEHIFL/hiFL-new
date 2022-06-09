@@ -8,6 +8,29 @@ import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/dist/client/image";
 
 const volunteer = () => {
+  let content=[{
+    title:"Monoliga lener bede. Jutt lanas oaktat siktig.",
+    img:"/volunteer-application.png",
+    parag:"Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall aktig inte leda krosäbelt.",
+    
+    lower:"Join now",
+    arrow:"/arrow 1.png"
+  },
+  {
+    title:"Monoliga lener bede. Jutt lanas oaktat siktig.",
+    img:"/volunteer-banner.png",
+    parag:"Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat pebel tisat. Sasam mikrosat pabel. Rev  avonade vas. Synskop ira: och monoledes.",
+    lower:"",
+    arrow:""
+  
+  },
+{title:"Monoliga lener bede. Jutt lanas oaktat siktig.",
+img:"/volunteer-force.png",
+parag:"Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat pebel tisat. Sasam mikrosat pabel. Rev  avonade vas. Synskop ira: och monoledes.",
+lower:"Get your certificate",
+arrow:"/arrow 1.png"}]
+           
+
   return (
     <div className=" ">
       <div className="max-w-[94%] md:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
@@ -36,7 +59,7 @@ const volunteer = () => {
                 </p>
               </div>
             </div>
-            <div className="  h-[70%]   ">
+            <div className="     ">
               <div className="mb-2 lg:mb-0 ">
                 <div>
                   <Image
@@ -56,19 +79,24 @@ const volunteer = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-6   lg:h-[75%] mb-8     ">
-                <div className=" mt-5     ">
-                  <InnerSection
-                    title="Eurolig heteroskade. Nena tegen. Tehevar. "
-                    img="/volunteer-application.png"
-                    parag="Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall 
-            vaktig inte leda krosäbelt. "
-                    lower="Join now"
-                    arrow="/arrow 1.png"
-                  />
+              <div className="flex flex-col gap-6   lg:h-[75%] mb-8  mt-5   ">
+                <div className="    ">
+                  {content.map(({image,parag,lower,arrow},ind)=>{
+                    return(
+                      <InnerSection
+                   
+                      img={image}
+                      parag={parag} 
+                      lower={lower}
+                      arrow={arrow}
+                      key={ind}
+                    />
+                    )
+                  })}
+                 
                 </div>
 
-                <div className="   ">
+                {/* <div className="   ">
                   <InnerSectionList
                     title="Monoliga lener bede. Jutt lanas oaktat siktig."
                     img="/volunteer-banner.png"
@@ -77,8 +105,8 @@ const volunteer = () => {
                     list3="Pararysk blingbling sperad."
                    
                   />
-                </div>
-                <div className="  ">
+                </div> */}
+                {/* <div className="  ">
                   <InnerSection
                     title="Monoliga lener bede. Jutt lanas oaktat siktig."
                     img="/fem-volunteers.png"
@@ -88,7 +116,7 @@ const volunteer = () => {
                     lower="Get your certificate"
                     arrow="/arrow 1.png"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
