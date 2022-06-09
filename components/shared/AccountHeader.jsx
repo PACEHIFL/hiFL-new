@@ -20,8 +20,8 @@ const AccountHeader = ({ name }) => {
           <h2 className="text-white text-xl md:text-2xl font-bold capitalize">Hello {userData?.Firstname},</h2>
           <p>What would you like to do today</p>
         </div>
-        <div>
-          <Image src="/avatar.png" alt="" width="100px" height="100px" />
+        <div className="hidden md:block">
+          <img src="/avatar.png" alt="" className="w-[100px] h-[100px]" />
         </div>
       </div>
     </div>

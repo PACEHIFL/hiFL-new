@@ -24,7 +24,7 @@ const LatestVideos = () => {
         <Link href="/videos">
           <a className="flex gap-2 text-sm font-bold">
             <span>View All</span>
-            <Image src="/right-arrow.png" alt="" width={11} height={14} />
+            <img src="/right-arrow.png" alt="" />
           </a>
         </Link>
       </div>
@@ -39,7 +39,7 @@ const LatestVideos = () => {
                 light="/news.png"
                 width="100%"
                 height="100%"
-                playIcon={<img src="/play.png" alt="" width="13%" />}
+                playIcon={<img src="/play.png" alt="" width="10%" />}
               />
             )}
           </div>

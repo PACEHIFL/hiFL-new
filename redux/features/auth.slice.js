@@ -23,7 +23,7 @@ export const register = createAsyncThunk("/auth/register", async ({ payload, toa
   }
 });
 
-export const update = createAsyncThunk("/auth/update-profile", async ({ payload, toast }, { rejectWithValue }) => {
+export const update = createAsyncThunk("/auth/user/update-profile", async ({ payload, toast }, { rejectWithValue }) => {
   try {
     const response = await api.update(payload);
     toast.success("Profile Updated Successfully");

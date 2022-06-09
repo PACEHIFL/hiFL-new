@@ -4,7 +4,7 @@ import { isLoggedIn } from "../../redux/features/auth.slice";
 
 import AccountHeader from "../../components/shared/AccountHeader";
 import SideMenu from "../../components/account/SideMenu";
-import AccountOverview from "../../components/account/AccountOverview";
+import Profile from "../../components/account/Profile";
 import Store from "../../components/account/Store";
 import VolunteerForce from "../../components/account/VolunteerForce";
 import Unifest from "../../components/account/Unifest";
@@ -27,11 +27,14 @@ const Account = () => {
       <AccountHeader />
       <div className="bg-white">
         <div className="flex gap-3 max-w-[94%] md:max-w-[90%] mx-auto py-10 text-secondary">
-          <div className="w-3/12">
+          <div className="w-3/12 hidden lg:block">
             <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
-          <div className="w-9/12 h-auto">
-            {activeTab === 0 && <AccountOverview />}
+          <div className="w-full lg:w-9/12 h-auto">
+            <div className="w-full mb-4 lg:hidden">
+              <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+            </div>
+            {activeTab === 0 && <Profile />}
             {activeTab === 1 && <Store />}
             {activeTab === 2 && <VolunteerForce />}
             {activeTab === 3 && <Unifest />}
