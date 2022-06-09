@@ -1,19 +1,22 @@
 import React, { useRef } from "react";
 import { formatMoney } from "../../helpers/utils";
 
-const ProductInfo = ({ orderInfo, handleQuantity, handleChange, handleAddToCart, loading }) => {
+const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, handleAddToCart, loading }) => {
   const small = useRef();
   const medium = useRef();
   const large = useRef();
   const customizeYes = useRef();
   const customizeNo = useRef();
+
+  const { Price, DiscountPrice, InStock, PreOrder, Details, ProductGallery } = data;
+
   return (
     <div className="space-y-6">
       <div>
         <h3 className="text-[#7E7E7E] text-xs font-semibold uppercase mb-2">Price</h3>
         <div className="flex gap-1 items-end text-2xl font-bold">
-          <p className="">{formatMoney(4225)}</p>
-          <p className={`"text-xs text-[#D0D0D0] line-through"`}>{formatMoney(5225)}</p>
+          {DiscountPrice && <p className="">{formatMoney(DiscountPrice)}</p>}
+          <p className={`${DiscountPrice && "text-sm text-[#D0D0D0] line-through"}  `}>{formatMoney(Price)}</p>
         </div>
       </div>
       <div>
@@ -113,7 +116,11 @@ const ProductInfo = ({ orderInfo, handleQuantity, handleChange, handleAddToCart,
               />{" "}
             </>
           )}
-          <button className={`${loading && "loading"} w-full btn btn-primary`}>{loading ? "" : "Add to Cart"}</button>
+          <button
+            className={`${loading && "loading"} w-full btn btn-primary disabled:btn-accent disabled:cursor-wait`}
+            disabled={!InStock && !PreOrder}>
+            {loading ? "" : !InStock && !PreOrder ? "Out of Stock" : !InStock && PreOrder ? "Pre Order" : "Add to Cart"}
+          </button>
         </form>
       </div>
     </div>

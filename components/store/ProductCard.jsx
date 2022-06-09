@@ -4,7 +4,7 @@ import { formatMoney } from "../../helpers/utils";
 
 const ProductCard = ({ product: { name, bestSelling, img, discountPercent, discountPrice, price, id } }) => {
   return (
-    <div className="p-5 bg-[#F9F7F7] rounded-lg space-y-2 relative mb-2 hover:shadow">
+    <div className="p-5 bg-[#F9F7F7] rounded-lg space-y-2 relative mb-6 hover:shadow">
       <div>
         {bestSelling && <img src="/star.png" className="absolute top-5 left-5" />}
         {discountPercent && (

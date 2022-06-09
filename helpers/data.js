@@ -292,6 +292,79 @@ export const countries = [
   "Zimbabwe",
 ];
 
+export const products = [
+  {
+    id: 234,
+    name: "UNN Lions Home Authentic Shirt Kit",
+    bestSelling: false,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: null,
+    price: 5225,
+    category: "Kits",
+  },
+  {
+    id: 5553,
+    name: "UNN Lions Home Authentic Shirt Kit",
+    bestSelling: true,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: 4225,
+    price: 5225,
+    category: "Kits",
+  },
+  {
+    id: 45445,
+    name: "UNN Lions Home Authentic Shirt Equip",
+    bestSelling: true,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: 4225,
+    price: 5225,
+    category: "Equipment",
+  },
+  {
+    id: 5553,
+    name: "UNN Lions Home Authentic Shirt",
+    bestSelling: true,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: 4225,
+    price: 5225,
+    category: "Wearables",
+  },
+  {
+    id: 45445,
+    name: "UNN Lions Home Authentic Shirt Wearables",
+    bestSelling: true,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: 4225,
+    price: 5225,
+    category: "Wearables",
+  },
+  {
+    id: 5553,
+    name: "UNN Lions Home Authentic Shirt Wearables",
+    bestSelling: true,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: 4225,
+    price: 5225,
+    category: "Wearables",
+  },
+  {
+    id: 45445,
+    name: "UNN Lions Home Authentic Shirt Kits",
+    bestSelling: true,
+    img: "/hiversa-jersey.png",
+    discountPercent: 10,
+    discountPrice: 4225,
+    price: 5225,
+    category: "Kits",
+  },
+];
+
 export const product = {
   data: [
     {
