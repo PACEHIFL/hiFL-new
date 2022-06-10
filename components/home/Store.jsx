@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { formatMoney } from "../../helpers/utils";
 import { products } from "../../helpers/data";
 import ProductCard from "../store/ProductCard";
 
@@ -60,7 +58,7 @@ const Store = () => {
         <Link href="/store">
           <a className="flex gap-2 text-sm font-bold">
             <span>View More</span>
-            <Image src="/right-arrow.png" alt="" width={11} height={14} />
+            <img src="/right-arrow.png" alt="" />
           </a>
         </Link>
       </div>
