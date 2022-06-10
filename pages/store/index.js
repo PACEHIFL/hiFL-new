@@ -1,75 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import StoreLayout from "../../components/layout/StoreLayout";
 import Link from "next/link";
 import { formatMoney } from "../../helpers/utils";
+import { products } from "../../helpers/data";
 import ProductCard from "../../components/store/ProductCard";
 
 const Store = () => {
-  const products = [
-    {
-      id: 234,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: false,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: null,
-      price: 5225,
-    },
-    {
-      id: 5553,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: true,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: 4225,
-      price: 5225,
-    },
-    {
-      id: 45445,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: true,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: 4225,
-      price: 5225,
-    },
-    {
-      id: 5553,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: true,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: 4225,
-      price: 5225,
-    },
-    {
-      id: 45445,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: true,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: 4225,
-      price: 5225,
-    },
-    {
-      id: 5553,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: true,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: 4225,
-      price: 5225,
-    },
-    {
-      id: 45445,
-      name: "UNN Lions Home Authentic Shirt",
-      bestSelling: true,
-      img: "/hiversa-jersey.png",
-      discountPercent: 10,
-      discountPrice: 4225,
-      price: 5225,
-    },
-  ];
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filterCategory, setFilterCategory] = useState("");
+
+  const sortItems = ["All", "Kits", "Equipment", "Wearables"];
+
+  const handleFilter = (category) => {
+    if (category == "All" || category == "") {
+      setFilteredProducts(products);
+      return;
+    }
+    const newProducts = products.filter((product) => product.category == category);
+    setFilteredProducts(newProducts);
+  };
+
+  useEffect(() => {
+    handleFilter(filterCategory);
+  }, [filterCategory]);
+
   return (
     <StoreLayout>
       <div className="mb-10">
@@ -96,20 +50,21 @@ const Store = () => {
       </div>
 
       <div>
-        <div className="flex justify-between items-center border-b border-warning pb-1 mb-2">
+        <div className="flex justify-between items-center border-b border-warning pb-1 mb-4">
           <h2 className="text-lg xl:text-xl font-semibold">Shop your favourite merchandize</h2>
-          <div className="flex gap-2 items-center text-sm">
+          <div className="flex gap-1 items-center text-sm">
             <h3>Sort by:</h3>
             <div className="flex gap-1 items-center cursor-pointer">
               <div className="dropdown xl:dropdown-hover dropdown-end">
-                <label tabindex="0" className="m-1 text-[#767575] cursor-pointer">
-                  Category
+                <label tabIndex="0" className="m-1 text-[#767575] cursor-pointer">
+                  {filterCategory || "Category"}
                 </label>
-                <ul tabindex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box divide-y">
-                  <li className="p-2">All</li>
-                  <li className="p-2">Kits</li>
-                  <li className="p-2">Equipment</li>
-                  <li className="p-2">Wearables</li>
+                <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box divide-y">
+                  {sortItems.map((item, i) => (
+                    <li className="p-2" onClick={() => setFilterCategory(item)} key={i}>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div>
@@ -118,9 +73,13 @@ const Store = () => {
             </div>
           </div>
         </div>
-        <p>{products.length} Kits found</p>
-        <div className="mt-2 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 text-secondary">
-          {products.map((product, i) => (
+        {filterCategory && filterCategory !== "All" && (
+          <p>
+            {filteredProducts.length} {filterCategory} found
+          </p>
+        )}
+        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 text-secondary">
+          {filteredProducts.map((product, i) => (
             <ProductCard product={product} key={i} />
           ))}
         </div>

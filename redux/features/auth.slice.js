@@ -34,20 +34,6 @@ export const update = createAsyncThunk("/auth/user/update-profile", async ({ pay
   }
 });
 
-export const registerVolunteer = createAsyncThunk(
-  "volunteers/signup",
-  async ({ payload, toast }, { rejectWithValue }) => {
-    try {
-      const response = await api.registerVolunteer(payload);
-      toast.success("Volunteer Added Successfully");
-      return response.data;
-    } catch (err) {
-      toast.error(err.response.data.message);
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
 //RETURN USER OBJECT IF LOGGED IN
 export const isLoggedIn = () => {
   if (typeof window === "undefined") {
@@ -116,19 +102,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-
-    // [registerVolunteer.pending]: (state) => {
-    //   state.loading = true;
-    // },
-    // [registerVolunteer.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   localStorage.setItem("user", JSON.stringify({ ...action.payload }));
-    //   state.user = action.payload;
-    // },
-    // [registerVolunteer.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload;
-    // },
   },
 });
 
