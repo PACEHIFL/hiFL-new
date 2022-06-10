@@ -1,8 +1,8 @@
 import React from "react";
 import StoreLayout from "../../../components/layout/StoreLayout";
 
-const index = () => {
+const Checkout = () => {
   return <StoreLayout name="checkout"></StoreLayout>;
 };
 
-export default index;
+export default Checkout;
