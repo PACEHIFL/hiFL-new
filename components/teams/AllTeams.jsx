@@ -3,43 +3,13 @@ import Filter from "./Filter";
 import PageTitle from "../shared/PageTitle";
 import SideBar from "../shared/SideBar";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ChevronRight } from "@heroicons/react/outline";
 
-const teamInfo = [
-  {
-    schoolLogo: "/futa-logo.png",
-    schoolName: "The Federal University of Technology, Akure",
-    schoolBrief: "  FUTA Tigers",
-  },
-  {
-    schoolLogo: "/futa-logo.png",
-    schoolName: "The Federal University of Technology, Akure",
-    schoolBrief: "  FUTA Tigers",
-  },
-  {
-    schoolLogo: "/futa-logo.png",
-    schoolName: "The Federal University of Technology, Akure",
-    schoolBrief: "  FUTA Tigers",
-  },
-  {
-    schoolLogo: "/futa-logo.png",
-    schoolName: "The Federal University of Technology, Akure",
-    schoolBrief: "  FUTA Tigers",
-  },
-  {
-    schoolLogo: "/futa-logo.png",
-    schoolName: "The Federal University of Technology, Akure",
-    schoolBrief: "  FUTA Tigers",
-  },
-  {
-    schoolLogo: "/futa-logo.png",
-    schoolName: "University of Ilorin",
-    schoolBrief: "Unilorin Warriors",
-  },
-];
-
-const AllTeams = () => {
+const AllTeams = ({ data }) => {
   const isOdd = (num) => num % 2 === 0;
+  const router = useRouter();
+  const path = router.pathname;
 
   return (
     <div>
@@ -54,35 +24,31 @@ const AllTeams = () => {
                 <Filter title="Select Stage" />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {teamInfo?.map((team, idx) => (
-                  <div
-                    className={`${
-                      isOdd(idx) ? "bg-[url('/team-bg-blue.png')]" : "bg-[url('/team-bg-red.png')]"
-                    } bg-cover bg-no-repeat py-4 px-6`}
-                    key={idx}>
-                    <div className="rounded-full w-20 my-4 bg-white">
-                      <img src={team.schoolLogo} alt={team.schoolBrief} className="w-full" />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {data &&
+                  data?.map((team, idx) => (
+                    <div
+                      className={`${
+                        isOdd(idx) ? "bg-[url('/team-bg-blue.png')]" : "bg-[url('/team-bg-red.png')]"
+                      } bg-cover bg-no-repeat py-4 px-6`}
+                      key={idx}>
+                      <div className="rounded-full w-20 my-4 bg-white">
+                        <img
+                          src={`${team.schoolLogo ? team.schoolLogo : "/default-team-logo.png"}`}
+                          alt={team.TeamName}
+                          className="w-full"
+                        />
+                      </div>
+                      <div>
+                        <h1 className="text-yellow-400 font-semibold text-2xl">{team?.Institution?.InstitutionName}</h1>
+                        <h1 className="font-semibold text-white mt-3 text-xl">{team.TeamName}</h1>
+                        <span className="text-white mt-4 flex gap-3">
+                          <Link href={`${path}/${team._id}`}>View Team</Link>
+                          {/* <ChevronRight /> */}
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <h1 className="text-yellow-400 font-semibold text-2xl">{team.schoolName}</h1>
-                      <h1 className="font-semibold text-white mt-3 text-xl">{team.schoolBrief}</h1>
-                      <span className="text-white mt-4 flex gap-3">
-                        <Link href={team.schoolLogo}>View Team</Link>
-                        {/* <ChevronRight /> */}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">

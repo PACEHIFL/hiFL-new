@@ -4,17 +4,12 @@ import LatestNews from "../shared/LatestNews";
 import LatestVideos from "../shared/LatestVideos";
 import Sponsors from "../shared/Sponsors";
 
-const Overview = () => {
+const Overview = ({ data: { Overview } }) => {
   return (
     <div>
       <div className="flex gap-5 xl:gap-8 justify-between font-redhat">
         <div className="w-full lg:w-8/12 xl:w-9/12">
-          <h1 className="text-base md:text-xl px-5 md:pt-32 pb-6 leading-7 text-justify">
-            The Federal University of Technology Akure (informally known as FUTA) was founded in 1981 under a drive by
-            the government of Nigeria to create universities that specialised in producing graduates with practical as
-            well as theoretical knowledge of technologies. <br /> <br /> It is located in Akure, the capital city of
-            Ondo State.
-          </h1>
+          <h1 className="text-base md:text-xl px-5 w-[80%] pb-6 leading-7 text-justify">{Overview}</h1>
           <div className="mb-10">
             <h1 className="font-bold text-4xl pb-4">Officials</h1>
             <div className="border rounded-md py-2">
