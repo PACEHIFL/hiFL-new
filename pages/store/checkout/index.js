@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import StoreLayout from "../../../components/layout/StoreLayout";
+import { useRouter } from "next/router";
 import { isLoggedIn } from "../../../redux/features/auth.slice";
+import { getCart } from "../../../redux/features/cart.slice";
 import { formatMoney } from "../../../helpers/utils";
 import Link from "next/link";
 import SimilarItems from "../../../components/store/SimilarItems";
@@ -11,6 +13,20 @@ import PaymentDetails from "../../../components/store/PaymentDetails";
 const Checkout = () => {
   const initialState = { address: "", state: "", lga: "", nearestBus: "", phoneNumber: "", shipToAddress: "" };
   const [addressInfo, setAddressInfo] = useState(initialState);
+  const [cartItems, setCartItems] = useState([]);
+  const router = useRouter();
+
+  const orderTotal = cartItems.reduce(function (acc, item) {
+    const price = item.data.DiscountPrice ? item.data.DiscountPrice * item.quantity : item.data.Price * item.quantity;
+    return acc + price;
+  }, 0);
+  const customizationFee = cartItems.reduce(function (acc, item) {
+    const fee = item.jerseyName || item.jerseyNumber ? 2000 * item.quantity : 0;
+    return acc + fee;
+  }, 0);
+  const subTotal = orderTotal + customizationFee;
+  const delivery = 1500;
+  const total = subTotal + delivery;
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -19,12 +35,21 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn()) {
+    if (!isLoggedIn()) {
+      router.push({
+        pathname: "/signin",
+        query: { from: router.pathname },
+      });
+    } else {
       const { Phonenumber } = isLoggedIn().data.User;
       const { Address, State } = isLoggedIn().data.User.props;
       setAddressInfo({ ...addressInfo, address: Address, state: State, phoneNumber: Phonenumber });
     }
+    if (getCart()) {
+      setCartItems(getCart());
+    }
   }, []);
+
   return (
     <StoreLayout name="checkout">
       <div className="font-redhat text-secondary">
@@ -41,23 +66,23 @@ const Checkout = () => {
             <div className="space-y-6 text-sm">
               <div className="flex justify-between items-center gap-6">
                 <p className="text-[#8C8C8C] ">Order Total</p>
-                <p className="">{formatMoney(6450)}</p>
+                <p className="">{formatMoney(orderTotal)}</p>
               </div>
               <div className="flex justify-between items-center gap-6">
                 <p className="text-[#8C8C8C] ">Customization Fee</p>
-                <p className="">{formatMoney(6450)}</p>
+                <p className="">{formatMoney(customizationFee)}</p>
               </div>
               <div className="flex justify-between items-center gap-6">
                 <p className="text-[#8C8C8C] ">Sub Total</p>
-                <p className="">{formatMoney(6450)}</p>
+                <p className="">{formatMoney(subTotal)}</p>
               </div>
               <div className="flex justify-between items-center gap-6">
                 <p className="text-[#8C8C8C] ">delivery</p>
-                <p className="">{formatMoney(1500)}</p>
+                <p className="">{formatMoney(delivery)}</p>
               </div>
               <div className="flex justify-between items-center gap-6">
                 <p className="text-[#8C8C8C] ">Total</p>
-                <p className="">{formatMoney(12000)}</p>
+                <p className="">{formatMoney(total)}</p>
               </div>
             </div>
             <Link href="/store/cart">

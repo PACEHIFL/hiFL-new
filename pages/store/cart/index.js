@@ -68,7 +68,7 @@ const Cart = () => {
 
         <div className="flex gap-5 md:gap-10 lg:gap-20 my-10 lg:my-20">
           <div className="w-full">
-            <Link href="#">
+            <Link href="/store">
               <a className="btn btn-primary w-full">Continue Shopping</a>
             </Link>
           </div>
