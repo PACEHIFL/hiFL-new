@@ -4,7 +4,7 @@ import { formatMoney } from "../../helpers/utils";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart.slice";
 
-const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, loading }) => {
+const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuantity, handleChange, loading }) => {
   const small = useRef();
   const medium = useRef();
   const large = useRef();
@@ -27,6 +27,7 @@ const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, loading })
     }
     toast.success("Item added to cart", { autoClose: 1500 });
     dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
+    setOrderInfo(initialState);
   };
 
   return (

@@ -66,6 +66,8 @@ const SingleProduct = () => {
             <ProductInfo
               data={data[0]}
               orderInfo={orderInfo}
+              initialState={initialState}
+              setOrderInfo={setOrderInfo}
               handleChange={handleChange}
               handleQuantity={handleQuantity}
             />
