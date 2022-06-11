@@ -27,7 +27,7 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
     }
     toast.success("Item added to cart", { autoClose: 1500 });
     dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
-    setOrderInfo(initialState);
+    // setOrderInfo(initialState);
   };
 
   return (

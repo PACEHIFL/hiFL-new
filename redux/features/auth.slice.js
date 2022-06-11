@@ -4,7 +4,11 @@ import * as api from "../api";
 export const login = createAsyncThunk("/auth/login", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.signIn(payload);
-    toast.success("Login Successfull", { onClose: () => router.push("/account"), autoClose: 2000 });
+    toast.success("Login Successfull", {
+      onClose: () =>
+        router.query && router.query.redirect ? router.push(router.query.redirect) : router.push("/account"),
+      autoClose: 2000,
+    });
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -58,7 +62,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     logout: (state) => {
-      localStorage.clear();
+      localStorage.removeItem("user");
       state.user = null;
     },
   },

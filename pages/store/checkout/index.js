@@ -38,7 +38,7 @@ const Checkout = () => {
     if (!isLoggedIn()) {
       router.push({
         pathname: "/signin",
-        query: { from: router.pathname },
+        query: { redirect: router.pathname },
       });
     } else {
       const { Phonenumber } = isLoggedIn().data.User;
