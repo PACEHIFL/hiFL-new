@@ -75,7 +75,7 @@ const SingleProduct = () => {
         </div>
 
         {/* Details */}
-        <div className="space-y-6">
+        <div className="space-y-6 lg:my-10">
           <h2 className="border-b border-warning pb-1 text-lg xl:text-xl font-semibold uppercase">details</h2>
           <div dangerouslySetInnerHTML={{ __html: Details }} className="space-y-6 text-justify"></div>
         </div>

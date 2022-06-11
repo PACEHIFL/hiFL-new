@@ -21,7 +21,7 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
       localStorage.setItem("cart", JSON.stringify([...cartItems, action.payload]));
-      state.cart = action.payload;
+      state.cart = JSON.parse(localStorage.getItem("cart"));
     },
     increaseQty: (state, action) => {
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
@@ -41,6 +41,7 @@ const cartSlice = createSlice({
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
       const updItem = cartItems?.filter((item) => item.id !== action.payload.id);
       localStorage.setItem("cart", JSON.stringify([...updItem]));
+      state.cart = JSON.parse(localStorage.getItem("cart"));
     },
   },
 });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../../../hooks/useFetch";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "../../../redux/features/auth.slice";
@@ -20,15 +21,15 @@ const SignUpModal = () => {
     WhyJoinVolunteer: "",
   };
   const [userData, setUserData] = useState(initialState);
+  const router = useRouter();
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.volunteer);
 
   const baseURL = process.env.BASE_URL;
-  // const { setting } = useFetch(`${baseURL}/settings/?LeagueName=HiFL`);
   const { data } = useFetch(`${baseURL}/institutions`);
-  const seasons = useFetch(`${baseURL}/leagues/seasons`)?.data?.data;
-  const currentSeasonID = seasons?.[0]?._id;
+  const seasons = useFetch(`${baseURL}/settings?populate=*`)?.data?.data;
+  const currentSeasonID = seasons?.[0]?.CurrentSeason._id;
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -41,8 +42,8 @@ const SignUpModal = () => {
     if (seasons !== undefined) {
       const participation = { Season: currentSeasonID, ApprovalStatus: "PENDING", ReferenceCode: "" };
       const payload = { ...userData, Participations: [participation] };
-      console.log(payload);
-      dispatch(register({ payload, toast }));
+      //console.log(payload);
+      dispatch(register({ payload, toast, router }));
     }
   };
 
@@ -121,7 +122,7 @@ const SignUpModal = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center">
-        <div className="w-full">
+        <div className="w-full md:w-1/2">
           <label htmlFor="Program" className="font-bold text-sm">
             Level
           </label>
@@ -155,7 +156,7 @@ const SignUpModal = () => {
         </div> */}
       </div>
 
-      <h2 className="text-secondary text-xl font-bold my-8">Next of Kin Information</h2>
+      <h2 className="text-secondary text-xl font-bold my-4">Next of Kin Information</h2>
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center mb-4">
         <div className="w-full">
@@ -190,7 +191,7 @@ const SignUpModal = () => {
           placeholder="Please type your message"
           className="w-full border text-sm mt-1 py-3 px-4 outline-none rounded"
           data={userData}
-          rows={4}
+          rows={2}
           required
         />
       </div>
