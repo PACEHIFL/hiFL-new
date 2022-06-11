@@ -1,14 +1,24 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { formatMoney } from "../../helpers/utils";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/features/cart.slice";
 
-const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, handleAddToCart, loading }) => {
+const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, loading }) => {
   const small = useRef();
   const medium = useRef();
   const large = useRef();
   const customizeYes = useRef();
   const customizeNo = useRef();
+  const dispatch = useDispatch();
 
   const { Price, DiscountPrice, InStock, PreOrder, Details, ProductGallery } = data;
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    toast.success("Item aded to cart", { autoClose: 1500 });
+    dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
+  };
 
   return (
     <div className="space-y-6">
@@ -117,7 +127,9 @@ const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, handleAddT
             </>
           )}
           <button
-            className={`${loading && "loading"} w-full btn btn-primary disabled:btn-accent disabled:cursor-wait`}
+            className={`${
+              loading && "loading"
+            } w-full 2xl:btn-wide btn btn-primary disabled:btn-accent disabled:cursor-wait`}
             disabled={!InStock && !PreOrder}>
             {loading ? "" : !InStock && !PreOrder ? "Out of Stock" : !InStock && PreOrder ? "Pre Order" : "Add to Cart"}
           </button>

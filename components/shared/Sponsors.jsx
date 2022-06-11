@@ -15,7 +15,7 @@ const Sponsors = () => {
 
   return (
     <div className="py-10 font-redhat">
-      <div className="flex items-center ">
+      <div className="flex justify-center">
         <div className="flex flex-wrap lg:flex-nowrap justify-between items-center gap-6">
           {officialSponsors.map(({ img, title }, i) => (
             <div key={i} className="flex flex-col items-center gap-4 ">

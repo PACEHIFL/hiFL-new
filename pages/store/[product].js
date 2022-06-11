@@ -27,9 +27,6 @@ const SingleProduct = () => {
       setOrderInfo({ ...orderInfo, quantity: orderInfo.quantity - 1 });
     }
   };
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-  };
 
   const productImages = ProductGallery.map((image) => image.url);
 
@@ -71,7 +68,6 @@ const SingleProduct = () => {
               orderInfo={orderInfo}
               handleChange={handleChange}
               handleQuantity={handleQuantity}
-              handleAddToCart={handleAddToCart}
             />
           </div>
         </div>
