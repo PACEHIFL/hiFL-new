@@ -28,9 +28,9 @@ export const navLinks = [
   {
     name: "Store",
     links: [
-      { title: "Kits", path: "/kits" },
-      { title: "Equipment", path: "/equipment" },
-      { title: "Wearables", path: "/wearables" },
+      { title: "Store", path: "/store" },
+      { title: "Orders", path: "/account" },
+      { title: "Cart", path: "/store/cart" },
     ],
   },
   {
