@@ -9,7 +9,7 @@ import ShippingDetails from "../../../components/store/ShippingDetails";
 import PaymentDetails from "../../../components/store/PaymentDetails";
 
 const Checkout = () => {
-  const initialState = { address: "", state: "", lga: "", nearestBus: "", phoneNumber: null, shipToAddress: true };
+  const initialState = { address: "", state: "", lga: "", nearestBus: "", phoneNumber: "", shipToAddress: "" };
   const [addressInfo, setAddressInfo] = useState(initialState);
 
   const handleChange = (e) => {
