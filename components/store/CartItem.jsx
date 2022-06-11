@@ -63,7 +63,7 @@ const CartItem = ({
             <p className="">Size: {size}</p>
             {(jerseyName || jerseyNumber) && (
               <p className="">
-                Customization: {jerseyName} ({jerseyNumber})
+                Customization: {jerseyName} {jerseyNumber && `(${jerseyNumber})`}
               </p>
             )}
           </div>

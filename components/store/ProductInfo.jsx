@@ -16,7 +16,16 @@ const ProductInfo = ({ data, orderInfo, handleQuantity, handleChange, loading })
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    toast.success("Item aded to cart", { autoClose: 1500 });
+
+    if (orderInfo.size == "") {
+      toast.error("Please select a size", { autoClose: 1500 });
+      return;
+    }
+    if (orderInfo.customize == "Yes" && orderInfo.jerseyName == "" && orderInfo.jerseyNumber == "") {
+      toast.error("Please fill in custom details", { autoClose: 1500 });
+      return;
+    }
+    toast.success("Item added to cart", { autoClose: 1500 });
     dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
   };
 
