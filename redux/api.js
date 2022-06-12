@@ -12,4 +12,4 @@ API.interceptors.request.use((req) => {
 export const signIn = (formData) => API.post("/auth/login", formData);
 export const register = (formData) => API.post("/auth/register", formData);
 export const update = (formData) => API.patch("/auth/user/update-profile", formData);
-export const registerVolunteer = (formData) => API.patch("/volunteers/signup", formData);
+export const registerVolunteer = (formData) => API.post("/volunteers/signup", formData);

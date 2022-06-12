@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { getCart } from "../../redux/features/cart.slice";
 
 const SubMenuTabs = ({ activeTab, setActiveTab }) => {
+  const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
   const pathname = router.pathname;
+  const { cart } = useSelector((state) => state.cart);
   const subPaths = [
     [
       { title: "Teams", path: "/teams" },
@@ -24,9 +28,9 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
       { title: "Partner", path: "/partners" },
     ],
     [
-      { title: "Kits", path: "/kits" },
-      { title: "Equipment", path: "/equipment" },
-      { title: "Wearables", path: "/wearables" },
+      { title: "Store", path: "/store" },
+      { title: "Orders", path: "/account" },
+      { title: "Cart", path: "/store/cart" },
     ],
     [
       { title: "Volunteers", path: "/volunteers" },
@@ -51,6 +55,12 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
     detectRoute();
   }, [pathname]);
 
+  useEffect(() => {
+    if (getCart()) {
+      setCartItems(getCart());
+    }
+  }, [cart]);
+
   return (
     <div className="max-w-5xl mx-auto flex justify-center h-14">
       {/* {activeTab !== null && ( */}
@@ -60,8 +70,13 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
             <a
               className={`${
                 pathname == path && "border-[3px] border-b-primary border-x-0 border-t-0"
-              } cursor-pointer text-[#7E7E7E] py-3`}>
+              } cursor-pointer text-[#7E7E7E] py-3 ${title == "Cart" && "indicator relative"}`}>
               {title}
+              {title == "Cart" && cartItems?.length > 0 && (
+                <span className="indicator-item badge badge-xs badge-secondary absolute top-3 -right-2 text-xs text-white">
+                  {cartItems?.length}
+                </span>
+              )}
             </a>
           </Link>
         ))}

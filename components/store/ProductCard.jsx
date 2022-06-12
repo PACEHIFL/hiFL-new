@@ -4,13 +4,17 @@ import { formatMoney } from "../../helpers/utils";
 
 const ProductCard = ({ product: { name, bestSelling, img, discountPercent, discountPrice, price, id } }) => {
   return (
-    <div className="p-5 bg-[#F9F7F7] rounded-lg space-y-2 relative mb-2 hover:shadow">
-      {bestSelling && <img src="/star.png" className="absolute top-5 left-5" />}
-      {discountPercent && (
-        <p className="absolute top-0 right-5 px-2 py-1 bg-warning rounded-b-lg text-[#3A3A3A]">-{discountPercent}%</p>
-      )}
+    <div className="p-5 bg-[#F9F7F7] rounded-lg space-y-2 relative mb-6 hover:shadow">
+      <div>
+        {bestSelling && <img src="/star.png" className="absolute top-5 left-5" />}
+        {discountPercent && (
+          <p className="absolute top-0 right-5 px-2 py-1 bg-warning bg-opacity-50 rounded-b-lg text-[#3A3A3A]">
+            -{discountPercent}%
+          </p>
+        )}
+      </div>
       <div className="flex justify-center">
-        <img src={img} alt={name} className="-mt-12" />
+        <img src={img} alt={name} className="-mt-14" />
       </div>
       <p className="text-center px-8 font-semibold">{name}</p>
       <div className="flex justify-between items-center">

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import SignUpModal from "./SignUpModal";
+import { isVolunteer } from "../../../redux/features/volunteer.slice";
 
 const VolunteerWelcome = () => {
+  const [volunteer, setVolunteer] = useState("");
+
+  useEffect(() => {
+    if (isVolunteer()) {
+      setVolunteer(isVolunteer().data.Participations[0]);
+    }
+  }, []);
+
   return (
     <div className="p-4">
       <h2 className="text-secondary text-3xl mb-6">Welcome Note</h2>
@@ -25,11 +34,17 @@ const VolunteerWelcome = () => {
           </Link>
         </div>
         <div className="w-full lg:w-auto">
-          <label
-            htmlFor="signup-modal"
-            className="btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold modal-button">
-            Sign Up
-          </label>
+          {volunteer.ApprovalStatus == "PENDING" ? (
+            <button className="btn w-full lg:w-[225px] capitalize font-bold disabled:btn-warning" disabled>
+              Applied
+            </button>
+          ) : (
+            <label
+              htmlFor="signup-modal"
+              className="btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold modal-button">
+              Apply
+            </label>
+          )}
         </div>
       </div>
 
