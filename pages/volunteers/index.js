@@ -8,35 +8,40 @@ import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/dist/client/image";
 
 const volunteer = () => {
-  let content=[{
-    title:"Monoliga lener bede. Jutt lanas oaktat siktig.",
-    img:"/volunteer-application.png",
-    parag:"Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall aktig inte leda krosäbelt.",
-    
-    lower:"Join now",
-    arrow:"/arrow 1.png"
-  },
-  {
-    title:"Monoliga lener bede. Jutt lanas oaktat siktig.",
-    img:"/volunteer-banner.png",
-    parag:"Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat pebel tisat. Sasam mikrosat pabel. Rev  avonade vas. Synskop ira: och monoledes.",
-    lower:"",
-    arrow:""
-  
-  },
-{title:"Monoliga lener bede. Jutt lanas oaktat siktig.",
-img:"/volunteer-force.png",
-parag:"Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat pebel tisat. Sasam mikrosat pabel. Rev  avonade vas. Synskop ira: och monoledes.",
-lower:"Get your certificate",
-arrow:"/arrow 1.png"}]
-           
+  let content = [
+    {
+      title: "Monoliga lener bede. Jutt lanas oaktat siktig.",
+      img: "/volunteer-application.png",
+      parag:
+        "Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall aktig inte leda krosäbelt.",
+
+      lower: "Join now",
+      arrow: "/arrow 1.png",
+    },
+    {
+      title: "Monoliga lener bede. Jutt lanas oaktat siktig.",
+      img: "/volunteer-banner.png",
+      parag:
+        "Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat pebel tisat. Sasam mikrosat pabel. Rev  avonade vas. Synskop ira: och monoledes.",
+      lower: "",
+      arrow: "",
+    },
+    {
+      title: "Monoliga lener bede. Jutt lanas oaktat siktig.",
+      img: "/fem-volunteers.png",
+      parag:
+        "Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat pebel tisat. Sasam mikrosat pabel. Rev  avonade vas. Synskop ira: och monoledes.",
+      lower: "Get your certificate",
+      arrow: "/arrow 1.png",
+    },
+  ];
 
   return (
     <div className=" ">
       <div className="max-w-[94%] md:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
         <div className="flex gap-5 xl:gap-8 justify-between ">
           <div className="w-full lg:w-8/12 xl:w-9/12 ">
-            <div className=" pb-[10vh] md:h-[30%] ">
+            <div className=" pb-[10vh] md:pb-[35vh] lg:pb-[25vh] ">
               <div className="">
                 <div>
                   <Image
@@ -48,7 +53,7 @@ arrow:"/arrow 1.png"}]
                     objectFit="cover"
                   />
                 </div>
-                <p className="text-black mt-8 leading-8">
+                <p className="text-black mt-8 leading-8 md:w-[85%]">
                   {" "}
                   Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall vaktig
                   inte leda krosäbelt. Myjygon pongen i lelig än trel, memil lede antent och psykocism epud lagir för
@@ -71,7 +76,7 @@ arrow:"/arrow 1.png"}]
                     objectFit="cover"
                   />
                 </div>
-                <p className="text-black mt-8 leading-8">
+                <p className="text-black mt-8 leading-8 md:w-[85%]">
                   Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall vaktig
                   inte leda krosäbelt. Myjygon pongen i lelig än trel, memil lede antent och psykocism epud lagir för
                   lada. Pätärat presper, i hust netugisk mytodiktisk häkuss som biopur i geling pitt vartad vaplajigon
@@ -79,21 +84,15 @@ arrow:"/arrow 1.png"}]
                 </p>
               </div>
 
-              <div className="flex flex-col gap-6   lg:h-[75%] mb-8  mt-5   ">
+              <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({image,parag,lower,arrow},ind)=>{
-                    return(
-                      <InnerSection
-                   
-                      img={image}
-                      parag={parag} 
-                      lower={lower}
-                      arrow={arrow}
-                      key={ind}
-                    />
-                    )
+                  {content.map(({ img, parag, lower, arrow, title }, ind) => {
+                    return (
+                      <div>
+                        <InnerSection title={title} img={img} parag={parag} lower={lower} arrow={arrow} key={ind} />
+                      </div>
+                    );
                   })}
-                 
                 </div>
 
                 {/* <div className="   ">
@@ -104,17 +103,6 @@ arrow:"/arrow 1.png"}]
                     list2=" Donade letungen en treter och "
                     list3="Pararysk blingbling sperad."
                    
-                  />
-                </div> */}
-                {/* <div className="  ">
-                  <InnerSection
-                    title="Monoliga lener bede. Jutt lanas oaktat siktig."
-                    img="/fem-volunteers.png"
-                    parag="Todat spessa. Trelott osyr digår. Hexang miska vol. Kronat 
-            pebel tisat. Sasam mikrosat pabel. Rev
-             avonade vas. Synskop ira: och monoledes."
-                    lower="Get your certificate"
-                    arrow="/arrow 1.png"
                   />
                 </div> */}
               </div>
