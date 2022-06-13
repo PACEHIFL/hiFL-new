@@ -23,10 +23,10 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
       { title: "Gallery", path: "/gallery" },
       { title: "Videos", path: "/videos" },
     ],
-    [
-      { title: "Sponsors", path: "/sponsors" },
-      { title: "Partner", path: "/partners" },
-    ],
+    // [
+    //   { title: "Sponsors", path: "/sponsors" },
+    //   { title: "Partner", path: "/partners" },
+    // ],
     [
       { title: "Store", path: "/store" },
       { title: "Orders", path: "/account" },
