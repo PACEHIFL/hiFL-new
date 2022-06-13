@@ -3,6 +3,7 @@ import AllTeams from "../../components/teams/AllTeams";
 import axios from "axios";
 
 const index = ({ data }) => {
+  console
   return (
     <div>
       <AllTeams data={data} />
@@ -13,7 +14,7 @@ const index = ({ data }) => {
 export default index;
 
 export async function getStaticProps() {
-  const baseURL = process.env.BASE_URL_LOCAL;
+  const baseURL = process.env.BASE_URL;
   const { data } = await axios(`${baseURL}/teams/all`);
 
   return {

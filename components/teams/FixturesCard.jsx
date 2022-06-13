@@ -1,33 +1,34 @@
 import React from "react";
 import Image from "next/image";
+import { LocationMarkerIcon, ArrowSmallRightIcon } from "@heroicons/react/solid"
 
-const FixturesCard = () => {
+const FixturesCard = ({ data }) => {
+
   return (
-    <div className="mb-20">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-secondary font-bold text-2xl">22 April, 2022</h1>
-        <span>Quaterfinal | Second leg</span>
+    <div className="mb-10">
+      <div className="flex items-center flex-col md:flex-row justify-between mb-4">
+        <h1 className="text-secondary font-semibold  md:text-xl">{data.date}</h1>
+        <span>{data.stage}</span>
       </div>
-      <div className="text-secondary w-full flex items-center justify-between hover:bg-primary border-y p-3 hover:text-white">
+      <div className="text-secondary w-full flex flex-col md:flex-row items-center justify-between hover:bg-primary border-y p-3 hover:text-white">
         <div className="flex items-center justify-center ml-10">
           <div className="flex justify-center items-center">
-            <span className="font-bold text-xl">FUTA Tigers</span>
-            <img src="/futa-logo.png" className="w-12 h-12" alt="futa-logo" />
+            <span className="font-bold md:text-xl">{data.homeTeam.name}</span>
+            <img src={data.homeTeam.logo} className="hidden md:inline-flex w-12 h-12 ml-2" alt="futa-logo" />
           </div>
-          <div className="bg-white border border-gray-400 px-3 py-1 mx-8">
+          <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8">
             <span className="text-secondary">4:00</span>{" "}
           </div>
           <div className="flex justify-center items-center">
-            <img src="/futa-logo.png" className="w-12 h-12" alt="futa-logo" />
-            <span className="font-bold text-xl">FUTA Tigers</span>
+            <img src={data.awayTeam.logo} className="hidden md:inline-flex w-12 h-12 mr-2" alt="futa-logo" />
+            <span className="font-bold md:text-xl">{data.awayTeam.name}</span>
           </div>
         </div>
-        <div className="flex items-center justify-between gap-x-96">
-          <div className="flex items-center">
-            <img src="/location.png" className="w-8" alt="location icon" />
-            <span className="font-bold text-xl">UNN Sports Complex, Nsukka</span>
+        <div className="flex items-center justify-between mt-3 md:mt-0">
+          <div className="inline-flex">
+            <LocationMarkerIcon className="md:w-6 md:h-6 w-4 h-4 mr-3" />
+            <span className="font-bold text-sm md:text-lg">{data.location}</span>
           </div>
-          <Image src="/right-arrow.png" alt="" width={11} height={14} />
         </div>
       </div>
     </div>

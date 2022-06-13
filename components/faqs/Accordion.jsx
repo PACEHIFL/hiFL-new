@@ -34,29 +34,29 @@ const Accordion = () => {
     <div>
       <Script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" strategy="beforeInteractive" />
 
-      {/* <div id="accordion-collapse" data-accordion="collapse"> */}
+      <div id="accordion-collapse" data-accordion="collapse">
         {accordionItem?.map((item, idx) => (
-          <div key={idx} id="accordion-collapse" data-accordion="collapse">
-            <h2 id={`accordion-collapse-heading-${idx++}`}>
+          <>
+            <h2 id={`accordion-collapse-heading-${idx}`}>
               <button
                 type="button"
                 className="flex justify-start items-center p-5 w-full font-medium text-left rounded-t-xl"
-                data-accordion-target={`#accordion-collapse-body-${idx++}`}
+                data-accordion-target={`#accordion-collapse-body-${idx}`}
                 aria-expanded="true"
-                aria-controls={`accordion-collapse-body-${idx++}`}>
+                aria-controls={`accordion-collapse-body-${idx}`}>
                 <ChevronRightIcon className="w-5 h-5 shrink-0 mr-2" />
                 <span className="text-black">{item.title}</span>
               </button>
             </h2>
             <div
-              id={`accordion-collapse-body-${idx++}`}
+              id={`accordion-collapse-body-${idx}`}
               className=""
-              aria-labelledby={`accordion-collapse-heading-${idx++}`}>
+              aria-labelledby={`accordion-collapse-heading-${idx}`}>
               <div className="p-5">
                 <p className="mb-2">{item.description}</p>
               </div>
             </div>
-          </div>
+          </>
         ))}
 
         {/* <h2 id="accordion-collapse-heading-2">
@@ -78,9 +78,9 @@ const Accordion = () => {
               universities from the South (Coastal Conference) and North (Sahel Conference).
             </p>
           </div>
-        </div>
+        </div> */}
 
-        <h2 id="accordion-collapse-heading-3">
+        {/* <h2 id="accordion-collapse-heading-3">
           <button
             type="button"
             className="flex justify-start items-center p-5 w-full font-medium text-left rounded-t-xl"
@@ -99,8 +99,8 @@ const Accordion = () => {
               universities from the South (Coastal Conference) and North (Sahel Conference).
             </p>
           </div>
-        </div> */}
-      {/* </div> */}
+        </div>  */}
+      </div>
     </div>
   );
 };

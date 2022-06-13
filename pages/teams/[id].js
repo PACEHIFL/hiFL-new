@@ -32,7 +32,7 @@ const Slug = ({ data }) => {
 export default Slug;
 
 export const getStaticProps = async ({ params: { id } }) => {
-  const baseURL = process.env.BASE_URL_LOCAL;
+  const baseURL = process.env.BASE_URL;
   const { data } = await axios(`${baseURL}/teams/team/?_id=${id}`);
 
   return {
@@ -43,7 +43,7 @@ export const getStaticProps = async ({ params: { id } }) => {
 };
 
 export const getStaticPaths = async () => {
-  const baseURL = process.env.BASE_URL_LOCAL;
+  const baseURL = process.env.BASE_URL;
   const { data } = await axios(`${baseURL}/teams/all`);
 
   const ids = data.data.map((team) => team._id);

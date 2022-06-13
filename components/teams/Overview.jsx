@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SideBar from "../../components/shared/SideBar";
 import LatestNews from "../shared/LatestNews";
 import LatestVideos from "../shared/LatestVideos";
 import Sponsors from "../shared/Sponsors";
+import OfficialInfo from "./OfficialInfo";
+import axios from "axios"
 
-const Overview = ({ data: { Overview } }) => {
+const Overview = ({ data: { Overview, _id } }) => {
+  const [officials, setOfficiails] = useState()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const baseURL = process.env.BASE_URL;
+      const { data } = await axios(`${baseURL}/officials/?Team=${_id}`);
+      setOfficiails(data.data)
+    }
+
+    fetchData().catch(console.error);
+  }, [_id])
+
   return (
     <div>
       <div className="flex gap-5 xl:gap-8 justify-between font-redhat">
@@ -12,23 +26,10 @@ const Overview = ({ data: { Overview } }) => {
           <h1 className="text-base md:text-xl px-5 w-[80%] pb-6 leading-7 text-justify">{Overview}</h1>
           <div className="mb-10">
             <h1 className="font-bold text-4xl pb-4">Officials</h1>
-            <div className="border rounded-md py-2">
-              <h4 className="font-bold pl-4 pb-2">Head Coach</h4>
-              <hr />
-              <span className=" pl-4 pt-2 block"> Ezekiel Adams </span>
-            </div>
 
-            <div className="border rounded-md py-2 mt-6">
-              <h4 className="font-bold pl-4 pb-2">Assistant Coach</h4>
-              <hr />
-              <span className=" pl-4 pt-2 block"> Ezekiel Adams </span>
-            </div>
-
-            <div className="border rounded-md py-2 mt-6">
-              <h4 className="font-bold pl-4 pb-2">Director of Sports</h4>
-              <hr />
-              <span className=" pl-4 pt-2 block"> Ezekiel Adams </span>
-            </div>
+            {officials?.map((official, idx) => (
+              <OfficialInfo data={official} key={idx} />
+            ))}
           </div>
 
           <hr />
