@@ -9,16 +9,24 @@ const GalleryPosts = ({ data }) => {
 export default GalleryPosts;
 
 export async function getStaticProps() {
-  const baseURL = process.env.CMS_URL;
-  const { data } = await axios(`${baseURL}/posts?populate=*`);
-  const galleryPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Gallery"));
-  const latestGalleryPosts = galleryPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  try {
+    const baseURL = process.env.CMS_URL;
+    const { data, errors } = await axios(`${baseURL}/posts?populate=*`);
+    const galleryPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Gallery"));
+    const latestGalleryPosts = galleryPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 
-  return {
-    props: {
-      data: latestGalleryPosts,
-    },
-  };
+    if (errors || !data) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: latestGalleryPosts,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 }
 
 // import React, { useState, useCallback } from "react";

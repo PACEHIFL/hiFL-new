@@ -1,16 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Router } from "next/router";
 import * as api from "../api";
 
-export const register = createAsyncThunk("volunteers/signup", async ({ payload, toast }, { rejectWithValue }) => {
-  try {
-    const response = await api.registerVolunteer(payload);
-    toast.success("Application Successful");
-    return response.data;
-  } catch (err) {
-    toast.error(err.response.data.message);
-    return rejectWithValue(err.response.data);
+export const register = createAsyncThunk(
+  "volunteers/signup",
+  async ({ payload, toast, router }, { rejectWithValue }) => {
+    try {
+      const response = await api.registerVolunteer(payload);
+      toast.success("Application Successful", { onClose: () => router.reload() });
+      return response.data;
+    } catch (err) {
+      toast.error(err.response.data.message);
+      return rejectWithValue(err.response.data);
+    }
   }
-});
+);
 
 //RETURN VOLUNTEER OBJECT IF USER HAS APPLIED
 export const isVolunteer = () => {

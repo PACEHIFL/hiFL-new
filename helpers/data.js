@@ -18,19 +18,19 @@ export const navLinks = [
       { title: "Videos", path: "/videos" },
     ],
   },
-  {
-    name: "Partners",
-    links: [
-      { title: "Sponsors", path: "/sponsors" },
-      { title: "Partner", path: "/partner" },
-    ],
-  },
+  // {
+  //   name: "Partners",
+  //   links: [
+  //     { title: "Sponsors", path: "/sponsors" },
+  //     { title: "Partner", path: "/partner" },
+  //   ],
+  // },
   {
     name: "Store",
     links: [
-      { title: "Kits", path: "/kits" },
-      { title: "Equipment", path: "/equipment" },
-      { title: "Wearables", path: "/wearables" },
+      { title: "Store", path: "/store" },
+      { title: "Orders", path: "/account" },
+      { title: "Cart", path: "/store/cart" },
     ],
   },
   {
@@ -373,7 +373,7 @@ export const product = {
       Slug: "uniben-royals-home-authentic-shirt-2021",
       Details:
         "<p>YOUR TEAM. YOUR COLOURS.</p><p>The UNIBEN Royals Home Authentic Shirt is the same one worn by the team on the pitch.</p><ul><li>Replica style – looser fit across the chest and shoulders with straight hemline</li><li>Fabric: 50% recycled polyester fabric</li><li>Machine wash</li></ul><p>Wear your shirt with pride and show your support for the Royals<br>Why not make it your own by having your chosen name and number printed on the back?</p>",
-      ProductCode: "LK1090927",
+      ProductCode: "LK10909",
       InStock: true,
       PreOrder: false,
       Price: 6000,

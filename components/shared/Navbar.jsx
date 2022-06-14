@@ -17,7 +17,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  const navButtons = ["The League", "News & Media", "Partners", "Store", "More"];
+  // const navButtons = ["The League", "News & Media", "Partners", "Store", "More"];
+  const navButtons = ["The League", "News & Media", "Store", "More"];
 
   const handleLogout = () => {
     dispatch(logout());

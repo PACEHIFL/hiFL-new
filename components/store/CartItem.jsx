@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { formatMoney } from "../../helpers/utils";
+import { useDispatch } from "react-redux";
+import { increaseQty, reduceQty, deleteFromCart, getCart } from "../../redux/features/cart.slice";
 
-const CartItem = ({ cartProduct: { img, title, size, jerseyNumber, jerseyName, quantity, price, discountPrice } }) => {
-  const initialState = { quantity: quantity, size: "", customize: "No", jerseyName: "", jerseyNumber: "" };
-  const [orderInfo, setOrderInfo] = useState(initialState);
+const CartItem = ({
+  orderInfo,
+  setOrderInfo,
+  setCartItems,
+  cartProduct: { data, title, size, jerseyNumber, jerseyName, quantity },
+}) => {
+  const dispatch = useDispatch();
+
+  const discountPercent = (price, discount) => (data.DiscountPrice ? ((price - discount) / price) * 100 : null);
 
   const handleQuantity = (type) => {
     if (type == "increase") {
-      setOrderInfo({ ...orderInfo, quantity: orderInfo.quantity + 1 });
+      setOrderInfo({ ...orderInfo, quantity: quantity + 1 });
+      dispatch(increaseQty({ ...orderInfo, id: data.ProductCode }));
     }
-    if (type == "reduce" && orderInfo.quantity > 1) {
-      setOrderInfo({ ...orderInfo, quantity: orderInfo.quantity - 1 });
+    if (type == "reduce" && quantity > 1) {
+      setOrderInfo({ ...orderInfo, quantity: quantity - 1 });
+      dispatch(reduceQty({ ...orderInfo, id: data.ProductCode }));
     }
   };
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    dispatch(deleteFromCart({ ...orderInfo, id: data.ProductCode }));
+    setCartItems(getCart());
+  };
+
+  useEffect(() => {
+    setOrderInfo({ ...orderInfo, quantity: quantity });
+  }, []);
 
   return (
     <div className="bg-[#F9F7F7] rounded p-4 flex items-center gap-3 md:gap-6">
@@ -36,17 +53,17 @@ const CartItem = ({ cartProduct: { img, title, size, jerseyNumber, jerseyName, q
             fill="#F90000"
           />
         </svg>
-        <img src="/hiversa-jersey.png" alt="" className="w-[60px]" />
+        <img src={data.CoverImage[0].url} alt="" className="w-[60px]" />
       </div>
 
       <div className="flex flex-col items-start md:items-center md:flex-row gap-3 md:gap-6">
         <div>
-          <h3 className="text-sm font-semibold">{title}</h3>
+          <h3 className="text-sm font-semibold">{data.Title}</h3>
           <div className="fle gap-2 justify-between text-[#8C8C8C] text-xs uppercase">
             <p className="">Size: {size}</p>
             {(jerseyName || jerseyNumber) && (
               <p className="">
-                Customization: {jerseyName} ({jerseyNumber})
+                Customization: {jerseyName} {jerseyNumber && `(${jerseyNumber})`}
               </p>
             )}
           </div>
@@ -58,7 +75,7 @@ const CartItem = ({ cartProduct: { img, title, size, jerseyNumber, jerseyName, q
             onClick={() => handleQuantity("reduce")}>
             -
           </p>
-          <p className="px-3 py-1 border-y border-[#7E7E7E80]">{orderInfo.quantity}</p>
+          <p className="px-3 py-1 border-y border-[#7E7E7E80]">{quantity}</p>
           <p
             className="px-2 py-1 border border-[#7E7E7E80] border-opacity-50 rounded-r-md cursor-pointer select-none"
             onClick={() => handleQuantity("increase")}>
@@ -66,11 +83,13 @@ const CartItem = ({ cartProduct: { img, title, size, jerseyNumber, jerseyName, q
           </p>
         </div>
         <div className="flex flex-col md:items-center">
-          <p className="font-semibold">{formatMoney(discountPrice ? discountPrice : price)}</p>
-          {discountPrice && (
+          <p className="font-semibold">{formatMoney(data.DiscountPrice ? data.DiscountPrice : data.Price)}</p>
+          {data.DiscountPrice && (
             <div className="flex items-center gap-2 text-xs">
-              <p className={` ${discountPrice && "text-[#8C8C8C] line-through"} `}>{formatMoney(price)}</p>
-              <p className="px-2 bg-warning bg-opacity-50 rounded-b-lg text-[#3A3A3A]">-10%</p>
+              <p className={` ${data.DiscountPrice && "text-[#8C8C8C] line-through"} `}>{formatMoney(data.Price)}</p>
+              <p className="px-2 bg-warning bg-opacity-50 rounded-b-lg text-[#3A3A3A]">
+                -{discountPercent(data.Price, data.DiscountPrice)}%
+              </p>
             </div>
           )}
         </div>

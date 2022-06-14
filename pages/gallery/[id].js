@@ -9,25 +9,36 @@ const Post = ({ data }) => {
 export default Post;
 
 export const getStaticProps = async ({ params: { id } }) => {
-  const baseURL = process.env.CMS_URL;
-  const { data } = await axios(`${baseURL}/posts/${id}?populate=*`);
+  try {
+    const baseURL = process.env.CMS_URL;
+    const { data, errors } = await axios(`${baseURL}/posts/${id}?populate=*`);
 
-  return {
-    props: {
-      data: data.data,
-    },
-  };
+    if (errors || !data) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: data.data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 };
 
 export const getStaticPaths = async () => {
-  const baseURL = process.env.CMS_URL;
-  const { data } = await axios(`${baseURL}/posts?populate=*`);
+  try {
+    const baseURL = process.env.CMS_URL;
+    const { data } = await axios(`${baseURL}/posts?populate=*`);
+    const ids = data.data.map((post) => post.id);
+    const paths = ids.map((id) => ({ params: { id: id.toString() } }));
 
-  const ids = data.data.map((post) => post.id);
-  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-
-  return {
-    paths,
-    fallback: false,
-  };
+    return {
+      paths,
+      fallback: false,
+    };
+  } catch (error) {
+    return { paths: [], fallback: false };
+  }
 };

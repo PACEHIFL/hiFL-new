@@ -27,9 +27,6 @@ const SingleProduct = () => {
       setOrderInfo({ ...orderInfo, quantity: orderInfo.quantity - 1 });
     }
   };
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-  };
 
   const productImages = ProductGallery.map((image) => image.url);
 
@@ -69,15 +66,16 @@ const SingleProduct = () => {
             <ProductInfo
               data={data[0]}
               orderInfo={orderInfo}
+              initialState={initialState}
+              setOrderInfo={setOrderInfo}
               handleChange={handleChange}
               handleQuantity={handleQuantity}
-              handleAddToCart={handleAddToCart}
             />
           </div>
         </div>
 
         {/* Details */}
-        <div className="space-y-6">
+        <div className="space-y-6 lg:my-10">
           <h2 className="border-b border-warning pb-1 text-lg xl:text-xl font-semibold uppercase">details</h2>
           <div dangerouslySetInnerHTML={{ __html: Details }} className="space-y-6 text-justify"></div>
         </div>
