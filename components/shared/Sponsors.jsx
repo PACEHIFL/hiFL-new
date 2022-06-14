@@ -2,32 +2,25 @@ import React from "react";
 import Image from "next/image";
 
 const Sponsors = () => {
-  const minorSponsors = [
+  const officialSponsors = [
     { img: "/stanbic.png", title: "Official Financial Partner" },
     { img: "/nivea.png", title: "Official Deodorant Partner" },
     { img: "/bold.png", title: "Official Drink Partner" },
     { img: "/minimie.png", title: "Official Snack Partner" },
     { img: "/hiversa.png", title: "Official Educational Partner" },
+    { img: "/supersport.png", title: "Official TV Partner" },
+    { img: "/brila.png", title: "Official Radio Partner" },
+    { img: "/completesports.png", title: "Official Print Partner" },
   ];
-  const majorSponsors = [
-    { img: "/supersport.png", title: "" },
-    { img: "/completesports.png", title: "" },
-  ];
+
   return (
     <div className="py-10 font-redhat">
-      <div className="flex gap-8 items-center divide-x-[1px] divide-[#D0D0D0]">
-        <div className="flex justify-around items-center gap-6 w-8/12">
-          {minorSponsors.map(({ img, title }, i) => (
-            <div key={i} className="flex flex-col gap-2">
-              <Image src={img} alt="" width="100%" height="100%" objectFit="contain" />
+      <div className="flex justify-center">
+        <div className="flex flex-wrap lg:flex-nowrap justify-between items-center gap-6">
+          {officialSponsors.map(({ img, title }, i) => (
+            <div key={i} className="flex flex-col items-center gap-4 ">
+              <img src={img} alt="" className="w-fit" />
               <h3 className="text-xs text-[#8C8C8C] text-center">{title}</h3>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-around items-center gap-6 w-4/12">
-          {majorSponsors.map(({ img, title }, i) => (
-            <div key={i}>
-              <Image src={img} alt="" width="100%" height="100%" objectFit="contain" />
             </div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../../../hooks/useFetch";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "../../../redux/features/auth.slice";
@@ -9,25 +10,26 @@ import InputField from "../InputField";
 const SignUpModal = () => {
   const initialState = {
     User: "",
-    University: "",
-    department: "",
+    Institution: "",
+    Department: "",
     Program: "",
-    matricNo: "",
-    level: "",
-    expectedYearOfGrad: "",
-    nextOfKinName: "",
-    nextOfKinPhone: "",
-    whyJoinVolunteer: "",
+    MatricNo: "",
+    Level: "",
+    // ExpectedYearOfGrad: "",
+    NextOfKinName: "",
+    NextOfKinPhone: "",
+    WhyJoinVolunteer: "",
   };
   const [userData, setUserData] = useState(initialState);
+  const router = useRouter();
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.volunteer);
 
   const baseURL = process.env.BASE_URL;
   const { data } = useFetch(`${baseURL}/institutions`);
-  const seasons = useFetch(`${baseURL}/leagues/seasons`)?.data?.data;
-  const currentSeasonID = seasons?.[0]?._id;
+  const seasons = useFetch(`${baseURL}/settings?populate=*`)?.data?.data;
+  const currentSeasonID = seasons?.[0]?.CurrentSeason._id;
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -38,10 +40,10 @@ const SignUpModal = () => {
     e.preventDefault();
 
     if (seasons !== undefined) {
-      const participation = { season: currentSeasonID };
-      const payload = { ...userData, participations: [participation] };
-      console.log(payload);
-      dispatch(register({ payload, toast }));
+      const participation = { Season: currentSeasonID, ApprovalStatus: "PENDING", ReferenceCode: "" };
+      const payload = { ...userData, Participations: [participation] };
+      //console.log(payload);
+      dispatch(register({ payload, toast, router }));
     }
   };
 
@@ -66,8 +68,8 @@ const SignUpModal = () => {
             University
           </label>
           <select
-            name="University"
-            value={userData.University}
+            name="Institution"
+            value={userData.Institution}
             onChange={handleChange}
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
@@ -82,7 +84,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="department"
+            name="Department"
             onChange={handleChange}
             placeholder="Department"
             data={userData}
@@ -111,7 +113,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="text"
-            name="matricNo"
+            name="MatricNo"
             onChange={handleChange}
             placeholder="Matric No"
             data={userData}
@@ -120,13 +122,13 @@ const SignUpModal = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center">
-        <div className="w-full">
+        <div className="w-full md:w-1/2">
           <label htmlFor="Program" className="font-bold text-sm">
             Level
           </label>
           <select
-            name="level"
-            value={userData.level}
+            name="Level"
+            value={userData.Level}
             onChange={handleChange}
             required
             className={`w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded`}>
@@ -142,25 +144,25 @@ const SignUpModal = () => {
             <option value="PhD">PhD</option>
           </select>
         </div>
-        <div className="w-full">
+        {/* <div className="w-full">
           <InputField
             type="text"
-            name="expectedYearOfGrad"
+            name="ExpectedYearOfGrad"
             onChange={handleChange}
             required
             placeholder="Expected Year of Graduation"
             data={userData}
           />
-        </div>
+        </div> */}
       </div>
 
-      <h2 className="text-secondary text-xl font-bold my-8">Next of Kin Information</h2>
+      <h2 className="text-secondary text-xl font-bold my-4">Next of Kin Information</h2>
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center mb-4">
         <div className="w-full">
           <InputField
             type="text"
-            name="nextOfKinName"
+            name="NextOfKinName"
             onChange={handleChange}
             required
             placeholder="Full Name"
@@ -170,7 +172,7 @@ const SignUpModal = () => {
         <div className="w-full">
           <InputField
             type="tel"
-            name="nextOfKinPhone"
+            name="NextOfKinPhone"
             onChange={handleChange}
             required
             placeholder="Phone Number"
@@ -184,12 +186,12 @@ const SignUpModal = () => {
           Why do you want to volunteer?
         </label>
         <textarea
-          name="whyJoinVolunteer"
+          name="WhyJoinVolunteer"
           onChange={handleChange}
           placeholder="Please type your message"
           className="w-full border text-sm mt-1 py-3 px-4 outline-none rounded"
           data={userData}
-          rows={4}
+          rows={2}
           required
         />
       </div>
