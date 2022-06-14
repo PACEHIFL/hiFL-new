@@ -46,6 +46,7 @@ const Fixtures = () => {
         <Filter title="Select League" />
         <Filter title="Select Stage" />
       </div>
+      
       {fixturesItems?.map((fixtures, idx) => (
         <FixturesCard data={fixtures} key={idx} />
       ))}
