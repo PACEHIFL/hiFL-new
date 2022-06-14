@@ -22,7 +22,7 @@ const Signin = () => {
     if (data.email == "" || data.password == "") {
       return toast.error("Please all fields are required");
     }
-    // console.log(data)
+    
     if (data.email && data.password) {
       const payload = { Email: data.email, Password: data.password };
       dispatch(login({ payload, toast, router }));

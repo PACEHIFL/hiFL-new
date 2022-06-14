@@ -15,7 +15,6 @@ const AllTeams = ({ data }) => {
 
   const handleChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
   }
 
   return (
