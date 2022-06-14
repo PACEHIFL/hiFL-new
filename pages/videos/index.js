@@ -9,14 +9,22 @@ const VideoPosts = ({ data }) => {
 export default VideoPosts;
 
 export async function getStaticProps() {
-  const baseURL = process.env.CMS_URL;
-  const { data } = await axios(`${baseURL}/posts?populate=*`);
-  const videoPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Video"));
-  const latestVideoPosts = videoPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  try {
+    const baseURL = process.env.CMS_URL;
+    const { data, errors } = await axios(`${baseURL}/posts?populate=*`);
+    const videoPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Video"));
+    const latestVideoPosts = videoPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 
-  return {
-    props: {
-      data: latestVideoPosts,
-    },
-  };
+    if (errors || !data) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: latestVideoPosts,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 }

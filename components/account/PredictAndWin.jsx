@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AccountLayout from "../layout/AccountLayout";
 import Predictions from "./predictandwin/Predictions";
-import PredictTabs from "./predictandwin/predictTabs";
+import PredictTabs from "./predictandwin/PredictTabs";
 
 const predictItems = [
   {
