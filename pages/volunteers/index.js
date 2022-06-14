@@ -1,14 +1,14 @@
 import React from "react";
 import InnerSection from "../../components/volunteer/InnerSection";
 import Link from "next/link";
-import InnerSectionList from "../../components/volunteer/InnerSectionList";
+import InnerSectionList from "../../components/volunteer/InnerSectionMaster.jsx";
 import SideBar from "../../components/shared/SideBar";
 import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/dist/client/image";
 
 const volunteer = () => {
-  let content = [
+  const content = [
     {
       title: "Connect",
       img: "/volunteer-application.png",
@@ -58,7 +58,7 @@ const volunteer = () => {
   ];
 
   return (
-    <div className=" ">
+    <div className="font-redhat">
       <div className="max-w-[94%] md:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
         <div className="flex gap-5 xl:gap-8 justify-between ">
           <div className="w-full lg:w-8/12 xl:w-9/12 ">
@@ -74,22 +74,29 @@ const volunteer = () => {
                     objectFit="cover"
                   />
                 </div>
-                <div className="text-black mt-8 leading-8 md:w-[90%] lg:w-[85%]">
-                  <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">What the Volunteer Force is about</h1>
-                  <p>
-                    A movement of young people across Nigerian campuses leveraging the power of football through HiFL to
-                    improve their communities whilepromoting associated brands in the process.
-                  </p>
-                  <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">
-                    What can become a part of the Volunteer Force
-                  </h1>
-                  <p>To become a volunteer, you have to be a student of a participating university.</p>
-                  <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">How to become a Volunteer</h1>
-                  <p>
-                    You can apply to become a volunteer by going to the HiFL Volunteers Page and clicking on "Sign up"
-                    You can find this byclicking on this link Volunteer portal{" "}
-                    <Link href="https://www.hiflng.com/volunteer">https://www.hiflng.com/volunteer</Link>
-                  </p>
+                <div className="text-black mt-8 md:w-[90%] lg:w-[85%]">
+                  <div className="mb-5">
+                    <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">What the Volunteer Force is about</h1>
+                    <p>
+                      A movement of young people across Nigerian campuses leveraging the power of football through HiFL
+                      to improve their communities whilepromoting associated brands in the process.
+                    </p>
+                  </div>
+                  <div className="mb-5">
+                    <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">
+                      What can become a part of the Volunteer Force
+                    </h1>
+
+                    <p>To become a volunteer, you have to be a student of a participating university.</p>
+                  </div>
+                  <div>
+                    <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">How to become a Volunteer</h1>
+                    <p>
+                      You can apply to become a volunteer by going to the HiFL Volunteers Page and clicking on "Sign up"
+                      You can find this byclicking on this link Volunteer portal{" "}
+                      <Link href="https://www.hiflng.com/volunteer">https://www.hiflng.com/volunteer</Link>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -105,15 +112,17 @@ const volunteer = () => {
                     objectFit="cover"
                   />
                 </div>
-                <div className="text-black mt-8 leading-8 md:w-[90%] lg:w-[85%]">
+                <div className="text-black mt-8 md:w-[90%] lg:w-[85%]">
                   <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">
                     What are the benefits of being a avolunteer
                   </h1>
-                  *Certificate of recognition
-                  <br /> **Networking opportunities <br />
-                  ** Personal development <br />
-                  **Branded gift items <br />
-                  **Experience of a lifetime at the biggest collegiate sports event in the country
+                  <ul className="list-disc ml-5">
+                    <li>Certificate of recognition</li>
+                    <li>Networking opportunities</li>
+                    <li>Personal development</li>
+                    <li>Branded gift items</li>
+                    <li>Experience of a lifetime at the biggest collegiate sports event in the country</li>
+                  </ul>
                 </div>
               </div>
 
