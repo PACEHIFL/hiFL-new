@@ -11,10 +11,14 @@ import Unifest from "../../components/account/Unifest";
 import PredictAndWin from "../../components/account/PredictAndWin";
 
 const Account = () => {
-  const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
+  const path = router.query.tab;
 
-  //const view = [<AccountOverview />, <Store />, <VolunteerForce />, <Unifest />, <PredictAndWin />];
+  const isProfile = path === "profile" || path == null;
+  const isStore = path === "store";
+  const isVolunteer = path === "volunteer-force";
+  const isUnifest = path === "unifest";
+  const isPredict = path === "predict&win";
 
   useEffect(() => {
     if (!isLoggedIn()) {
@@ -28,17 +32,17 @@ const Account = () => {
       <div className="bg-white">
         <div className="flex gap-3 max-w-[94%] md:max-w-[90%] mx-auto py-10 text-secondary">
           <div className="w-3/12 hidden lg:block">
-            <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+            <SideMenu />
           </div>
           <div className="w-full lg:w-9/12 h-auto">
             <div className="w-full mb-4 lg:hidden">
-              <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+              <SideMenu />
             </div>
-            {activeTab === 0 && <Profile />}
-            {activeTab === 1 && <Store />}
-            {activeTab === 2 && <VolunteerForce />}
-            {activeTab === 3 && <Unifest />}
-            {activeTab === 4 && <PredictAndWin />}
+            {isProfile && <Profile />}
+            {isStore && <Store />}
+            {isVolunteer && <VolunteerForce />}
+            {isUnifest && <Unifest />}
+            {isPredict && <PredictAndWin />}
           </div>
         </div>
       </div>
