@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Predictions = (predictItems) => {
+const Predictions = ({ predictItems }) => {
   const [data, setData] = useState(predictItems);
 
   const handleClick = (type, name) => {
