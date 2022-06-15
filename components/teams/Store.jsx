@@ -2,63 +2,93 @@ import React, { useState } from "react";
 import LatestNews from "../shared/LatestNews";
 import LatestVideos from "../shared/LatestVideos";
 import Sponsors from "../shared/Sponsors";
-import Kits from '../../components/teams/Kits';
+import Kits from "../../components/teams/Kits";
+import ProductCard from "../store/ProductCard";
 
 const storeItems = ["Kit", "Equipment", "Wearables"];
 const kitDetails = [
   {
-      kitName: "2022 Authentic Home Jersey",
-      price: "6500",
-      image: "/main-jersey.png"
+    kitName: "2022 Authentic Home Jersey",
+    price: "6500",
+    image: "/main-jersey.png",
   },
   {
-      kitName: "2022 Authentic Home Jersey",
-      price: "6500",
-      image: "/main-jersey.png"
+    kitName: "2022 Authentic Home Jersey",
+    price: "6500",
+    image: "/main-jersey.png",
   },
   {
-      kitName: "2022 Authentic Home Jersey",
-      price: "6500",
-      image: "/jersey-back.png"
+    kitName: "2022 Authentic Home Jersey",
+    price: "6500",
+    image: "/jersey-back.png",
   },
-]
+];
 
 const equipmentDetails = [
   {
-      kitName: "HiFL Official Fan Football Coloured Stripe",
-      price: "4500",
-      image: "/ball1.png"
+    kitName: "HiFL Official Fan Football Coloured Stripe",
+    price: "4500",
+    image: "/ball1.png",
   },
   {
-      kitName: "HiFL Official Fan Football Coloured Stripe",
-      price: "6500",
-      image: "/ball2.png"
+    kitName: "HiFL Official Fan Football Coloured Stripe",
+    price: "6500",
+    image: "/ball2.png",
   },
   {
-      kitName: "HiFL Official Fan Football Coloured Stripe",
-      price: "6500",
-      image: "/ball1.png"
+    kitName: "HiFL Official Fan Football Coloured Stripe",
+    price: "6500",
+    image: "/ball1.png",
   },
-]
+];
 
 const wearablesDetails = [
   {
-      kitName: "HiFL Black Crest Cap",
-      price: "2500",
-      image: "/cap1.png"
+    kitName: "HiFL Black Crest Cap",
+    price: "2500",
+    image: "/cap1.png",
   },
   {
-      kitName: "HiFL Black Crest Cap",
-      price: "2500",
-      image: "/cap2.png"
+    kitName: "HiFL Black Crest Cap",
+    price: "2500",
+    image: "/cap2.png",
   },
   {
-      kitName: "HiFL Black Crest Cap",
-      price: "2500",
-      image: "/cap1.png"
+    kitName: "HiFL Black Crest Cap",
+    price: "2500",
+    image: "/cap1.png",
   },
-]
+];
 const Store = () => {
+  const products = [
+    {
+      id: 234,
+      name: "UNN Lions Home Authentic Shirt",
+      bestSelling: false,
+      img: "/hiversa-jersey.png",
+      discountPercent: 10,
+      discountPrice: null,
+      price: 5225,
+    },
+    {
+      id: 5553,
+      name: "UNN Lions Home Authentic Shirt",
+      bestSelling: true,
+      img: "/hiversa-jersey.png",
+      discountPercent: 10,
+      discountPrice: 4225,
+      price: 5225,
+    },
+    {
+      id: 45445,
+      name: "UNN Lions Home Authentic Shirt",
+      bestSelling: true,
+      img: "/hiversa-jersey.png",
+      discountPercent: 10,
+      discountPrice: 4225,
+      price: 5225,
+    },
+  ];
   const [items, setItems] = useState(0);
   return (
     <div className="font-redhat">
@@ -79,6 +109,11 @@ const Store = () => {
           ))}
         </div>
       </div>
+      {/* <div>
+        {products?.map((product, idx) => (
+          <ProductCard product={product} key={idx} />
+        ))}
+      </div> */}
 
       <div>
         {items == 0 && <Kits details={kitDetails} />}

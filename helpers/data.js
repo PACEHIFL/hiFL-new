@@ -18,13 +18,13 @@ export const navLinks = [
       { title: "Videos", path: "/videos" },
     ],
   },
-  {
-    name: "Partners",
-    links: [
-      { title: "Sponsors", path: "/sponsors" },
-      { title: "Partner", path: "/partner" },
-    ],
-  },
+  // {
+  //   name: "Partners",
+  //   links: [
+  //     { title: "Sponsors", path: "/sponsors" },
+  //     { title: "Partner", path: "/partner" },
+  //   ],
+  // },
   {
     name: "Store",
     links: [
