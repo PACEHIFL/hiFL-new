@@ -60,7 +60,7 @@ const Masterclass = () => {
 
   return (
     <div className="font-redhat">
-      <div className="max-w-[94%] md:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
+      <div className="max-w-[94%] md:max-w-[90%] mx-auto  lg:pb-3 h-auto   ">
         <div className="flex gap-5 xl:gap-8 justify-between ">
           <div className="w-full lg:w-8/12 xl:w-9/12 ">
             <div className=" pb-0 md:pb-0 lg:pb-0 ">
