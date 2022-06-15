@@ -13,8 +13,13 @@ import PredictAndWin from "../../components/account/PredictAndWin";
 const Account = () => {
   const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
+  const path = router.query.tab;
 
-  //const view = [<AccountOverview />, <Store />, <VolunteerForce />, <Unifest />, <PredictAndWin />];
+  const isProfile = path === "profile" || path == null;
+  const isStore = path === "store";
+  const isVolunteer = path === "volunteer-force";
+  const isUnifest = path === "unifest";
+  const isPredict = path === "predict&win";
 
   useEffect(() => {
     if (!isLoggedIn()) {
@@ -34,11 +39,11 @@ const Account = () => {
             <div className="w-full mb-4 lg:hidden">
               <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
-            {activeTab === 0 && <Profile />}
-            {activeTab === 1 && <Store />}
-            {activeTab === 2 && <VolunteerForce />}
-            {activeTab === 3 && <Unifest />}
-            {activeTab === 4 && <PredictAndWin />}
+            {isProfile && <Profile />}
+            {isStore && <Store />}
+            {isVolunteer && <VolunteerForce />}
+            {isUnifest && <Unifest />}
+            {isPredict && <PredictAndWin />}
           </div>
         </div>
       </div>
