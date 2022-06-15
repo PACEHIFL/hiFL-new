@@ -7,7 +7,7 @@ import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/image";
 
-const volunteer = () => {
+const Volunteer = () => {
   const content = [
     {
       title: "Connect",
