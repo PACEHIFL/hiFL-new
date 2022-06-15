@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { LocationMarkerIcon } from "@heroicons/react/solid"
+import { LocationMarkerIcon, ArrowSmallRightIcon } from "@heroicons/react/solid"
 
-const FixturesCard = ({ data }) => {
+const ResultCard = ({ data }) => {
 
   return (
     <div className="mb-10">
@@ -16,8 +16,11 @@ const FixturesCard = ({ data }) => {
             <span className="font-bold md:text-xl">{data.homeTeam.name}</span>
             <img src={data.homeTeam.logo} className="hidden md:inline-flex w-12 h-12 ml-2" alt="futa-logo" />
           </div>
-          <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8">
-            <span className="text-secondary">4:00</span>{" "}
+          <div className="border bg-secondary hover:text-secondary border-gray-400 px-3 py-1 ml-2 md:mx-2">
+            <span className="text-white">{data.homeTeam.score}</span>
+          </div>
+          <div className="border bg-secondary hover:text-secondary border-gray-400 px-3 py-1 ml-2 md:mx-2">
+            <span className="text-white">{data.awayTeam.score}</span>
           </div>
           <div className="flex justify-center items-center">
             <img src={data.awayTeam.logo} className="hidden md:inline-flex w-12 h-12 mr-2" alt="futa-logo" />
@@ -35,4 +38,4 @@ const FixturesCard = ({ data }) => {
   );
 };
 
-export default FixturesCard;
+export default ResultCard;

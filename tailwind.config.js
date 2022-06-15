@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       fontFamily: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui"), require("tailwind-scrollbar")],
+  plugins: [require("daisyui"), require("tailwind-scrollbar"), require("flowbite/plugin")],
   daisyui: {
     themes: [
       {
