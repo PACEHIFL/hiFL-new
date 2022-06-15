@@ -5,7 +5,7 @@ import InnerSectionList from "../../components/volunteer/InnerSectionMaster.jsx"
 import SideBar from "../../components/shared/SideBar";
 import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";
-import Image from "next/dist/client/image";
+import Image from "next/image";
 
 const volunteer = () => {
   const content = [
@@ -145,7 +145,6 @@ const volunteer = () => {
                     list1="Tingar endoplastisk."
                     list2=" Donade letungen en treter och "
                     list3="Pararysk blingbling sperad."
-                   
                   />
                 </div> */}
               </div>
@@ -167,4 +166,4 @@ const volunteer = () => {
   );
 };
 
-export default volunteer;
+export default Volunteer;
