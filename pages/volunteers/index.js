@@ -7,7 +7,7 @@ import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/image";
 
-const volunteer = () => {
+const Volunteer = () => {
   const content = [
     {
       title: "Connect",
@@ -19,6 +19,7 @@ const volunteer = () => {
 
       lower: "Join now",
       arrow: "/arrow 1.png",
+      button: "",
     },
     {
       title: "Grow",
@@ -26,10 +27,11 @@ const volunteer = () => {
       item: [
         { list: "Career advancement opportunities including internship and workplace prep" },
         { list: "Access to our extensive resource library for skills such as leadership,team bulding, marketing etc." },
-        { list: "Opportunity to add value to your community; Project X" },
+        { list: "Opportunity to add value to your community." },
       ],
       lower: "",
       arrow: "",
+      button: "",
     },
     {
       title: "Learn",
@@ -42,25 +44,24 @@ const volunteer = () => {
       ],
       lower: "Get your certificate",
       arrow: "/arrow 1.png",
+      button: "",
     },
 
     {
       title: "Gain",
       img: "/fem-volunteers.png",
-      item: [
-        {
-          list: "Benefits including certificates, branded souvenirs/mechandise,exclusive promotional giveaways, backstage passes to special events",
-        },
-      ],
+      item: "",
+      parag:
+        "Benefits including certificates, branded souvenirs/mechandise,exclusive promotional giveaways, backstage passes to special events",
       lower: "",
       arrow: "",
+      button: "",
     },
   ];
 
   return (
     <div className="font-redhat">
-      <div className="max-w-[94%] lg:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
-        {/* <div className=" mx-auto  py-8 lg:pb-3 h-auto  "> */}
+      <div className="max-w-[94%] lg:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto md:w-[85%]  ">
         <div className="flex gap-5 xl:gap-8 justify-between  ">
           <div className="w-full lg:w-8/12 xl:w-9/12 ">
             <div className=" pb-8 md:pb-8 lg:pb-8 ">
@@ -129,24 +130,23 @@ const volunteer = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
+                  {content.map(({ img, button, parag, lower, arrow, title, item }, ind) => {
                     return (
                       <div key={ind}>
-                        <InnerSection title={title} img={img} item={item} lower={lower} arrow={arrow} key={ind} />
+                        <InnerSection
+                          title={title}
+                          img={img}
+                          item={item}
+                          lower={lower}
+                          parag={parag}
+                          arrow={arrow}
+                          key={ind}
+                          button={button}
+                        />
                       </div>
                     );
                   })}
                 </div>
-
-                {/* <div className="   ">
-                  <InnerSectionList
-                    title="Monoliga lener bede. Jutt lanas oaktat siktig."
-                    img="/volunteer-banner.png"
-                    list1="Tingar endoplastisk."
-                    list2=" Donade letungen en treter och "
-                    list3="Pararysk blingbling sperad."
-                  />
-                </div> */}
               </div>
             </div>
           </div>
