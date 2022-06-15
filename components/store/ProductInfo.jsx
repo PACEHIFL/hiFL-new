@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { formatMoney } from "../../helpers/utils";
 import { useDispatch } from "react-redux";
@@ -10,6 +11,7 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
   const large = useRef();
   const customizeYes = useRef();
   const customizeNo = useRef();
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const { Price, DiscountPrice, InStock, PreOrder, Details, ProductGallery } = data;
@@ -25,7 +27,7 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
       toast.error("Please fill in custom details", { autoClose: 1500 });
       return;
     }
-    toast.success("Item added to cart", { autoClose: 1500 });
+    toast.success("Item added to cart", { autoClose: 1000, onClose: () => router.push("/store/cart") });
     dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
     // setOrderInfo(initialState);
   };

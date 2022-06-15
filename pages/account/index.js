@@ -11,7 +11,6 @@ import Unifest from "../../components/account/Unifest";
 import PredictAndWin from "../../components/account/PredictAndWin";
 
 const Account = () => {
-  const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
   const path = router.query.tab;
 
@@ -33,11 +32,11 @@ const Account = () => {
       <div className="bg-white">
         <div className="flex gap-3 max-w-[94%] md:max-w-[90%] mx-auto py-10 text-secondary">
           <div className="w-3/12 hidden lg:block">
-            <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+            <SideMenu />
           </div>
           <div className="w-full lg:w-9/12 h-auto">
             <div className="w-full mb-4 lg:hidden">
-              <SideMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+              <SideMenu />
             </div>
             {isProfile && <Profile />}
             {isStore && <Store />}

@@ -2,11 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const SideMenu = ({ activeTab, setActiveTab }) => {
+const SideMenu = () => {
   const router = useRouter();
   const path = router.query.tab;
   const menuItems = [
-    { name: "Profile", link: null },
+    { name: "Profile", link: undefined },
     { name: "Store", link: "store" },
     { name: "Volunteer Force", link: "volunteer-force" },
     { name: "Unifest", link: "unifest" },
