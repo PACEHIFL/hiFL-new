@@ -16,7 +16,7 @@ const Masterclass = () => {
         "We know that sports are great for your physical health. However, very little is said about the negative effects of Sports on mental health. Dr Tunde Akinbinu, a member of the Nigerian Football Federation (NFF) Sports Medical Committee will elaborate on the positive and negative effects that sports can have on the psychology of athletes and how to handle mental issues associated with sports.",
 
       name: "Dr Tunde Akinbinu",
-      designation: "Health Consultant, Hifl",
+      designation: "Health Consultant, HIFL",
       date: "June 13, 2022",
     },
     {

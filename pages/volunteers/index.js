@@ -59,8 +59,9 @@ const volunteer = () => {
 
   return (
     <div className="font-redhat">
-      <div className="max-w-[94%] md:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
-        <div className="flex gap-5 xl:gap-8 justify-between ">
+      <div className="max-w-[94%] lg:max-w-[90%] mx-auto  py-8 lg:pb-3 h-auto   ">
+        {/* <div className=" mx-auto  py-8 lg:pb-3 h-auto  "> */}
+        <div className="flex gap-5 xl:gap-8 justify-between  ">
           <div className="w-full lg:w-8/12 xl:w-9/12 ">
             <div className=" pb-8 md:pb-8 lg:pb-8 ">
               <div className="">
