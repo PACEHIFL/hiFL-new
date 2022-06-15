@@ -32,25 +32,39 @@ const Slug = ({ data }) => {
 export default Slug;
 
 export const getStaticProps = async ({ params: { id } }) => {
-  const baseURL = process.env.BASE_URL;
-  const { data } = await axios(`${baseURL}/teams/team/?_id=${id}`);
+  try {
+    const baseURL = process.env.BASE_URL;
+    const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${id}`);
 
-  return {
-    props: {
-      data: data.data,
-    },
-  };
+    if (!data || errors) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: data.data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+
 };
 
 export const getStaticPaths = async () => {
-  const baseURL = process.env.BASE_URL;
-  const { data } = await axios(`${baseURL}/teams/all`);
+  try {
+    const baseURL = process.env.BASE_URL;
+    const { data } = await axios(`${baseURL}/teams/all`);
 
-  const ids = data.data.map((team) => team._id);
-  const paths = ids.map((id) => ({ params: { id: id + "" } }));
+    const ids = data.data.map((team) => team._id);
+    const paths = ids.map((id) => ({ params: { id: id + "" } }));
 
-  return {
-    paths,
-    fallback: false,
-  };
+    return {
+      paths,
+      fallback: false,
+    };
+  } catch (error) {
+    return { paths: [], fallback: false };
+  }
+
 };

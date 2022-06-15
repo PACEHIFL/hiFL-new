@@ -14,12 +14,21 @@ const index = ({ data }) => {
 export default index;
 
 export async function getStaticProps() {
-  const baseURL = process.env.BASE_URL;
-  const { data } = await axios(`${baseURL}/teams/all`);
+  try {
+    const baseURL = process.env.BASE_URL;
+    const { data, errors } = await axios(`${baseURL}/teams/all`);
 
-  return {
-    props: {
-      data: data.data,
-    },
-  };
+    if (errors || !data) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: data.data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+
 }
