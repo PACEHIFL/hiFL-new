@@ -15,16 +15,16 @@ const Unifest = () => {
       parag:
         "Participants to send in a 30 to 60 seconds video of themselves in any of the four talent categories and get nominated to subsequent stages",
       item: "",
-
-      button: "Participate",
+      lower: "Participate",
+      arrow: "/arrow 1.png",
     },
     {
       title: "Stage 2",
       img: "/fem-volunteers.png",
       parag: "12 contestants will be selected and profiled. The top 4 will proceed to the final stage.",
       item: "",
-
-      button: "Participate",
+      lower: "Participate",
+      arrow: "/arrow 1.png",
     },
     {
       title: "Stage 3",
@@ -32,8 +32,8 @@ const Unifest = () => {
       parag:
         "Top 4 contestants will be mentored and will thereafter proceed to vibe for the winning performance. One winner will emerge.",
       item: "",
-
-      button: "Participate",
+      lower: "Participate",
+      arrow: "/arrow 1.png",
     },
 
     {
@@ -47,8 +47,8 @@ const Unifest = () => {
         { list: "N100k cash prize." },
       ],
       parag: "",
-
-      button: "Participate",
+      lower: "Participate",
+      arrow: "/arrow 1.png",
     },
   ];
 
@@ -109,7 +109,7 @@ const Unifest = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, parag, lower, arrow, title, item, button }, ind) => {
+                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSection
@@ -120,7 +120,6 @@ const Unifest = () => {
                           arrow={arrow}
                           key={ind}
                           parag={parag}
-                          button={button}
                         />
                       </div>
                     );
