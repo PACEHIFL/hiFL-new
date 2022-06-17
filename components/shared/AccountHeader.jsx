@@ -28,11 +28,9 @@ const AccountHeader = ({ name }) => {
             <img src="/avatar.png" alt="" className="w-[100px] h-[100px]" />
           </div>
         ) : (
-          user && (
-            <div className="bg-[#B3B3B3] flex justify-center items-center capitalize w-[100px] h-[100px] text-4xl text-secondary rounded-full">
-              {initials.toString()}
-            </div>
-          )
+          <div className="bg-[#B3B3B3] flex justify-center items-center capitalize w-[100px] h-[100px] text-4xl text-secondary rounded-full">
+            {initials.toString()}
+          </div>
         )}
       </div>
     </div>
