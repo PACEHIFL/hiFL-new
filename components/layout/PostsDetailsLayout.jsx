@@ -5,7 +5,6 @@ import FixturesBrief from "../shared/FixturesBrief";
 import LatestNews from "../shared/LatestNews";
 
 const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content } }) => {
-
   return (
     <div className="font-redhat">
       <PageTitle name={name || "add a title"} />
@@ -14,7 +13,7 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
           <div className="flex gap-10 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div className="">
-                <h2 className="text-2xl mb-2 font-semibold">{Title}</h2>
+                <h2 className="text-2xl xl:text-3xl mb-2 font-semibold">{Title}</h2>
                 {SubTitle && <h3 className="text-accent text-base ">{SubTitle}</h3>}
                 <div className="mt-5">
                   <img src={CoverImage.url} alt={Title} className="w-full" />

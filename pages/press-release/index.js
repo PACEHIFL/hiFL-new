@@ -11,9 +11,9 @@ export default PressRelease;
 export async function getStaticProps() {
   try {
     const baseURL = process.env.CMS_URL;
-    const { data, errors } = await axios(`${baseURL}/posts?populate=*`);
-    const pressPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Press Release"));
-    const latestPressPosts = pressPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    const { data, errors } = await axios(
+      `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Press%20Release&populate=*`
+    );
 
     if (errors || !data) {
       return { notFound: true };
@@ -21,7 +21,7 @@ export async function getStaticProps() {
 
     return {
       props: {
-        data: latestPressPosts,
+        data: data.data,
       },
     };
   } catch (error) {

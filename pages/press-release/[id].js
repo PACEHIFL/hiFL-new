@@ -12,6 +12,7 @@ export const getStaticProps = async ({ params: { id } }) => {
   try {
     const baseURL = process.env.CMS_URL;
     const { data, errors } = await axios(`${baseURL}/posts/${id}?populate=*`);
+    console.log(data);
 
     if (errors || !data) {
       return { notFound: true };
@@ -30,7 +31,9 @@ export const getStaticProps = async ({ params: { id } }) => {
 export const getStaticPaths = async () => {
   try {
     const baseURL = process.env.CMS_URL;
-    const { data } = await axios(`${baseURL}/posts?populate=*`);
+    const { data } = await axios(
+      `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Press%20Release&populate=*`
+    );
 
     const ids = data.data.map((post) => post.id);
     const paths = ids.map((id) => ({ params: { id: id.toString() } }));

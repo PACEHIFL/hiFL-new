@@ -8,7 +8,7 @@ const AccountHeader = ({ name }) => {
 
   const firstInitial = userData?.Firstname.slice(0, 1);
   const lastInitial = userData?.Lastname?.slice(0, 1);
-  const initials = firstInitial + lastInitial;
+  const initials = userData ? `${firstInitial}${lastInitial}` : "N/A";
 
   useEffect(() => {
     if (isLoggedIn()) {
@@ -23,15 +23,17 @@ const AccountHeader = ({ name }) => {
           <h2 className="text-white text-xl md:text-2xl font-bold capitalize">Hello {userData?.Firstname},</h2>
           <p>What would you like to do today</p>
         </div>
-        {userData?.Profile ? (
-          <div className="hidden md:block">
-            <img src="/avatar.png" alt="" className="w-[100px] h-[100px]" />
-          </div>
-        ) : (
-          <div className="bg-[#B3B3B3] flex justify-center items-center capitalize w-[100px] h-[100px] text-4xl text-secondary rounded-full">
-            {initials.toString()}
-          </div>
-        )}
+        <div className="hidden md:block">
+          {userData?.Profile ? (
+            <div className="hidden md:block">
+              <img src="/avatar.png" alt="" className="w-[100px] h-[100px]" />
+            </div>
+          ) : (
+            <div className="bg-[#B3B3B3] flex justify-center items-center capitalize w-[100px] h-[100px] text-4xl text-secondary rounded-full">
+              {initials}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
