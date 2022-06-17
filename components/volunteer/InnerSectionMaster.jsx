@@ -23,7 +23,7 @@ const InnerSectionMaster = ({ title, img, parag, name, designation, date }) => {
       </div>
 
       <div className='w-100 xxl:w-[70%] m-0 p-10 lg:pt-6 xxl:pt-16  flex flex-col align-top justify-start bg-[url("/volunteer-bg.png")] bg-cover bg-right bg-no-repeat mix-blend-darken bg-[#000229]'>
-        <p className="md:mb-5">{date}</p>
+        <p className="md:mb-5 text-white">{date}</p>
         <h1 className=" font-bold xl:text-xl sm:mb-2 sm:text-md  text-[#F4C316]">{title}</h1>
         <div className=" xxl:hidden w-100  h-auto mb-3 ">
           <img src={img} alt="" height="70%" layout="responsive" className="w-[30%] md:w-[25%] " />
@@ -32,7 +32,7 @@ const InnerSectionMaster = ({ title, img, parag, name, designation, date }) => {
           <p>{name}</p>
           <p>{designation}</p>
         </div>
-        <p className="sm:my-2 sm:mt-0  ">{parag}</p>
+        <p className="sm:my-2 sm:mt-0 text-white  ">{parag}</p>
         <div className=" text-[12px] flex  text-[#F4C316]  align-middle justify-between "></div>
       </div>
     </div>

@@ -28,7 +28,7 @@ const InnerSection = ({ title, img, parag, lower, arrow, item, button }) => {
                 </ul>
               </div>
             ) : (
-              <div className="mb-5">{parag}</div>
+              <div className="mb-5 text-white">{parag}</div>
             )}
           </div>
           <div>
