@@ -28,27 +28,19 @@ const InnerSection = ({ title, img, parag, lower, arrow, item, button }) => {
                 </ul>
               </div>
             ) : (
-              <div className="mb-5">{parag}</div>
+              <div className="mb-5 text-white">{parag}</div>
             )}
           </div>
           <div>
-            {button === "" ? (
-              <Link href="/account">
-                <div className=" text-[12px] flex  text-[#F4C316]  xl:w-[75%] align-middle justify-between ">
-                  <div className="sm:w-[90%] p-0 ">{lower}</div>
+            <Link href="/account">
+              <div className="cursor-pointer text-[12px] flex  text-[#F4C316]  xl:w-[75%] align-middle justify-between ">
+                <div className="sm:w-[90%] p-0 ">{lower}</div>
 
-                  <a className="self-center  sm:mt-1  lg:mt-1 xl:m-0  ">
-                    <img src={arrow} width="100%" height="100%" alt="" />
-                  </a>
-                </div>
-              </Link>
-            ) : (
-              <Link href="/account">
-                <button className="w-64 lg:w-36 text-sm rounded bg-white text-black p-2 hover:scale-95">
-                  {button}
-                </button>
-              </Link>
-            )}
+                <a className="self-center  sm:mt-1  lg:mt-1 xl:m-0  ">
+                  <img src={arrow} width="100%" height="100%" alt="" />
+                </a>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

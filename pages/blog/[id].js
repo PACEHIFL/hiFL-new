@@ -1,8 +1,14 @@
 import React from "react";
 import PostsDetailsLayout from "../../components/layout/PostsDetailsLayout";
+import PageLoading from "../../components/shared/PageLoading";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const Post = ({ data }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <PageLoading loading={router.isFallback} />;
+  }
   return <PostsDetailsLayout name="blog" post={data} />;
 };
 
@@ -30,13 +36,15 @@ export const getStaticProps = async ({ params: { id } }) => {
 export const getStaticPaths = async () => {
   try {
     const baseURL = process.env.CMS_URL;
-    const { data } = await axios(`${baseURL}/posts?populate=*`);
+    const { data } = await axios(
+      `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Blog&populate=*`
+    );
 
     const ids = data.data.map((post) => post.id);
     const paths = ids.map((id) => ({ params: { id: id.toString() } }));
     return {
       paths,
-      fallback: false,
+      fallback: true,
     };
   } catch (error) {
     return { paths: [], fallback: false };

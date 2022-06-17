@@ -130,7 +130,7 @@ const Volunteer = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, button, parag, lower, arrow, title, item }, ind) => {
+                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSection
@@ -141,7 +141,6 @@ const Volunteer = () => {
                           parag={parag}
                           arrow={arrow}
                           key={ind}
-                          button={button}
                         />
                       </div>
                     );

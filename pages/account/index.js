@@ -22,7 +22,7 @@ const Account = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) {
-      router.push("signin");
+      router.push("/signin");
     }
   });
 
@@ -39,10 +39,10 @@ const Account = () => {
               <SideMenu />
             </div>
             {isProfile && <Profile />}
-            {isStore && <Store />}
+            {/* {isStore && <Store />} */}
             {isVolunteer && <VolunteerForce />}
-            {isUnifest && <Unifest />}
-            {isPredict && <PredictAndWin />}
+            {/* {isUnifest && <Unifest />}
+            {isPredict && <PredictAndWin />} */}
           </div>
         </div>
       </div>

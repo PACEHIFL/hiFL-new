@@ -11,9 +11,9 @@ export default News;
 export async function getStaticProps() {
   try {
     const baseURL = process.env.CMS_URL;
-    const { data, errors } = await axios(`${baseURL}/posts?populate=*`);
-    const newsPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("News"));
-    const latestNewsPosts = newsPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    const { data, errors } = await axios(
+      `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=News&populate=*`
+    );
 
     if (errors || !data) {
       return { notFound: true };
@@ -21,7 +21,7 @@ export async function getStaticProps() {
 
     return {
       props: {
-        data: latestNewsPosts,
+        data: data.data,
       },
     };
   } catch (error) {

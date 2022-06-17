@@ -11,9 +11,9 @@ export default VideoPosts;
 export async function getStaticProps() {
   try {
     const baseURL = process.env.CMS_URL;
-    const { data, errors } = await axios(`${baseURL}/posts?populate=*`);
-    const videoPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Video"));
-    const latestVideoPosts = videoPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    const { data, errors } = await axios(
+      `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][Type][$eq]=Video&populate=*`
+    );
 
     if (errors || !data) {
       return { notFound: true };
@@ -21,7 +21,7 @@ export async function getStaticProps() {
 
     return {
       props: {
-        data: latestVideoPosts,
+        data: data.data,
       },
     };
   } catch (error) {
