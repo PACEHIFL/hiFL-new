@@ -8,7 +8,7 @@ import Sponsors from "../components/shared/Sponsors";
 
 export default function Home() {
   return (
-    <div className="bg-[#D0D0D0]">
+    <div className="bg-[#ece9e9]">
       <div className="max-w-[94%] md:max-w-[90%] mx-auto py-8">
         <div className="flex flex-col md:flex-row gap-5 xl:gap-8 justify-between h-auto">
           <div className="flex gap-5 xl:gap-8 w-full md:w-6/12 lg:w-8/12 xl:w-9/12 h-auto">
@@ -36,7 +36,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#D0D0D0]">
+      <div className="bg-[#ece9e9]">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           <Store />
         </div>

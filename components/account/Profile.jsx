@@ -5,6 +5,7 @@ import { isLoggedIn, update } from "../../redux/features/auth.slice";
 import { states, countries } from "../../helpers/data";
 import AccountLayout from "../layout/AccountLayout";
 import InputField from "./InputField";
+import useFetch from "../../hooks/useFetch";
 
 const Profile = () => {
   const initialState = {
@@ -23,11 +24,21 @@ const Profile = () => {
     },
   };
   const [data, setData] = useState(initialState);
-  const [propsData, setPropsData] = useState({ Gender: "", Birthday: "", Address: "", State: "", Country: "" });
+  const [propsData, setPropsData] = useState({
+    Gender: "",
+    Birthday: "",
+    Address: "",
+    State: "",
+    Country: "",
+    Supportinginstitution: "",
+  });
   const { Firstname, Lastname, Email, Phonenumber, Institution, _id } = data;
 
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const baseURL = process.env.BASE_URL;
+  const institutions = useFetch(`${baseURL}/institutions`)?.data;
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -106,15 +117,23 @@ const Profile = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between items-center mb-4">
             <div className="w-full">
-              <InputField
-                type="text"
-                name="Institution"
-                onChange={handleChange}
-                placeholder="Institution"
-                data={data}
-
-                //required
-              />
+              <label htmlFor="Supportinginstitution" className="font-bold text-sm">
+                Supporting Institution
+              </label>
+              <select
+                name="Supportinginstitution"
+                value={propsData.Supportinginstitution}
+                onChange={handlePropsChange}
+                className="w-full border text-sm border-[#F4F4F4] mt-1 py-3 px-4 outline-none rounded cursor-pointer">
+                <option value="" disabled>
+                  Which Institution are you supporting?
+                </option>
+                {institutions?.data.map(({ InstitutionName }, i) => (
+                  <option value={InstitutionName} key={i}>
+                    {InstitutionName}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="w-full">
               <label htmlFor="Gender" className="font-bold text-sm">

@@ -1,28 +1,39 @@
 import React, { useState, useEffect } from "react";
 import StoreLayout from "../../components/layout/StoreLayout";
 import Link from "next/link";
-import { formatMoney } from "../../helpers/utils";
-import { products } from "../../helpers/data";
 import ProductCard from "../../components/store/ProductCard";
+import useFetch from "../../hooks/useFetch";
 
 const Store = () => {
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [filterCategory, setFilterCategory] = useState("");
 
-  const sortItems = ["All", "Kits", "Equipment", "Wearables"];
+  const baseURL = process.env.CMS_URL;
+  const { data, loading } = useFetch(`${baseURL}/products?populate=*`);
+
+  const sortItems = ["All", "Kit", "Equipment", "Wearable"];
+
+  // console.log(filteredProducts);
 
   const handleFilter = (category) => {
     if (category == "All" || category == "") {
       setFilteredProducts(products);
       return;
     }
-    const newProducts = products.filter((product) => product.category == category);
+    const newProducts = products?.filter((product) => product.Category == category);
     setFilteredProducts(newProducts);
   };
 
   useEffect(() => {
     handleFilter(filterCategory);
   }, [filterCategory]);
+  useEffect(() => {
+    if (data) {
+      setFilteredProducts(data.data);
+      setProducts(data.data);
+    }
+  }, [data]);
 
   return (
     <StoreLayout>
@@ -78,8 +89,8 @@ const Store = () => {
             {filteredProducts.length} {filterCategory} found
           </p>
         )}
-        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 text-secondary">
-          {filteredProducts.map((product, i) => (
+        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
+          {filteredProducts?.map((product, i) => (
             <ProductCard product={product} key={i} />
           ))}
         </div>
