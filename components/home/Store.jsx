@@ -1,56 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { products } from "../../helpers/data";
 import ProductCard from "../store/ProductCard";
+import useFetch from "../../hooks/useFetch";
 
 const Store = () => {
-  const producsts = [
-    {
-      img: "/jersey.png",
-      name: " Unical Malabites Home Jersey",
-      discount: true,
-      discountType: "15%",
-      discountPrice: 5525.5,
-      price: 6500,
-      url: "#",
-    },
-    {
-      img: "/jersey.png",
-      name: " Unical Malabites Home Jersey",
-      discount: true,
-      discountType: "15%",
-      discountPrice: 5525.5,
-      price: 6500,
-      url: "#",
-    },
-    {
-      img: "/jersey.png",
-      name: " Unical Malabites Home Jersey",
-      discount: false,
-      discountType: "15%",
-      discountPrice: 5525.5,
-      price: 6500,
-      url: "#",
-    },
-    {
-      img: "/jersey.png",
-      name: " Unical Malabites Home Jersey",
-      discount: true,
-      discountType: "15%",
-      discountPrice: 5525.5,
-      price: 6500,
-      url: "#",
-    },
-    {
-      img: "/jersey.png",
-      name: " Unical Malabites Home Jersey",
-      discount: true,
-      discountType: "15%",
-      discountPrice: 5525.5,
-      price: 6500,
-      url: "#",
-    },
-  ];
+  const baseURL = process.env.CMS_URL;
+  const { data, loading } = useFetch(`${baseURL}/products?populate=*`);
+
   return (
     <div>
       <div className="flex justify-between items-center mb-3">
@@ -64,7 +20,7 @@ const Store = () => {
       </div>
       <div className="flex justify-center">
         <div className="pt-12 pb-6 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 text-secondary">
-          {products.slice(0, 4).map((product, i) => (
+          {data?.data.slice(0, 4).map((product, i) => (
             <ProductCard product={product} key={i} />
           ))}
         </div>
