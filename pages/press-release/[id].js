@@ -12,7 +12,6 @@ export const getStaticProps = async ({ params: { id } }) => {
   try {
     const baseURL = process.env.CMS_URL;
     const { data, errors } = await axios(`${baseURL}/posts/${id}?populate=*`);
-    console.log(data);
 
     if (errors || !data) {
       return { notFound: true };
