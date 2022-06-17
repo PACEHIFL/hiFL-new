@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Filter from "./Filter";
 import PageTitle from "../shared/PageTitle";
 import SideBar from "../shared/SideBar";
@@ -6,8 +6,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChevronRight } from "@heroicons/react/outline";
 
-const AllTeams = ({ data }) => {
-  const initialState = { CurrentSeason: 2022, CurrentLeague: "", CurrentStage: "" }
+const AllTeams = ({ data, allSeasons }) => {
+  console.log(allSeasons)
+  const [AllSeasons, setAllSeasons] = useState(allSeasons)
+  const initialState = { CurrentSeason: AllSeasons, CurrentLeague: "", CurrentStage: "" }
   const [seasonDetails, setSeasonDetails] = useState(initialState)
   const isOdd = (num) => num % 2 === 0;
   const router = useRouter();
@@ -25,7 +27,7 @@ const AllTeams = ({ data }) => {
           <div className="flex gap-7 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-auto mb-10">
-                <Filter title="Select Season" onChange={handleChange} name="CurrentSeason" />
+                <Filter title="Select Season" onChange={handleChange} name="CurrentSeason" seasonDetails={seasonDetails} />
                 <Filter title="Select League" />
                 <Filter title="Select Stage" />
               </div>
@@ -56,10 +58,8 @@ const AllTeams = ({ data }) => {
                   ))}
               </div>
             </div>
-            <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
-              <div>
-                <SideBar />
-              </div>
+            <div className="hidden lg:block w-4/12 xl:w-3/12">
+              <SideBar />
             </div>
           </div>
         </div>
@@ -69,3 +69,4 @@ const AllTeams = ({ data }) => {
 };
 
 export default AllTeams;
+

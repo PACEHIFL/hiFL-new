@@ -4,7 +4,7 @@ import LatestNews from "../shared/LatestNews";
 import LatestVideos from "../shared/LatestVideos";
 import Sponsors from "../shared/Sponsors";
 
-const Squad = () => {
+const Squad = ({ data }) => {
   return (
     <div className="font-redhat">
       <div className="p-4 border rounded-md bg-white flex flex-col my-4">
@@ -13,21 +13,14 @@ const Squad = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((item) => (
-          <TeamPlayer key={item} />
-        ))}
+        {data.length != 0 ? data?.map((player, idx) => (
+          <TeamPlayer key={idx} player={player} />
+        )) : (<h1 className="my-10 text-xl font-semibold"> No current active players </h1>)}
       </div>
 
       <div className="w-full lg:w-8/12 xl:w-9/12">
         <LatestNews />
         <LatestVideos />
-      </div>
-
-      <div className="bg-white">
-        <div className="h-1 mt-10 bg-gradient-to-r from-purple-500 to-pink-500"></div>
-        <div className="max-w-[94%] md:max-w-[90%] mx-auto">
-          <Sponsors />
-        </div>
       </div>
     </div>
   );

@@ -13,8 +13,7 @@ const Faqs = () => {
           <div className="flex gap-7 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div>
-                <h1 className="text-[36px] font-bold">HiFL®</h1>
-
+                <h1 className="text-[36px] font-bold">HiFL®</h1>0
                 <div>
                   <Accordion />
                 </div>

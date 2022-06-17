@@ -3,95 +3,11 @@ import PageTitle from "../../components/shared/PageTitle";
 import Filter from "../../components/teams/Filter";
 import SideBar from "../../components/shared/SideBar";
 import FixturesCard from "../../components/teams/FixturesCard";
+import axios from "axios";
 
-const Fixtures = () => {
-  const handleChange = () => {};
-  const fixturesItems = [
-    {
-      date: "20 June, 2022",
-      stage: "Knockout Stage",
-      location: "Unilorin Stadium",
-      time: "4.00",
-      homeTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-      },
-      awayTeam: {
-        name: "Uniport Lions",
-        logo: "/futa-logo.png",
-      },
-    },
-    {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-      },
-    },
-    {
-      date: "20 June, 2022",
-      stage: "Knockout Stage",
-      location: "Unilorin Stadium",
-      time: "4.00",
-      homeTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-      },
-      awayTeam: {
-        name: "Uniport Lions",
-        logo: "/futa-logo.png",
-      },
-    },
-    {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-      },
-    },
-    {
-      date: "20 June, 2022",
-      stage: "Knockout Stage",
-      location: "Unilorin Stadium",
-      time: "4.00",
-      homeTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-      },
-      awayTeam: {
-        name: "Uniport Lions",
-        logo: "/futa-logo.png",
-      },
-    },
-    {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-      },
-    },
-  ];
+const Fixtures = ({ data }) => {
+  const handleChange = () => { };
+
 
   return (
     <div>
@@ -107,7 +23,7 @@ const Fixtures = () => {
               </div>
 
               <div className="">
-                {fixturesItems?.map((fixtures, idx) => (
+                {data?.map((fixtures, idx) => (
                   <FixturesCard data={fixtures} key={idx} />
                 ))}
               </div>
@@ -125,3 +41,24 @@ const Fixtures = () => {
 };
 
 export default Fixtures;
+
+export const getStaticProps = async () => {
+  try {
+    const baseURL = process.env.BASE_URL;
+    const { data, errors } = await axios(`${baseURL}/leagues/season/fixtures/?MatchStatus=FIXTURE`);
+
+    if (!data || errors) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: data.data,
+      },
+    };
+  } catch (error) {
+    console.log(error)
+    return { notFound: true };
+  }
+
+};

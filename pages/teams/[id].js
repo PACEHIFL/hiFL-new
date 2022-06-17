@@ -10,7 +10,8 @@ import Stats from "../../components/teams/Stats";
 import Store from "../../components/teams/Store";
 import axios from "axios";
 
-const Slug = ({ data }) => {
+const Slug = ({ data, players }) => {
+
   const [tabs, setTabs] = useState(0);
   return (
     <div>
@@ -19,7 +20,7 @@ const Slug = ({ data }) => {
       <div className="bg-white">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           {tabs === 0 && <Overview data={data} />}
-          {tabs === 1 && <Squad data={data} />}
+          {tabs === 1 && <Squad data={players} />}
           {tabs === 2 && <Fixtures />}
           {tabs === 3 && <Results data={data} />}
           {tabs === 4 && <Stats data={data} />}
@@ -35,6 +36,7 @@ export const getStaticProps = async ({ params: { id } }) => {
   try {
     const baseURL = process.env.BASE_URL;
     const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${id}`);
+    const { data: players } = await axios(`${baseURL}/players/active/?Team=${id}`);
 
     if (!data || errors) {
       return { notFound: true };
@@ -43,6 +45,7 @@ export const getStaticProps = async ({ params: { id } }) => {
     return {
       props: {
         data: data.data,
+        players: players.data,
       },
     };
   } catch (error) {
@@ -61,10 +64,10 @@ export const getStaticPaths = async () => {
 
     return {
       paths,
-      fallback: false,
+      fallback: true,
     };
   } catch (error) {
-    return { paths: [], fallback: false };
+    return { paths: [], fallback: true };
   }
 
 };
