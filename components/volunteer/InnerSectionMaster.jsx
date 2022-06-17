@@ -32,7 +32,7 @@ const InnerSectionMaster = ({ title, img, parag, name, designation, date }) => {
           <p>{name}</p>
           <p>{designation}</p>
         </div>
-        <p className="sm:my-2 sm:mt-0  ">{parag}</p>
+        <p className="sm:my-2 sm:mt-0 text-white  ">{parag}</p>
         <div className=" text-[12px] flex  text-[#F4C316]  align-middle justify-between "></div>
       </div>
     </div>
