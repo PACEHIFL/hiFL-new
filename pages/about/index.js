@@ -14,7 +14,7 @@ const About = () => {
             <div className="">
               <img src="/about.png" alt="" className="w-full" />
             </div>
-            <div className="text-[#000229] space-y-3 mt-4 text-justify">
+            <div className="text-[#000229] space-y-3 mt-4 text-justify w-[95%] mx-auto">
               <p>
                 HiFL® (an abbreviation for Higher Institutions Football League) is an annual football competition
                 designed for higher institutions in Nigeria particularly universities to showcase campus football
