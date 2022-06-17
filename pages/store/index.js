@@ -89,7 +89,7 @@ const Store = () => {
             {filteredProducts.length} {filterCategory} found
           </p>
         )}
-        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 text-secondary">
+        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
           {filteredProducts?.map((product, i) => (
             <ProductCard product={product} key={i} />
           ))}

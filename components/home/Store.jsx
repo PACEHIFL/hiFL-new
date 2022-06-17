@@ -19,7 +19,7 @@ const Store = () => {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="pt-12 pb-6 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 text-secondary">
+        <div className="pt-12 pb-6 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5 text-secondary">
           {data?.data.slice(0, 4).map((product, i) => (
             <ProductCard product={product} key={i} />
           ))}
