@@ -18,7 +18,7 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
     for (let [i, photo] of Media.entries()) {
       photos.push({
         src: photo.url,
-        width: i == 0 ? 12 : 6,
+        width: 4,
         height: 3,
       });
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import ReactPlayer from "react-player/youtube";
+import useFetch from "../../hooks/useFetch";
 
 const videos = [
   { img: "/news.png", desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals", link: "#" },
@@ -12,6 +12,13 @@ const videos = [
 
 const LatestVideos = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  const baseURL = process.env.CMS_URL;
+  const { data, loading } = useFetch(
+    `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][Type][$eq]=Video&populate=*`
+  );
+
+  console.log(data);
 
   useEffect(() => {
     setIsLoading(false);
@@ -30,45 +37,49 @@ const LatestVideos = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-2 h-full">
-        <div className="w-full h-[350px] md:h-auto md:w-1/2">
+        <div className="w-full h-[300px] md:h-auto md:w-1/2">
           <div className="h-[60%]">
-            {!isLoading && (
+            {!isLoading && data && (
               <ReactPlayer
-                url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-                controls={true}
-                light="/news.png"
+                url={data?.data[0].Media[0].url}
+                // controls={true}
+                // light={data?.data[0].CoverImage.url}
                 width="100%"
-                height="100%"
-                playIcon={<img src="/play.png" alt="" width="10%" />}
+                // playIcon={<img src="/play.png" alt="" width="40px" />}
               />
             )}
           </div>
-          <div className="h-[40%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
-            <div className="text-white px-6">
-              <h2 className="text-lg font-bold mb-2">Best skills of Matchday 8</h2>
-              <p className="text-sm font-extralight pt-1 max-w-[70%]">
-                HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals
-              </p>
-            </div>
-          </div>
+          <Link href={`/videos/${data?.data[0].id}`}>
+            <a className="h-[40%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
+              <div className="text-white px-6">
+                <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
+                <div
+                  className="text-sm font-extralight pt-1 max-w-[70%]"
+                  dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
+                />
+              </div>
+            </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full md:w-1/2">
           {!isLoading &&
-            videos.slice(0, 4).map(({ img, desc, link }, i) => (
+            data?.data.slice(0, 4).map(({ id, Title, CoverImage, Media }, i) => (
               <div className="flex flex-row md:flex-col items-center gap-2" key={i}>
                 <div className="w-1/2 md:w-full h-auto">
                   {/* <Image src={img} alt="" width="100%" height="60%" layout="responsive" objectFit="cover" /> */}
                   <ReactPlayer
-                    url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    url={Media?.[0].url}
                     controls={true}
-                    light="/news.png"
+                    light={CoverImage.url}
                     width="100%"
-                    height="135px"
-                    playIcon={<img src="/play.png" alt="" width="13%" />}
+                    height="200px"
+                    playIcon={<img src="/play.png" alt="" width="30px" />}
                   />
                 </div>
-                <p className="text-xs font-extralight pt-1 w-[75%] md:w-full">{desc}</p>
+                <Link href={`/videos/${id}`}>
+                  <a className="text-xs font-extralight pt-1 w-[75%] md:w-full">{Title}</a>
+                </Link>
               </div>
             ))}
         </div>

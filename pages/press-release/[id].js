@@ -1,8 +1,15 @@
 import React from "react";
 import PostsDetailsLayout from "../../components/layout/PostsDetailsLayout";
 import axios from "axios";
+import { useRouter } from "next/router";
+import PageLoading from "../../components/shared/PageLoading";
 
 const Post = ({ data }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <PageLoading loading={router.isFallback} />;
+  }
+
   return <PostsDetailsLayout name="press release" post={data} />;
 };
 
@@ -39,7 +46,7 @@ export const getStaticPaths = async () => {
 
     return {
       paths,
-      fallback: false,
+      fallback: true,
     };
   } catch (error) {
     return { paths: [], fallback: false };
