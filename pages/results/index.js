@@ -3,6 +3,7 @@ import PageTitle from "../../components/shared/PageTitle";
 import Filter from "../../components/teams/Filter";
 import SideBar from "../../components/shared/SideBar";
 import ResultCard from "../../components/teams/ResultCard";
+import axios from "axios"
 
 const Fixtures = ({ data }) => {
   const handleChange = () => {};
@@ -24,7 +25,7 @@ const Fixtures = ({ data }) => {
                 {data?.map((fixtures, idx) => (
                   <ResultCard data={fixtures} key={idx} />
                 ))}
-              </div> 
+              </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
               <div>
@@ -49,14 +50,15 @@ export const getStaticProps = async () => {
       return { notFound: true };
     }
 
+    console.log(errors);
+
     return {
       props: {
         data: data.data,
       },
     };
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return { notFound: true };
   }
-
 };

@@ -21,12 +21,12 @@ const FixturesCard = ({ data }) => {
           <div className="rounded-full bg-white p-[0.3rem] hidden md:flex w-14 h-14 items-center justify-center mr-3">
             <img src="/default-team-logo.png" className="w-full h-full ml-2" alt="futa-logo" />
           </div>
-          <span className="font-bold md:text-base capitalize">{data.AwayTeam.TeamName}</span>
+          <span className="font-bold md:text-base capitalize">{data?.AwayTeam?.TeamName}</span>
         </div>
       </div>
       <div className="flex items-center justify-between col-span-3 lg:col-span-1 pt-6 lg:pt-0 text-sm">
-        <span>  <Moment format="MMMM Do YYYY" date={data.MatchDate} /> </span>
-        <span>{data.Stage.StageName} </span>
+        <span>  <Moment format="MMMM Do YYYY" date={data?.MatchDate} /> </span>
+        <span>{data?.Stage?.StageName} </span>
         <span> <ArrowRightIcon className="w-6 h-6 inline" /> </span>
       </div>
     </div>

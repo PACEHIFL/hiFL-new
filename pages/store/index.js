@@ -21,6 +21,7 @@ const Store = () => {
       setFilteredProducts(products);
       return;
     }
+    
     const newProducts = products?.filter((product) => product.Category == category);
     setFilteredProducts(newProducts);
   };

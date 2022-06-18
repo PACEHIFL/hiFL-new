@@ -3,21 +3,21 @@ import FeaturedCoach from "./FeaturedCoach";
 import FeaturedPlayer from "./FeaturedPlayer";
 import FeaturedSchool from "./FeaturedSchool";
 import SquareBanner from "./SquareBanner";
-
 const SideBar = () => {
+  // console.log(data)
   return (
     <div className="space-y-8">
       <div>
         <FeaturedPlayer />
       </div>
       <div>
-        <SquareBanner source="/square-banner.png" link="#" />
+        <SquareBanner />
       </div>
       <div>
         <FeaturedCoach />
       </div>
       <div>
-        <SquareBanner source="/square-banner.png" link="#" />
+        <SquareBanner />
       </div>
       <div>
         <FeaturedSchool />

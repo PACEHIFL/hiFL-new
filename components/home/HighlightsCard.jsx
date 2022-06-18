@@ -8,7 +8,7 @@ const HighlightsCard = () => {
   const { data, loading } = useFetch(
     `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Featured&populate=*`
   );
-  console.log(data);
+
   if (loading) {
     return <Skeleton height={400} />;
   }
