@@ -11,7 +11,6 @@ import Store from "../../components/teams/Store";
 import axios from "axios";
 
 const Slug = ({ data, players }) => {
-
   const [tabs, setTabs] = useState(0);
   return (
     <div>
@@ -51,7 +50,6 @@ export const getStaticProps = async ({ params: { id } }) => {
   } catch (error) {
     return { notFound: true };
   }
-
 };
 
 export const getStaticPaths = async () => {
@@ -64,10 +62,9 @@ export const getStaticPaths = async () => {
 
     return {
       paths,
-      fallback: true,
+      fallback: false,
     };
   } catch (error) {
     return { paths: [], fallback: false };
   }
-
 };
