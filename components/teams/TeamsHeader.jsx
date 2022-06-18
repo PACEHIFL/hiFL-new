@@ -14,7 +14,7 @@ const TeamsHeader = ({ data }) => {
           <Image src="/futa-logo.png" alt="" layout="intrinsic" width="200%" height="200%" className="" />
         </div>
         <div className="lg:ml-6 text-center lg:text-left justify-center lg:justify-start mt-6">
-          <h1 className="text-5xl font-extrabold">{data.TeamName}</h1>
+          <h1 className="text-5xl font-extrabold">{data?.TeamName}</h1>
           <div className="flex items-center my-4">
             <Image className="hidden" src="/school-icon.png" alt="school-icon" width="20" height="20" layout="fixed" />
             <span className="pl-3 font-bold">{data?.Institution?.Location}</span>

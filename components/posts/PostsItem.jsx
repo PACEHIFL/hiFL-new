@@ -8,7 +8,7 @@ const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpt } }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8 border-b border-[#D0D0D0] text-secondary pb-8 font-redhat">
       <div className="w-full md:w-[40%]">
-        <img src={CoverImage.url} alt={Title} className="w-full" />
+        <img src={CoverImage?.url} alt={Title} className="w-full" />
       </div>
       <div className="w-full md:w-[60%] flex flex-col justify-between">
         <div>

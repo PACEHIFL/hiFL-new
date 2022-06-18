@@ -3,7 +3,6 @@ import FeaturedCoach from "./FeaturedCoach";
 import FeaturedPlayer from "./FeaturedPlayer";
 import FeaturedSchool from "./FeaturedSchool";
 import SquareBanner from "./SquareBanner";
-
 const SideBar = () => {
   return (
     <div className="space-y-8">
@@ -11,13 +10,13 @@ const SideBar = () => {
         <FeaturedPlayer />
       </div>
       <div>
-        <SquareBanner source="/square-banner.png" link="#" />
+        <SquareBanner />
       </div>
       <div>
         <FeaturedCoach />
       </div>
       <div>
-        <SquareBanner source="/square-banner.png" link="#" />
+        <SquareBanner />
       </div>
       <div>
         <FeaturedSchool />
