@@ -14,13 +14,12 @@ const Store = () => {
 
   const sortItems = ["All", "Kit", "Equipment", "Wearable"];
 
-  // console.log(filteredProducts);
-
   const handleFilter = (category) => {
     if (category == "All" || category == "") {
       setFilteredProducts(products);
       return;
     }
+
     const newProducts = products?.filter((product) => product.Category == category);
     setFilteredProducts(newProducts);
   };

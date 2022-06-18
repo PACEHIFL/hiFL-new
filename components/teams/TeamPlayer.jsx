@@ -2,16 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const TeamPlayer = () => {
+const TeamPlayer = ({ player }) => {
   return (
-    <div className="bg-white rounded border shadow">
-      <div className="mb-1 bg-[url('/team-bg.png')] bg-cover bg-center flex">
-        <div className="rounded  h-[147px] w-full mb-4 flex flex-col justify-end text-secondary font-redhat pl-5 text-xs">
-          <p className="font-bold">Ebuka Odenigbo</p>
-          <p>Forward</p>
+    <div className="bg-white rounded border shadow mb-2">
+      <div className="mb-1 bg-[url('/team-bg.png')] bg-cover bg-center flex items-center">
+        <div className="rounded  h-[147px] w-full mb-4 flex flex-col justify-end text-secondary font-redhat pl-5">
+          <p className="font-bold capitalize md:text-lg">{player?.User?.Firstname} {player?.User?.Lastname}</p>
+          <p>{player?.User?.Role}</p>
         </div>
-        <div className="flex justify-end">
-          <Image src="/jersey.png" width="250" alt="" height="180" layout="intrinsic" />
+        <div className="flex justify-end h-36 w-48 mr-3 bg-white p-1">
+          <img src={player?.DocumentUploads?.PassportPhotograph}  alt="picture" className="w-full h-full object-cover" />
         </div>
       </div>
 

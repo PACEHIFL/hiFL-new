@@ -16,7 +16,7 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
                 <h2 className="text-2xl xl:text-3xl mb-2 font-semibold">{Title}</h2>
                 {SubTitle && <h3 className="text-accent text-base ">{SubTitle}</h3>}
                 <div className="mt-5">
-                  <img src={CoverImage.url} alt={Title} className="w-full" />
+                  <img src={CoverImage?.url} alt={Title} className="w-full" />
                 </div>
                 <div
                   dangerouslySetInnerHTML={{ __html: Content }}
