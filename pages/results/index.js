@@ -50,7 +50,6 @@ export const getStaticProps = async () => {
       return { notFound: true };
     }
 
-    console.log(errors);
 
     return {
       props: {
@@ -58,7 +57,6 @@ export const getStaticProps = async () => {
       },
     };
   } catch (error) {
-    console.log(error);
     return { notFound: true };
   }
 };

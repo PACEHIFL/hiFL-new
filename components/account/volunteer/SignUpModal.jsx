@@ -42,7 +42,7 @@ const SignUpModal = () => {
     if (seasons !== undefined) {
       const participation = { Season: currentSeasonID, ApprovalStatus: "PENDING", ReferenceCode: "" };
       const payload = { ...userData, Participations: [participation] };
-      //console.log(payload);
+
       dispatch(register({ payload, toast, router }));
     }
   };
