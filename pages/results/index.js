@@ -3,72 +3,10 @@ import PageTitle from "../../components/shared/PageTitle";
 import Filter from "../../components/teams/Filter";
 import SideBar from "../../components/shared/SideBar";
 import ResultCard from "../../components/teams/ResultCard";
+import axios from "axios"
 
-const Fixtures = () => {
+const Fixtures = ({ data }) => {
   const handleChange = () => {};
-  const fixturesItems = [
-    {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-        score: 1
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-        score: 4
-      },
-    }, {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-        score: 1
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-        score: 4
-      },
-    }, {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-        score: 1
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-        score: 4
-      },
-    }, {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png",
-        score: 1
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png",
-        score: 4
-      },
-    },
-  ];
 
   return (
     <div>
@@ -84,10 +22,10 @@ const Fixtures = () => {
               </div>
 
               <div className="">
-                {fixturesItems?.map((fixtures, idx) => (
+                {data?.map((fixtures, idx) => (
                   <ResultCard data={fixtures} key={idx} />
                 ))}
-              </div> 
+              </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
               <div>
@@ -102,3 +40,23 @@ const Fixtures = () => {
 };
 
 export default Fixtures;
+
+export const getStaticProps = async () => {
+  try {
+    const baseURL = process.env.BASE_URL;
+    const { data, errors } = await axios(`${baseURL}/leagues/season/fixtures/?MatchStatus=RESULT`);
+
+    if (!data || errors) {
+      return { notFound: true };
+    }
+
+
+    return {
+      props: {
+        data: data.data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+};
