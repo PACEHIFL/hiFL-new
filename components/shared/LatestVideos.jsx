@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import useFetch from "../../hooks/useFetch";
+import Skeleton from "react-loading-skeleton";
 
 const LatestVideos = () => {
   const baseURL = process.env.CMS_URL;
@@ -21,37 +22,53 @@ const LatestVideos = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-2 h-full">
-        <Link href={`/videos/${data?.data[0].id}`}>
-          <a className="w-full min-h-[300px] h-auto md:w-1/2">
-            <div
-              className="bg-cover h-[60%] flex justify-center items-center"
-              style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }}>
-              <img src="/play.png" alt="" className="w-[50px]" />
-            </div>
-            <div className="h-[40%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
-              <div className="text-white px-6">
-                <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
-                <div
-                  className="text-sm font-extralight pt-1 max-w-[70%]"
-                  dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
-                />
+        {loading ? (
+          <div className="w-full md:w-1/2">
+            <Skeleton height={300} />
+            <Skeleton height={100} />
+          </div>
+        ) : (
+          <Link href={`/videos/${data?.data[0].id}`}>
+            <a className="w-full min-h-[300px] h-auto md:w-1/2">
+              <div
+                className="bg-cover h-[60%] flex justify-center items-center"
+                style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }}>
+                <img src="/play.png" alt="" className="w-[50px]" />
               </div>
-            </div>
-          </a>
-        </Link>
+              <div className="h-[40%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
+                <div className="text-white px-6">
+                  <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
+                  <div
+                    className="text-sm font-extralight pt-1 max-w-[70%]"
+                    dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
+                  />
+                </div>
+              </div>
+            </a>
+          </Link>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full md:w-1/2">
-          {data?.data.slice(1, data?.data.length).map(({ id, Title, CoverImage }, i) => (
-            <Link href={`/videos/${id}`} key={i}>
-              <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
-                <div className="w-1/2 md:w-full relative">
-                  <img src={CoverImage?.url} alt="" className="w-full object-cover" />
-                  <img src="/play.png" alt="" className="w-[30px] absolute top-0 bottom-0 left-0 right-0 m-auto" />
-                </div>
-                <p className="text-xs text-left font-extralight pt-1">{Title}</p>
-              </a>
-            </Link>
-          ))}
+          {loading ? (
+            <>
+              <Skeleton height={200} />
+              <Skeleton height={200} />
+              <Skeleton height={200} />
+              <Skeleton height={200} />
+            </>
+          ) : (
+            data?.data.slice(1, data?.data.length).map(({ id, Title, CoverImage }, i) => (
+              <Link href={`/videos/${id}`} key={i}>
+                <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
+                  <div className="w-1/2 md:w-full relative">
+                    <img src={CoverImage?.url} alt="" className="w-full object-cover" />
+                    <img src="/play.png" alt="" className="w-[30px] absolute top-0 bottom-0 left-0 right-0 m-auto" />
+                  </div>
+                  <p className="text-xs text-left font-extralight pt-1">{Title}</p>
+                </a>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>
