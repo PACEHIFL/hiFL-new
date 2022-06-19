@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import useFetch from "../../hooks/useFetch";
+import Skeleton from "react-loading-skeleton";
 
 const PhotoGallery = () => {
   const baseURL = process.env.CMS_URL;
@@ -21,32 +22,48 @@ const PhotoGallery = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-2 h-full">
-        <Link href={`/gallery/${data?.data[0].id}`}>
-          <a className="w-full h-[300px] md:h-auto md:w-1/2">
-            <div className="bg-cover h-[60%]" style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }} />
-            <div className="h-[40%] bg-[url('/gallery-bg.png')] bg-cover flex items-center">
-              <div className="text-white px-6">
-                <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
-                <div
-                  className="text-sm font-extralight pt-1 max-w-[70%]"
-                  dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
-                />
+        {loading ? (
+          <div className="w-full md:w-1/2">
+            <Skeleton height={300} />
+            <Skeleton height={100} />
+          </div>
+        ) : (
+          <Link href={`/gallery/${data?.data[0].id}`}>
+            <a className="w-full h-[300px] md:h-auto md:w-1/2">
+              <div className="bg-cover h-[60%]" style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }} />
+              <div className="h-[40%] bg-[url('/gallery-bg.png')] bg-cover flex items-center">
+                <div className="text-white px-6">
+                  <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
+                  <div
+                    className="text-sm font-extralight pt-1 max-w-[70%]"
+                    dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
+                  />
+                </div>
               </div>
-            </div>
-          </a>
-        </Link>
+            </a>
+          </Link>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full md:w-1/2">
-          {data?.data.map(({ id, Title, CoverImage }, i) => (
-            <Link href={`/gallery/${id}`} key={i}>
-              <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
-                <div className="w-1/2 md:w-full">
-                  <img src={CoverImage?.url} alt="" className="w-full object-cover" />
-                </div>
-                <p className="text-xs text-left font-extralight pt-1">{Title}</p>
-              </a>
-            </Link>
-          ))}
+          {loading ? (
+            <>
+              <Skeleton height={200} />
+              <Skeleton height={200} />
+              <Skeleton height={200} />
+              <Skeleton height={200} />
+            </>
+          ) : (
+            data?.data.slice(1, data?.data.length).map(({ id, Title, CoverImage }, i) => (
+              <Link href={`/gallery/${id}`} key={i}>
+                <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
+                  <div className="w-1/2 md:w-full">
+                    <img src={CoverImage?.url} alt="" className="w-full object-cover" />
+                  </div>
+                  <p className="text-xs text-left font-extralight pt-1">{Title}</p>
+                </a>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>
