@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { BeatLoader } from "react-spinners";
 import StoreLayout from "../../components/layout/StoreLayout";
 import ProductInfo from "../../components/store/ProductInfo";
 import SimilarItems from "../../components/store/SimilarItems";
-import useFetch from "../../hooks/useFetch";
-import { BeatLoader } from "react-spinners";
-import { useRouter } from "next/router";
 
 const SingleProduct = () => {
   const initialState = { quantity: 1, size: "", customize: "No", jerseyName: "", jerseyNumber: "" };
@@ -17,6 +18,7 @@ const SingleProduct = () => {
   const product = useFetch(`${baseURL}/products/${id}?populate=*`);
   const data = product?.data?.data;
   const loading = product?.loading;
+  const error = product?.error;
 
   const discountPercent = (price, discount) => (data?.DiscountPrice ? ((price - discount) / price) * 100 : null);
 
@@ -41,6 +43,13 @@ const SingleProduct = () => {
         {loading ? (
           <div className="h-[400px] flex justify-center items-center">
             <BeatLoader loading={loading} color="#000229" />
+          </div>
+        ) : error ? (
+          <div className="h-[400px] flex flex-col justify-center items-center">
+            <h2 className="font-bold text-xl lg:text-3xl text-[#000229]">OOPS! Product Not Found</h2>
+            <Link href="/store">
+              <a className="btn btn-primary btn-wide mt-6 border-none">Continue Shopping</a>
+            </Link>
           </div>
         ) : (
           <>
