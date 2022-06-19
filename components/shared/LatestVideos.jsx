@@ -29,7 +29,7 @@ const LatestVideos = () => {
           </div>
         ) : (
           <Link href={`/videos/${data?.data[0].id}`}>
-            <a className="w-full min-h-[300px] h-auto md:w-1/2">
+            <a className="w-full  h-[300px] md:h-auto md:w-1/2">
               <div
                 className="bg-cover h-[60%] flex justify-center items-center"
                 style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }}>

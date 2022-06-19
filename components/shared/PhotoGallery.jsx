@@ -29,7 +29,7 @@ const PhotoGallery = () => {
           </div>
         ) : (
           <Link href={`/gallery/${data?.data[0].id}`}>
-            <a className="w-full min-h-[300px] h-auto md:w-1/2">
+            <a className="w-full h-[300px] md:h-auto md:w-1/2">
               <div className="bg-cover h-[60%]" style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }} />
               <div className="h-[40%] bg-[url('/gallery-bg.png')] bg-cover flex items-center">
                 <div className="text-white px-6">
