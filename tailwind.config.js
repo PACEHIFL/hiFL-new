@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       fontFamily: {
@@ -10,10 +10,11 @@ module.exports = {
         md: "650px",
         lg: "900px",
         xl: "1200px",
+        xxl: "1350px",
       },
     },
   },
-  plugins: [require("daisyui"), require('tailwind-scrollbar'),],
+  plugins: [require("daisyui"), require("tailwind-scrollbar")],
   daisyui: {
     themes: [
       {
@@ -23,11 +24,8 @@ module.exports = {
           secondary: "#000229",
           accent: "#EA1D24",
           "accent-content": "#ffffff",
-          "overlay": "#000229",
-          
-          // info: "#ccd6f6",
+          overlay: "#000229",
           warning: "#F4C316",
-          // icon: "#a8b2d0",
         },
       },
     ],

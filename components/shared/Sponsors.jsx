@@ -1,33 +1,23 @@
 import React from "react";
-import Image from "next/image";
+import Skeleton from "react-loading-skeleton";
+import useFetch from "../../hooks/useFetch";
 
 const Sponsors = () => {
-  const minorSponsors = [
-    { img: "/stanbic.png", title: "Official Financial Partner" },
-    { img: "/nivea.png", title: "Official Deodorant Partner" },
-    { img: "/bold.png", title: "Official Drink Partner" },
-    { img: "/minimie.png", title: "Official Snack Partner" },
-    { img: "/hiversa.png", title: "Official Educational Partner" },
-  ];
-  const majorSponsors = [
-    { img: "/supersport.png", title: "" },
-    { img: "/completesports.png", title: "" },
-  ];
+  const baseURL = process.env.CMS_URL;
+  const { data, loading } = useFetch(`${baseURL}/sponsors?populate=*`);
+
+  if (loading) {
+    return <Skeleton height={400} />;
+  }
+
   return (
     <div className="py-10 font-redhat">
-      <div className="flex gap-8 items-center divide-x-[1px] divide-[#D0D0D0]">
-        <div className="flex justify-around items-center gap-6 w-8/12">
-          {minorSponsors.map(({ img, title }, i) => (
-            <div key={i} className="flex flex-col gap-2">
-              <Image src={img} alt="" width="100%" height="100%" objectFit="contain" />
-              <h3 className="text-xs text-[#8C8C8C] text-center">{title}</h3>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-around items-center gap-6 w-4/12">
-          {majorSponsors.map(({ img, title }, i) => (
-            <div key={i}>
-              <Image src={img} alt="" width="100%" height="100%" objectFit="contain" />
+      <div className="flex justify-center">
+        <div className="flex flex-wrap lg:flex-nowrap justify-between items-center gap-6">
+          {data?.data.map((sponsor, i) => (
+            <div key={i} className="flex flex-col items-center gap-4 ">
+              <img src={sponsor?.SponsorLogo?.url} alt="" className="w-fit h-24" />
+              <h3 className="text-sm text-[#8C8C8C] text-center capitalize">{sponsor?.SponsorName}</h3>
             </div>
           ))}
         </div>

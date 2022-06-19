@@ -1,34 +1,33 @@
 import React from "react";
 import Image from "next/image";
+import { LocationMarkerIcon, ArrowRightIcon } from "@heroicons/react/solid";
+import Moment from 'react-moment';
 
-const FixturesCard = () => {
+const FixturesCard = ({ data }) => {
+
   return (
-    <div className="mb-20">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-secondary font-bold text-2xl">22 April, 2022</h1>
-        <span>Quaterfinal | Second leg</span>
+    <div className="grid grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4]">
+      <div className="flex items-center justify-start col-span-3 lg:col-span-2 ">
+        <div className="flex justify-center items-center">
+          <span className="font-bold md:text-base">{data?.HomeTeam?.TeamName}</span>
+          <div className="rounded-full bg-white p-[0.3rem] hidden w-14 h-14 md:flex items-center justify-center ml-3">
+            <img src="/default-team-logo.png" className="w-full h-full ml-2" alt="futa-logo" />
+          </div>
+        </div>
+        <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8">
+          <span className="text-secondary">{data?.MatchTime}</span>{" "}
+        </div>
+        <div className="flex justify-center items-center">
+          <div className="rounded-full bg-white p-[0.3rem] hidden md:flex w-14 h-14 items-center justify-center mr-3">
+            <img src="/default-team-logo.png" className="w-full h-full ml-2" alt="futa-logo" />
+          </div>
+          <span className="font-bold md:text-base capitalize">{data?.AwayTeam?.TeamName}</span>
+        </div>
       </div>
-      <div className="text-secondary w-full flex items-center justify-between hover:bg-primary border-y p-3 hover:text-white">
-        <div className="flex items-center justify-center ml-10">
-          <div className="flex justify-center items-center">
-            <span className="font-bold text-xl">FUTA Tigers</span>
-            <img src="/futa-logo.png" className="w-12 h-12" alt="futa-logo" />
-          </div>
-          <div className="bg-white border border-gray-400 px-3 py-1 mx-8">
-            <span className="text-secondary">4:00</span>{" "}
-          </div>
-          <div className="flex justify-center items-center">
-            <img src="/futa-logo.png" className="w-12 h-12" alt="futa-logo" />
-            <span className="font-bold text-xl">FUTA Tigers</span>
-          </div>
-        </div>
-        <div className="flex items-center justify-between gap-x-96">
-          <div className="flex items-center">
-            <img src="/location.png" className="w-8" alt="location icon" />
-            <span className="font-bold text-xl">UNN Sports Complex, Nsukka</span>
-          </div>
-          <Image src="/right-arrow.png" alt="" width={11} height={14} />
-        </div>
+      <div className="flex items-center justify-between col-span-3 lg:col-span-1 pt-6 lg:pt-0 text-sm">
+        <span>  <Moment format="MMMM Do YYYY" date={data?.MatchDate} /> </span>
+        <span>{data?.Stage?.StageName} </span>
+        <span> <ArrowRightIcon className="w-6 h-6 inline" /> </span>
       </div>
     </div>
   );

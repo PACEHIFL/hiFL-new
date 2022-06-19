@@ -9,15 +9,22 @@ const Blog = ({ data }) => {
 export default Blog;
 
 export async function getStaticProps() {
-  const baseURL = process.env.CMS_URL;
-  const { data } = await axios(`${baseURL}/posts?populate=*`);
-  const blogsPosts = data.data.filter((post) => post.categories[0].CategoryName.includes("Blog"));
-  const latestBlogPosts = blogsPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-  //const blogsPosts = data.data.filter((blog) => blog.categories.map((p) => p.CategoryName.includes("News")));
+  try {
+    const baseURL = process.env.CMS_URL;
+    const { data, errors } = await axios(
+      `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Blog&populate=*`
+    );
 
-  return {
-    props: {
-      data: latestBlogPosts,
-    },
-  };
+    if (errors || !data) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        data: data.data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 }

@@ -4,7 +4,11 @@ import * as api from "../api";
 export const login = createAsyncThunk("/auth/login", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.signIn(payload);
-    toast.success("Login Successfull", { onClose: () => router.push("/account") });
+    toast.success("Login Successfull", {
+      onClose: () =>
+        router.query && router.query.redirect ? router.push(router.query.redirect) : router.push("/account"),
+      autoClose: 2000,
+    });
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -15,7 +19,7 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, toast, ro
 export const register = createAsyncThunk("/auth/register", async ({ payload, toast, router }, { rejectWithValue }) => {
   try {
     const response = await api.register(payload);
-    toast.success("Registration Successfull", { onClose: () => router.push("/account") });
+    toast.success("Registration Successfull, Please Log In", { onClose: () => router.push("/login") });
     return response.data;
   } catch (err) {
     toast.error(err.response.data.message);
@@ -23,7 +27,7 @@ export const register = createAsyncThunk("/auth/register", async ({ payload, toa
   }
 });
 
-export const update = createAsyncThunk("/auth/update-profile", async ({ payload, toast }, { rejectWithValue }) => {
+export const update = createAsyncThunk("/auth/user/update-profile", async ({ payload, toast }, { rejectWithValue }) => {
   try {
     const response = await api.update(payload);
     toast.success("Profile Updated Successfully");
@@ -33,20 +37,6 @@ export const update = createAsyncThunk("/auth/update-profile", async ({ payload,
     return rejectWithValue(err.response.data);
   }
 });
-
-export const registerVolunteer = createAsyncThunk(
-  "volunteers/signup",
-  async ({ payload, toast }, { rejectWithValue }) => {
-    try {
-      const response = await api.registerVolunteer(payload);
-      toast.success("Volunteer Added Successfully");
-      return response.data;
-    } catch (err) {
-      toast.error(err.response.data.message);
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
 
 //RETURN USER OBJECT IF LOGGED IN
 export const isLoggedIn = () => {
@@ -72,7 +62,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     logout: (state) => {
-      localStorage.clear();
+      localStorage.removeItem("user");
       state.user = null;
     },
   },
@@ -96,7 +86,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.setItem("user", JSON.stringify({ ...action.payload }));
+      // localStorage.setItem("user", JSON.stringify({ ...action.payload }));
       state.user = action.payload;
     },
     [register.rejected]: (state, action) => {
@@ -116,19 +106,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-
-    // [registerVolunteer.pending]: (state) => {
-    //   state.loading = true;
-    // },
-    // [registerVolunteer.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   localStorage.setItem("user", JSON.stringify({ ...action.payload }));
-    //   state.user = action.payload;
-    // },
-    // [registerVolunteer.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload;
-    // },
   },
 });
 
