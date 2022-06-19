@@ -24,12 +24,12 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
     }
     return photos;
   };
-  //open mage lightboox
+  //open image lightboox
   const openLightbox = useCallback((event, { photo, index }) => {
     setCurrentImage(index);
     setViewerIsOpen(true);
   }, []);
-  //close mage lightboox
+  //close image lightboox
   const closeLightbox = () => {
     setCurrentImage(0);
     setViewerIsOpen(false);

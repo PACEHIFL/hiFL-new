@@ -22,7 +22,7 @@ const PhotoGallery = () => {
 
       <div className="flex flex-col md:flex-row gap-2 h-full">
         <Link href={`/gallery/${data?.data[0].id}`}>
-          <a className="w-full h-[300px] md:h-auto md:w-1/2">
+          <a className="w-full min-h-[300px] h-auto md:w-1/2">
             <div className="bg-cover h-[60%]" style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }} />
             <div className="h-[40%] bg-[url('/gallery-bg.png')] bg-cover flex items-center">
               <div className="text-white px-6">
@@ -37,7 +37,7 @@ const PhotoGallery = () => {
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full md:w-1/2">
-          {data?.data.map(({ id, Title, CoverImage }, i) => (
+          {data?.data.slice(1, data?.data.length).map(({ id, Title, CoverImage }, i) => (
             <Link href={`/gallery/${id}`} key={i}>
               <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
                 <div className="w-1/2 md:w-full">
