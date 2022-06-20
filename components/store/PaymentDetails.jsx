@@ -4,7 +4,6 @@ import { getCart } from "../../redux/features/cart.slice";
 
 const PaymentDetails = ({ addressInfo: { shipToAddress }, total }) => {
   const [cartItems, setCartItems] = useState([]);
-  const payload = { ShipingOption: shipToAddress, Total: total, items: [...cartItems] };
 
   // console.log(payload, "final");
 
@@ -19,6 +18,9 @@ const PaymentDetails = ({ addressInfo: { shipToAddress }, total }) => {
       toast.error("Please select a shipping mode", { autoClose: 1500 });
       return;
     }
+
+    //final order payload
+    const payload = { ShipingOption: shipToAddress, Total: total, items: [...cartItems] };
   };
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>
@@ -30,12 +32,12 @@ const PaymentDetails = ({ addressInfo: { shipToAddress }, total }) => {
       <div className="border-t border-[#8C8C8C80]">
         <div className="my-10 p-6 bg-white space-y-4">
           <div>
-            <h2>Please make payment to the foillowing account</h2>
+            <h2 className="mb-4">Please make payment to the foillowing account</h2>
             <h2>
-              Bank Name: <span></span>
+              Bank Name: <span className="font-bold">Stanbic IBTC</span>
             </h2>
             <h2>
-              Bank Account: <span></span>
+              Bank Account: <span className="font-bold">0024916531</span>
             </h2>
           </div>
           <button className="btn btn-success text-white btn-wide text-sm" onClick={handlePlaceOrder}>
