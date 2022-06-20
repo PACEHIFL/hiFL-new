@@ -6,7 +6,7 @@ const PaymentDetails = ({ addressInfo: { shipToAddress }, total }) => {
   const [cartItems, setCartItems] = useState([]);
   const payload = { ShipingOption: shipToAddress, Total: total, items: [...cartItems] };
 
-  console.log(payload, "final");
+  // console.log(payload, "final");
 
   useEffect(() => {
     if (getCart()) {

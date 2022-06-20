@@ -4,7 +4,7 @@ import { formatMoney } from "../../helpers/utils";
 const ShippingDetails = ({ addressInfo, shippingOption, handleChange }) => {
   const handleSelected = () => shippingOption.find((p) => p.option == addressInfo.shipToAddress);
 
-  console.log(addressInfo, "address");
+  // console.log(addressInfo, "address");
 
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>
