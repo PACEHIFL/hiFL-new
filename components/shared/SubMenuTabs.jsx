@@ -33,7 +33,7 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
       { title: "Cart", path: "/store/cart" },
     ],
     [
-      { title: "Volunteers", path: "/volunteers" },
+      { title: "Volunteer", path: "/volunteer" },
       { title: "Unifest", path: "/unifest" },
       { title: "Masterclass", path: "/masterclass" },
       { title: "GameTime", path: "/gametime" },

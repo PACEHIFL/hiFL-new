@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Fixtures from "../../components/teams/Fixtures";
-import Overview from "../../components/teams/Overview";
-import Results from "../../components/teams/Result";
-import Squad from "../../components/teams/Squad";
-import Tabs from "../../components/teams/Tabs";
-import SideBar from "../../components/shared/SideBar";
-import TeamsHeader from "../../components/teams/TeamsHeader";
-import Stats from "../../components/teams/Stats";
-import Store from "../../components/teams/Store";
+import Fixtures from "../../../components/teams/Fixtures";
+import Overview from "../../../components/teams/Overview";
+import Results from "../../../components/teams/Result";
+import Squad from "../../../components/teams/Squad";
+import Tabs from "../../../components/teams/Tabs";
+import SideBar from "../../../components/shared/SideBar";
+import TeamsHeader from "../../../components/teams/TeamsHeader";
+import Stats from "../../../components/teams/Stats";
+import Store from "../../../components/teams/Store";
 import axios from "axios";
 
 const Slug = ({ data, players }) => {
@@ -22,8 +22,9 @@ const Slug = ({ data, players }) => {
           {tabs === 1 && <Squad data={players} />}
           {tabs === 2 && <Fixtures />}
           {tabs === 3 && <Results data={data} />}
-          {tabs === 4 && <Stats data={data} />}
-          {tabs === 5 && <Store data={data} />}
+          {/* {tabs === 4 && <h1 className="font-redhat text-2xl"> There is no stats available at the moment </h1>} */}
+          {/* {tabs === 4 && <Stats data={data} />} */}
+          {tabs === 4 && <Store data={data} />}
         </div>
       </div>
     </div>

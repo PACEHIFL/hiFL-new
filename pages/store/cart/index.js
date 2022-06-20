@@ -32,8 +32,11 @@ const Cart = () => {
     <StoreLayout name="cart">
       <div className="font-redhat text-secondary">
         {cartItems.length == 0 ? (
-          <div className="flex h-[200px] justify-center items-center">
-            <h2 className="font-bold">No items in cart - add empty state here</h2>
+          <div className="h-[400px] flex flex-col justify-center items-center">
+            <h2 className="font-bold text-xl lg:text-3xl text-[#000229]">No items in cart</h2>
+            <Link href="/store">
+              <a className="btn btn-primary btn-wide mt-6 border-none">Continue Shopping</a>
+            </Link>
           </div>
         ) : (
           <>

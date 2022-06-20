@@ -10,13 +10,15 @@ const SquareBanner = () => {
   );
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       setRandomIndex(Math.floor(Math.random() * data?.data?.length));
     }, 20000);
+
+    return () => clearInterval(interval);
   });
 
   if (loading) {
-    return <Skeleton height={400} />;
+    return <Skeleton height={300} />;
   }
   return (
     <a className="rounded" href={data?.data[randomIndex]?.Link} target="_blank" rel="noreferrer">

@@ -196,9 +196,9 @@ const Contact = () => {
             </form>
           </div>
         </div>
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <LatestNews />
-        </div>
+        </div> */}
       </div>
     </div>
   );
