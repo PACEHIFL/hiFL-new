@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useFetch from "../../hooks/useFetch";
 
 const LatestNews = () => {
   const latestnews = [
@@ -11,7 +12,7 @@ const LatestNews = () => {
 
   return (
     <div className=" h-full text-black">
-      <div className="p-5 pt-0 ">
+      <div className="p-0  ">
         <div className="flex justify-between items-center py-0">
           <h2 className="text-[#000229] font-bold text-lg font-redhat py-0">Latest News</h2>
           <Link href="/news">
