@@ -7,29 +7,39 @@ const CartItem = ({
   orderInfo,
   setOrderInfo,
   setCartItems,
-  cartProduct: { data, title, size, jerseyNumber, jerseyName, quantity },
+  cartProduct: {
+    data,
+    Title,
+    Size,
+    Price,
+    Customization: { JerseyNumber, JerseyName },
+    Quantity,
+    DiscountPrice,
+    ProductCode,
+    CoverImage,
+  },
 }) => {
   const dispatch = useDispatch();
 
-  const discountPercent = (price, discount) => (data.DiscountPrice ? ((price - discount) / price) * 100 : null);
+  const discountPercent = (price, discount) => (DiscountPrice ? ((price - discount) / price) * 100 : null);
 
   const handleQuantity = (type) => {
     if (type == "increase") {
-      setOrderInfo({ ...orderInfo, quantity: quantity + 1 });
-      dispatch(increaseQty({ ...orderInfo, id: data.ProductCode }));
+      setOrderInfo({ ...orderInfo, quantity: Quantity + 1 });
+      dispatch(increaseQty({ ...orderInfo, ProductCode: ProductCode }));
     }
-    if (type == "reduce" && quantity > 1) {
-      setOrderInfo({ ...orderInfo, quantity: quantity - 1 });
-      dispatch(reduceQty({ ...orderInfo, id: data.ProductCode }));
+    if (type == "reduce" && Quantity > 1) {
+      setOrderInfo({ ...orderInfo, quantity: Quantity - 1 });
+      dispatch(reduceQty({ ...orderInfo, ProductCode: ProductCode }));
     }
   };
   const handleDelete = () => {
-    dispatch(deleteFromCart({ ...orderInfo, id: data.ProductCode }));
+    dispatch(deleteFromCart({ ...orderInfo, ProductCode: ProductCode }));
     setCartItems(getCart());
   };
 
   useEffect(() => {
-    setOrderInfo({ ...orderInfo, quantity: quantity });
+    setOrderInfo({ ...orderInfo, quantity: Quantity });
   }, []);
 
   return (
@@ -53,17 +63,17 @@ const CartItem = ({
             fill="#F90000"
           />
         </svg>
-        <img src={data.CoverImage[0].url} alt="" className="w-[60px]" />
+        <img src={CoverImage?.url} alt="" className="w-[60px]" />
       </div>
 
       <div className="flex flex-col items-start md:items-center md:flex-row gap-3 md:gap-6">
         <div>
-          <h3 className="text-sm font-semibold">{data.Title}</h3>
+          <h3 className="text-sm font-semibold">{Title}</h3>
           <div className="fle gap-2 justify-between text-[#8C8C8C] text-xs uppercase">
-            <p className="">Size: {size}</p>
-            {(jerseyName || jerseyNumber) && (
+            <p className="">Size: {Size}</p>
+            {(JerseyName || JerseyNumber) && (
               <p className="">
-                Customization: {jerseyName} {jerseyNumber && `(${jerseyNumber})`}
+                Customization: {JerseyName} {JerseyNumber && `(${JerseyNumber})`}
               </p>
             )}
           </div>
@@ -75,7 +85,7 @@ const CartItem = ({
             onClick={() => handleQuantity("reduce")}>
             -
           </p>
-          <p className="px-3 py-1 border-y border-[#7E7E7E80]">{quantity}</p>
+          <p className="px-3 py-1 border-y border-[#7E7E7E80]">{Quantity}</p>
           <p
             className="px-2 py-1 border border-[#7E7E7E80] border-opacity-50 rounded-r-md cursor-pointer select-none"
             onClick={() => handleQuantity("increase")}>
@@ -83,12 +93,12 @@ const CartItem = ({
           </p>
         </div>
         <div className="flex flex-col md:items-center">
-          <p className="font-semibold">{formatMoney(data.DiscountPrice ? data.DiscountPrice : data.Price)}</p>
-          {data.DiscountPrice && (
+          <p className="font-semibold">{formatMoney(DiscountPrice ? DiscountPrice : Price)}</p>
+          {DiscountPrice && (
             <div className="flex items-center gap-2 text-xs">
-              <p className={` ${data.DiscountPrice && "text-[#8C8C8C] line-through"} `}>{formatMoney(data.Price)}</p>
+              <p className={` ${DiscountPrice && "text-[#8C8C8C] line-through"} `}>{formatMoney(Price)}</p>
               <p className="px-2 bg-warning bg-opacity-50 rounded-b-lg text-[#3A3A3A]">
-                -{discountPercent(data.Price, data.DiscountPrice)}%
+                -{discountPercent(Price, DiscountPrice)}%
               </p>
             </div>
           )}

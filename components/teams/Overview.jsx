@@ -23,13 +23,14 @@ const Overview = ({ data: { Overview, _id } }) => {
     <div>
       <div className="flex gap-5 xl:gap-8 justify-between font-redhat">
         <div className="w-full lg:w-8/12 xl:w-9/12">
-          <h1 className="text-base md:text-xl px-5 w-[80%] pb-6 leading-7 text-justify">{Overview}</h1>
+          <h1 className="text-base md:text-xl w-[80%] pb-6 leading-7">{Overview}</h1>
           <div className="mb-10">
             <h1 className="font-bold text-4xl pb-4">Officials</h1>
-
-            {officials?.map((official, idx) => (
-              <OfficialInfo data={official} key={idx} />
-            ))}
+            {officials ? (
+              officials?.map((official, idx) => <OfficialInfo data={official} key={idx} />)
+            ) : (
+              <h1> Loading... </h1>
+            )}
           </div>
 
           <hr />
@@ -39,13 +40,6 @@ const Overview = ({ data: { Overview, _id } }) => {
         </div>
         <div className="hidden lg:block w-4/12 xl:w-3/12">
           <SideBar />
-        </div>
-      </div>
-
-      <div className="bg-white">
-        <div className="h-1 mt-10 bg-gradient-to-r from-purple-500 to-pink-500"></div>
-        <div className="max-w-[94%] md:max-w-[90%] mx-auto">
-          <Sponsors />
         </div>
       </div>
     </div>

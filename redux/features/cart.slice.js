@@ -26,20 +26,20 @@ const cartSlice = createSlice({
     increaseQty: (state, action) => {
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
       const updItem = cartItems?.map((item) =>
-        item.id == action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
+        item.ProductCode == action.payload.ProductCode ? { ...item, Quantity: item.Quantity + 1 } : item
       );
       localStorage.setItem("cart", JSON.stringify([...updItem]));
     },
     reduceQty: (state, action) => {
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
       const updItem = cartItems?.map((item) =>
-        item.id == action.payload.id ? { ...item, quantity: item.quantity - 1 } : item
+        item.ProductCode == action.payload.ProductCode ? { ...item, Quantity: item.Quantity - 1 } : item
       );
       localStorage.setItem("cart", JSON.stringify([...updItem]));
     },
     deleteFromCart: (state, action) => {
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
-      const updItem = cartItems?.filter((item) => item.id !== action.payload.id);
+      const updItem = cartItems?.filter((item) => item.ProductCode !== action.payload.ProductCode);
       localStorage.setItem("cart", JSON.stringify([...updItem]));
       state.cart = JSON.parse(localStorage.getItem("cart"));
     },

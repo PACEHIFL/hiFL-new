@@ -32,7 +32,7 @@ const Store = () => {
 
   return (
     <div className="font-redhat">
-      <div className="bg-gray-200 md:mx-10 mb-10">
+      <div className="bg-gray-200 mb-10">
         <div className="bg-gray-200 p-4 border-b-2 border-b-gray-700">
           <p className="text-secondary font-bold text-xl md:px-10">
             Categories:
