@@ -26,9 +26,11 @@ const Overview = ({ data: { Overview, _id } }) => {
           <h1 className="text-base md:text-xl w-[80%] pb-6 leading-7">{Overview}</h1>
           <div className="mb-10">
             <h1 className="font-bold text-4xl pb-4">Officials</h1>
-            {officials?.map((official, idx) => (
-              <OfficialInfo data={official} key={idx} />
-            ))}
+            {officials ? (
+              officials?.map((official, idx) => <OfficialInfo data={official} key={idx} />)
+            ) : (
+              <h1> Loading... </h1>
+            )}
           </div>
 
           <hr />

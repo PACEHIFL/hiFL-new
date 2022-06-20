@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const TeamsHeader = ({ data }) => {
+  console.log(data)
   return (
     <div className="flex h-full bg-[#000229] text-white font-redhat">
       <div className="hidden lg:block w-[50%] h-full border-r border-r-white rounded-br-[3rem]">
