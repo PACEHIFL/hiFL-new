@@ -12,8 +12,6 @@ const Profile = () => {
   const { data, loading } = useFetch(`${baseURL}/players/active/?Team=${teamId}`);
   const { data: team } = useFetch(`${baseURL}/teams/team/?_id=${teamId}`);
 
-  console.log(team);
-
   return (
     <div className="bg-white font-redhat">
       <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
