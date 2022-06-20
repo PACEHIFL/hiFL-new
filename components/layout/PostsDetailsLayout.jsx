@@ -56,6 +56,7 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
                     dangerouslySetInnerHTML={{ __html: Content }}
                     className="text-[#000229] space-y-3 text-justify font-redhat w-[90%] lg:leading-8 text-base lg:text-[18px] mx-auto"
                   />
+
                   {/* video post */}
                   {Type == "Video" && pageLoaded && Media && (
                     <ReactPlayer
