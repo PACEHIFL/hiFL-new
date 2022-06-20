@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getCart } from "../../redux/features/cart.slice";
 
-const PaymentDetails = ({ addressInfo: { shipToAddress }, total }) => {
+const PaymentDetails = ({ addressInfo: { shipToAddress, address, state, lga, nearestBus, phoneNumber }, total }) => {
   const [cartItems, setCartItems] = useState([]);
 
   // console.log(payload, "final");
@@ -20,7 +20,17 @@ const PaymentDetails = ({ addressInfo: { shipToAddress }, total }) => {
     }
 
     //final order payload
-    const payload = { ShipingOption: shipToAddress, Total: total, items: [...cartItems] };
+    const payload = {
+      Address: address,
+      State: state,
+      Lga: lga,
+      NearestBusStop: nearestBus,
+      PhoneNumber: phoneNumber,
+      ShipingOption: shipToAddress,
+      Total: total,
+      items: [...cartItems],
+    };
+    console.log(payload);
   };
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>
