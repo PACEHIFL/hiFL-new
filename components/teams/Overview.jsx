@@ -4,20 +4,20 @@ import LatestNews from "../shared/LatestNews";
 import LatestVideos from "../shared/LatestVideos";
 import Sponsors from "../shared/Sponsors";
 import OfficialInfo from "./OfficialInfo";
-import axios from "axios"
+import axios from "axios";
 
 const Overview = ({ data: { Overview, _id } }) => {
-  const [officials, setOfficiails] = useState()
+  const [officials, setOfficiails] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       const baseURL = process.env.BASE_URL;
       const { data } = await axios(`${baseURL}/officials/?Team=${_id}`);
-      setOfficiails(data.data)
-    }
+      setOfficiails(data.data);
+    };
 
     fetchData().catch(console.error);
-  }, [_id])
+  }, [_id]);
 
   return (
     <div>

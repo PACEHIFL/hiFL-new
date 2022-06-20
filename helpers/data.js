@@ -29,14 +29,14 @@ export const navLinks = [
     name: "Store",
     links: [
       { title: "Store", path: "/store" },
-      { title: "Orders", path: "/account" },
+      // { title: "Orders", path: "/account?tab=store" },
       { title: "Cart", path: "/store/cart" },
     ],
   },
   {
     name: "More",
     links: [
-      { title: "Volunteers", path: "/volunteers" },
+      { title: "Volunteer", path: "/volunteer" },
       { title: "Unifest", path: "/unifest" },
       { title: "Masterclass", path: "/masterclass" },
       { title: "GameTime", path: "/gametime" },
@@ -292,232 +292,126 @@ export const countries = [
   "Zimbabwe",
 ];
 
-export const products = [
+export const hiflFAQ = [
   {
-    id: 234,
-    name: "UNN Lions Home Authentic Shirt Kit",
-    bestSelling: false,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: null,
-    price: 5225,
-    category: "Kits",
+    title: "What is HiFL?",
+    description:
+      "HiFL, an acronym for Higher Institutions Football League is an annual football league designed to engage and showcase exciting sporting talents from Nigeria’s biggest and best tertiary institutions starting with universities from the South (Coastal Conference) and North (Sahel Conference)",
   },
   {
-    id: 5553,
-    name: "UNN Lions Home Authentic Shirt Kit",
-    bestSelling: true,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: 4225,
-    price: 5225,
-    category: "Kits",
+    title: "What are Conferences?",
+    description:
+      "Conferences revolve around Nigeria’s regional lines; the North and South. The North is called the Sahel Conference comprising higher institutions from states such as Abuja, Adamawa, Bauchi, Benue, Borno, Gombe, Jigawa, Kaduna, Kano, Katsina, Kebbi, Kogi, Kwara, Nasarawa, Niger, Plateau, Sokoto, Taraba, Yobe and Zamfara. The South is called the Coastal Conference and consists higher institutions from states such as Abia, Akwa Ibom, Anambra, Bayelsa, Cross River, Delta, Ebonyi, Edo, Ekiti, Enugu, Imo, Lagos, Ogun, Ondo, Osun, Oyo and Rivers",
   },
   {
-    id: 45445,
-    name: "UNN Lions Home Authentic Shirt Equip",
-    bestSelling: true,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: 4225,
-    price: 5225,
-    category: "Equipment",
+    title: "When is the 2022 season going to start?",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   },
   {
-    id: 5553,
-    name: "UNN Lions Home Authentic Shirt",
-    bestSelling: true,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: 4225,
-    price: 5225,
-    category: "Wearables",
+    title: "Who are the Defending Champions?",
+    description:
+      "University of Agriculture, Makurdi (UAM) Tillers won the inaugural season of the competition after defeating University of Calabar (UNICAL) Malabites 5-4 on penalties after a scoreless match.",
   },
   {
-    id: 45445,
-    name: "UNN Lions Home Authentic Shirt Wearables",
-    bestSelling: true,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: 4225,
-    price: 5225,
-    category: "Wearables",
+    title: "Where will the games be played?",
+    description: "In the home pitches/stadia of the participating schools and the finals will be held in Lagos.",
   },
   {
-    id: 5553,
-    name: "UNN Lions Home Authentic Shirt Wearables",
-    bestSelling: true,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: 4225,
-    price: 5225,
-    category: "Wearables",
+    title: "How are the participating schools selected?",
+    description:
+      "All member universities of NUGA will participate in qualifying rounds to determine the 32 universities. However, host universities in the group stage are measured by each school’s score on the following; Security, Facilities, Reputation/Rankings, Sporting Activity & Excellence and Location.",
   },
   {
-    id: 45445,
-    name: "UNN Lions Home Authentic Shirt Kits",
-    bestSelling: true,
-    img: "/hiversa-jersey.png",
-    discountPercent: 10,
-    discountPrice: 4225,
-    price: 5225,
-    category: "Kits",
+    title: "How many schools participate?",
+    description:
+      "A total of thirty-two (32) top university teams with sixteen (16) from the South (Coastal Conference) and sixteen (16) from the North (Sahel Conference).",
+  },
+  {
+    title: "What is the composition of teams in the competition?",
+    description:
+      "Each school is represented by a football team of twenty-two (22) individuals. Eighteen (18) are players and four (4) make up the team officials. They are the Team Manager, Head Coach, Assistant Coach and Medical Officer.  ",
+  },
+  {
+    title: "Can I volunteer to be a part of the organising team in my school?",
+    description:
+      "We have Local Organising Committees (LOCs) in every participating school created to ensure the smooth execution of games. However, you may be a part of our volunteer force by signing up on the Volunteerportal on the site.",
+  },
+  {
+    title: "Can Alumni participate?",
+    description:
+      "Former students cannot participate as a part of the playing team. They may participate in other capacities including the coaching crew, administrators, supporters and donors.",
+  },
+  {
+    title: "What are the stages of the competition?",
+    description:
+      "Starting from the group stages, qualifying teams proceed to the Round of 16 after which winners of the games here proceed to the Quarter-Finals before the Inter-Conference Semi-Finals begin. Winners and losers from the Semi-Finals play the Super Four.",
+  },
+  {
+    title: "What is the Super Four?",
+    description:
+      "The Super Four is a one-day competition finale for the winners and losers of the tournament’s Semi-Finals to play in the Final and Third Place games. It marks the end of the tournament and features a closing ceremony and award presentations.",
+  },
+  {
+    title: "Are the players paid?",
+    description:
+      "Yes, the players and other team members are paid allowances that are considerate and fair as long as they are still participating in the competition.",
+  },
+  {
+    title: "What prize do the winners get?",
+    description:
+      "There are cash prizes for the players, team officials and the schools they represent. Products and services from our partner brands will also be made available to winners.",
+  },
+  {
+    title: "What opportunities does HiFL® offer participating teams and players?",
+    description:
+      "Alongside financial benefits and massive exposure to professional football clubs as we have seen with the four (4) signed players from the 2018 season, scouts and a teeming football-loving audience; international competitions, networking opportunities with other students and school pride are also on offer.",
+  },
+  {
+    title: "What award categories are included in the competition?",
+    description:
+      "The HiFL® Elite Awards holds in the weekend of the Super Four as part of a series of events to officially end the season. For the 2019 season, it's scheduled to hold on the 27th of October. Award categories include HiFL® Elite Player of the Year, HiFL® Elite Goal Scorer of the Year (Golden Boot), HiFL® Elite Goalkeeper of the Year (Golden Gloves), HiFL® Elite Coach of the Year, HiFL® Elite Host of the Year, The HiFL® Elite Team of the Year, and HiFL® Elite Platinum Award (Distinguished Honorary award).",
+  },
+  {
+    title: "How can my school participate?",
+    description:
+      "All NUGA affiliated schools will be invited to participate in the qualifying rounds. You may however contact us via contact@hiflng.com to open conversations on behalf of your school.",
+  },
+  {
+    title: "How can I get in my school’s football team?",
+    description:
+      "You may contact your school’s department/directorate of sports or any other body responsible for the management of your school’s football team for directions on how to be a part of them.",
+  },
+  {
+    title: "Who are the organisers?",
+    description:
+      "The HiFL® Executive Committee in partnership with PACE Sports and Entertainment Marketing, a foremost Nigerian marketing company focused on connecting brands with their audience’s passions.",
   },
 ];
 
-export const product = {
-  data: [
-    {
-      id: 1,
-      Title: "UNIBEN Royals Home Authentic Shirt 2021",
-      Slug: "uniben-royals-home-authentic-shirt-2021",
-      Details:
-        "<p>YOUR TEAM. YOUR COLOURS.</p><p>The UNIBEN Royals Home Authentic Shirt is the same one worn by the team on the pitch.</p><ul><li>Replica style – looser fit across the chest and shoulders with straight hemline</li><li>Fabric: 50% recycled polyester fabric</li><li>Machine wash</li></ul><p>Wear your shirt with pride and show your support for the Royals<br>Why not make it your own by having your chosen name and number printed on the back?</p>",
-      ProductCode: "LK10909",
-      InStock: true,
-      PreOrder: false,
-      Price: 6000,
-      DiscountPrice: 4500,
-      createdAt: "2022-06-09T14:05:27.918Z",
-      updatedAt: "2022-06-09T14:05:33.883Z",
-      publishedAt: "2022-06-09T14:05:33.879Z",
-      Category: "Kit",
-      CoverImage: [
-        {
-          id: 9,
-          name: "60b38318b8294.png",
-          alternativeText: "60b38318b8294.png",
-          caption: "60b38318b8294.png",
-          width: 396,
-          height: 396,
-          formats: {
-            thumbnail: {
-              ext: ".png",
-              url: "https://hifl-files.ams3.digitaloceanspaces.com/thumbnail_60b38318b8294_877081a256.png",
-              hash: "thumbnail_60b38318b8294_877081a256",
-              mime: "image/png",
-              name: "thumbnail_60b38318b8294.png",
-              path: null,
-              size: 35.91,
-              width: 156,
-              height: 156,
-            },
-          },
-          hash: "60b38318b8294_877081a256",
-          ext: ".png",
-          mime: "image/png",
-          size: 38.15,
-          url: "https://hifl-files.ams3.digitaloceanspaces.com/60b38318b8294_877081a256.png",
-          previewUrl: null,
-          provider: "aws-s3",
-          provider_metadata: null,
-          createdAt: "2022-06-09T14:04:47.271Z",
-          updatedAt: "2022-06-09T14:04:47.271Z",
-        },
-      ],
-      ProductGallery: [
-        {
-          id: 9,
-          name: "60b38318b8294.png",
-          alternativeText: "60b38318b8294.png",
-          caption: "60b38318b8294.png",
-          width: 396,
-          height: 396,
-          formats: {
-            thumbnail: {
-              ext: ".png",
-              url: "https://hifl-files.ams3.digitaloceanspaces.com/thumbnail_60b38318b8294_877081a256.png",
-              hash: "thumbnail_60b38318b8294_877081a256",
-              mime: "image/png",
-              name: "thumbnail_60b38318b8294.png",
-              path: null,
-              size: 35.91,
-              width: 156,
-              height: 156,
-            },
-          },
-          hash: "60b38318b8294_877081a256",
-          ext: ".png",
-          mime: "image/png",
-          size: 38.15,
-          url: "https://hifl-files.ams3.digitaloceanspaces.com/60b38318b8294_877081a256.png",
-          previewUrl: null,
-          provider: "aws-s3",
-          provider_metadata: null,
-          createdAt: "2022-06-09T14:04:47.271Z",
-          updatedAt: "2022-06-09T14:04:47.271Z",
-        },
-        {
-          id: 7,
-          name: "60b3833096e27.png",
-          alternativeText: "60b3833096e27.png",
-          caption: "60b3833096e27.png",
-          width: 396,
-          height: 396,
-          formats: {
-            thumbnail: {
-              ext: ".png",
-              url: "https://hifl-files.ams3.digitaloceanspaces.com/thumbnail_60b3833096e27_11db4bbff8.png",
-              hash: "thumbnail_60b3833096e27_11db4bbff8",
-              mime: "image/png",
-              name: "thumbnail_60b3833096e27.png",
-              path: null,
-              size: 34,
-              width: 156,
-              height: 156,
-            },
-          },
-          hash: "60b3833096e27_11db4bbff8",
-          ext: ".png",
-          mime: "image/png",
-          size: 44.57,
-          url: "https://hifl-files.ams3.digitaloceanspaces.com/60b3833096e27_11db4bbff8.png",
-          previewUrl: null,
-          provider: "aws-s3",
-          provider_metadata: null,
-          createdAt: "2022-06-09T14:04:45.380Z",
-          updatedAt: "2022-06-09T14:04:45.380Z",
-        },
-        {
-          id: 8,
-          name: "60b38318b86e4.png",
-          alternativeText: "60b38318b86e4.png",
-          caption: "60b38318b86e4.png",
-          width: 396,
-          height: 396,
-          formats: {
-            thumbnail: {
-              ext: ".png",
-              url: "https://hifl-files.ams3.digitaloceanspaces.com/thumbnail_60b38318b86e4_bca027f4bc.png",
-              hash: "thumbnail_60b38318b86e4_bca027f4bc",
-              mime: "image/png",
-              name: "thumbnail_60b38318b86e4.png",
-              path: null,
-              size: 23.32,
-              width: 156,
-              height: 156,
-            },
-          },
-          hash: "60b38318b86e4_bca027f4bc",
-          ext: ".png",
-          mime: "image/png",
-          size: 26.61,
-          url: "https://hifl-files.ams3.digitaloceanspaces.com/60b38318b86e4_bca027f4bc.png",
-          previewUrl: null,
-          provider: "aws-s3",
-          provider_metadata: null,
-          createdAt: "2022-06-09T14:04:45.331Z",
-          updatedAt: "2022-06-09T14:04:45.331Z",
-        },
-      ],
-    },
-  ],
-  meta: {
-    pagination: {
-      page: 1,
-      pageSize: 25,
-      pageCount: 1,
-      total: 1,
-    },
+export const volunteerFAQ = [
+  {
+    title: "What the Volunteer Force is about",
+    description:
+      "A movement of young people across Nigerian campuses leveraging the power of football through HiFL to improve their communities while promoting associated brands in the process. ",
   },
-};
+  {
+    title: "Why join the Force?",
+    description:
+      "<strong>Connect</strong> <ul> <li>With peers and like-minds in your school and other campuses</li> <li>Also with fans, teams, partner brands and sponsors</li> </ul> <br /> <strong>Learn</strong> <ul> <li>Practical field experience by working with experts</li> <li>Engagement on behalf of our partners and sponsors</li> </ul> <br /> <strong>Grow</strong> <ul> <li>Career advancement opportunities including internships and workplace prep</li> <li>Access to our extensive resource library for skills such as leadership, team building, marketing etc.</li> <li> Opportunity to add value to your community; Project X  </li> </ul> <br /> <strong>Gain</strong> <ul> <li>Benefits including certificates, branded souvenirs/merchandise, exclusive promotional giveaways, backstage passes to special events</li> </ul> <br />",
+  },
+  {
+    title: "How to become a Volunteer ",
+    description:
+      "You can apply to become a volunteer by going to the HiFL Volunteers Page and clicking on “Sign up.” You can find this by clicking on this link Volunteer portal https://www.hiflng.com/volunteer",
+  },
+  {
+    title: "Who can become a part of the Volunteer Force? ",
+    description: "To become a volunteer, you have to be a student of a participating university.",
+  },
+  {
+    title: "What are the benefits of being a Volunteer? ",
+    description:
+      "<ul><li>Certificate of recognition</li><li>Networking </li> <li> Personal development</li><li>Branded gift items</li><li>Experience of a lifetime at the biggest collegiate sports event in the country</li></ul>",
+  },
+];

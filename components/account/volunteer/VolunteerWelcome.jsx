@@ -25,7 +25,7 @@ const VolunteerWelcome = () => {
       </p>
       <div className="flex gap-6 mt-8">
         <div className="w-full lg:w-auto">
-          <Link href="/volunteers">
+          <Link href="/volunteer">
             <a className="">
               <button className={`btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold`}>
                 Learn More

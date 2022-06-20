@@ -29,11 +29,11 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
     // ],
     [
       { title: "Store", path: "/store" },
-      { title: "Orders", path: "/account" },
+      // { title: "Orders", path: "/account?tab=store" },
       { title: "Cart", path: "/store/cart" },
     ],
     [
-      { title: "Volunteers", path: "/volunteers" },
+      { title: "Volunteer", path: "/volunteer" },
       { title: "Unifest", path: "/unifest" },
       { title: "Masterclass", path: "/masterclass" },
       { title: "GameTime", path: "/gametime" },

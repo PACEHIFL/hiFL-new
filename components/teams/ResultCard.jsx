@@ -1,38 +1,38 @@
 import React from "react";
 import Image from "next/image";
-import { LocationMarkerIcon, ArrowSmallRightIcon } from "@heroicons/react/solid"
+import { LocationMarkerIcon, ArrowRightIcon } from "@heroicons/react/solid"
+import Moment from "react-moment";
 
 const ResultCard = ({ data }) => {
 
   return (
-    <div className="mb-10">
-      <div className="flex items-center flex-col md:flex-row justify-between mb-4">
-        <h1 className="text-secondary font-semibold  md:text-xl">{data.date}</h1>
-        <span>{data.stage}</span>
-      </div>
-      <div className="text-secondary w-full flex flex-col md:flex-row items-center justify-between hover:bg-primary border-y p-3 hover:text-white">
-        <div className="flex items-center justify-center ml-10">
-          <div className="flex justify-center items-center">
-            <span className="font-bold md:text-xl">{data.homeTeam.name}</span>
-            <img src={data.homeTeam.logo} className="hidden md:inline-flex w-12 h-12 ml-2" alt="futa-logo" />
+    <div className="grid grid-cols-3 bg-[#F8F8F8] px-10 py-3 mb-6 hover:bg-[#FFEBA4]">
+      <div className="flex items-center justify-start col-span-2">
+        <div className="flex justify-center items-center">
+          <span className="font-bold md:text-lg">{data?.HomeTeam?.TeamName}</span>
+          <div className="rounded-full bg-white p-[0.3rem] w-14 h-14 flex items-center justify-center ml-3">
+            <img src="/default-team-logo.png" className="hidden md:block w-full h-full ml-2" alt="futa-logo" />
           </div>
+        </div>
+        <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8">
           <div className="border bg-secondary hover:text-secondary border-gray-400 px-3 py-1 ml-2 md:mx-2">
             <span className="text-white">{data.homeTeam.score}</span>
           </div>
           <div className="border bg-secondary hover:text-secondary border-gray-400 px-3 py-1 ml-2 md:mx-2">
             <span className="text-white">{data.awayTeam.score}</span>
           </div>
-          <div className="flex justify-center items-center">
-            <img src={data.awayTeam.logo} className="hidden md:inline-flex w-12 h-12 mr-2" alt="futa-logo" />
-            <span className="font-bold md:text-xl">{data.awayTeam.name}</span>
-          </div>
         </div>
-        <div className="flex items-center justify-between mt-3 md:mt-0">
-          <div className="inline-flex">
-            <LocationMarkerIcon className="md:w-6 md:h-6 w-4 h-4 mr-3" />
-            <span className="font-bold text-sm md:text-lg">{data.location}</span>
+        <div className="flex justify-center items-center">
+          <div className="rounded-full bg-white p-[0.3rem] w-14 h-14 flex items-center justify-center mr-3">
+            <img src="/default-team-logo.png" className="hidden md:block w-full h-full ml-2" alt="futa-logo" />
           </div>
+          <span className="font-bold md:text-lg capitalize">{data.AwayTeam.TeamName}</span>
         </div>
+      </div>
+      <div className="flex items-center justify-between col-span-1">
+        <span>  <Moment format="MMMM Do YYYY" date={data.MatchDate} /> </span>
+        <span>{data.Stage.StageName} </span>
+        <span> <ArrowRightIcon className="w-6 h-6 inline" /> </span>
       </div>
     </div>
   );

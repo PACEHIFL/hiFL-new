@@ -2,6 +2,7 @@ import React from "react";
 import Accordion from "../../components/faqs/Accordion";
 import PageTitle from "../../components/shared/PageTitle";
 import SideBar from "../../components/shared/SideBar";
+import { hiflFAQ, volunteerFAQ } from "../../helpers/data";
 
 const Faqs = () => {
   return (
@@ -13,11 +14,8 @@ const Faqs = () => {
           <div className="flex gap-7 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div>
-                <h1 className="text-[36px] font-bold">HiFL®</h1>
-
-                <div>
-                  <Accordion />
-                </div>
+                <Accordion title="HiFL®" data={hiflFAQ} />
+                <Accordion title="Volunteer Force" data={volunteerFAQ} />
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">

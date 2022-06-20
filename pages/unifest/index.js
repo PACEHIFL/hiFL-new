@@ -1,7 +1,5 @@
 import React from "react";
 import InnerSection from "../../components/volunteer/InnerSection";
-import Link from "next/link";
-import InnerSectionList from "../../components/volunteer/InnerSectionMaster.jsx";
 import SideBar from "../../components/shared/SideBar";
 import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";

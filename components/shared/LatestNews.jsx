@@ -4,34 +4,10 @@ import useFetch from "../../hooks/useFetch";
 import PostsSkelenton from "../posts/PostsSkelenton";
 
 const LatestNews = () => {
-  const news = [
-    {
-      img: "/news.png",
-      type: "Latest News",
-      title: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
-    {
-      img: "/news.png",
-      type: "News",
-      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
-    {
-      img: "/news.png",
-      type: "Referees",
-      title: "Unimaid beat Futminna 1-0 as UNN walk tight rope",
-      desc: "HiFL 2021: Unimaid Desert Warriors, AAUA Luminaries qualify for finals",
-      link: "#",
-    },
-  ];
   const baseURL = process.env.CMS_URL;
-  const { data, loading } = useFetch(`${baseURL}/posts?populate=*`);
-
-  const newsPosts = data?.data.filter((post) => post.categories[0].CategoryName.includes("News"));
-  const latestNews = newsPosts?.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  const { data, loading } = useFetch(
+    `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=News&populate=*`
+  );
 
   return (
     <div className="border border-x-0 border-[#D0D0D0] font-redhat text-[#000229] pb-8">
@@ -52,15 +28,19 @@ const LatestNews = () => {
             <PostsSkelenton />
           </>
         ) : (
-          latestNews?.slice(0, 3).map(({ id, Title, CoverImage, categories, Excerpt }, i) => (
+          data?.data?.slice(0, 3).map(({ id, Title, CoverImage, categories, Excerpt }, i) => (
             <Link href={`/news/${id}`} key={i}>
-              <a className="w-full hover:-translate-y-[2px] transition-transform">
-                <img src={CoverImage.url} alt={Title} className="w-full" />
-                <h3 className="text-accent font-bold italic text-xs py-1">{categories[0].CategoryName}</h3>
-                <h2 className="text-base font-semibold">{Title}</h2>
+              <a className="w-full rounded transition-transform hover:bg-[#f1f1f1] p-2 flex flex-col justify-between">
+                <div>
+                  <img src={CoverImage.url} alt={Title} className="w-[300px] h-[200px] object-cover rounded-t" />
+                  {/* <h3 className="text-accent font-bold italic text-xs py-1">{categories[0].CategoryName}</h3> */}
+                  <h2 className="text-sm font-semibold truncate w-[300px]" title={Title}>
+                    {Title}
+                  </h2>
+                </div>
                 <div
                   dangerouslySetInnerHTML={{ __html: Excerpt }}
-                  className="text-[#000229] text-sm text-justify font-extralight font-redhat pt-1"></div>
+                  className="text-[#000229] text-xs font-extralight font-redhat pt-1 w-[300px]"></div>
               </a>
             </Link>
           ))

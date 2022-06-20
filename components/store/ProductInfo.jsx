@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { formatMoney } from "../../helpers/utils";
 import { useDispatch } from "react-redux";
@@ -10,9 +11,10 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
   const large = useRef();
   const customizeYes = useRef();
   const customizeNo = useRef();
+  const router = useRouter();
   const dispatch = useDispatch();
 
-  const { Price, DiscountPrice, InStock, PreOrder, Details, ProductGallery } = data;
+  //const { Price, DiscountPrice, InStock, PreOrder, Details, ProductGallery } = data;
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
       toast.error("Please fill in custom details", { autoClose: 1500 });
       return;
     }
-    toast.success("Item added to cart", { autoClose: 1500 });
+    toast.success("Item added to cart", { autoClose: 1000, onClose: () => router.push("/store/cart") });
     dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
     // setOrderInfo(initialState);
   };
@@ -35,8 +37,10 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
       <div>
         <h3 className="text-[#7E7E7E] text-xs font-semibold uppercase mb-2">Price</h3>
         <div className="flex gap-1 items-end text-2xl font-bold">
-          {DiscountPrice && <p className="">{formatMoney(DiscountPrice)}</p>}
-          <p className={`${DiscountPrice && "text-sm text-[#D0D0D0] line-through"}  `}>{formatMoney(Price)}</p>
+          {data?.DiscountPrice && <p className="">{formatMoney(data?.DiscountPrice)}</p>}
+          <p className={`${data?.DiscountPrice && "text-sm text-[#D0D0D0] line-through"}  `}>
+            {formatMoney(data?.Price)}
+          </p>
         </div>
       </div>
       <div>
@@ -139,9 +143,15 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
           <button
             className={`${
               loading && "loading"
-            } w-full 2xl:btn-wide btn btn-primary disabled:btn-accent disabled:cursor-wait`}
-            disabled={!InStock && !PreOrder}>
-            {loading ? "" : !InStock && !PreOrder ? "Out of Stock" : !InStock && PreOrder ? "Pre Order" : "Add to Cart"}
+            } w-full 2xl:btn-wide btn btn-primary disabled:btn-accent disabled:cursor-wait lg:mt-10`}
+            disabled={!data?.InStock && !data?.PreOrder}>
+            {loading
+              ? ""
+              : !data?.InStock && !data?.PreOrder
+              ? "Out of Stock"
+              : !data?.InStock && data?.PreOrder
+              ? "Pre Order"
+              : "Add to Cart"}
           </button>
         </form>
       </div>
