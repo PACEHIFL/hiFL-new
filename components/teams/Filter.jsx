@@ -3,7 +3,7 @@ import React from "react";
 const Filter = ({ title, name, onChange }) => {
   return (
     // <div className="p-2 border rounded-md bg-white flex flex-col">
-    <select className="select w-full select-base-300" name={name} onChange={onChange}>
+    <select className="select w-full border-gray-500" name={name} onChange={onChange}>
       <option defaultValue={title} className="text-red-600">
         {title}
       </option>
