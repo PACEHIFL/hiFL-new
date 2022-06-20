@@ -49,9 +49,13 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
               <div className="">
                 <h2 className="text-xl lg:text-2xl xl:text-3xl mb-2 font-semibold">{Title}</h2>
                 {SubTitle && <h3 className="text-accent text-base ">{SubTitle}</h3>}
-                <div className="mt-5">
-                  {Type == "Default" && <img src={CoverImage?.url} alt={Title} className="w-full" />}
+                <div className="mt-8 space-y-8">
+                  <img src={CoverImage?.url} alt={Title} className="w-full mt-5" />
 
+                  <div
+                    dangerouslySetInnerHTML={{ __html: Content }}
+                    className="text-[#000229] space-y-3 text-justify font-redhat w-[90%] lg:leading-8 text-base lg:text-[18px] mx-auto"
+                  />
                   {/* video post */}
                   {Type == "Video" && pageLoaded && Media && (
                     <ReactPlayer
@@ -84,9 +88,6 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
                     </>
                   )}
                 </div>
-                <div
-                  dangerouslySetInnerHTML={{ __html: Content }}
-                  className="text-[#000229] space-y-3 mt-8 text-justify font-redhat w-[90%] lg:leading-8 text-base lg:text-[18px] mx-auto"></div>
               </div>
               <div className="mt-10">
                 <LatestNews />

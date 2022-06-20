@@ -18,10 +18,10 @@ const HeadlinesCard = () => {
           {data?.data.slice(0, 3).map(({ Excerpt, CoverImage, Title, id }, i) => (
             <Link href={`/news/${id}`} key={i}>
               <a className="flex gap-3 items-center" key={i}>
-                <div className="w-6/12">
+                <div className="w-5/12">
                   <img src={CoverImage?.url} alt={Title} className="w-full" />
                 </div>
-                <div className="w-6/12">
+                <div className="w-7/12">
                   <div className="px-1 w-full text-[0.9rem]">{Title}</div>
                 </div>
               </a>
