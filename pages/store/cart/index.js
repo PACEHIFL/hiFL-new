@@ -13,11 +13,11 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const orderTotal = cartItems.reduce(function (acc, item) {
-    const price = item.data.DiscountPrice ? item.data.DiscountPrice * item.quantity : item.data.Price * item.quantity;
+    const price = item.DiscountPrice ? item.DiscountPrice * item.quantity : item.Price * item.Quantity;
     return acc + price;
   }, 0);
   const customizationFee = cartItems.reduce(function (acc, item) {
-    const fee = item.jerseyName || item.jerseyNumber ? 2000 * item.quantity : 0;
+    const fee = item.Customization.JerseyName || item.Customization.JerseyNumber ? 2000 * item.Quantity : 0;
     return acc + fee;
   }, 0);
   const subTotal = orderTotal + customizationFee;
@@ -27,6 +27,8 @@ const Cart = () => {
       setCartItems(getCart());
     }
   }, [orderInfo]);
+
+  console.log(cartItems);
 
   return (
     <StoreLayout name="cart">

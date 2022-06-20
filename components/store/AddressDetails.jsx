@@ -62,7 +62,7 @@ const AddressDetails = ({ addressInfo, handleChange }) => {
           </div>
         </div>
 
-        <button className="btn btn-primary btn-wide text-sm">Update Address</button>
+        {/* <button className="btn btn-primary btn-wide text-sm">Update Address</button> */}
       </div>
     </details>
   );

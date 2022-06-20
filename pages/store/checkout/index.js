@@ -13,20 +13,34 @@ import PaymentDetails from "../../../components/store/PaymentDetails";
 const Checkout = () => {
   const initialState = { address: "", state: "", lga: "", nearestBus: "", phoneNumber: "", shipToAddress: "" };
   const [addressInfo, setAddressInfo] = useState(initialState);
+  const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
 
+  const shippingOption = [
+    { option: "Pickup", price: 0, timeline: "5 working days" },
+    { option: "Within Lagos", price: 1500, timeline: "7 - 10 working days" },
+    { option: "South-West", price: 2500, timeline: "7 - 14 working days" },
+    { option: "South-East", price: 3100, timeline: "11 - 17 working days" },
+    { option: "South-South", price: 3100, timeline: "11 - 17 working days" },
+    { option: "North", price: 3500, timeline: "11 - 17 working days" },
+  ];
+  const handleSelected = () => shippingOption.find((p) => p.option == addressInfo.shipToAddress);
+
   const orderTotal = cartItems.reduce(function (acc, item) {
-    const price = item.data.DiscountPrice ? item.data.DiscountPrice * item.quantity : item.data.Price * item.quantity;
+    const price = item.DiscountPrice ? item.DiscountPrice * item.Quantity : item.Price * item.Quantity;
     return acc + price;
   }, 0);
   const customizationFee = cartItems.reduce(function (acc, item) {
-    const fee = item.jerseyName || item.jerseyNumber ? 2000 * item.quantity : 0;
+    const fee = item.Customization.JerseyName || item.Customization.jerseyNumber ? 2000 * item.Quantity : 0;
     return acc + fee;
   }, 0);
   const subTotal = orderTotal + customizationFee;
-  const delivery = 1500;
-  const total = subTotal + delivery;
+  const delivery = handleSelected()?.price || 0;
+
+  useEffect(() => {
+    setTotal(subTotal + delivery);
+  }, [subTotal, delivery]);
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -57,9 +71,16 @@ const Checkout = () => {
 
         <div className="flex flex-col xl:flex-row gap-4">
           <div className="w-full xl:w-8/12 space-y-6">
-            <AddressDetails addressInfo={addressInfo} handleChange={handleChange} />
-            <ShippingDetails addressInfo={addressInfo} handleChange={handleChange} />
-            <PaymentDetails />
+            <ShippingDetails
+              addressInfo={addressInfo}
+              handleChange={handleChange}
+              setAddressInfo={setAddressInfo}
+              shippingOption={shippingOption}
+            />
+            {addressInfo.shipToAddress !== "Pickup" && (
+              <AddressDetails addressInfo={addressInfo} handleChange={handleChange} />
+            )}
+            <PaymentDetails addressInfo={addressInfo} total={total} />
           </div>
           <div className="w-full md:w-4/12 min-w-[300px] bg-[#F9F7F7] rounded p-6 font-semibold uppercase h-fit">
             <h3 className="text-base mb-6">Your Order</h3>

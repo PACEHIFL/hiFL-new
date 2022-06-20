@@ -39,7 +39,7 @@ export const navLinks = [
       { title: "Volunteer", path: "/volunteer" },
       { title: "Unifest", path: "/unifest" },
       { title: "Masterclass", path: "/masterclass" },
-      { title: "GameTime", path: "/gametime" },
+      // { title: "GameTime", path: "/gametime" },
     ],
   },
 ];
