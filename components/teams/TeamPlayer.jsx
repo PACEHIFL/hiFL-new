@@ -19,12 +19,12 @@ const TeamPlayer = ({ player }) => {
 
       <div className="text-sm font-redhat">
         <div className="flex justify-between items-center py-1 px-3 border-b">
-          <p>Course</p>
-          <p>{player?.AcademicRecord?.CourseStudy}</p>
+          <p>Position</p>
+          <p>{player?.SportRecord?.Position}</p>
         </div>
         <div className="flex justify-between items-center py-1 px-3 border-b">
-          <p>Level</p>
-          <p>{player?.AcademicRecord?.CourseLevel}</p>
+          <p>Jersey Number</p>
+          <p>{player?.SportRecord?.JerseyNumber}</p>
         </div>
       </div>
 

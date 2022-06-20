@@ -1,6 +1,7 @@
 import React from "react";
 
-const tabItems = ["Overview", "Squad", "Fixtures", "Results", "Stats", "Store"];
+const tabItems = ["Overview", "Squad", "Fixtures", "Results", "Store"];
+// const tabItems = ["Overview", "Squad", "Fixtures", "Results", "Stats", "Store"];
 
 const Tabs = ({ tabs, setTabs }) => {
   return (

@@ -7,37 +7,7 @@ import FixturesCard from "./FixturesCard";
 import Filter from "./Filter";
 
 const Fixtures = () => {
-
-  const fixturesItems = [
-    {
-      date: "20 June, 2022",
-      stage: "Knockout Stage",
-      location: "Unilorin Stadium",
-      time: "4.00",
-      homeTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png"
-      },
-      awayTeam: {
-        name: "Uniport Lions",
-        logo: "/futa-logo.png"
-      },
-    },
-    {
-      date: "22 April, 2022",
-      stage: "Quaterfinal | Second leg",
-      location: "UNN Sports Complex, Nsukka",
-      time: "4.00",
-      homeTeam: {
-        name: "FUTA Tigers",
-        logo: "/futa-logo.png"
-      },
-      awayTeam: {
-        name: "Unilorin Warriors",
-        logo: "/futa-logo.png"
-      },
-    }
-  ]
+  const fixturesItems = [];
 
   return (
     <div className="font-redhat">
@@ -46,10 +16,12 @@ const Fixtures = () => {
         <Filter title="Select League" />
         <Filter title="Select Stage" />
       </div>
-      
-      {fixturesItems?.map((fixtures, idx) => (
-        <FixturesCard data={fixtures} key={idx} />
-      ))}
+
+      {fixturesItems !== [] ? (
+        fixturesItems?.map((fixtures, idx) => <FixturesCard data={fixtures} key={idx} />)
+      ) : (
+        <h1>No Fixtures available yet</h1>
+      )}
 
       <div className="w-full lg:w-8/12 xl:w-9/12">
         <LatestNews />
