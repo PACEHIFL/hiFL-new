@@ -15,6 +15,7 @@ const Unifest = () => {
       item: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
     {
       title: "Stage 2",
@@ -23,6 +24,7 @@ const Unifest = () => {
       item: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
     {
       title: "Stage 3",
@@ -32,6 +34,7 @@ const Unifest = () => {
       item: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
 
     {
@@ -47,6 +50,7 @@ const Unifest = () => {
       parag: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
   ];
 
@@ -107,7 +111,7 @@ const Unifest = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
+                  {content.map(({ img, parag, lower, arrow, title, item, link }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSection
@@ -118,6 +122,7 @@ const Unifest = () => {
                           arrow={arrow}
                           key={ind}
                           parag={parag}
+                          link={link}
                         />
                       </div>
                     );

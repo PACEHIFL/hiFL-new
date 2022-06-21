@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const InnerSection = ({ title, img, parag, lower, arrow, item, button }) => {
+const InnerSection = ({ title, img, parag, lower, arrow, item, link }) => {
   return (
     <div className="flex align-top mb-5 h-[100%]  flex-wrap ">
       <div className="hidden  xl:inline  w-1/2 h-auto  ">
@@ -32,7 +32,7 @@ const InnerSection = ({ title, img, parag, lower, arrow, item, button }) => {
             )}
           </div>
           <div>
-            <Link href="/account">
+            <Link href={link}>
               <div className="cursor-pointer text-[12px] flex  text-[#F4C316]  xl:w-[75%] align-middle justify-between ">
                 <div className="sm:w-[90%] p-0 ">{lower}</div>
 
