@@ -4,7 +4,6 @@ import LatestUpdates from "../components/home/LatestUpdates";
 import Store from "../components/home/Store";
 import FixturesBrief from "../components/shared/FixturesBrief";
 import SideBar from "../components/shared/SideBar";
-import Sponsors from "../components/shared/Sponsors";
 
 export default function Home() {
   return (

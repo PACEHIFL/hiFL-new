@@ -13,11 +13,11 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const orderTotal = cartItems.reduce(function (acc, item) {
-    const price = item.data.DiscountPrice ? item.data.DiscountPrice * item.quantity : item.data.Price * item.quantity;
+    const price = item.DiscountPrice ? item.DiscountPrice * item.quantity : item.Price * item.Quantity;
     return acc + price;
   }, 0);
   const customizationFee = cartItems.reduce(function (acc, item) {
-    const fee = item.jerseyName || item.jerseyNumber ? 2000 * item.quantity : 0;
+    const fee = item.Customization.JerseyName || item.Customization.JerseyNumber ? 2000 * item.Quantity : 0;
     return acc + fee;
   }, 0);
   const subTotal = orderTotal + customizationFee;
@@ -28,12 +28,17 @@ const Cart = () => {
     }
   }, [orderInfo]);
 
+  console.log(cartItems);
+
   return (
     <StoreLayout name="cart">
       <div className="font-redhat text-secondary">
         {cartItems.length == 0 ? (
-          <div className="flex h-[200px] justify-center items-center">
-            <h2 className="font-bold">No items in cart - add empty state here</h2>
+          <div className="h-[400px] flex flex-col justify-center items-center">
+            <h2 className="font-bold text-xl lg:text-3xl text-[#000229]">No items in cart</h2>
+            <Link href="/store">
+              <a className="btn btn-primary btn-wide mt-6 border-none">Continue Shopping</a>
+            </Link>
           </div>
         ) : (
           <>

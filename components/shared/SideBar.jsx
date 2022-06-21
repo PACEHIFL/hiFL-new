@@ -6,21 +6,15 @@ import SquareBanner from "./SquareBanner";
 const SideBar = () => {
   return (
     <div className="space-y-8">
-      <div>
-        <FeaturedPlayer />
-      </div>
+      <div>{/* <FeaturedPlayer /> */}</div>
       <div>
         <SquareBanner />
       </div>
-      <div>
-        <FeaturedCoach />
-      </div>
+      <div>{/* <FeaturedCoach /> */}</div>
       <div>
         <SquareBanner />
       </div>
-      <div>
-        <FeaturedSchool />
-      </div>
+      <div>{/* <FeaturedSchool /> */}</div>
     </div>
   );
 };

@@ -28,7 +28,17 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
       return;
     }
     toast.success("Item added to cart", { autoClose: 1000, onClose: () => router.push("/store/cart") });
-    dispatch(addToCart({ ...orderInfo, data, id: data.ProductCode }));
+    const payload = {
+      ProductCode: data.ProductCode,
+      Title: data.Title,
+      Price: data.Price,
+      DiscountPrice: data.DiscountPrice,
+      Size: orderInfo.size,
+      Quantity: orderInfo.quantity,
+      CoverImage: data.CoverImage[0],
+      Customization: { JerseyName: orderInfo.jerseyName, JerseyNumber: orderInfo.jerseyNumber },
+    };
+    dispatch(addToCart({ ...payload }));
     // setOrderInfo(initialState);
   };
 

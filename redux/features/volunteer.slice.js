@@ -51,7 +51,7 @@ const volunteerSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.setItem("volunteer", JSON.stringify({ ...action.payload }));
+      // localStorage.setItem("volunteer", JSON.stringify({ ...action.payload }));
       state.user = action.payload;
     },
     [register.rejected]: (state, action) => {
