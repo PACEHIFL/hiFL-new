@@ -10,24 +10,17 @@ const TeamsHeader = ({ data }) => {
       </div>
 
       <div className="flex flex-col lg:flex-row w-full items-center lg:justify-center lg:w-[50%] py-10">
-        <div className="bg-white p-2 rounded-full">
-          <Image src="/futa-logo.png" alt="" layout="intrinsic" width="200%" height="200%" className="" />
+        <div className="bg-white rounded-full mx-10">
+          <img src="/futa-logo.png" alt="" className="w-full h-full" />
         </div>
         <div className="lg:ml-6 text-center lg:text-left justify-center lg:justify-start mt-6">
-          <h1 className="text-5xl font-extrabold">{data?.TeamName}</h1>
-          <div className="flex items-center my-4">
-            <Image className="hidden" src="/school-icon.png" alt="school-icon" width="20" height="20" layout="fixed" />
+          <h1 className="text-3xl lg:text-5xl font-extrabold">{data?.TeamName}</h1>
+          <div className="flex items-center  justify-center lg:justify-start my-4">
+            <img className="hidden md:inline" src="/school-icon.png" alt="school-icon" width="20" height="20" />
             <span className="pl-3 font-bold">{data?.Institution?.Location}</span>
           </div>
           <div className="flex items-center justify-center lg:justify-start mb-4">
-            <Image
-              className="hidden"
-              src="/profile-user.png"
-              alt="profile-user"
-              width="20"
-              height="20"
-              layout="fixed"
-            />
+            <img className="hidden md:inline" src="/profile-user.png" alt="profile-user" width="20" height="20" />
             <span className="pl-3 font-bold">4 HiFL Appereance</span>
           </div>
           <div className="flex items-center -ml-1 justify-center lg:justify-start">
