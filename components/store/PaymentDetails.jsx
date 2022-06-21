@@ -18,6 +18,18 @@ const PaymentDetails = ({ addressInfo: { shipToAddress, address, state, lga, nea
       toast.error("Please select a shipping mode", { autoClose: 1500 });
       return;
     }
+    if (address == "") {
+      toast.error("Please fill in your address", { autoClose: 1500 });
+      return;
+    }
+    if (state == "") {
+      toast.error("Please fill in your state", { autoClose: 1500 });
+      return;
+    }
+    if (phoneNumber == "") {
+      toast.error("Please fill in your phone number", { autoClose: 1500 });
+      return;
+    }
 
     //final order payload
     const payload = {
@@ -28,9 +40,9 @@ const PaymentDetails = ({ addressInfo: { shipToAddress, address, state, lga, nea
       PhoneNumber: phoneNumber,
       ShipingOption: shipToAddress,
       Total: total,
-      items: [...cartItems],
+      Items: [...cartItems],
     };
-    console.log(payload);
+    //console.log(payload);
   };
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>

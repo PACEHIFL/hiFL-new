@@ -19,8 +19,26 @@ const cartSlice = createSlice({
 
   reducers: {
     addToCart: (state, action) => {
+      //if product already in cart, update quantity, size and customization details
       const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : "";
-      localStorage.setItem("cart", JSON.stringify([...cartItems, action.payload]));
+      const alreadyInCart = cartItems ? cartItems?.find((item) => item.ProductCode == action.payload.ProductCode) : "";
+      const updItem = alreadyInCart
+        ? cartItems?.map((item) =>
+            item.ProductCode == action.payload.ProductCode
+              ? {
+                  ...item,
+                  Quantity: item.Quantity + action.payload.Quantity,
+                  Size: action.payload.Size,
+                  Customization: {
+                    ...item.Customization,
+                    JerseyName: action.payload.Customization.JerseyName,
+                    JerseyNumber: action.payload.Customization.JerseyNumber,
+                  },
+                }
+              : item
+          )
+        : [action.payload, ...cartItems];
+      localStorage.setItem("cart", JSON.stringify([...updItem]));
       state.cart = JSON.parse(localStorage.getItem("cart"));
     },
     increaseQty: (state, action) => {
@@ -49,7 +67,3 @@ const cartSlice = createSlice({
 export const { addToCart, increaseQty, reduceQty, deleteFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
-
-// const updateFeedback = (id, updItem) => {
-//   setFeedback(feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item)));
-// };
