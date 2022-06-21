@@ -20,6 +20,7 @@ const Volunteer = () => {
       lower: "Join now",
       arrow: "/arrow 1.png",
       button: "",
+      link: "/account?tab=volunteer-force",
     },
     {
       title: "Grow",
@@ -32,6 +33,7 @@ const Volunteer = () => {
       lower: "",
       arrow: "",
       button: "",
+      link: "",
     },
     {
       title: "Learn",
@@ -45,6 +47,7 @@ const Volunteer = () => {
       lower: "Get your certificate",
       arrow: "/arrow 1.png",
       button: "",
+      link: "/account?tab=volunteer-force",
     },
 
     {
@@ -56,6 +59,7 @@ const Volunteer = () => {
       lower: "",
       arrow: "",
       button: "",
+      link: "",
     },
   ];
 
@@ -130,7 +134,7 @@ const Volunteer = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
+                  {content.map(({ img, parag, lower, arrow, title, item, link }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSection
@@ -140,6 +144,7 @@ const Volunteer = () => {
                           lower={lower}
                           parag={parag}
                           arrow={arrow}
+                          link={link}
                           key={ind}
                         />
                       </div>
