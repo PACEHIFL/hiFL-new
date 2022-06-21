@@ -2,13 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpt } }) => {
+const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpt, Type } }) => {
   const router = useRouter();
   const path = router.pathname;
   return (
     <div className="flex flex-col md:flex-row gap-8 border-b border-[#D0D0D0] text-secondary pb-8 font-redhat">
-      <div className="w-full md:w-[40%]">
+      <div className="w-full md:w-[40%] relative">
         <img src={CoverImage?.url} alt={Title} className="w-full" />
+        {Type == "Video" && (
+          <img src="/play.png" alt="" className="w-[30px] absolute top-0 bottom-0 left-0 right-0 m-auto" />
+        )}
       </div>
       <div className="w-full md:w-[60%] space-y-3">
         <div>

@@ -28,9 +28,9 @@ const PaymentDetails = ({ addressInfo: { shipToAddress, address, state, lga, nea
       PhoneNumber: phoneNumber,
       ShipingOption: shipToAddress,
       Total: total,
-      items: [...cartItems],
+      Items: [...cartItems],
     };
-    console.log(payload);
+    //console.log(payload);
   };
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>

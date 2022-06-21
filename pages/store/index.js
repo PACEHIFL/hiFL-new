@@ -8,6 +8,7 @@ const Store = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filterCategory, setFilterCategory] = useState("");
+  const [postNumber, setPostNumber] = useState(9);
 
   const baseURL = process.env.CMS_URL;
   const { data, loading } = useFetch(`${baseURL}/products?populate=*`);
@@ -22,6 +23,9 @@ const Store = () => {
 
     const newProducts = products?.filter((product) => product.Category == category);
     setFilteredProducts(newProducts);
+  };
+  const handleShowMore = () => {
+    setPostNumber(postNumber + 9);
   };
 
   useEffect(() => {
@@ -88,10 +92,17 @@ const Store = () => {
             {filteredProducts.length} {filterCategory} found
           </p>
         )}
-        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
-          {filteredProducts?.map((product, i) => (
+        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] place-items-center grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
+          {filteredProducts?.slice(0, postNumber).map((product, i) => (
             <ProductCard product={product} key={i} />
           ))}
+        </div>
+        <div className="flex justify-center items-center">
+          {filteredProducts.length > 9 && postNumber < filteredProducts.length && (
+            <button className="btn btn-primary btn-wide normal-case text-white text-sm mt-6" onClick={handleShowMore}>
+              Load More
+            </button>
+          )}
         </div>
       </div>
     </StoreLayout>
