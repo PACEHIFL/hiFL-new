@@ -44,7 +44,7 @@ const SingleProduct = () => {
           <div className="h-[400px] flex justify-center items-center">
             <BeatLoader loading={loading} color="#000229" />
           </div>
-        ) : error ? (
+        ) : error?.status == 400 ? (
           <div className="h-[400px] flex flex-col justify-center items-center">
             <h2 className="font-bold text-xl lg:text-3xl text-[#000229]">OOPS! Product Not Found</h2>
             <Link href="/store">
