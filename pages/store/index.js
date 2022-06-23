@@ -3,6 +3,7 @@ import StoreLayout from "../../components/layout/StoreLayout";
 import Link from "next/link";
 import ProductCard from "../../components/store/ProductCard";
 import useFetch from "../../hooks/useFetch";
+import Skeleton from "react-loading-skeleton";
 
 const Store = () => {
   const [products, setProducts] = useState([]);
@@ -93,9 +94,21 @@ const Store = () => {
           </p>
         )}
         <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] place-items-center grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
-          {filteredProducts?.slice(0, productNumber).map((product, i) => (
-            <ProductCard product={product} key={i} />
-          ))}
+          {loading ? (
+            <>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+            </>
+          ) : (
+            filteredProducts?.slice(0, productNumber).map((product, i) => <ProductCard product={product} key={i} />)
+          )}
         </div>
         <div className="flex justify-center items-center">
           {filteredProducts.length > 9 && productNumber < filteredProducts.length && (
