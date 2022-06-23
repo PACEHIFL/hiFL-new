@@ -54,9 +54,13 @@ const Footer = () => {
           </div>
           <div className="w-full flex flex-col items-center lg:items-start">
             <h2 className="font-bold mb-5 text-lg">Organizers</h2>
-            <div className="flex gap-4">
-              <Image src="/nuga-logo.png" alt="Nuga Logo" width={93} height={76} />
-              <Image src="/pace-logo.png" alt="Pace Logo" width={152} height={76} />
+            <div className="flex gap-4 ">
+              <a href="https://nuga.com.ng" target="_blank">
+                <Image src="/nuga-logo.png" alt="Nuga Logo" width={93} height={76} className="cursor-pointer" />
+              </a>
+              <a href="https://psemltd.com" target="_blank">
+                <Image src="/pace-logo.png" alt="Pace Logo" width={152} height={76} className="cursor-pointer" />
+              </a>
             </div>
           </div>
         </div>
