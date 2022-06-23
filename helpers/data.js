@@ -417,16 +417,16 @@ export const volunteerFAQ = [
 ];
 export const shippingOption = [
   { option: "Pickup", price: 0, timeline: "5 working days", coverage: [] },
-  { option: "Within Lagos", price: 1500, timeline: "7 - 10 working days", coverage: [] },
+  { option: "Within Lagos", price: 2000, timeline: "7 - 10 working days", coverage: [] },
   {
     option: "South-West",
-    price: 2500,
+    price: 3000,
     timeline: "7 - 14 working days",
     coverage: ["Oyo", "Ogun", "Ondo", "Osun", "Ekiti"],
   },
   {
     option: "South-East",
-    price: 3100,
+    price: 3500,
     timeline: "11 - 17 working days",
     coverage: [
       "Abia",
@@ -444,7 +444,7 @@ export const shippingOption = [
   },
   {
     option: "South-South",
-    price: 3100,
+    price: 3500,
     timeline: "11 - 17 working days",
     coverage: [
       "Abia",
@@ -462,7 +462,7 @@ export const shippingOption = [
   },
   {
     option: "North",
-    price: 3500,
+    price: 4000,
     timeline: "11 - 17 working days",
     coverage: [
       "Benue",

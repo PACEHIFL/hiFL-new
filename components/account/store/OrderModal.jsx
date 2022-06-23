@@ -3,6 +3,11 @@ import Moment from "react-moment";
 import { formatMoney } from "../../../helpers/utils";
 
 const OrderModal = ({ singleOrder: { OrderRef, OrderStatus, OrderDate, OrderItems, Total, ShippingOption } }) => {
+  const customizationFee = OrderItems?.reduce(function (acc, item) {
+    const fee = item.Customization.JerseyName || item.Customization.jerseyNumber ? 2000 * item.Quantity : 0;
+    return acc + fee;
+  }, 0);
+
   return (
     <div>
       <div className="flex justify-end">
@@ -79,6 +84,7 @@ const OrderModal = ({ singleOrder: { OrderRef, OrderStatus, OrderDate, OrderItem
 
       <div className="flex justify-end mt-4 text-right">
         <div className="space-y-1">
+          {customizationFee > 0 && <p>Customization Fee: {formatMoney(customizationFee)}</p>}
           <p>Sub-Total: {formatMoney(Total?.$numberDecimal - ShippingOption?.ShippingFee.$numberDecimal)}</p>
           <p>Shipping Fee: {formatMoney(ShippingOption?.ShippingFee.$numberDecimal)}</p>
           <p className="font-semibold underline underline-offset-2">Total: {formatMoney(Total?.$numberDecimal)}</p>

@@ -99,8 +99,8 @@ const cartSlice = createSlice({
     },
     [placeOrder.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.removeItem("cart");
-      state.cart = null;
+      localStorage.setItem("cart", JSON.stringify([]));
+      state.cart = [];
     },
     [placeOrder.rejected]: (state, action) => {
       state.loading = false;

@@ -61,6 +61,8 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
     }
   }, [cart]);
 
+  console.log(cartItems);
+
   return (
     <div className="max-w-5xl mx-auto flex justify-center h-14">
       {/* {activeTab !== null && ( */}
