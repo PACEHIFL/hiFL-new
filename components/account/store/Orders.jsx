@@ -1,75 +1,99 @@
-import React from "react";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { isLoggedIn } from "../../../redux/features/auth.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrders } from "../../../redux/features/cart.slice";
+import Moment from "react-moment";
+import { BeatLoader } from "react-spinners";
+import OrderModal from "./OrderModal";
 
 const Orders = () => {
-  const orderHistory = [
-    {
-      img: "/hifl-ball.png",
-      name: "HiFL Official Fan Football Coloured Strip",
-      link: "#",
-      orderId: "2345897",
-      status: "order in progress",
-      datedelivered: "",
-      expectedDelivery: ["24-04-2022", "29-04-2022"],
-    },
-    {
-      img: "/hifl-cap.png",
-      name: "HiFL Red Crest Cap",
-      link: "#",
-      orderId: "2804897",
-      status: "delivered",
-      datedelivered: "24-04-2022",
-      expectedDelivery: null,
-    },
-    {
-      img: "/hifl-cap.png",
-      name: "HiFL Red Crest Cap",
-      link: "#",
-      orderId: "2804897",
-      status: "delivered",
-      datedelivered: "24-04-2022",
-      expectedDelivery: null,
-    },
-  ];
-  return (
-    <div className="flex flex-col gap-2 font-redhat">
-      {orderHistory.map(({ img, name, link, orderId, status, datedelivered, expectedDelivery }, i) => (
-        <div
-          key={i}
-          className="flex flex-col md:flex-row items-center gap-3 md:gap-6 px-4 md:px-6 py-4 border border-[#F4F4F4]">
-          <div className="flex justify-center mx-auto w-full md:w-[100px]">
-            <img src={img} alt={name} className="" />
-          </div>
+  const [userId, setUserId] = useState("");
+  const [orders, setOrders] = useState([]);
+  const [singleOrder, setSingleOrder] = useState({});
+  const dispatch = useDispatch();
+  const { ordersLoading } = useSelector((state) => state.cart);
 
-          <div className="w-full space-y-1">
-            <div className="flex justify-between items-center">
-              <h3 className="text-sm md:text-base">{name}</h3>
-              <Link href={link}>
-                <a className="text-accent uppercase text-sm hidden lg:block">See details</a>
-              </Link>
-            </div>
-            <p className="text-[#7E7E7E] text-sm md:text-base">Order {orderId}</p>
-            <p
-              className={`${
-                status == "order in progress" ? "bg-[#0D6C8C]" : status == "delivered" ? "bg-[#00AB11]" : "bg-accent"
-              } inline-flex px-2 text-white text-sm uppercase rounded`}>
-              {status}
-            </p>
-            <div className="text-sm md:text-base">
-              {datedelivered && <p>On {datedelivered}</p>}
-              {expectedDelivery && (
-                <p>
-                  Expected delivery between {expectedDelivery[0]} and {expectedDelivery[1]}
-                </p>
-              )}
-            </div>
-            <Link href={link}>
-              <a className="text-accent uppercase text-sm lg:hidden">See details</a>
-            </Link>
-          </div>
+  const getOrders = (userId) => dispatch(fetchOrders({ userId, setOrders }));
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      const userId = isLoggedIn().data.User._id;
+      getOrders(userId);
+    }
+  }, []);
+
+  // console.log(singleOrder, "orders");
+  return (
+    <>
+      {ordersLoading ? (
+        <div className="h-[250px] flex justify-center items-center">
+          <BeatLoader loading={ordersLoading} color="#000229" />
         </div>
-      ))}
-    </div>
+      ) : (
+        <div className="flex flex-col gap-2 font-redhat">
+          {orders?.data?.map((item, i) => (
+            <div
+              key={i}
+              className="flex flex-col md:flex-row items-center gap-3 md:gap-6 px-4 md:px-6 py-4 border border-[#F4F4F4]">
+              <div className="flex justify-center mx-auto w-full md:w-[100px]">
+                <img src={item.OrderItems[0].CoverImage?.url} alt={item.Title} className="" />
+              </div>
+
+              <div className="w-full space-y-1">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-sm md:text-base">Order Ref: {item.OrderRef}</h3>
+
+                  <label
+                    className="text-accent uppercase text-sm hidden lg:block modal-button cursor-pointer"
+                    htmlFor="order-modal"
+                    onClick={() => setSingleOrder(item)}>
+                    See details
+                  </label>
+                </div>
+                <p className="text-[#7E7E7E] text-sm md:text-base">
+                  Date Placed: <Moment format="MM-DD-YYYY" date={item.OrderDate} />
+                </p>
+                <p
+                  className={`${
+                    item.OrderStatus == "PROCESSING"
+                      ? "bg-[#0D6C8C]"
+                      : item.OrderStatus == "PENDING"
+                      ? "bg-warning"
+                      : item.OrderStatus == "DELIVERED"
+                      ? "bg-[#00AB11]"
+                      : "bg-accent"
+                  } inline-flex px-2 text-white text-sm uppercase rounded`}>
+                  {item.OrderStatus}
+                </p>
+                <div className="text-sm md:text-base">
+                  {item.datedelivered && <p>On {item.datedelivered}</p>}
+                  {item.expectedDelivery && (
+                    <p>
+                      Expected delivery between {item.expectedDelivery[0]} and {item.expectedDelivery[1]}
+                    </p>
+                  )}
+                </div>
+
+                <label
+                  className="text-accent uppercase text-sm hidden lg:hidden modal-button cursor-pointer"
+                  htmlFor="order-modal">
+                  See details
+                </label>
+              </div>
+            </div>
+          ))}
+
+          {/* Modal Popup */}
+          <input type="checkbox" id="order-modal" className="modal-toggle" />
+          <label htmlFor="order-modal" className="modal cursor-pointer">
+            <label className="modal-box relative md:max-w-[80%] lg:max-w-[60%]" htmlFor="">
+              <OrderModal singleOrder={singleOrder} />
+            </label>
+          </label>
+          {/* Modal Popup */}
+        </div>
+      )}
+    </>
   );
 };
 

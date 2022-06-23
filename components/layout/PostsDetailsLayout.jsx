@@ -7,7 +7,7 @@ import FixturesBrief from "../shared/FixturesBrief";
 import LatestNews from "../shared/LatestNews";
 import ReactPlayer from "react-player";
 
-const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content, Type, Media } }) => {
+const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content, Type, Media, VideoURL } }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -58,9 +58,9 @@ const PostsDetailsLayout = ({ name, post: { Title, CoverImage, SubTitle, Content
                   />
 
                   {/* video post */}
-                  {Type == "Video" && pageLoaded && Media && (
+                  {Type == "Video" && pageLoaded && VideoURL && (
                     <ReactPlayer
-                      url={Media?.[0].url}
+                      url={VideoURL}
                       controls={true}
                       // light={CoverImage.url}
                       width="100%"

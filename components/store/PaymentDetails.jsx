@@ -1,60 +1,77 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getCart } from "../../redux/features/cart.slice";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart, placeOrder } from "../../redux/features/cart.slice";
+import { isLoggedIn } from "../../redux/features/auth.slice";
 
-const PaymentDetails = ({ addressInfo: { shipToAddress, address, state, lga, nearestBus, phoneNumber }, total }) => {
+const PaymentDetails = ({
+  addressInfo: { shipToAddress, address, state, lga, nearestBus, phoneNumber },
+  total,
+  delivery,
+}) => {
   const [cartItems, setCartItems] = useState([]);
-
-  // console.log(payload, "final");
-
-  useEffect(() => {
-    if (getCart()) {
-      setCartItems(getCart());
-    }
-  }, []);
+  const [userId, setUserId] = useState("");
+  const { loading } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const handlePlaceOrder = () => {
     if (shipToAddress == "") {
       toast.error("Please select a shipping mode", { autoClose: 1500 });
       return;
     }
-    if (address == "") {
+    if (shipToAddress !== "Pickup" && address == "") {
       toast.error("Please fill in your address", { autoClose: 1500 });
       return;
     }
-    if (state == "") {
+    if (shipToAddress !== "Pickup" && state == "") {
       toast.error("Please fill in your state", { autoClose: 1500 });
       return;
     }
-    if (phoneNumber == "") {
+    if (shipToAddress !== "Pickup" && phoneNumber == "") {
       toast.error("Please fill in your phone number", { autoClose: 1500 });
       return;
     }
 
     //final order payload
     const payload = {
-      Address: address,
-      State: state,
-      Lga: lga,
-      NearestBusStop: nearestBus,
-      PhoneNumber: phoneNumber,
-      ShipingOption: shipToAddress,
-      Total: total,
-      Items: [...cartItems],
+      User: userId,
+      OrderItems: [...cartItems],
+      DeliveryAddress: {
+        Address: address,
+        State: state,
+        Lga: lga,
+        NearestBusStop: nearestBus,
+        PhoneNumber: phoneNumber,
+      },
+      ShippingOption: { ShippingName: shipToAddress, ShippingFee: delivery.toFixed(2) },
+
+      Total: total.toFixed(2),
     };
-    //console.log(payload);
+    dispatch(placeOrder({ payload, toast, router }));
   };
+
+  useEffect(() => {
+    if (getCart()) {
+      setCartItems(getCart());
+    }
+    if (isLoggedIn()) {
+      setUserId(isLoggedIn().data.User._id);
+    }
+  }, []);
+
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>
       <summary className="flex justify-between items-center pb-1 list-none cursor-pointer">
-        <h2 className="text-sm font-semibold uppercase">Payment Details</h2>
-        <span className="w-5 h-5 bg-warning"></span>
+        <h2 className="text-sm font-semibold uppercase">Payment</h2>
+        <span className="w-5 h-5 bg-[#00AB11]"></span>
       </summary>
 
       <div className="border-t border-[#8C8C8C80]">
         <div className="my-10 p-6 bg-white space-y-4">
           <div>
-            <h2 className="mb-4">Please make payment to the foillowing account</h2>
+            <h2 className="mb-4">Please make payment to the following account</h2>
             <h2>
               Bank Name: <span className="font-bold">Stanbic IBTC</span>
             </h2>
@@ -62,8 +79,10 @@ const PaymentDetails = ({ addressInfo: { shipToAddress, address, state, lga, nea
               Bank Account: <span className="font-bold">0024916531</span>
             </h2>
           </div>
-          <button className="btn btn-success text-white btn-wide text-sm" onClick={handlePlaceOrder}>
-            Place Order
+          <button
+            className={`${loading && "loading"} btn btn-success text-white btn-wide text-sm`}
+            onClick={handlePlaceOrder}>
+            {loading ? "" : "Place Order"}
           </button>
         </div>
       </div>

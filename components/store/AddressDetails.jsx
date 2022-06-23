@@ -1,11 +1,11 @@
 import React from "react";
 
-const AddressDetails = ({ addressInfo, handleChange }) => {
+const AddressDetails = ({ addressInfo: { address, state, lga, nearestBus, phoneNumber }, handleChange }) => {
   return (
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>
       <summary className="flex justify-between items-center pb-1 list-none cursor-pointer">
         <h2 className="text-sm font-semibold uppercase">Address Details</h2>
-        <span className="w-5 h-5 bg-warning"></span>
+        <span className={`w-5 h-5 ${address && state && phoneNumber ? "bg-[#00AB11]" : "bg-warning"}`}></span>
       </summary>
 
       <div className="border-t border-[#8C8C8C80]">
@@ -15,7 +15,7 @@ const AddressDetails = ({ addressInfo, handleChange }) => {
             <input
               name="address"
               type="text"
-              value={addressInfo.address}
+              value={address}
               onChange={handleChange}
               className="w-full md:w-8/12 text-sm text-[#8C8C8C] focus:outline-none border-b"
             />
@@ -25,7 +25,7 @@ const AddressDetails = ({ addressInfo, handleChange }) => {
             <input
               name="state"
               type="text"
-              value={addressInfo.state}
+              value={state}
               onChange={handleChange}
               className="w-full md:w-8/12 text-sm text-[#8C8C8C] focus:outline-none border-b"
             />
@@ -35,7 +35,7 @@ const AddressDetails = ({ addressInfo, handleChange }) => {
             <input
               name="lga"
               type="text"
-              value={addressInfo.lga}
+              value={lga}
               onChange={handleChange}
               className="w-full md:w-8/12 text-sm text-[#8C8C8C] focus:outline-none border-b"
             />
@@ -45,7 +45,7 @@ const AddressDetails = ({ addressInfo, handleChange }) => {
             <input
               name="nearestBus"
               type="text"
-              value={addressInfo.nearestBus}
+              value={nearestBus}
               onChange={handleChange}
               className="w-full md:w-8/12 text-sm text-[#8C8C8C] focus:outline-none border-b"
             />
@@ -55,7 +55,7 @@ const AddressDetails = ({ addressInfo, handleChange }) => {
             <input
               name="phoneNumber"
               type="text"
-              value={addressInfo.phoneNumber}
+              value={phoneNumber}
               onChange={handleChange}
               className="w-full md:w-8/12 text-sm text-[#8C8C8C] focus:outline-none border-b"
             />

@@ -7,7 +7,7 @@ const SideMenu = () => {
   const path = router.query.tab;
   const menuItems = [
     { name: "Profile", link: undefined },
-    // { name: "Store", link: "store" },
+    { name: "Store", link: "store" },
     { name: "Volunteer Force", link: "volunteer-force" },
     // { name: "Unifest", link: "unifest" },
     // { name: "Predict & Win", link: "predict&win" },
