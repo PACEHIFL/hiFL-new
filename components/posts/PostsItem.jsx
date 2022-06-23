@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpt, Type } }) => {
+const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpts, Type } }) => {
   const router = useRouter();
   const path = router.pathname;
   return (
@@ -15,11 +15,11 @@ const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpt, Type } })
       </div>
       <div className="w-full md:w-[60%] space-y-3">
         <div>
-          <h2 className="text-xl 2xl:text-2xl mb-1">{Title}</h2>
+          <h2 className="text-xl 2xl:text-2xl mb-1 font-semibold">{Title}</h2>
           {SubTitle && <h3 className="text-accent text-sm md:text-base mb-3">{SubTitle}</h3>}
-          <div
-            dangerouslySetInnerHTML={{ __html: Excerpt }}
-            className="text-base 2xl:text-xl text-secondary font-redhat max-w-[90%]"></div>
+          <p className="text-base 2xl:text-xl text-secondary font-redhat max-w-[90%]">
+            {Excerpts?.substring(0, 200)}...
+          </p>
         </div>
 
         <div>
