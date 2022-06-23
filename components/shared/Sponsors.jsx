@@ -7,7 +7,7 @@ const Sponsors = () => {
   const { data, loading } = useFetch(`${baseURL}/sponsors?populate=*`);
 
   if (loading) {
-    return <Skeleton height={400} />;
+    return <Skeleton height={150} />;
   }
 
   return (

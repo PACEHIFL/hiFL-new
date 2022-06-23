@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import useFetch from "../../hooks/useFetch";
 
 const HighlightsCard = () => {
@@ -10,7 +10,11 @@ const HighlightsCard = () => {
   );
 
   if (loading) {
-    return <Skeleton height={400} />;
+    return (
+      <SkeletonTheme baseColor="#ebe9e9" highlightColor="#f9f7f7">
+        <Skeleton height={400} />
+      </SkeletonTheme>
+    );
   }
 
   return (

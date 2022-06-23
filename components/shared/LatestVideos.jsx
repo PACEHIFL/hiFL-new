@@ -31,17 +31,22 @@ const LatestVideos = () => {
           <Link href={`/videos/${data?.data[0].id}`}>
             <a className="w-full  h-[300px] md:h-auto md:w-1/2">
               <div
-                className="bg-cover h-[60%] flex justify-center items-center"
+                className="bg-cover h-[70%] flex justify-center items-center"
                 style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }}>
                 <img src="/play.png" alt="" className="w-[50px]" />
               </div>
-              <div className="h-[40%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
+              <div className="h-[30%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
                 <div className="text-white px-6">
-                  <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
-                  <div
+                  <h2 className="text-lg font-bold mb-1">{data?.data[0].Title}</h2>
+                  {/* <div
                     className="text-sm font-extralight pt-1 max-w-[70%]"
                     dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
-                  />
+                  /> */}
+                  {data?.data[0].Excepts && (
+                    <p className="text-sm font-extralight pt-1 max-w-[70%]">
+                      {data?.data[0].Excepts?.substring(0, 100)}...
+                    </p>
+                  )}
                 </div>
               </div>
             </a>
@@ -64,7 +69,7 @@ const LatestVideos = () => {
                     <img src={CoverImage?.url} alt="" className="w-full object-cover" />
                     <img src="/play.png" alt="" className="w-[30px] absolute top-0 bottom-0 left-0 right-0 m-auto" />
                   </div>
-                  <p className="text-xs text-left font-extralight pt-1">{Title}</p>
+                  <p className="text-xs text-left font-extralight pt-1">{Title.substring(0, 60)}...</p>
                 </a>
               </Link>
             ))

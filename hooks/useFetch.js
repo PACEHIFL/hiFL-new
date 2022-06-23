@@ -12,11 +12,11 @@ const useFetch = (url) => {
 
       await axios(url)
         .then((res) => {
-          setData(res.data);
+          setData(res?.data);
           setLoading(false);
         })
         .catch((err) => {
-          setError(err.response.data);
+          setError(err?.response?.data);
           setLoading(false);
         });
     };

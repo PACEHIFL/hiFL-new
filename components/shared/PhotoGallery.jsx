@@ -30,14 +30,19 @@ const PhotoGallery = () => {
         ) : (
           <Link href={`/gallery/${data?.data[0].id}`}>
             <a className="w-full h-[300px] md:h-auto md:w-1/2">
-              <div className="bg-cover h-[60%]" style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }} />
-              <div className="h-[40%] bg-[url('/gallery-bg.png')] bg-cover flex items-center">
+              <div className="bg-cover h-[70%]" style={{ backgroundImage: `url(${data?.data[0].CoverImage.url})` }} />
+              <div className="h-[30%] bg-[url('/gallery-bg.png')] bg-cover flex items-center">
                 <div className="text-white px-6">
-                  <h2 className="text-lg font-bold mb-2">{data?.data[0].Title}</h2>
-                  <div
+                  <h2 className="text-lg font-bold mb-1">{data?.data[0].Title}</h2>
+                  {/* <div
                     className="text-sm font-extralight pt-1 max-w-[70%]"
                     dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
-                  />
+                  /> */}
+                  {data?.data[0].Excerpts && (
+                    <p className="text-sm font-extralight pt-1 max-w-[70%]">
+                      {data?.data[0].Excerpts?.substring(0, 100)}...
+                    </p>
+                  )}
                 </div>
               </div>
             </a>
@@ -59,7 +64,7 @@ const PhotoGallery = () => {
                   <div className="w-1/2 md:w-full">
                     <img src={CoverImage?.url} alt="" className="w-full object-cover" />
                   </div>
-                  <p className="text-xs text-left font-extralight pt-1">{Title}</p>
+                  <p className="text-xs text-left font-extralight pt-1">{Title.substring(0, 60)}...</p>
                 </a>
               </Link>
             ))
