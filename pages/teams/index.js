@@ -1,12 +1,13 @@
 import React from "react";
 import AllTeams from "../../components/teams/AllTeams";
 import axios from "axios";
+import { DatabaseIcon } from "@heroicons/react/outline";
 
-const index = ({ data, allSeasons }) => {
+const index = ({ settings, allSeasons, seasons }) => {
 
   return (
     <div>
-      <AllTeams data={data} allSeasons={allSeasons} />
+      <AllTeams settings={settings} seasons={seasons} />
     </div>
   );
 };
@@ -16,22 +17,22 @@ export default index;
 export async function getStaticProps() {
   try {
     const baseURL = process.env.BASE_URL;
-    const { data, errors } = await axios(`${baseURL}/teams/all/`);
-    const { data: allSeasons } = await axios(`${baseURL}/leagues/seasons`);
+    const { data, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
+    const { data: seasons } = await axios(`${baseURL}/leagues/seasons/`);
 
+    console.log(seasons)
 
-    if (errors || !data) {
+    if (errors || !DatabaseIcon) {
       return { notFound: true };
     }
 
     return {
       props: {
-        data: data.data,
-        allSeasons
+        settings: data.data,
+        seasons: seasons.data
       },
     };
   } catch (error) {
     return { notFound: true };
   }
-
 }

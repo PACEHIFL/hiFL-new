@@ -6,7 +6,7 @@ import Image from "next/image";
 import FixturesCard from "./FixturesCard";
 import Filter from "./Filter";
 
-const Results = () => {
+const Results = ({ data, loading }) => {
   return (
     <div className="font-redhat">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mb-10">
@@ -15,7 +15,7 @@ const Results = () => {
         <Filter title="Select Stage" />
       </div>
 
-      {/* <FixturesCard /> */}
+      {/* <FixturesCard /> */}  
       <h1 className="mb-10 text-2xl">No Result Available yet</h1>
 
       <div className="w-full lg:w-8/12 xl:w-9/12">
