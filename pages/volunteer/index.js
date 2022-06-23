@@ -24,7 +24,7 @@ const Volunteer = () => {
     },
     {
       title: "Grow",
-      img: "/fem-volunteers.png",
+      img: "/fem-volunteerss.jpg",
       item: [
         { list: "Career advancement opportunities including internship and workplace prep" },
         { list: "Access to our extensive resource library for skills such as leadership,team bulding, marketing etc." },
@@ -52,7 +52,7 @@ const Volunteer = () => {
 
     {
       title: "Gain",
-      img: "/fem-volunteers.png",
+      img: "/fem-volunteerss.jpg",
       item: "",
       parag:
         "Benefits including certificates, branded souvenirs/mechandise,exclusive promotional giveaways, backstage passes to special events",
