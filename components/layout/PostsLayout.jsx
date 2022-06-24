@@ -27,7 +27,7 @@ const PostsLayout = ({ name, posts }) => {
                     <button
                       className="btn btn-primary btn-wide normal-case text-white text-sm mt-6"
                       onClick={handleShowMore}>
-                      Show More
+                      Load More
                     </button>
                   )}
                 </div>

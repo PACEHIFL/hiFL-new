@@ -10,13 +10,13 @@ const ShippingDetails = ({ addressInfo, shippingOption, handleChange }) => {
     <details className="px-3 py-5 bg-[#F9F7F7] font-redhat text-secondary" open>
       <summary className="flex justify-between items-center pb-1 list-none cursor-pointer">
         <h2 className="text-sm font-semibold uppercase">Delivery/Shipping Details</h2>
-        <span className="w-5 h-5 bg-warning"></span>
+        <span className={`w-5 h-5 ${addressInfo.shipToAddress ? "bg-[#00AB11]" : "bg-warning"}`}></span>
       </summary>
 
       <div className="border-t border-[#8C8C8C80]">
         <h3 className="mt-5 text-sm text-[#8C8C8C] font-semibold">Where do you want your order delivered?</h3>
         <div className="mt-5 mb-10 p-6 bg-white space-y-4">
-          <div className="flex  items-centergap-2">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
             <h3 className="w-full md:w-4/12 text-sm text-[#8C8C8C] font-semibold uppercase">Shipping Option</h3>
             {/* <input
               name="shipToAddress"
@@ -29,7 +29,7 @@ const ShippingDetails = ({ addressInfo, shippingOption, handleChange }) => {
               name="shipToAddress"
               value={addressInfo.shipToAddress}
               onChange={handleChange}
-              className="text-sm text-[#8C8C8C] border-b pr-2 outline-none rounded cursor-pointer">
+              className="text-sm text-[#8C8C8C] border-b outline-none rounded cursor-pointer">
               <option value="" disabled>
                 Select shipping option
               </option>
@@ -48,6 +48,19 @@ const ShippingDetails = ({ addressInfo, shippingOption, handleChange }) => {
             <h3 className="w-full md:w-4/12 text-sm text-[#8C8C8C] font-semibold uppercase">Delivery Timeline</h3>
             <p className="w-full md:w-8/12 text-sm text-[#8C8C8C]">{handleSelected()?.timeline}</p>
           </div>
+          {handleSelected()?.coverage.length > 0 && (
+            <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+              <h3 className="w-full md:w-4/12 text-sm text-[#8C8C8C] font-semibold uppercase">Coverage Area</h3>
+              <div className="w-full md:w-8/12 text-sm text-[#8C8C8C] flex flex-wrap gap-1">
+                {handleSelected()?.coverage.map((area, i) => (
+                  <p className="" key={i}>
+                    {area}
+                    {i < handleSelected()?.coverage.length - 1 && ","}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </details>

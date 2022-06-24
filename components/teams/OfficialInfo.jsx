@@ -3,7 +3,7 @@ import React from 'react'
 const OfficialInfo = ({ data }) => {
 
     return (
-        <div className="border rounded-md py-2 mb-5 w-[50%]">
+        <div className="border rounded-md py-2 mb-5 md:w-[50%]">
             <h4 className="font-bold pl-4 pb-2">{data?.Position ? data?.Position : "Position"} </h4>
             <hr />
             <span className=" pl-4 pt-2 block capitalize"> {`${data?.User?.Firstname} ${data?.User?.Lastname}`} </span>

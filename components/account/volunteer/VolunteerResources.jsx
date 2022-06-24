@@ -6,7 +6,7 @@ import PostsSkelenton from "../../posts/PostsSkelenton";
 const VolunteerResources = () => {
   const baseURL = process.env.CMS_URL;
   const { data, loading } = useFetch(
-    `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Blog&populate=*`
+    `${baseURL}/posts?sort=PublishDate:DESC&filters[$and][0][categories][CategoryName][$eq]=Volunteer&populate=*`
   );
 
   return (
@@ -16,15 +16,12 @@ const VolunteerResources = () => {
           <PostsSkelenton />
           <PostsSkelenton />
           <PostsSkelenton />
-          <PostsSkelenton />
-          <PostsSkelenton />
-          <PostsSkelenton />
         </>
       ) : (
         data?.data.slice(0, 6).map(({ id, Title, CoverImage, SubTitle, Excerpt }, i) => (
           <div key={i}>
             <img src={CoverImage?.url} alt={Title} className="w-full" />
-            {SubTitle && <h3 className="text-accent italic text-sm pt-1">{SubTitle}</h3>}
+            {/* {SubTitle && <h3 className="text-accent italic text-sm pt-1">{SubTitle}</h3>} */}
             <h2 className="py-2">{Title}</h2>
             <Link href={`/blog/${id}`}>
               <a>
