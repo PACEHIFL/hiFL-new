@@ -5,18 +5,22 @@ import LatestVideos from "../shared/LatestVideos";
 import Sponsors from "../shared/Sponsors";
 import OfficialInfo from "./OfficialInfo";
 import axios from "axios";
+import { BeatLoader } from "react-spinners";
 
-const Overview = ({ data: { Overview, _id } }) => {
+const Overview = ({ data: { Overview, _id }, loading }) => {
   const [officials, setOfficiails] = useState();
+  console.log(_id)
 
-  useEffect(() => {
-    const fetchData = async () => {
+   const fetchData = async () => {
       const baseURL = process.env.BASE_URL;
       const { data } = await axios(`${baseURL}/officials/?Team=${_id}`);
-      setOfficiails(data.data);
+      setOfficiails(data?.data);
     };
 
-    fetchData().catch(console.error);
+  useEffect(() => {
+    if(_id) {
+      fetchData();
+    }
   }, [_id]);
 
   return (
@@ -26,13 +30,19 @@ const Overview = ({ data: { Overview, _id } }) => {
           <h1 className="text-base md:text-xl w-[80%] pb-6 leading-7">{Overview}</h1>
           <div className="mb-10">
             <h1 className="font-bold text-4xl pb-4">Officials</h1>
-            {officials ? (
+
+            {loading && (
+              <div className="h-[400px] flex justify-center items-center">
+                <BeatLoader loading={loading} color="#000229" />
+              </div>
+            )}
+
+            {officials?.length !== 0 ? 
               officials?.map((official, idx) => <OfficialInfo data={official} key={idx} />)
-            ) : (
-              <h1> Loading... </h1>
+            : (
+              <h1> No officials yet... </h1>
             )}
           </div>
-
           <hr />
 
           <LatestNews />

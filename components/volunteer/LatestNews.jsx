@@ -24,7 +24,7 @@ const LatestNews = () => {
 
         <div className="flex flex-col gap-5 text-sm font-redhat justify-end h-auto border-t border-[#D0D0D0] pt-5 mt-5">
           {data?.data.slice(0, 3).map(({ id, Title, CoverImage, categories, Excerpt }, i) => (
-            <Link href="#" key={i}>
+            <Link href={`/news/${id}`} key={i}>
               <a className="flex gap-3 items-center" key={i}>
                 <div className="w-5/12">
                   <img src={CoverImage?.url} alt={Title} />

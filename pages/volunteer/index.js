@@ -20,10 +20,11 @@ const Volunteer = () => {
       lower: "Join now",
       arrow: "/arrow 1.png",
       button: "",
+      link: "/account?tab=volunteer-force",
     },
     {
       title: "Grow",
-      img: "/fem-volunteers.png",
+      img: "/fem-volunteerss.jpg",
       item: [
         { list: "Career advancement opportunities including internship and workplace prep" },
         { list: "Access to our extensive resource library for skills such as leadership,team bulding, marketing etc." },
@@ -32,6 +33,7 @@ const Volunteer = () => {
       lower: "",
       arrow: "",
       button: "",
+      link: "",
     },
     {
       title: "Learn",
@@ -45,17 +47,19 @@ const Volunteer = () => {
       lower: "Get your certificate",
       arrow: "/arrow 1.png",
       button: "",
+      link: "/account?tab=volunteer-force",
     },
 
     {
       title: "Gain",
-      img: "/fem-volunteers.png",
+      img: "/fem-volunteerss.jpg",
       item: "",
       parag:
         "Benefits including certificates, branded souvenirs/mechandise,exclusive promotional giveaways, backstage passes to special events",
       lower: "",
       arrow: "",
       button: "",
+      link: "",
     },
   ];
 
@@ -130,7 +134,7 @@ const Volunteer = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
+                  {content.map(({ img, parag, lower, arrow, title, item, link }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSection
@@ -140,6 +144,7 @@ const Volunteer = () => {
                           lower={lower}
                           parag={parag}
                           arrow={arrow}
+                          link={link}
                           key={ind}
                         />
                       </div>

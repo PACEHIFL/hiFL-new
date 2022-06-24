@@ -28,8 +28,6 @@ const Cart = () => {
     }
   }, [orderInfo]);
 
-  console.log(cartItems);
-
   return (
     <StoreLayout name="cart">
       <div className="font-redhat text-secondary">

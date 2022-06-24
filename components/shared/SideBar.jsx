@@ -12,7 +12,7 @@ const SideBar = () => {
       </div>
       <div>{/* <FeaturedCoach /> */}</div>
       <div>
-        <SquareBanner />
+        {/* <SquareBanner /> */}
       </div>
       <div>{/* <FeaturedSchool /> */}</div>
     </div>

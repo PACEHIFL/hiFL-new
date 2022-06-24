@@ -3,11 +3,13 @@ import StoreLayout from "../../components/layout/StoreLayout";
 import Link from "next/link";
 import ProductCard from "../../components/store/ProductCard";
 import useFetch from "../../hooks/useFetch";
+import Skeleton from "react-loading-skeleton";
 
 const Store = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filterCategory, setFilterCategory] = useState("");
+  const [productNumber, setProductNumber] = useState(9);
 
   const baseURL = process.env.CMS_URL;
   const { data, loading } = useFetch(`${baseURL}/products?populate=*`);
@@ -22,6 +24,9 @@ const Store = () => {
 
     const newProducts = products?.filter((product) => product.Category == category);
     setFilteredProducts(newProducts);
+  };
+  const handleShowMore = () => {
+    setProductNumber(productNumber + 9);
   };
 
   useEffect(() => {
@@ -88,10 +93,29 @@ const Store = () => {
             {filteredProducts.length} {filterCategory} found
           </p>
         )}
-        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
-          {filteredProducts?.map((product, i) => (
-            <ProductCard product={product} key={i} />
-          ))}
+        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] place-items-center grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
+          {loading ? (
+            <>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+            </>
+          ) : (
+            filteredProducts?.slice(0, productNumber).map((product, i) => <ProductCard product={product} key={i} />)
+          )}
+        </div>
+        <div className="flex justify-center items-center">
+          {filteredProducts.length > 9 && productNumber < filteredProducts.length && (
+            <button className="btn btn-primary btn-wide normal-case text-white text-sm mt-6" onClick={handleShowMore}>
+              Load More
+            </button>
+          )}
         </div>
       </div>
     </StoreLayout>

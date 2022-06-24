@@ -20,7 +20,7 @@ const LatestNews = () => {
           </a>
         </Link>
       </div>
-      <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 justify-between">
         {loading ? (
           <>
             <PostsSkelenton />
@@ -28,19 +28,21 @@ const LatestNews = () => {
             <PostsSkelenton />
           </>
         ) : (
-          data?.data?.slice(0, 3).map(({ id, Title, CoverImage, categories, Excerpt }, i) => (
+          data?.data?.slice(0, 3).map(({ id, Title, CoverImage, categories, Excerpts }, i) => (
             <Link href={`/news/${id}`} key={i}>
               <a className="w-full rounded transition-transform hover:bg-[#f1f1f1] p-2 flex flex-col justify-between">
                 <div>
-                  <img src={CoverImage.url} alt={Title} className="w-[300px] h-[200px] object-cover rounded-t" />
+                  <img src={CoverImage.url} alt={Title} className="w-full h-auto object-cover rounded-t" />
                   {/* <h3 className="text-accent font-bold italic text-xs py-1">{categories[0].CategoryName}</h3> */}
-                  <h2 className="text-sm font-semibold truncate w-[300px]" title={Title}>
-                    {Title}
+                  <h2 className="text-sm font-semibold mt-1" title={Title}>
+                    {Title.substring(0, 80)}...
                   </h2>
                 </div>
-                <div
-                  dangerouslySetInnerHTML={{ __html: Excerpt }}
-                  className="text-[#000229] text-xs font-extralight font-redhat pt-1 w-[300px]"></div>
+                {Excerpts && (
+                  <p className="text-[#000229] text-xs font-extralight font-redhat pt-1 w-[300px]">
+                    {Excerpts?.substring(0, 100)}...
+                  </p>
+                )}
               </a>
             </Link>
           ))

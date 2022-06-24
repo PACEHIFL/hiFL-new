@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { isLoggedIn } from "../../redux/features/auth.slice";
 
@@ -39,7 +39,7 @@ const Account = () => {
               <SideMenu />
             </div>
             {isProfile && <Profile />}
-            {/* {isStore && <Store />} */}
+            {isStore && <Store />}
             {isVolunteer && <VolunteerForce />}
             {/* {isUnifest && <Unifest />}
             {isPredict && <PredictAndWin />} */}

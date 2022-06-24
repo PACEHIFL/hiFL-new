@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ProductCard from "../store/ProductCard";
 import useFetch from "../../hooks/useFetch";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const Store = () => {
   const baseURL = process.env.CMS_URL;
@@ -19,10 +20,25 @@ const Store = () => {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="pt-12 pb-6 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5 text-secondary">
-          {data?.data.slice(0, 4).map((product, i) => (
-            <ProductCard product={product} key={i} />
-          ))}
+        <div className="pt-12 w-full pb-6 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5 text-secondary">
+          {loading ? (
+            <SkeletonTheme baseColor="#ebe9e9" highlightColor="#f9f7f7">
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+              <div className="w-full">
+                <Skeleton height={300} />
+              </div>
+            </SkeletonTheme>
+          ) : (
+            data?.data.slice(0, 4).map((product, i) => <ProductCard product={product} key={i} />)
+          )}
         </div>
       </div>
     </div>

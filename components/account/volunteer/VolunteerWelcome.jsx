@@ -1,16 +1,58 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import SignUpModal from "./SignUpModal";
-import { isVolunteer } from "../../../redux/features/volunteer.slice";
+import { isLoggedIn } from "../../../redux/features/auth.slice";
+import useFetch from "../../../hooks/useFetch";
+import axios from "axios";
 
 const VolunteerWelcome = () => {
   const [volunteer, setVolunteer] = useState("");
+  const [applied, setApplied] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [user, setUser] = useState("");
+
+  const baseURL = process.env.BASE_URL;
+  const seasons = useFetch(`${baseURL}/settings?populate=*`)?.data?.data;
+  const currentSeasonID = seasons?.[0]?.CurrentSeason._id;
+
+  const fetchData = async () => {
+    await axios(`${baseURL}/volunteers/volunteer?User=${user.User._id}`, {
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => {
+        setVolunteer(res.data);
+      })
+      .catch((err) => {
+        setShowSignup(true);
+      });
+  };
+
+  const hasApplied = () => {
+    if (volunteer.data.Participations?.[0]?.Season == currentSeasonID) {
+      setShowSignup(true);
+      setApplied(true);
+    } else {
+      setShowSignup(true);
+    }
+  };
 
   useEffect(() => {
-    if (isVolunteer()) {
-      setVolunteer(isVolunteer().data.Participations[0]);
+    if (volunteer) {
+      hasApplied();
+    }
+  }, [volunteer, currentSeasonID]);
+  useEffect(() => {
+    if (isLoggedIn()) {
+      setUser(isLoggedIn().data);
     }
   }, []);
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
 
   return (
     <div className="p-4">
@@ -33,19 +75,21 @@ const VolunteerWelcome = () => {
             </a>
           </Link>
         </div>
-        <div className="w-full lg:w-auto">
-          {volunteer.ApprovalStatus == "PENDING" ? (
-            <button className="btn w-full lg:w-[225px] capitalize font-bold disabled:btn-warning" disabled>
-              Applied
-            </button>
-          ) : (
-            <label
-              htmlFor="signup-modal"
-              className="btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold modal-button">
-              Apply
-            </label>
-          )}
-        </div>
+        {showSignup && (
+          <div className="w-full lg:w-auto">
+            {applied ? (
+              <button className="btn w-full lg:w-[225px] capitalize font-bold disabled:btn-warning" disabled>
+                Applied
+              </button>
+            ) : (
+              <label
+                htmlFor="signup-modal"
+                className="btn w-full lg:w-[225px] btn-secondary text-white capitalize font-bold modal-button">
+                Apply
+              </label>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Modal Popup */}

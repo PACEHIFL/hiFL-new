@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AccountLayout from "../layout/AccountLayout";
-import Link from "next/link";
 import StoreTabs from "./store/StoreTabs";
 import Orders from "./store/Orders";
 import Promos from "./store/Promos";
@@ -9,6 +8,7 @@ import Wallet from "./store/Wallet";
 
 const Store = () => {
   const [activeTab, setActiveTab] = useState(0);
+
   return (
     <AccountLayout name="store">
       <div className="p-3 md:p-6">

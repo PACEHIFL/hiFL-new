@@ -4,6 +4,7 @@ import SideBar from "../../components/shared/SideBar";
 import FixturesBrief from "../../components/shared/FixturesBrief";
 import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/image";
+import Accordion from "../../components/unifest/Accordion";
 
 const Unifest = () => {
   const content = [
@@ -15,6 +16,7 @@ const Unifest = () => {
       item: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
     {
       title: "Stage 2",
@@ -23,6 +25,7 @@ const Unifest = () => {
       item: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
     {
       title: "Stage 3",
@@ -32,6 +35,7 @@ const Unifest = () => {
       item: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
     },
 
     {
@@ -47,6 +51,24 @@ const Unifest = () => {
       parag: "",
       lower: "Participate",
       arrow: "/arrow 1.png",
+      link: "/unifest",
+    },
+  ];
+
+  const data = [
+    {
+      title: "Stage 1",
+      description:
+        "Participants to send in a 30 to 60 seconds video of themselves in any of the four talent categories and get nominated to subsequent stages",
+    },
+    {
+      title: "Stage 2",
+      description: "12 contestants will be selected and profiled. The top 4 will proceed to the final stage.",
+    },
+    {
+      title: "Stage 3",
+      description:
+        "Top 4 contestants will be mentored and will thereafter proceed to vibe for the winning performance. One winner will emerge.",
     },
   ];
 
@@ -58,14 +80,7 @@ const Unifest = () => {
             <div className=" pb-8 md:pb-8 lg:pb-8 ">
               <div className="">
                 <div>
-                  <Image
-                    src="/Lets-start.png"
-                    alt=""
-                    width="100%"
-                    height="40vh"
-                    layout="responsive"
-                    objectFit="cover"
-                  />
+                  <Image src="/unifest.jpg" alt="" width="100%" height="40vh" layout="responsive" objectFit="cover" />
                 </div>
                 <div className="text-black mt-8 md:w-[90%] lg:w-[85%]">
                   <h1 className="font-bold lg:text-2xl sm:mb-2 sm:text-xl">HiFL Unifest 2022</h1>
@@ -81,7 +96,7 @@ const Unifest = () => {
               <div className="mb-8  lg:mb-8  ">
                 <div>
                   <Image
-                    src="/Contestants.png"
+                    src="/contestant.jpg"
                     alt=""
                     width="100%"
                     height="50vh"
@@ -107,7 +122,7 @@ const Unifest = () => {
 
               <div className="flex flex-col gap-6    mb-8  mt-5   ">
                 <div className="    ">
-                  {content.map(({ img, parag, lower, arrow, title, item }, ind) => {
+                  {/* {content.map(({ img, parag, lower, arrow, title, item, link }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSection
@@ -118,10 +133,13 @@ const Unifest = () => {
                           arrow={arrow}
                           key={ind}
                           parag={parag}
+                          link={link}
                         />
                       </div>
                     );
-                  })}
+                  })} */}
+
+                  <Accordion data={data} />
                 </div>
               </div>
             </div>
