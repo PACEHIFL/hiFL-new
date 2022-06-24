@@ -1,6 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
-import { formatMoney } from "../../../helpers/utils";
+import { formatMoney, orderStatusColor } from "../../../helpers/utils";
 
 const OrderModal = ({ singleOrder: { OrderRef, OrderStatus, OrderDate, OrderItems, Total, ShippingOption } }) => {
   const customizationFee = OrderItems?.reduce(function (acc, item) {
@@ -23,16 +23,7 @@ const OrderModal = ({ singleOrder: { OrderRef, OrderStatus, OrderDate, OrderItem
         <p className="text-[#7E7E7E] text-sm md:text-base">
           Date Placed: <Moment format="MM-DD-YYYY" date={OrderDate} />
         </p>
-        <p
-          className={`${
-            OrderStatus == "PROCESSING"
-              ? "bg-[#0D6C8C]"
-              : OrderStatus == "PENDING"
-              ? "bg-warning"
-              : OrderStatus == "DELIVERED"
-              ? "bg-[#00AB11]"
-              : "bg-accent"
-          } inline-flex px-2 text-white text-sm uppercase rounded`}>
+        <p className={`${orderStatusColor(OrderStatus)} inline-flex px-2 text-white text-sm uppercase rounded`}>
           {OrderStatus}
         </p>
       </div>

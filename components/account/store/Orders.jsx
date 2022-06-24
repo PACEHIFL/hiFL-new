@@ -5,9 +5,9 @@ import { fetchOrders } from "../../../redux/features/cart.slice";
 import Moment from "react-moment";
 import { BeatLoader } from "react-spinners";
 import OrderModal from "./OrderModal";
+import { orderStatusColor } from "../../../helpers/utils";
 
 const Orders = () => {
-  const [userId, setUserId] = useState("");
   const [orders, setOrders] = useState([]);
   const [orderItems, setOrderItems] = useState(5);
   const [singleOrder, setSingleOrder] = useState({});
@@ -27,7 +27,6 @@ const Orders = () => {
     }
   }, []);
 
-  // console.log(singleOrder, "orders");
   return (
     <>
       {ordersLoading ? (
@@ -60,15 +59,9 @@ const Orders = () => {
                     Date Placed: <Moment format="MM-DD-YYYY" date={item.OrderDate} />
                   </p>
                   <p
-                    className={`${
-                      item.OrderStatus == "PROCESSING"
-                        ? "bg-[#0D6C8C]"
-                        : item.OrderStatus == "PENDING"
-                        ? "bg-warning"
-                        : item.OrderStatus == "DELIVERED"
-                        ? "bg-[#00AB11]"
-                        : "bg-accent"
-                    } inline-flex px-2 text-white text-sm uppercase rounded`}>
+                    className={`${orderStatusColor(
+                      item.OrderStatus
+                    )} inline-flex px-2 text-white text-sm uppercase rounded`}>
                     {item.OrderStatus}
                   </p>
                   <div className="text-sm md:text-base">
