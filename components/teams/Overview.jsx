@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import SideBar from "../../components/shared/SideBar";
 import LatestNews from "../shared/LatestNews";
 import LatestVideos from "../shared/LatestVideos";
-import Sponsors from "../shared/Sponsors";
+// import Sponsors from "../shared/Sponsors";
 import OfficialInfo from "./OfficialInfo";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 
 const Overview = ({ data: { Overview, _id }, loading }) => {
   const [officials, setOfficiails] = useState();
-  console.log(_id)
 
    const fetchData = async () => {
       const baseURL = process.env.BASE_URL;
@@ -44,7 +43,6 @@ const Overview = ({ data: { Overview, _id }, loading }) => {
             )}
           </div>
           <hr />
-
           <LatestNews />
           <LatestVideos />
         </div>

@@ -5,7 +5,7 @@ export const navLinks = [
       { title: "Teams", path: "/teams" },
       { title: "Fixtures", path: "/fixtures" },
       { title: "Results", path: "/results" },
-      { title: "Hall of Fame", path: "/hall-of-fame" },
+      { title: "Elite Awards", path: "/elite-awards" },
     ],
   },
   {
