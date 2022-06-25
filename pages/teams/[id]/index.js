@@ -9,50 +9,156 @@ import TeamsHeader from "../../../components/teams/TeamsHeader";
 import Stats from "../../../components/teams/Stats";
 import Store from "../../../components/teams/Store";
 import axios from "axios";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Slug = () => {
   const [tabs, setTabs] = useState(0);
   const [team, setTeam] = useState({});
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [players, setPlayers] = useState([]);
+  const [settings, setSettings] = useState();
+  const [seasons, setSeasons] = useState();
   const [fixtures, setFixtures] = useState([]);
   const [results, setResults] = useState([]);
-  const router = useRouter()
-  const pathName = router.query.id
+  const [stages, setStages] = useState([]);
+  const [leagues, setLeagues] = useState([]);
+  const [currentStageId, setCurrentStageId] = useState("");
+  const router = useRouter();
+  const pathName = router.query.id;
+  const baseURL = process.env.BASE_URL;
 
-  const fetchData = async () => {
-    setLoading(true)
-    const baseURL = process.env.BASE_URL;
-    const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${pathName}`);
-    const { data: player } = await axios(`${baseURL}/players/active/?Team=${pathName}`);
-    const { data: fixtures } = await axios(`${baseURL}/leagues/season/fixtures/?MatchStatus=FIXTURE&HomeTeam=${pathName}`);
-    const { data: results } = await axios(`${baseURL}/leagues/season/fixtures/?MatchStatus=RESULT&HomeTeam=${pathName}`);
-    setTeam(data?.data)
-    setPlayers(player?.data)
-    setFixtures(fixtures?.data)
-    setResults(results?.data)
-    setLoading(false)
-  }
+  const fetchAllSettings = async () => {
+    try {
+      const { data, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
+      const { data: seasons } = await axios(`${baseURL}/leagues/seasons/`);
+      setSettings(data?.data);
+      setSeasons(seasons?.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
-    if(pathName) {
-      fetchData()
+    fetchAllSettings();
+  }, []);
+
+  const fetchStages = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios(`${baseURL}/leagues/league/stages/?League=${settings?.CurrentLeague?._id}`);
+      setStages(data?.data);
+      setLoading(false);
+
+      if (stages.length !== 0) {
+        setCurrentStageId(stages[0]?._id);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
-  }, [pathName])
+  };
+
+  useEffect(() => {
+    if (settings?.CurrentLeague?._id !== undefined) fetchStages();
+    console.log(stages);
+  }, []);
+
+  const fetchFixturesAndResults = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios(
+        `${baseURL}/leagues/season/fixtures/?Stage=${currentStageId}&MatchStatus=FIXTURE&HomeTeam=${pathName}`
+      );
+      const { data: results } = await axios(
+        `${baseURL}/leagues/season/fixtures/?Stage=${currentStageId}&MatchStatus=RESULT&HomeTeam=${pathName}`
+      );
+      setFixtures(data?.data);
+      setResults(results?.data);
+      setLoading(false);
+    } catch (err) {
+      toast.error(err.response.statusText, { autoClose: 1500 });
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (currentStageId !== "" && pathName !== "") {
+      fetchFixturesAndResults();
+    }
+  }, [currentStageId]);
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setCurrentStageId(value);
+  };
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${pathName}`);
+      const { data: player } = await axios(`${baseURL}/players/active/?Team=${pathName}`);
+      const { data: results } = await axios(
+        `${baseURL}/leagues/season/fixtures/?MatchStatus=RESULT&HomeTeam=${pathName}`
+      );
+      setTeam(data?.data);
+      setPlayers(player?.data);
+      setResults(results?.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const handleSeasonChange = (e) => {
+    const { name, value } = e.target;
+    // setLoading(true)
+    // console.log(value, settings.CurrentSeason._id)
+    // if(value !== settings.CurrentSeason._id) {
+    //   setFixtures([])
+    //   setLoading(false)
+    // } else {
+    //   setFixtures([...teams])
+  };
+
+  useEffect(() => {
+    if (pathName) {
+      fetchData();
+    }
+  }, [pathName]);
 
   return (
     <div>
-      <TeamsHeader data={team} />
+      <TeamsHeader data={team} loading={loading} />
       <Tabs tabs={tabs} setTabs={setTabs} />
       <div className="bg-white">
-        <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black"> 
+        <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           {tabs === 0 && <Overview data={team} loading={loading} />}
           {tabs === 1 && <Squad data={players} loading={loading} />}
-          {tabs === 2 && <Fixtures data={fixtures} loading={loading} />}
-          {tabs === 3 && <Results data={results} loading={loading} />}
+          {tabs === 2 && (
+            <Fixtures
+              fixtures={fixtures}
+              loading={loading}
+              handleChange={handleChange}
+              handleSeasonChange={handleSeasonChange}
+              seasons={seasons}
+              stages={stages}
+            />
+          )}
+          {tabs === 3 && (
+            <Results
+              results={results}
+              loading={loading}
+              handleChange={handleChange}
+              handleSeasonChange={handleSeasonChange}
+              seasons={seasons}
+              stages={stages}
+            />
+          )}
           {/* {tabs === 4 && <Stats data={data} /> } */}
-          {tabs === 4 && <Store /> }
+          {tabs === 4 && <Store />}
         </div>
       </div>
     </div>
@@ -60,39 +166,3 @@ const Slug = () => {
 };
 
 export default Slug;
-
-// export const getStaticProps = async ({ params: { id } }) => {
-//   try {
-//     const baseURL = process.env.BASE_URL;
-//     const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${id}`);
-//     const { data: players } = await axios(`${baseURL}/players/active/?Team=${id}`);
-
-//     return {
-//       props: {
-//         data: data.data,
-//         players: players.data,
-//       },
-//     };
-//   } catch (error) {
-//     // return { notFound: true };
-//     console.log(error)
-//   }
-// };
-
-// export const getStaticPaths = async () => {
-//   try {
-//     const baseURL = process.env.BASE_URL;
-//     const { data: settings, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
-//     const { data } = await axios(`${baseURL}/leagues/league/stages/?League=${settings?.data?.CurrentLeague?._id}`);
-//     const ids = data?.data?.map((team) => team.Teams).map(team => console.log([...team]))
-//     const paths = ids.map((id) => ({ params: { id: id + "" } }))
-
-    
-//     return {
-//       paths,
-//       fallback: false,  
-//     }
-//   } catch (error) {
-//     return { paths: [], fallback: false };
-//   }
-// };
