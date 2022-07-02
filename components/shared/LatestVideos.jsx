@@ -43,8 +43,8 @@ const LatestVideos = () => {
                     dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
                   /> */}
                   {data?.data[0].Excepts && (
-                    <p className="text-sm font-extralight pt-1 max-w-[70%]">
-                      {data?.data[0].Excepts?.substring(0, 100)}...
+                    <p className="text-sm font-extralight pt-1 max-w-[85%]">
+                      {data?.data[0].Excepts?.substring(0, 60)}...
                     </p>
                   )}
                 </div>
@@ -62,7 +62,7 @@ const LatestVideos = () => {
               <Skeleton height={200} />
             </>
           ) : (
-            data?.data.slice(1, data?.data.length).map(({ id, Title, CoverImage }, i) => (
+            data?.data.slice(1, 5).map(({ id, Title, CoverImage }, i) => (
               <Link href={`/videos/${id}`} key={i}>
                 <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
                   <div className="w-1/2 md:w-full relative">
