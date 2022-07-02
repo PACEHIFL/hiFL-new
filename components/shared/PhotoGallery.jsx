@@ -39,8 +39,8 @@ const PhotoGallery = () => {
                     dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
                   /> */}
                   {data?.data[0].Excerpts && (
-                    <p className="text-sm font-extralight pt-1 max-w-[70%]">
-                      {data?.data[0].Excerpts?.substring(0, 100)}...
+                    <p className="text-sm font-extralight pt-1 max-w-[85%]">
+                      {data?.data[0].Excerpts?.substring(0, 60)}...
                     </p>
                   )}
                 </div>
@@ -58,7 +58,7 @@ const PhotoGallery = () => {
               <Skeleton height={200} />
             </>
           ) : (
-            data?.data.slice(1, data?.data.length).map(({ id, Title, CoverImage }, i) => (
+            data?.data.slice(1, 5).map(({ id, Title, CoverImage }, i) => (
               <Link href={`/gallery/${id}`} key={i}>
                 <a className="flex flex-row md:flex-col items-center md:items-start gap-2">
                   <div className="w-1/2 md:w-full">
