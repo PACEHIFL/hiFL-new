@@ -4,7 +4,6 @@ import axios from "axios";
 import { DatabaseIcon } from "@heroicons/react/outline";
 
 const index = ({ settings, allSeasons, seasons }) => {
-
   return (
     <div>
       <AllTeams settings={settings} seasons={seasons} />
@@ -20,8 +19,6 @@ export async function getStaticProps() {
     const { data, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
     const { data: seasons } = await axios(`${baseURL}/leagues/seasons/`);
 
-    console.log(seasons)
-
     if (errors || !DatabaseIcon) {
       return { notFound: true };
     }
@@ -29,7 +26,7 @@ export async function getStaticProps() {
     return {
       props: {
         settings: data.data,
-        seasons: seasons.data
+        seasons: seasons.data,
       },
     };
   } catch (error) {

@@ -13,6 +13,7 @@ const Orders = () => {
   const [singleOrder, setSingleOrder] = useState({});
   const dispatch = useDispatch();
   const { ordersLoading } = useSelector((state) => state.cart);
+  const latestOrders = orders?.data?.sort((a, b) => new Date(a.OrderDate) - new Date(b.OrderDate));
 
   const getOrders = (userId) => dispatch(fetchOrders({ userId, setOrders }));
 
@@ -36,51 +37,54 @@ const Orders = () => {
       ) : (
         <>
           <div className="flex flex-col gap-2 font-redhat">
-            {orders?.data?.slice(0, orderItems).map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-col md:flex-row items-center gap-3 md:gap-6 px-4 md:px-6 py-4 border border-[#F4F4F4]">
-                <div className="flex justify-center mx-auto w-full md:w-[100px]">
-                  <img src={item.OrderItems[0].CoverImage?.url} alt={item.Title} className="" />
-                </div>
+            {latestOrders
+              ?.reverse()
+              .slice(0, orderItems)
+              .map((item, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col md:flex-row items-center gap-3 md:gap-6 px-4 md:px-6 py-4 border border-[#F4F4F4]">
+                  <div className="flex justify-center mx-auto w-full md:w-[100px]">
+                    <img src={item.OrderItems[0].CoverImage?.url} alt={item.Title} className="" />
+                  </div>
 
-                <div className="w-full space-y-1">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-sm md:text-base">Order Ref: {item.OrderRef}</h3>
+                  <div className="w-full space-y-1">
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-sm md:text-base">Order Ref: {item.OrderRef}</h3>
+
+                      <label
+                        className="text-accent uppercase text-sm hidden lg:block modal-button cursor-pointer"
+                        htmlFor="order-modal"
+                        onClick={() => setSingleOrder(item)}>
+                        See details
+                      </label>
+                    </div>
+                    <p className="text-[#7E7E7E] text-sm md:text-base">
+                      Date Placed: <Moment format="MM-DD-YYYY" date={item.OrderDate} />
+                    </p>
+                    <p
+                      className={`${orderStatusColor(
+                        item.OrderStatus
+                      )} inline-flex px-2 text-white text-sm uppercase rounded`}>
+                      {item.OrderStatus}
+                    </p>
+                    <div className="text-sm md:text-base">
+                      {item.datedelivered && <p>On {item.datedelivered}</p>}
+                      {item.expectedDelivery && (
+                        <p>
+                          Expected delivery between {item.expectedDelivery[0]} and {item.expectedDelivery[1]}
+                        </p>
+                      )}
+                    </div>
 
                     <label
-                      className="text-accent uppercase text-sm hidden lg:block modal-button cursor-pointer"
-                      htmlFor="order-modal"
-                      onClick={() => setSingleOrder(item)}>
+                      className="text-accent uppercase text-sm hidden lg:hidden modal-button cursor-pointer"
+                      htmlFor="order-modal">
                       See details
                     </label>
                   </div>
-                  <p className="text-[#7E7E7E] text-sm md:text-base">
-                    Date Placed: <Moment format="MM-DD-YYYY" date={item.OrderDate} />
-                  </p>
-                  <p
-                    className={`${orderStatusColor(
-                      item.OrderStatus
-                    )} inline-flex px-2 text-white text-sm uppercase rounded`}>
-                    {item.OrderStatus}
-                  </p>
-                  <div className="text-sm md:text-base">
-                    {item.datedelivered && <p>On {item.datedelivered}</p>}
-                    {item.expectedDelivery && (
-                      <p>
-                        Expected delivery between {item.expectedDelivery[0]} and {item.expectedDelivery[1]}
-                      </p>
-                    )}
-                  </div>
-
-                  <label
-                    className="text-accent uppercase text-sm hidden lg:hidden modal-button cursor-pointer"
-                    htmlFor="order-modal">
-                    See details
-                  </label>
                 </div>
-              </div>
-            ))}
+              ))}
 
             {/* Modal Popup */}
             <input type="checkbox" id="order-modal" className="modal-toggle" />

@@ -7,7 +7,7 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 // import LatestNewsSideBar from "../volunteer/LatestNews";
 
-const Results = ({ settings  }) => {
+const Results = ({ settings, seasons  }) => {
   const [results, setResults] = useState([]);
   const [stages, setStages] = useState([]);
   const [currentStageId, setCurrentStageId] = useState('')
@@ -65,7 +65,7 @@ const Results = ({ settings  }) => {
           <div className="flex gap-7 xl:gap-20 justify-between">
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-auto mb-10">
-                <Filter title="Select Season" onChange={handleChange} name="CurrentSeason" settings={settings} />
+                <Filter title="Select Season" onChange={handleChange} name="CurrentSeason" seasons={seasons} />
                 <select className="select w-full border-gray-500" name="CurrentStage" onChange={handleChange}>
                   {stages &&
                     stages?.map((stage, idx) => (
@@ -107,6 +107,7 @@ export const getStaticProps = async () => {
   try {
     const baseURL = process.env.BASE_URL;
     const { data, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
+    const { data: seasons } = await axios(`${baseURL}/leagues/seasons/`);
 
     if (!data || errors) {
       return { notFound: true };
@@ -114,7 +115,8 @@ export const getStaticProps = async () => {
 
     return {
       props: {
-        settings: data.data
+        settings: data.data,
+        seasons: seasons.data,
       },
     };
   } catch (error) {
