@@ -1,14 +1,30 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import useFetch from "../../hooks/useFetch";
 
-const RectangularBanner = ({ source, link, passHref }) => {
+const RectangularBanner = () => {
+  const [randomIndex, setRandomIndex] = useState(0);
+  const baseURL = process.env.CMS_URL;
+  const { data, loading } = useFetch(
+    `${baseURL}/adverts?filters[$and][0][Active][$eq]=true&filters[$and][1][Position][$eq]=Main%20Section&populate=*`
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRandomIndex(Math.floor(Math.random() * data?.data?.length));
+    }, 20000);
+
+    return () => clearInterval(interval);
+  });
+
+  if (loading) {
+    return <Skeleton height={300} />;
+  }
+
   return (
-    <Link href={link} passHref={passHref}>
-      <a className="rounded">
-        <Image src={source} alt="" width={600} height={93} layout="responsive" objectFit="contain" />
-      </a>
-    </Link>
+    <a className="rounded" href={data?.data[randomIndex]?.Link} target="_blank" rel="noreferrer">
+      <img src={data?.data[randomIndex]?.AdvertImage[0]?.url} alt="" className="object-cover w-full" />
+    </a>
   );
 };
 
