@@ -83,9 +83,9 @@ const Fixtures = ({ settings, seasons  }) => {
               )}
 
               <div className="">
-                {fixtures?.map((fixtures, idx) => (
+                {fixtures.length !== 0 ?fixtures?.map((fixtures, idx) => (
                   <FixturesCard data={fixtures} key={idx} />
-                ))}
+                )): <h1> No fixtures yet </h1>}
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
