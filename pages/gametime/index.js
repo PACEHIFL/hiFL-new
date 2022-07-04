@@ -104,29 +104,14 @@ const GameTime = () => {
                       league.
                     </p>
                   </div>
-                  {/* <div className="mb-5">
-                    <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">
-                      What can become a part of the Volunteer Force
-                    </h1>
-
-                    <p>To become a volunteer, you have to be a student of a participating university.</p>
-                  </div> */}
-                  {/* <div>
-                    <h1 className=" font-bold lg:text-2xl sm:mb-2 sm:text-xl ">How to become a Volunteer</h1>
-                    <p>
-                      You can apply to become a volunteer by going to the HiFL Volunteers Page and clicking on "Sign up"
-                      You can find this byclicking on this link Volunteer portal{" "}
-                      <Link href="https://www.hiflng.com/volunteer">https://www.hiflng.com/volunteer</Link>
-                    </p>
-                  </div> */}
                 </div>
                 <div>
                   <div>
-                    <div className='flex  gap-8 bg-[url("/volunteer-bg.png")] bg-cover bg-right bg-no-repeat mix-blend-darken bg-[#000229] p-12 text-white'>
-                      <div className="w-1/2 ">
-                        <img src="/volunteer-banner.png" alt="" />
+                    <div className=" flex flex-col xxl:flex-row   p-12 pl-0 text-black ">
+                      <div className="xxl:w-1/2 mb-20 flex justify-center">
+                        <img src="/gametime-1.jpg" className="md:w-[70%] lg:w-full" alt="" />
                       </div>
-                      <div className="w-1/2">
+                      <div className="xxl:w-1/2  text-black text-left">
                         Gametime is a TV, E-zine, Radio Magazine programme. It’s the largest youth engagement and
                         connection programme in the country that is driven by HiSL, Nigeria’s apex collegiate sports
                         league Gametime content cuts across Sports, Entertainment, Lifestyle and Career opportunities.
@@ -138,75 +123,61 @@ const GameTime = () => {
                         <br /> GameTime is available across media on: TV, Radio, E-Zine and Social Media
                       </div>
                     </div>
-                    <div className="mt-5 text-black ">
-                      <h2 className="font-bold">GAMETIME BROADCAST STATIONS</h2>
+                    <div className="mt-5 text-black w-[95%] md:w-[75%]  xxl:w-full ">
+                      <h2 className="font-bold ">GAMETIME BROADCAST STATIONS</h2>
 
-                      <div className="flex flex-row-reverse gap-8  p-12 pt-5 px-0 text-black ">
-                        {/* <div className="w-1/2 ">
-                        <img src="/volunteer-banner.png" alt="" />
-                      </div> */}
-                        {/* <div> */}
+                      <div className="flex flex-col xxl:flex-row justify-between  gap-8  p-12 pt-5 px-0 text-black ">
+                        <table className="flex-[0.5] h-fit ">
+                          <thead>
+                            <tr className="p-0 text-left">
+                              <th className="border border-black border-l-0 border-t-0 p-0 w-1/2 ">RADIO STATIONS</th>
+                              <th className="border border-black border-r-0 border-t-0 px-10 xxl:px-6 py-3 w-1/2">
+                                DAY & TIME
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {radio.map(({ channel, time }) => (
+                              <tr className="p-0">
+                                <td className="border border-black border-l-0  p-0  w-1/2">{channel}</td>
+                                <td className="border border-black border-r-0 px-10 xxl:px-6  py-3 w-1/2">{time}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
 
-                        <table className="w-1/2 table-fixed">
+                        <table className="flex-[0.5] h-fit">
                           <thead>
                             <tr className="text-left">
-                              <th className="border border-black border-l-0 border-t-0 p-0 w-1/2 h-1">
-                                RADIO STATIONS
-                              </th>
-                              <th className="border border-black border-r-0 border-t-0 px-6 py-2 w-1/2">DAY & TIME</th>
+                              <th className="border border-black border-l-0 border-t-0 p-0 w-1/2 ">TV STATIONS</th>
+                              <th className="border border-black border-r-0 border-t-0 px-6 py-3 w-1/2">DAY & TIME</th>
                             </tr>
                           </thead>
 
                           <tbody>
-                            {tv.map(({ channel, time }) => {
-                              return (
-                                <tr className="p-0 ">
-                                  <td className="border border-black border-l-0  p-0 w-1/2">{channel}</td>
-                                  <td className="border border-black border-r-0 px-6 py-3 w-1/2">{time}</td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
-                        <table className="w-1/2 table-fixed">
-                          <thead>
-                            <tr className="text-left">
-                              <th className="border border-black border-l-0 border-t-0 p-0 w-1/2 h-1">
-                                RADIO STATIONS
-                              </th>
-                              <th className="border border-black border-r-0 border-t-0 px-6 py-2 w-1/2">DAY & TIME</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {radio.map(({ channel, time }) => {
-                              return (
-                                <tr className="p-0 h-4">
-                                  <td className="border border-black border-l-0  p-0 w-1/2">{channel}</td>
-                                  <td className="border border-black border-r-0 px-6 py-3 w-1/2">{time}</td>
-                                </tr>
-                              );
-                            })}
+                            {tv.map(({ channel, time }) => (
+                              <tr className="p-0">
+                                <td className="border border-black border-l-0">{channel}</td>
+                                <td className="border border-black border-r-0 px-6 py-3">{time}</td>
+                              </tr>
+                            ))}
                           </tbody>
                         </table>
                       </div>
                     </div>
-                    <div className='flex flex-row-reverse gap-8 bg-[url("/volunteer-bg.png")] bg-cover bg-right bg-no-repeat mix-blend-darken bg-[#000229] p-12 text-white'>
-                      <div className="w-1/2 ">
-                        <img src="/volunteer-banner.png" alt="" />
+
+                    <div className="flex flex-col    p-12 pl-0  text-white xxl:flex-row-reverse  ">
+                      <h1 className="  text-4xl mb-12 xxl:hidden text-black text-center">How to get on the show</h1>
+                      <div className="xxl:w-1/2 mb-20 xxl:mb-0 ">
+                        <img src="/gametime-started.jpg" alt="" />
                       </div>
-                      <div className="w-1/2 flex flex-col align-top  ">
-                        <p className="mb-6">To subscribe for the E-zine:</p>
-                        <input className="mb-6 p-2 rounded" placeholder="Email Address" />
-                        <button className=" bg-white py-2  text-black w-2/5 rounded">Subscribe</button>
-                      </div>
-                    </div>
-                    <div className="flex  gap-8  p-12 px-0 text-black">
-                      <div className="w-1/2 ">
-                        <img src="/volunteer-banner.png" alt="" />
-                      </div>
-                      <div className="self-center w-1/2 ">
-                        <h1 className="  text-4xl mb-6">How to get on the show</h1>
-                        <button className="bg-[#000229] text-white p-4 rounded">DOWNLOAD GAMETIME</button>
+                      <div className="xxl:self-center xxl:w-1/2 ">
+                        <h1 className=" hidden xxl:inline-block text-4xl mb-6 text-black text-center  ">
+                          How to get on the show
+                        </h1>
+                        <a href="/gametime.pdf" download className="flex justify-center xxl:justify-start">
+                          <button className="bg-[#000229] text-white p-4 rounded ">DOWNLOAD GAMETIME</button>
+                        </a>
                       </div>
                     </div>
                   </div>
