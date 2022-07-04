@@ -137,8 +137,8 @@ const GameTime = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {radio.map(({ channel, time }) => (
-                              <tr className="p-0">
+                            {radio.map(({ channel, time }, ind) => (
+                              <tr className="p-0" key={ind}>
                                 <td className="border border-black border-l-0  p-0  w-1/2">{channel}</td>
                                 <td className="border border-black border-r-0 px-10 xxl:px-6  py-3 w-1/2">{time}</td>
                               </tr>
@@ -155,8 +155,8 @@ const GameTime = () => {
                           </thead>
 
                           <tbody>
-                            {tv.map(({ channel, time }) => (
-                              <tr className="p-0">
+                            {tv.map(({ channel, time }, ind) => (
+                              <tr className="p-0" key={ind}>
                                 <td className="border border-black border-l-0">{channel}</td>
                                 <td className="border border-black border-r-0 px-6 py-3">{time}</td>
                               </tr>
