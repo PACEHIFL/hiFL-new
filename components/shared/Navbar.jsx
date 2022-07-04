@@ -37,7 +37,7 @@ const Navbar = () => {
           <Link href="/">
             <a>
               <div className="bg-white px-4 pt-8 rounded-tr-[65px rounded-br-[10px] rounded-bl-[10px]">
-                <img src="/hifl-logo.png" alt="HiFL Logo" />
+                <img src="/hifl-logo.png" alt="HiFL Logo" className="mb-3" />
               </div>
             </a>
           </Link>
