@@ -35,12 +35,12 @@ const LatestNews = () => {
                   <img src={CoverImage.url} alt={Title} className="w-full h-auto object-cover rounded-t" />
                   {/* <h3 className="text-accent font-bold italic text-xs py-1">{categories[0].CategoryName}</h3> */}
                   <h2 className="text-sm font-semibold mt-1" title={Title}>
-                    {Title.substring(0, 80)}...
+                    {Title.substring(0, 60)}...
                   </h2>
                 </div>
                 {Excerpts && (
-                  <p className="text-[#000229] text-xs font-extralight font-redhat pt-1 w-[300px]">
-                    {Excerpts?.substring(0, 100)}...
+                  <p className="text-[#000229] text-xs font-extralight font-redhat pt-1 w-full">
+                    {Excerpts?.substring(0, 70)}...
                   </p>
                 )}
               </a>
