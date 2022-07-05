@@ -14,8 +14,6 @@ const ProductInfo = ({ data, orderInfo, setOrderInfo, initialState, handleQuanti
   const router = useRouter();
   const dispatch = useDispatch();
 
-  console.log(data, "product");
-
   //const { Price, DiscountPrice, InStock, PreOrder, Details, ProductGallery } = data;
 
   const handleAddToCart = (e) => {
