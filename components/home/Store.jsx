@@ -20,7 +20,7 @@ const Store = () => {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="pt-12 w-full pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 text-secondary place-items-center">
+        <div className="pt-12 w-full pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 text-secondary place-items-center">
           {loading ? (
             <SkeletonTheme baseColor="#ebe9e9" highlightColor="#f9f7f7">
               <div className="w-full">

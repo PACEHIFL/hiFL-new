@@ -6,7 +6,7 @@ const ProductCard = ({ product: { Title, CoverImage, Featured, DiscountPrice, Pr
   const discountPercent = (price, discount) => (DiscountPrice ? ((price - discount) / price) * 100 : null);
   return (
     <Link href={`/store/${id}`}>
-      <a className="p-5 w-[300px] flex flex-col justify-between  bg-[#F9F7F7] rounded-lg space-y-2 relative mb-6 hover:shadow hover:-translate-y-[2px] transition-transform cursor-pointer">
+      <a className="p-5 w-[300px] h-full flex flex-col justify-between bg-[#F9F7F7] rounded-lg space-y-2 relative mb-6 hover:shadow hover:-translate-y-[2px] transition-transform cursor-pointer">
         <>
           <div>
             {Featured && <img src="/star.png" className="absolute top-5 left-5" />}

@@ -37,13 +37,13 @@ const LatestVideos = () => {
               </div>
               <div className="h-[30%] bg-[url('/videos-bg.png')] bg-cover flex items-center">
                 <div className="text-white px-6">
-                  <h2 className="text-lg font-bold mb-1">{data?.data[0].Title}</h2>
+                  <h2 className="text-base md:text-lg font-bold mb-1">{data?.data[0].Title}</h2>
                   {/* <div
                     className="text-sm font-extralight pt-1 max-w-[70%]"
                     dangerouslySetInnerHTML={{ __html: data?.data[0].Excerpt }}
                   /> */}
                   {data?.data[0].Excepts && (
-                    <p className="text-sm font-extralight pt-1 max-w-[85%]">
+                    <p className="hidden md:block text-sm font-extralight pt-1 max-w-[85%]">
                       {data?.data[0].Excepts?.substring(0, 60)}...
                     </p>
                   )}
@@ -69,7 +69,7 @@ const LatestVideos = () => {
                     <img src={CoverImage?.url} alt="" className="w-full object-cover" />
                     <img src="/play.png" alt="" className="w-[30px] absolute top-0 bottom-0 left-0 right-0 m-auto" />
                   </div>
-                  <p className="text-xs text-left font-extralight pt-1">{Title.substring(0, 60)}...</p>
+                  <p className="w-1/2 md:w-full text-xs text-left font-extralight pt-1">{Title.substring(0, 60)}...</p>
                 </a>
               </Link>
             ))
