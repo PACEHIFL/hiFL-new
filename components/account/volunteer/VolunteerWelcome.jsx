@@ -59,11 +59,10 @@ const VolunteerWelcome = () => {
       <h2 className="text-secondary text-3xl mb-6">Welcome Note</h2>
       <img src="/volunteer.png" alt="" className="w-full" />
       <p className="my-6">
-        Lörem ipsum jen öling tede den geosorade lalig så sagen om terralog burkini om plagen, ifall vaktig inte leda
-        krosäbelt. Myjygon pongen i lelig än trel, memil lede antent och psykocism epud lagir för lada. Pätärat presper,
-        i hust netugisk mytodiktisk häkuss som biopur i geling pitt vartad vaplajigon tägåst och hypodalogi. Såsoning
-        åren tektiga bioment, eumisamma, sunäligen med astropp om kvasiras, läslov, lapp dabesk om las. Nina tesm tok
-        tekubel epiras, i dissade engar stenolans: miktig didorad sosal.
+        We are delighted to have you onboard with respect to volunteering with us to organize one of Africa’s biggest
+        Collegiate Sports Competition. We recognize that it will be slightly impossible to achieve our objectives
+        without your investment of support and those of so many other Game Changers. With so many people, just like you,
+        willing to join our team, we believe our path to victory is bright.
       </p>
       <div className="flex gap-6 mt-8">
         <div className="w-full lg:w-auto">
