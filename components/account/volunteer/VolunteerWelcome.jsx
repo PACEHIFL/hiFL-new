@@ -57,7 +57,7 @@ const VolunteerWelcome = () => {
   return (
     <div className="p-4">
       <h2 className="text-secondary text-3xl mb-6">Welcome Note</h2>
-      <img src="/volunteer.png" alt="" className="w-full" />
+      <img src="/volunteers-cover.jpg" alt="" className="w-full" />
       <p className="my-6">
         We are delighted to have you onboard with respect to volunteering with us to organize one of Africa’s biggest
         Collegiate Sports Competition. We recognize that it will be slightly impossible to achieve our objectives
