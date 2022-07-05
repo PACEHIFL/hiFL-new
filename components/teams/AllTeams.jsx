@@ -56,6 +56,7 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
   }, [currentStageId]);
 
   const handleChange = (e) => {
+    // setTeams([])
     const { value } = e.target;
     setCurrentStageId(value);
   };

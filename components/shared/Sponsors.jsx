@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Sponsors = () => {
   const baseURL = process.env.CMS_URL;
-  const { data, loading } = useFetch(`${baseURL}/sponsors?populate=*`);
+  const { data, loading } = useFetch(`${baseURL}/sponsors?sort=Order:ASC&populate=*`);
 
   if (loading) {
     return <Skeleton height={150} />;
