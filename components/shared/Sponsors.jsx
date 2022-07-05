@@ -13,9 +13,9 @@ const Sponsors = () => {
   return (
     <div className="py-10 font-redhat">
       <div className="flex justify-center">
-        <div className="flex flex-wrap overflow-x-auto lg:flex-nowrap justify-between items-center gap-6">
+        <div className="flex flex-wrap overflow-x-auto lg:flex-nowrap justify-center items-center gap-6">
           {data?.data.map((sponsor, i) => (
-            <div key={i} className="flex flex-col items-center gap-4 ">
+            <div key={i} className="flex flex-col justify-center items-center gap-4 ">
               <img src={sponsor?.SponsorLogo?.url} alt="" className="w-fit max-h-24" />
               <h3 className="text-sm text-[#8C8C8C] text-center capitalize">{sponsor?.SponsorshipCategory}</h3>
             </div>
