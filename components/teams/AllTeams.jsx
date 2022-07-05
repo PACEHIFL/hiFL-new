@@ -12,57 +12,56 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
   const [teams, setTeams] = useState([]);
   const [stages, setStages] = useState([]);
   const [leagues, setLeagues] = useState([]);
-  const [currentStageId, setCurrentStageId] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [currentStageId, setCurrentStageId] = useState("");
+  const [loading, setLoading] = useState(false);
   const isOdd = (num) => num % 2 === 0;
   const router = useRouter();
   const path = router.pathname;
   const baseURL = process.env.BASE_URL;
 
   const fetchStages = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const { data: allStages } = await axios(`${baseURL}/leagues/league/stages/?League=${settings.CurrentLeague._id}`);
       setStages(allStages?.data);
-      setLoading(false)
+      setLoading(false);
 
-      if(allStages) {
-        setCurrentStageId(allStages?.data[0]?._id)
+      if (allStages) {
+        setCurrentStageId(allStages?.data[0]?._id);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-
   const fetchTeams = async () => {
-    setLoading(true)
-    try{
+    setLoading(true);
+    try {
       const { data } = await axios(`${baseURL}/leagues/league/stages/stage/?_id=${currentStageId}`);
-      setTeams(data?.data?.Teams)
-      setLoading(false)
-    }catch(err) {
-      console.log(err)
+      setTeams(data?.data?.Teams);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchStages()
+    fetchStages();
   }, []);
 
   useEffect(() => {
-    if(currentStageId !== '') {
-      fetchTeams()
+    if (currentStageId !== "") {
+      fetchTeams();
     }
   }, [currentStageId]);
 
   const handleChange = (e) => {
-    const { value } = e.target
-    setCurrentStageId(value)
+    const { value } = e.target;
+    setCurrentStageId(value);
   };
 
   const handleSeasonChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     // setLoading(true)
     // console.log(value, settings.CurrentSeason._id)
     // if(value !== settings.CurrentSeason._id) {
@@ -71,7 +70,7 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
     // } else {
     //   setTeams([...teams])
     // }
-  }
+  };
 
   return (
     <div>
@@ -82,10 +81,7 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
             <div className="w-full lg:w-8/12 xl:w-9/12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-auto mb-10">
                 <Filter title="Select Season" onChange={handleSeasonChange} name="CurrentSeason" seasons={seasons} />
-                <select
-                  className="select w-full border-gray-500"
-                  name='hello'
-                  onChange={handleChange}>
+                <select className="select w-full border-gray-500" name="hello" onChange={handleChange}>
                   {stages &&
                     stages?.map((stage, idx) => (
                       <option className="text-red-600" key={idx} value={stage?._id}>
@@ -125,7 +121,7 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
                     </Link>
                   ))}
 
-                  {teams.length === 0 && <h1> No Team available for the stage </h1>}
+                {teams.length === 0 && <h1> No Team available for the stage </h1>}
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12">

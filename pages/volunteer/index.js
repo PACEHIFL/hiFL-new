@@ -11,7 +11,7 @@ const Volunteer = () => {
   const content = [
     {
       title: "Connect",
-      img: "/volunteer-application.png",
+      img: "/volunteer-3.jpg",
       item: [
         { list: "With peers and like-minds in your schooland other campuses" },
         { list: "Also with fans,teams,partner brands and sponsors" },
@@ -24,7 +24,7 @@ const Volunteer = () => {
     },
     {
       title: "Grow",
-      img: "/fem-volunteerss.jpg",
+      img: "/volunteers-1.jpg",
       item: [
         { list: "Career advancement opportunities including internship and workplace prep" },
         { list: "Access to our extensive resource library for skills such as leadership,team bulding, marketing etc." },
@@ -52,7 +52,7 @@ const Volunteer = () => {
 
     {
       title: "Gain",
-      img: "/fem-volunteerss.jpg",
+      img: "/volunteer-2.jpg",
       item: "",
       parag:
         "Benefits including certificates, branded souvenirs/mechandise,exclusive promotional giveaways, backstage passes to special events",
@@ -72,7 +72,7 @@ const Volunteer = () => {
               <div className="">
                 <div>
                   <Image
-                    src="/Lets-start.png"
+                    src="/volunteers-cover.jpg"
                     alt=""
                     width="100%"
                     height="40vh"
