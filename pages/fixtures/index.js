@@ -7,56 +7,57 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 // import LatestNewsSideBar from "../volunteer/LatestNews";
 
-const Fixtures = ({ settings, seasons  }) => {
-  const [fixtures, setFixtures] = useState([]);
+const Fixtures = ({ settings, seasons }) => {
+  const [fixtures, setFixtures] = useState(null);
   const [stages, setStages] = useState([]);
-  const [currentStageId, setCurrentStageId] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [currentStageId, setCurrentStageId] = useState("");
+  const [loading, setLoading] = useState(false);
   const baseURL = process.env.BASE_URL;
 
   const fetchStages = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const { data: allStages } = await axios(`${baseURL}/leagues/league/stages/?League=${settings?.CurrentLeague?._id}`);
-      setStages(allStages?.data);
-      setLoading(false)
-      console.log(stages)
+      const { data } = await axios(`${baseURL}/leagues/league/stages/?League=${settings?.CurrentLeague?._id}`);
+      console.log(data);
+      setStages(data?.data);
+      setLoading(false);
+      console.log(allStages);
 
-      if(allStages) {
-        setCurrentStageId(allStages?.data[0]?._id)
+      if (data.data.length !== 0) {
+        setCurrentStageId(data?.data[0]?._id);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-
-  const fetchFixtures = async () => {
-    setLoading(true)
-    try{
-      const { data } = await axios(`${baseURL}/leagues/season/fixtures/?Stage=${currentStageId}&MatchStatus=FIXTURE`);
-      setFixtures(data?.data)
-      setLoading(false)
-    }catch(err) {
-      console.log(err)
-    }
-  }
-
   useEffect(() => {
-    fetchStages()
+    fetchStages();
   }, []);
 
+  const fetchFixtures = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios(`${baseURL}/leagues/season/fixtures/?Stage=${currentStageId}&MatchStatus=FIXTURE`);
+      setFixtures(data?.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    if(currentStageId !== '') {
-      fetchFixtures()
+    if (currentStageId.length > 0) {
+      fetchFixtures();
     }
   }, [currentStageId]);
 
   const handleChange = (e) => {
-    const { value } = e.target
-    setCurrentStageId(value)
+    const { value } = e.target;
+    setCurrentStageId(value);
   };
 
+  console.log(fixtures);
   return (
     <div>
       <PageTitle name="Fixtures" />
@@ -67,7 +68,7 @@ const Fixtures = ({ settings, seasons  }) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-auto mb-10">
                 <Filter title="Select Season" onChange={handleChange} name="CurrentSeason" seasons={seasons} />
                 <select className="select w-full border-gray-500" name="CurrentStage" onChange={handleChange}>
-                  {stages &&
+                  {stages.length !== 0 &&
                     stages?.map((stage, idx) => (
                       <option className="text-red-600" key={idx} value={stage?._id}>
                         {stage?.StageName}
@@ -83,9 +84,11 @@ const Fixtures = ({ settings, seasons  }) => {
               )}
 
               <div className="">
-                {fixtures.length !== 0 ?fixtures?.map((fixtures, idx) => (
-                  <FixturesCard data={fixtures} key={idx} />
-                )): <h1> No fixtures yet </h1>}
+                {fixtures?.length !== 0 ? (
+                  fixtures?.map((fixture, idx) => <FixturesCard fixture={fixture} key={idx} />)
+                ) : (
+                  <h1> No fixtures yet. </h1>
+                )}
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
@@ -122,5 +125,4 @@ export const getStaticProps = async () => {
   } catch (error) {
     return { notFound: true };
   }
-
 };

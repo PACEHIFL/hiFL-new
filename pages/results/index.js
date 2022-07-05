@@ -7,59 +7,60 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 // import LatestNewsSideBar from "../volunteer/LatestNews";
 
-const Results = ({ settings, seasons  }) => {
+const Results = ({ settings, seasons }) => {
   const [results, setResults] = useState([]);
   const [stages, setStages] = useState([]);
-  const [currentStageId, setCurrentStageId] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [currentStageId, setCurrentStageId] = useState("");
+  const [loading, setLoading] = useState(false);
   const baseURL = process.env.BASE_URL;
 
   const fetchStages = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const { data: allStages } = await axios(`${baseURL}/leagues/league/stages/?League=${settings?.CurrentLeague?._id}`);
+      const { data: allStages } = await axios(
+        `${baseURL}/leagues/league/stages/?League=${settings?.CurrentLeague?._id}`
+      );
       setStages(allStages?.data);
-      setLoading(false)
-      console.log(stages)
+      setLoading(false);
+      console.log(stages);
 
-      if(allStages) {
-        setCurrentStageId(allStages?.data[0]?._id)
+      if (allStages) {
+        setCurrentStageId(allStages?.data[0]?._id);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-
   const fetchResults = async () => {
-    setLoading(true)
-    try{
+    setLoading(true);
+    try {
       const { data } = await axios(`${baseURL}/leagues/season/fixtures/?Stage=${currentStageId}&MatchStatus=RESULT`);
-      setResults(data?.data)
-      setLoading(false)
-    }catch(err) {
-      console.log(err)
+      setResults(data?.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchStages()
+    fetchStages();
   }, []);
 
   useEffect(() => {
-    if(currentStageId !== '') {
-      fetchResults()
+    if (currentStageId !== "") {
+      fetchResults();
     }
   }, [currentStageId]);
 
   const handleChange = (e) => {
-    const { value } = e.target
-    setCurrentStageId(value)
+    const { value } = e.target;
+    setCurrentStageId(value);
   };
 
   return (
     <div>
-      <PageTitle name="Fixtures" />
+      <PageTitle name="Results" />
       <div className="bg-white font-redhat">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           <div className="flex gap-7 xl:gap-20 justify-between">
@@ -83,9 +84,11 @@ const Results = ({ settings, seasons  }) => {
               )}
 
               <div className="">
-                {results.length !== 0 ? results?.map((results, idx) => (
-                  <ResultCard data={results} key={idx} />
-                )) : <h1> No results available at the momment </h1>}
+                {results.length !== 0 ? (
+                  results?.map((result, idx) => <ResultCard data={result} key={idx} />)
+                ) : (
+                  <h1> No results available at the momment </h1>
+                )}
               </div>
             </div>
             <div className="hidden lg:block w-4/12 xl:w-3/12 space-y-8">
@@ -122,5 +125,4 @@ export const getStaticProps = async () => {
   } catch (error) {
     return { notFound: true };
   }
-
 };
