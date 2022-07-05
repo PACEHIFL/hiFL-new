@@ -7,6 +7,8 @@ import SideBar from "../shared/SideBar";
 const PostsLayout = ({ name, posts }) => {
   const [postNumber, setPostNumber] = useState(10);
 
+  console.log(posts, "posts");
+
   const handleShowMore = () => {
     setPostNumber(postNumber + 10);
   };
