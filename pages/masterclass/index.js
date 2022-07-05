@@ -8,6 +8,8 @@ import LatestNews from "../../components/volunteer/LatestNews";
 import Image from "next/dist/client/image";
 
 const Masterclass = () => {
+  const baseURL = process.env.CMS_URL;
+
   const content = [
     {
       title: "SPORTS AND MENTAL HEALTH: Effects Of Sports On Mental Health",
