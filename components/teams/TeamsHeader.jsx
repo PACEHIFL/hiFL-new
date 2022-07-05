@@ -3,6 +3,7 @@ import React from "react";
 import { BeatLoader } from "react-spinners";
 
 const TeamsHeader = ({ data, loading }) => {
+  console.log(data);
   return (
     <div className="flex h-full bg-[#000229] text-white font-redhat">
       <div className="flex flex-col lg:flex-row w-full items-center lg:justify-center lg:w-[50%] py-10">
@@ -24,9 +25,22 @@ const TeamsHeader = ({ data, loading }) => {
             {/* <span className="pl-3 font-bold">4 HiFL Appereance</span> */}
           </div>
           <div className="flex items-center -ml-1 justify-center lg:justify-start">
-            <Image src="/facebook.png" alt="" width="60" className="cursor-pointer mr-3" height="60" layout="fixed" />
-            <Image src="/twitter.png" alt="" width="60" className="cursor-pointer mr-3" height="60" layout="fixed" />
-            <Image src="/instagram.png" alt="" width="60" className="cursor-pointer mr-3" height="60" layout="fixed" />
+            <a href={data?.SocialMediaAssets?.Facebook} target="_blank" rel="noopener noreferrer">
+              <Image src="/facebook.png" alt="" width="60" className="cursor-pointer mr-3" height="60" layout="fixed" />
+            </a>
+            <a href={data?.SocialMediaAssets?.Twitter} target="_blank" rel="noopener noreferrer">
+              <Image src="/twitter.png" alt="" width="60" className="cursor-pointer mr-3" height="60" layout="fixed" />
+            </a>
+            <a href={data?.SocialMediaAssets?.Instagram} target="_blank" rel="noopener noreferrer">
+              <Image
+                src="/instagram.png"
+                alt=""
+                width="60"
+                className="cursor-pointer mr-3"
+                height="60"
+                layout="fixed"
+              />
+            </a>
           </div>
         </div>
       </div>

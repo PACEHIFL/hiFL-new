@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import useFetch from "../../hooks/useFetch";
-import Moment from 'react-moment';
+import Moment from "react-moment";
 import { BeatLoader } from "react-spinners";
 
 const FixturesBrief = () => {
@@ -11,16 +11,16 @@ const FixturesBrief = () => {
   return (
     <div className="bg-white h-full border-[5px] text-black font-redhat text-center border-x-0 border-primary flex justify-center p-5">
       <div>
-        <h2 className="text-accent text-md font-bold">Round of 16</h2>
+        <h2 className="text-accent text-md font-bold">Active Fixtures</h2>
         <h2 className="text-[#000229] text-md font-bold p-5">
-           <Moment format="MMMM Do YYYY" date={data?.data[0]?.MatchDate} />
+          <Moment format="MMMM Do YYYY" date={data?.data[0]?.MatchDate} />
         </h2>
 
         {loading && (
-              <div className="h-[400px] flex justify-center items-center">
-                <BeatLoader loading={loading} color="#000229" />
-              </div>
-            )}
+          <div className="h-[400px] flex justify-center items-center">
+            <BeatLoader loading={loading} color="#000229" />
+          </div>
+        )}
 
         <div className="">
           {data?.data
