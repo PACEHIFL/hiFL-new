@@ -10,14 +10,14 @@ import { BeatLoader } from "react-spinners";
 const Overview = ({ data: { Overview, _id }, loading }) => {
   const [officials, setOfficiails] = useState();
 
-   const fetchData = async () => {
-      const baseURL = process.env.BASE_URL;
-      const { data } = await axios(`${baseURL}/officials/?Team=${_id}`);
-      setOfficiails(data?.data);
-    };
+  const fetchData = async () => {
+    const baseURL = process.env.BASE_URL;
+    const { data } = await axios(`${baseURL}/officials/?Team=${_id}`);
+    setOfficiails(data?.data);
+  };
 
   useEffect(() => {
-    if(_id) {
+    if (_id) {
       fetchData();
     }
   }, [_id]);
@@ -26,7 +26,7 @@ const Overview = ({ data: { Overview, _id }, loading }) => {
     <div>
       <div className="flex gap-5 xl:gap-8 justify-between font-redhat">
         <div className="w-full lg:w-8/12 xl:w-9/12">
-          <h1 className="text-base md:text-xl w-[80%] pb-6 leading-7">{Overview}</h1>
+          <h1 className="text-base md:text-lg md:w-[80%] pb-6 leading-7">{Overview}</h1>
           <div className="mb-10">
             <h1 className="font-bold text-4xl pb-4">Officials</h1>
 
@@ -36,9 +36,9 @@ const Overview = ({ data: { Overview, _id }, loading }) => {
               </div>
             )}
 
-            {officials?.length !== 0 ? 
+            {officials?.length !== 0 ? (
               officials?.map((official, idx) => <OfficialInfo data={official} key={idx} />)
-            : (
+            ) : (
               <h1> No officials yet... </h1>
             )}
           </div>
