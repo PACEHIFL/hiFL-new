@@ -14,10 +14,10 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
   const [leagues, setLeagues] = useState([]);
   const [currentStageId, setCurrentStageId] = useState("");
   const [loading, setLoading] = useState(false);
-  const isOdd = (num) => num % 2 === 0;
   const router = useRouter();
   const path = router.pathname;
   const baseURL = process.env.BASE_URL;
+  const isOdd = (num) => num % 2 === 0;
 
   const fetchStages = async () => {
     setLoading(true);
