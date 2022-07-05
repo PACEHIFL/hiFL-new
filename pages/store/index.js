@@ -93,7 +93,7 @@ const Store = () => {
             {filteredProducts.length} {filterCategory} found
           </p>
         )}
-        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] place-items-center grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 text-secondary">
+        <div className="mt-4 pt-16 pb-6 border-t border-[#AFAFAF] place-items-center grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-12 text-secondary">
           {loading ? (
             <>
               <div className="w-full">
