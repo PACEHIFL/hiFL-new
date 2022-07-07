@@ -18,6 +18,10 @@ const TeamsHeader = ({ data, loading }) => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold">{data?.TeamName}</h1>
           <div className="flex items-center  justify-center lg:justify-start my-4">
             <img className="hidden md:inline" src="/school-icon.png" alt="school-icon" width="20" height="20" />
+            <span className="pl-3 font-bold text-xl">{data?.Institution?.InstitutionName}</span>
+          </div>
+          <div className="flex items-center  justify-center lg:justify-start my-4">
+            <img className="hidden md:inline" src="/school-icon.png" alt="school-icon" width="20" height="20" />
             <span className="pl-3 font-bold">{data?.Institution?.Location}</span>
           </div>
           <div className="flex items-center justify-center lg:justify-start mb-4">
@@ -46,7 +50,7 @@ const TeamsHeader = ({ data, loading }) => {
       </div>
       <div className="hidden lg:block w-[50%] h-full border-r border-r-white">
         {/* <Image src="/about.png" alt="" width="100%" height="100%" layout="fixed" objectFit="contain" /> */}
-        <img src={data?.TeamCoverPhoto ? data?.TeamCoverPhoto : ""} className="object-contain w-full h-full" />
+        {data?.TeamCoverPhoto && <img src={data?.TeamCoverPhoto} className="object-contain w-full h-full" />}
       </div>
     </div>
   );
