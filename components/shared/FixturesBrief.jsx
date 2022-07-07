@@ -11,7 +11,7 @@ const FixturesBrief = () => {
   return (
     <div className="bg-white h-full border-[5px] text-black font-redhat text-center border-x-0 border-primary flex justify-center p-5">
       <div>
-        <h2 className="text-accent text-md font-bold">Active Fixtures</h2>
+        <h2 className="text-accent text-md font-bold">Fixtures</h2>
         <h2 className="text-[#000229] text-md font-bold p-5">
           <Moment format="MMMM Do YYYY" date={data?.data[0]?.MatchDate} />
         </h2>
