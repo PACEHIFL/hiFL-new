@@ -403,7 +403,7 @@ export const volunteerFAQ = [
   {
     title: "How to become a Volunteer ",
     description:
-      "You can apply to become a volunteer by going to the HiFL Volunteers Page and clicking on “Sign up.” You can find this by clicking on this link Volunteer portal https://www.hiflng.com/volunteer",
+      "You can apply to become a volunteer by going to the HiFL Volunteers Page and clicking on “Sign up.” You can find this by clicking on this link Volunteer portal <a class='text-[#1622fa] underline' href='https://www.hiflng.com/volunteer' target='_blank'> https://www.hiflng.com/volunteer </a>",
   },
   {
     title: "Who can become a part of the Volunteer Force? ",

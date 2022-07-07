@@ -4,7 +4,6 @@ import SideBar from "../../components/shared/SideBar";
 import axios from "axios";
 
 const PrivacyPolicy = ({ data }) => {
-  console.log(data);
   return (
     <div>
       <PageTitle name="Privacy Policy" />
