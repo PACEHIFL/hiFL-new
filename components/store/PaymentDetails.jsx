@@ -17,8 +17,6 @@ const PaymentDetails = ({
   const dispatch = useDispatch();
   const router = useRouter();
 
-  console.log(paymentMode);
-
   const handleChange = (e) => {
     setPaymentMode(e.target.value);
   };
