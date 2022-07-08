@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import useFetch from "../../hooks/useFetch";
@@ -23,7 +22,9 @@ const HeadlinesCard = () => {
                 </div>
                 <div className="w-7/12">
                   <p className="px-1 w-full text-[0.9rem] font-semibold">{Title}</p>
-                  <p className="px-1 w-full text-[0.8rem] mt-3 text-gray-100">{Excerpts.slice(0, 50)} <span className="italic"> ...read more </span> </p>
+                  <p className="px-1 w-full text-[0.8rem] mt-3 text-gray-100">
+                    {Excerpts.slice(0, 50)} <span className="italic"> ...read more </span>
+                  </p>
                 </div>
               </a>
             </Link>

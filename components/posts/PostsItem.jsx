@@ -17,9 +17,11 @@ const PostsItem = ({ post: { id, Title, CoverImage, SubTitle, Excerpts, Type } }
         <div>
           <h2 className="text-xl 2xl:text-2xl mb-1 font-semibold">{Title}</h2>
           {SubTitle && <h3 className="text-accent text-sm md:text-base mb-3">{SubTitle}</h3>}
-          <p className="text-base 2xl:text-xl text-secondary font-redhat max-w-[90%]">
-            {Excerpts?.substring(0, 200)}...
-          </p>
+          {Excerpts && (
+            <p className="text-base 2xl:text-xl text-secondary font-redhat max-w-[90%]">
+              {Excerpts?.substring(0, 200)}...
+            </p>
+          )}
         </div>
 
         <div>

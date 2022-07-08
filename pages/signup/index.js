@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import AuthLayout from "../../components/layout/AuthLayout";
 import InputField from "../../components/authpages/InputField";
 import useFetch from "../../hooks/useFetch";
-
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/features/auth.slice";
@@ -21,12 +20,29 @@ const Signup = () => {
     confirmPassword: "",
     supportingInst: "",
     hearAbtUs: "",
+    openStanbicAccount: "YES",
+    contactViaEmail: true,
+    contactViaCall: false,
+    contactViaText: false,
     consent: false,
   };
 
   const [userData, setUserData] = useState(initialState);
-  const { firstName, lastName, email, phoneNumber, password, confirmPassword, supportingInst, hearAbtUs, consent } =
-    userData;
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    password,
+    confirmPassword,
+    supportingInst,
+    hearAbtUs,
+    openStanbicAccount,
+    contactViaEmail,
+    contactViaCall,
+    contactViaText,
+    consent,
+  } = userData;
 
   const baseURL = process.env.BASE_URL;
   const { data } = useFetch(`${baseURL}/institutions`);
@@ -39,11 +55,19 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (data.email == "" || data.password == "") {
-    //   return toast.error("Please all fields are required");
-    // }
-
-    const propsPayload = { Supportinginstitution: supportingInst, Hearaboutus: hearAbtUs };
+    const propsPayload = {
+      Supportinginstitution: supportingInst,
+      Hearaboutus: hearAbtUs,
+      OpenStanbicAccount: openStanbicAccount,
+      ContactOptions:
+        openStanbicAccount == "YES"
+          ? [
+              ...(contactViaCall ? ["Phone Call"] : []),
+              ...(contactViaEmail ? ["Email"] : []),
+              ...(contactViaText ? ["Text"] : []),
+            ]
+          : null,
+    };
     const payload = {
       Firstname: firstName,
       Lastname: lastName,
@@ -60,7 +84,6 @@ const Signup = () => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
     }
-
     if (firstName && lastName && email && password && phoneNumber && confirmPassword == password && consent) {
       dispatch(register({ payload, toast, router }));
     }
@@ -176,8 +199,78 @@ const Signup = () => {
                   </select>
                 </div>
               </div>
+              <div className="flex flex-col md:flex-row gap-2 md:gap-6  justify-between mb-3 text-sm">
+                <p className="w-full md:w-[80%]">
+                  Would you like to open an Account with Stanbic IBTC - our official financial partner to enjoy exciting
+                  benefits and offers. (This means we'll be sharing your contact information with Stanbic IBTC)
+                </p>
+                <div className="w-full md:w-[20%]">
+                  <div className="flex gap-6">
+                    <div className="flex gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="openStanbicAccount"
+                        value="YES"
+                        className="radio radio-xs radio-primary"
+                        onChange={handleChange}
+                        defaultChecked
+                      />
+                      <span className="font-semibold">Yes</span>
+                    </div>
+                    <div className="flex gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="openStanbicAccount"
+                        value="NO"
+                        className="radio radio-xs radio-primary"
+                        onChange={handleChange}
+                      />
+                      <span className="font-semibold">No</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {userData.openStanbicAccount == "YES" && (
+                <div className="flex flex-col md:flex-row gap-2 md:gap-6 md:items-center mb-5 text-sm">
+                  <p className="">How would you like to be contacted ?</p>
+                  <div className="">
+                    <div className="flex gap-3 md:gap-6">
+                      <div className="flex gap-3 items-center">
+                        <input
+                          type="checkbox"
+                          name="contactViaEmail"
+                          checked={userData.contactViaEmail}
+                          onChange={handleChange}
+                          className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
+                        />
+                        <p>Email</p>
+                      </div>
+                      <div className="flex gap-3 items-center">
+                        <input
+                          type="checkbox"
+                          name="contactViaCall"
+                          checked={userData.contactViaCall}
+                          onChange={handleChange}
+                          className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
+                        />
+                        <p>Phone Call</p>
+                      </div>
+                      <div className="flex gap-3 items-center">
+                        <input
+                          type="checkbox"
+                          name="contactViaText"
+                          checked={userData.contactViaText}
+                          onChange={handleChange}
+                          className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
+                        />
+                        <p>Text</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-              <div className="flex gap-3 items-center py-3">
+              <div className="flex gap-3 items-center mb-3">
                 <input
                   type="checkbox"
                   name="consent"
@@ -185,7 +278,17 @@ const Signup = () => {
                   onChange={handleChange}
                   className="checkbox checkbox-xs checkbox-primary border-[#767670] outline-none rounded-sm"
                 />
-                <p>I have read, understand and agree to terms and conditions and privacy policy of HiFL.</p>
+                <p>
+                  I have read, understand and agree to the{" "}
+                  <a href="/terms-of-use" target="_blank" rel="noreferrer" className="text-primary">
+                    terms and conditions
+                  </a>{" "}
+                  and{" "}
+                  <a href="/terms-of-use" target="_blank" rel="noreferrer" className="text-primary">
+                    privacy policy
+                  </a>{" "}
+                  of HiFL.
+                </p>
               </div>
 
               <button className={`${loading && "loading"} btn btn-wide btn-primary capitalize font-bold mt-3`}>
