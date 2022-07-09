@@ -58,7 +58,6 @@ const Contact = () => {
     if (!hiflGameTime && !hiflPromo && !hiflUpdates) return toast.error("Please select at least one mailing list");
 
     if (firstName && lastName && subscribeData.email && (hiflGameTime || hiflPromo || hiflUpdates)) {
-      //console.log(payload);
       dispatch(subscribe({ payload, toast, setSubscribeData, initialSubscribe }));
     }
   };
