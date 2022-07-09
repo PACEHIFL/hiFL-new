@@ -16,3 +16,9 @@ export const orderStatusColor = (status) => {
       : "bg-accent";
   return color;
 };
+
+//TO TRIM SPACES AND CHECK IF AN INPUT FIELD IS EMPTY
+export const isEmpty = (text) => {
+  if (text.trim() === "") return true;
+  else return false;
+};
