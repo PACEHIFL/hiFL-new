@@ -11,7 +11,7 @@ const FeaturedCoach = () => {
       <h2 className="text-[#000229] font-bold text-sm  font-redhat p-3">Featured Coach</h2>
 
       <div className="mb-1 relative mx-3">
-        <div className="rounded  h-[147px] w-full flex flex-col justify-end text-white font-redhat pl-5 text-xs relative z-10 pb-2">
+        <div className="rounded  h-[200px] w-full flex flex-col justify-end text-white font-redhat pl-5 text-xs relative z-10 pb-2">
           <p className="font-bold">{data?.data?.Fullname}</p>
           <p>Coach</p>
         </div>
