@@ -199,12 +199,13 @@ const Signup = () => {
                   </select>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-2 md:gap-6  justify-between mb-3 text-sm">
-                <p className="w-full md:w-[80%]">
-                  Would you like to open an Account with Stanbic IBTC - our official financial partner to enjoy exciting
-                  benefits and offers. (This means we'll be sharing your contact information with Stanbic IBTC)
+              <div className="flex flex-col-reverse md:flex-row-reverse gap-2 md:gap-6  justify-between mb-3 text-sm">
+                <p className="">
+                  Would you like to open an Account with <span className="font-bold">Stanbic IBTC</span> - our official
+                  financial partner to enjoy exciting benefits and offers. (This means we'll be sharing your contact
+                  information with Stanbic IBTC)
                 </p>
-                <div className="w-full md:w-[20%]">
+                <div className="">
                   <div className="flex gap-6">
                     <div className="flex gap-3 cursor-pointer">
                       <input
@@ -231,10 +232,10 @@ const Signup = () => {
                 </div>
               </div>
               {userData.openStanbicAccount == "YES" && (
-                <div className="flex flex-col md:flex-row gap-2 md:gap-6 md:items-center mb-5 text-sm">
+                <div className="flex flex-col gap-2   mb-8 text-sm">
                   <p className="">How would you like to be contacted ?</p>
                   <div className="">
-                    <div className="flex gap-3 md:gap-6">
+                    <div className="flex flex-col gap-3">
                       <div className="flex gap-3 items-center">
                         <input
                           type="checkbox"
