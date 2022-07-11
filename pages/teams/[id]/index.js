@@ -94,23 +94,23 @@ const Slug = () => {
     setCurrentStageId(value);
   };
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${pathName}`);
-      const { data: player } = await axios(`${baseURL}/players/active/?Team=${pathName}`);
-      const { data: results } = await axios(
-        `${baseURL}/leagues/season/fixtures/?MatchStatus=RESULT&HomeTeam=${pathName}`
-      );
-      setTeam(data?.data);
-      setPlayers(player?.data);
-      setResults(results?.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const { data, errors } = await axios(`${baseURL}/teams/team/?_id=${pathName}`);
+        const { data: player } = await axios(`${baseURL}/players/active/?Team=${pathName}`);
+        const { data: results } = await axios(
+          `${baseURL}/leagues/season/fixtures/?MatchStatus=RESULT&HomeTeam=${pathName}`
+        );
+        setTeam(data?.data);
+        setPlayers(player?.data);
+        setResults(results?.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
 
   const handleSeasonChange = (e) => {
     const { name, value } = e.target;

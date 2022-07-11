@@ -31,7 +31,7 @@ export default PrivacyPolicy;
 export async function getStaticProps() {
   try {
     const baseURL = process.env.CMS_URL;
-    const { data, errors } = await axios(`${baseURL}/privacy-policy?populate=`);
+    const { data, errors } = await axios(`${baseURL}/privacy-policy?populate=*`);
 
     if (errors || !data) {
       return { notFound: true };
