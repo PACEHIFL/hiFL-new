@@ -21,7 +21,6 @@ export const subscribe = createAsyncThunk(
     try {
       const response = await api.mailSubscribe(payload);
       toast.success("Successfully subscribed");
-      console.log(response.data.data);
       setSubscribeData(initialSubscribe);
       return response.data;
     } catch (err) {

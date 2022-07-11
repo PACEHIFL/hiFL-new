@@ -232,7 +232,7 @@ const Signup = () => {
                 </div>
               </div>
               {userData.openStanbicAccount == "YES" && (
-                <div className="flex flex-col md:flex-row gap-2 md:gap-4  mb-8 text-sm">
+                <div className="flex flex-col gap-2   mb-8 text-sm">
                   <p className="">How would you like to be contacted ?</p>
                   <div className="">
                     <div className="flex flex-col gap-3">
