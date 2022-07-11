@@ -6,12 +6,12 @@ import { BeatLoader } from "react-spinners";
 
 const FixturesBrief = () => {
   const baseURL = process.env.BASE_URL;
-  const { data, loading } = useFetch(`${baseURL}/leagues/season/fixtures/?MatchStatus=FIXTURE`);
+  const { data, loading } = useFetch(`${baseURL}/leagues/season/fixtures/?MatchStatus=RESULT`);
 
   return (
     <div className="relative bg-white border-[5px] text-black font-redhat text-center border-x-0 border-t-0 border-primary w-full py-5 px-8 h-[90%]">
       <div>
-        {/* <h2 className="text-accent text-md font-bold">Fixtures</h2> */}
+        {/* <h2 className="text-accent text-md font-bold">Results</h2> */}
         {/* <h2 className="text-[#000229] text-md font-bold p-5">
           <Moment format="MMMM Do YYYY" date={data?.data[0]?.MatchDate} />
         </h2> */}
@@ -23,7 +23,7 @@ const FixturesBrief = () => {
         )}
 
         <div className="">
-          {data?.data
+          {data?.data.length > 0 ? data?.data
             ?.slice(0, 4)
             .map(
               (
@@ -44,9 +44,9 @@ const FixturesBrief = () => {
                   </div>
                 </div>
               )
-            )}
+            ) : <h1>No results available yet. </h1>}
           <div className="flex justify-end absolute bottom-5 right-5">
-            <div className="flex gap-2 items-center mt-10">
+            <div className="flex gap-2 items-center mt-4">
               <Link href="/fixtures">
                 <a>View All</a>
               </Link>
