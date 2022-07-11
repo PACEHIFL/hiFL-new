@@ -5,10 +5,9 @@ import SideBar from "../../components/shared/SideBar";
 import FixturesCard from "../../components/teams/FixturesCard";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
-// import LatestNewsSideBar from "../volunteer/LatestNews";
 
 const Fixtures = ({ settings, seasons }) => {
-  const [fixtures, setFixtures] = useState(null);
+  const [fixtures, setFixtures] = useState([]);
   const [stages, setStages] = useState([]);
   const [currentStageId, setCurrentStageId] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,7 +56,6 @@ const Fixtures = ({ settings, seasons }) => {
     setCurrentStageId(value);
   };
 
-  console.log(fixtures);
   return (
     <div>
       <PageTitle name="Fixtures" />
