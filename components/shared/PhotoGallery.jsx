@@ -64,7 +64,7 @@ const PhotoGallery = () => {
                   <div className="w-1/2 md:w-full">
                     <img src={CoverImage?.url} alt="" className="w-full object-cover" />
                   </div>
-                  <p className="w-1/2 md:w-full text-xs text-left font-extralight pt-1">{Title.substring(0, 60)}...</p>
+                  <p className="w-1/2 md:w-full text-xs text-left font-semibold pt-1">{Title.substring(0, 60)}...</p>
                 </a>
               </Link>
             ))

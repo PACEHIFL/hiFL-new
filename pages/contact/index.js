@@ -1,9 +1,9 @@
-import Image from "next/image";
 import React, { useState } from "react";
 import InputField from "../../components/authpages/InputField";
-import LatestNews from "../../components/shared/LatestNews";
 import PageTitle from "../../components/shared/PageTitle";
-import Sponsors from "../../components/shared/Sponsors";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { contactUs, subscribe } from "../../redux/features/contact.slice";
 
 const Contact = () => {
   const initialSubscribe = {
@@ -15,9 +15,12 @@ const Contact = () => {
     hiflPromo: false,
   };
   const initialContact = { fullName: "", subject: "", email: "", message: "" };
-
   const [subscribeData, setSubscribeData] = useState(initialSubscribe);
   const [contactData, setContactData] = useState(initialContact);
+  const { fullName, subject, email, message } = contactData;
+  const { firstName, lastName, hiflUpdates, hiflGameTime, hiflPromo } = subscribeData;
+  const { loading, subscribeLoading } = useSelector((state) => state.contact);
+  const dispatch = useDispatch();
 
   const contactDetails = [
     { title: "Drop a line", content: "For enquiries, comments and partnerships, let's talk contact@hiflng.com" },
@@ -37,10 +40,43 @@ const Contact = () => {
   };
 
   const handleSubscribeSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
+
+    const payload = {
+      data: {
+        FirstName: firstName.trim(),
+        LastName: lastName.trim(),
+        EmailAddress: subscribeData.email.trim(),
+        Lists: [
+          ...(hiflUpdates ? ["HiFL Updates"] : []),
+          ...(hiflGameTime ? ["HiFL GameTime"] : []),
+          ...(hiflPromo ? ["Promos & Offers"] : []),
+        ].join(),
+      },
+    };
+
+    if (!hiflGameTime && !hiflPromo && !hiflUpdates) return toast.error("Please select at least one mailing list");
+
+    if (firstName && lastName && subscribeData.email && (hiflGameTime || hiflPromo || hiflUpdates)) {
+      dispatch(subscribe({ payload, toast, setSubscribeData, initialSubscribe }));
+    }
   };
+
   const handleContactSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
+
+    const payload = {
+      data: {
+        YourName: fullName.trim(),
+        Subject: subject.trim(),
+        EmailAddress: email.trim(),
+        YourMessage: message.trim(),
+      },
+    };
+
+    if (fullName && subject && email && message) {
+      dispatch(contactUs({ payload, toast, setContactData, initialContact }));
+    }
   };
 
   return (
@@ -140,7 +176,9 @@ const Contact = () => {
                   practices here.
                 </p>
               </div>
-              <button className="btn btn-wide btn-primary capitalize mt-8"> Subscribe</button>
+              <button className={`btn btn-wide btn-primary capitalize mt-8 ${subscribeLoading && "loading"}`}>
+                {subscribeLoading ? "" : "Subscribe"}
+              </button>
             </form>
           </div>
 
@@ -187,18 +225,17 @@ const Contact = () => {
                   onChange={handleContactChange}
                   placeholder="Your Message"
                   className="w-full border-b border-[#767670] py-2 px-4 outline-none rounded bg-[#E8E8E8] focus:bg-[#FBFBFB]"
-                  data={contactData}
+                  value={message}
                   rows={8}
                   required
                 />
               </div>
-              <button className="btn btn-wide btn-primary capitalize mt-8">Submit</button>
+              <button className={`btn btn-wide btn-primary capitalize mt-8 ${loading && "loading"}`}>
+                {loading ? "" : "Submit"}
+              </button>
             </form>
           </div>
         </div>
-        {/* <div className="mt-6">
-          <LatestNews />
-        </div> */}
       </div>
     </div>
   );
