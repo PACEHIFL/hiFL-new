@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import Head from "next/head";
 import Script from "next/script";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import DefaultLayout from "../components/layout/DefaultLayout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +11,21 @@ import { Provider } from "react-redux";
 import { store } from "../redux/store";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    import("react-facebook-pixel")
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID);
+        ReactPixel.pageView();
+
+        router.events.on("routeChangeComplete", () => {
+          ReactPixel.pageView();
+        });
+      });
+  }, [router.events]);
+
   return (
     <>
       {/* GOOGLE ANALYTICS TRACKING CODE START*/}
