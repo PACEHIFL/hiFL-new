@@ -56,7 +56,7 @@ const Fixtures = ({ settings, seasons }) => {
 
   return (
     <div>
-      <PageTitle name="Fixtures" />
+      <PageTitle name="Fixtures and Results" />
       <div className="bg-white font-redhat">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           <div className="flex gap-7 xl:gap-20 justify-between">
