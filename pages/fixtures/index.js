@@ -17,12 +17,10 @@ const Fixtures = ({ settings, seasons }) => {
     setLoading(true);
     try {
       const { data } = await axios(`${baseURL}/leagues/league/stages/?League=${settings?.CurrentLeague?._id}`);
-      console.log(data);
       setStages(data?.data);
       setLoading(false);
-      console.log(allStages);
 
-      if (data.data.length !== 0) {
+      if (data?.data?.length !== 0) {
         setCurrentStageId(data?.data[0]?._id);
       }
     } catch (error) {
@@ -58,7 +56,7 @@ const Fixtures = ({ settings, seasons }) => {
 
   return (
     <div>
-      <PageTitle name="Fixtures" />
+      <PageTitle name="Fixtures and Results" />
       <div className="bg-white font-redhat">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           <div className="flex gap-7 xl:gap-20 justify-between">
@@ -66,7 +64,7 @@ const Fixtures = ({ settings, seasons }) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-auto mb-10">
                 <Filter title="Select Season" onChange={handleChange} name="CurrentSeason" seasons={seasons} />
                 <select className="select w-full border-gray-500" name="CurrentStage" onChange={handleChange}>
-                  {stages.length !== 0 &&
+                  {stages?.length !== 0 &&
                     stages?.map((stage, idx) => (
                       <option className="text-red-600" key={idx} value={stage?._id}>
                         {stage?.StageName}
