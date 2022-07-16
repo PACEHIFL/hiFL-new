@@ -29,7 +29,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {/* GOOGLE ANALYTICS TRACKING CODE START*/}
-      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}></Script>
+      <Script
+        id="goggle"
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}></Script>
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
