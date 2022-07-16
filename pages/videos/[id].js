@@ -28,6 +28,7 @@ export const getStaticProps = async ({ params: { id } }) => {
       props: {
         data: data.data,
       },
+      revalidate: 15,
     };
   } catch (error) {
     return { notFound: true };
