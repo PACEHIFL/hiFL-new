@@ -18,7 +18,9 @@ const SideBar = () => {
         {" "}
         <FeaturedCoach />{" "}
       </div>
-      <div>{/* <SquareBanner /> */}</div>
+      <div>
+        <SquareBanner />
+      </div>
       <div>
         {" "}
         <FeaturedSchool />{" "}

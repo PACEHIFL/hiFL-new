@@ -9,6 +9,8 @@ const FixturesCard = ({ fixture }) => {
   const router = useRouter();
   const path = router.pathname;
 
+  console.log(fixture);
+
   return (
     <Link href={`${path}/${fixture._id}`}>
       <div className="grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4]">
@@ -30,6 +32,7 @@ const FixturesCard = ({ fixture }) => {
           </div>
         </div>
         <div className="flex items-center justify-between col-span-3 lg:col-span-1 pt-6 lg:pt-0 text-sm">
+          <span>{fixture?.MatchTime}</span>
           <span>
             {" "}
             <Moment format="MMMM Do YYYY" date={fixture?.MatchDate} />{" "}
