@@ -13,20 +13,28 @@ const FixturesCard = ({ fixture }) => {
 
   return (
     <Link href={`${path}/${fixture._id}`}>
-      <div className="grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4]">
-        <div className="flex items-center justify-between lg:justify-start col-span-3 lg:col-span-2 ">
-          <div className="flex justify-center items-center">
+      <div className="grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4] mt-3">
+        <div className="flex items-center lg:justify-start col-span-3 lg:col-span-2 ">
+          <div className="flex justify-end items-center w-[45%]">
             <span className="font-bold md:text-base">{fixture?.HomeTeam?.TeamAbbreviation}</span>
             <div className="rounded-full bg-white p-[0.3rem] hidden w-14 h-14 md:flex items-center justify-center ml-3">
-              <img src="/default-team-logo.png" className="w-full h-full ml-2" alt="futa-logo" />
+              <img
+                src={fixture?.HomeTeam?.TeamLogo ? fixture?.HomeTeam?.TeamLogo : "/default-team-logo.png"}
+                className="w-full h-full ml-2"
+                alt="team-logo"
+              />
             </div>
           </div>
-          <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8">
-            <span className="text-secondary">{fixture?.MatchTime}</span>{" "}
+          <div className="px-3 py-1 md:mx-8">
+            <span className="text-secondary">vs</span>{" "}
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-start items-center w-[45%]">
             <div className="rounded-full bg-white p-[0.3rem] hidden md:flex w-14 h-14 items-center justify-center mr-3">
-              <img src="/default-team-logo.png" className="w-full h-full ml-2" alt="futa-logo" />
+              <img
+                src={fixture?.AwayTeam?.TeamLogo ? fixture?.AwayTeam?.TeamLogo : "/default-team-logo.png"}
+                className="w-full h-full ml-2"
+                alt="team-logo"
+              />
             </div>
             <span className="font-bold md:text-base capitalize">{fixture?.AwayTeam?.TeamAbbreviation}</span>
           </div>

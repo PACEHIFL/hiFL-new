@@ -28,6 +28,8 @@ const Slug = () => {
     fetchFixture();
   }, []);
 
+  console.log(fixtureDetails);
+
   return (
     <div className="bg-white font-redhat">
       {loading === false && fixtureDetails && (
@@ -54,6 +56,30 @@ const Slug = () => {
                   />
                   <span className="text-xs md:text-lg">{fixtureDetails?.AwayTeam?.TeamName}</span>
                 </div>
+              </div>
+
+              <div className="flex items-center justify-between mb-4 px-5 md:px-10 border py-3 md:text-lg">
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[0]?.GoalScored?.HomeTeam : "0"}</span>
+                <span>Goals Scored</span>
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[0]?.GoalScored?.AwayTeam : "0"}</span>
+              </div>
+
+              <div className="flex items-center mb-4 justify-between px-5 md:px-10 border py-3 md:text-lg">
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[1]?.RedCard?.HomeTeam : "0"}</span>
+                <span>Red Card</span>
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[1]?.RedCard?.AwayTeam : "0"}</span>
+              </div>
+
+              <div className="flex items-center mb-4 justify-between px-5 md:px-10 border py-3 md:text-lg">
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[2]?.YellowCard?.HomeTeam : "0"}</span>
+                <span>Yellow Card</span>
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[2]?.YellowCard?.AwayTeam : "0"}</span>
+              </div>
+
+              <div className="flex items-center mb-4 justify-between px-5 md:px-10 border py-3 md:text-lg">
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[3]?.ShotsOnTarget?.HomeTeam : "0"}</span>
+                <span>Shots On Target</span>
+                <span>{fixtureDetails?.MatchStat ? fixtureDetails?.MatchStat[3]?.ShotsOnTarget?.AwayTeam : "0"}</span>
               </div>
 
               <div className="capitalize">
