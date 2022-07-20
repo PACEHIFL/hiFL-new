@@ -3,8 +3,8 @@ export const navLinks = [
     name: "The League",
     links: [
       { title: "Teams", path: "/teams" },
-      { title: "Fixtures", path: "/fixtures" },
-      { title: "Results", path: "/results" },
+      { title: "Fixtures & Results", path: "/fixtures" },
+      // { title: "Results", path: "/results" },
       // { title: "Elite Awards", path: "/elite-awards" },
     ],
   },

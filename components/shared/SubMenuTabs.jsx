@@ -12,7 +12,7 @@ const SubMenuTabs = ({ activeTab, setActiveTab }) => {
   const subPaths = [
     [
       { title: "Teams", path: "/teams" },
-      { title: "Fixtures and Results", path: "/fixtures" },
+      { title: "Fixtures & Results", path: "/fixtures" },
       // { title: "Results", path: "/results" },
       // { title: "Elite Awards", path: "/elite-awards" },
     ],

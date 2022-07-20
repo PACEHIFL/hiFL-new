@@ -86,7 +86,7 @@ const Fixtures = () => {
 
   return (
     <div>
-      <PageTitle name="Fixtures and Results" />
+      <PageTitle name="Fixtures & Results" />
       <div className="bg-white font-redhat">
         <div className="max-w-[94%] md:max-w-[90%] mx-auto py-10 text-black">
           <div className="flex gap-7 xl:gap-20 justify-between">
