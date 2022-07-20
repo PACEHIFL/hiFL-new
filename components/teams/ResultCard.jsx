@@ -4,6 +4,7 @@ import { LocationMarkerIcon, ArrowRightIcon } from "@heroicons/react/solid";
 import Moment from "react-moment";
 
 const ResultCard = ({ data }) => {
+  console.log(data);
   return (
     <div className="grid grid-cols-3 bg-[#F8F8F8] px-10 py-3 mb-6 hover:bg-[#FFEBA4]">
       <div className="flex items-center justify-start col-span-2">
@@ -13,12 +14,13 @@ const ResultCard = ({ data }) => {
             <img src="/default-team-logo.png" className="hidden md:block w-full h-full ml-2" alt="futa-logo" />
           </div>
         </div>
-        <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8">
-          <div className="border bg-secondary hover:text-secondary border-gray-400 px-3 py-1 ml-2 md:mx-2">
-            <span className="text-white">{data.homeTeam.score}</span>
+        <div className="bg-white border border-gray-400 px-3 py-1 md:mx-8 flex items-center">
+          <div className="text-black border-gray-400 px-3 py-1 ml-2 md:mx-2">
+            <span className="text-black">{data?.MatchStat[0]?.GoalScored?.HomeTeam}</span>
           </div>
-          <div className="border bg-secondary hover:text-secondary border-gray-400 px-3 py-1 ml-2 md:mx-2">
-            <span className="text-white">{data.awayTeam.score}</span>
+            <span className="text-black font-bold">:</span>
+          <div className="text-black border-gray-400 px-3 py-1 ml-2 md:mx-2">
+            <span className="text-black">{data?.MatchStat[0]?.GoalScored?.AwayTeam}</span>
           </div>
         </div>
         <div className="flex justify-center items-center">
