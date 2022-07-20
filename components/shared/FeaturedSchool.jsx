@@ -7,8 +7,6 @@ const FeaturedSchool = () => {
   const baseURL = process.env.CMS_URL;
   const { data, loading } = useFetch(`${baseURL}/feature-team?populate=*`);
 
-  console.log(data);
-
   return (
     <div className="bg-white rounded border shadow">
       <h2 className="text-[#000229] font-bold text-sm  font-redhat p-3">Featured School</h2>
