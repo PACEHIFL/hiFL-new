@@ -28,7 +28,6 @@ const Slug = () => {
     fetchFixture();
   }, []);
 
-  console.log(fixtureDetails);
 
   return (
     <div className="bg-white font-redhat">
