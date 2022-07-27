@@ -28,8 +28,6 @@ const Slug = () => {
     fetchFixture();
   }, []);
 
-  console.log(fixtureDetails);
-
   return (
     <div className="bg-white font-redhat">
       {loading === false && fixtureDetails && (
@@ -47,6 +45,7 @@ const Slug = () => {
                   />
                 </div>
                 <span className="md:text-2xl">vs</span>
+
                 <div className="flex items-center">
                   <img
                     src={

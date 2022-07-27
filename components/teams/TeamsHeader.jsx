@@ -3,7 +3,6 @@ import React from "react";
 import { BeatLoader } from "react-spinners";
 
 const TeamsHeader = ({ data, loading }) => {
-  console.log(data);
   return (
     <div className="flex h-full bg-[#000229] text-white font-redhat">
       <div className="flex flex-col lg:flex-row w-full items-center lg:justify-center lg:w-[50%] py-10">
