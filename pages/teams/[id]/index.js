@@ -61,7 +61,6 @@ const Slug = () => {
 
   useEffect(() => {
     if (settings?.CurrentLeague?._id !== undefined) fetchStages();
-    console.log(stages);
   }, []);
 
   const fetchFixturesAndResults = async () => {
