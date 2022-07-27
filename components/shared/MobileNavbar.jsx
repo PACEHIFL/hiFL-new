@@ -13,7 +13,7 @@ const MobileNavbar = ({ setMenuOpen, loggedIn, handleLogout }) => {
         </Link>
         <img
           src="/close-white.svg"
-          alt="vasiti logo"
+          alt="close menu"
           className="lg:hidden cursor-pointer"
           onClick={() => setMenuOpen(false)}
         />

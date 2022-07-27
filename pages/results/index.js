@@ -22,7 +22,6 @@ const Results = ({ settings, seasons }) => {
       );
       setStages(allStages?.data);
       setLoading(false);
-      console.log(stages);
 
       if (allStages) {
         setCurrentStageId(allStages?.data[0]?._id);
