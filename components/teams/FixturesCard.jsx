@@ -11,7 +11,10 @@ const FixturesCard = ({ fixture }) => {
 
   return (
     <Link href={`${path}/${fixture._id}`}>
-      <div className="grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4] mt-3">
+      <div
+        className={`${
+          fixture?.MatchStatus === "RESULT" && "border-l-4 border-primary"
+        } grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4] mt-3`}>
         <div className="flex items-center lg:justify-start col-span-3 lg:col-span-2 ">
           <div className="flex justify-end items-center w-[45%]">
             <span className="font-bold md:text-base">{fixture?.HomeTeam?.TeamAbbreviation}</span>

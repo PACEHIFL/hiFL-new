@@ -1,15 +1,14 @@
-import { useState } from "react";
+import React from "react";
 import HeadlinesCard from "../components/home/HeadlinesCard";
 import HighlightsCard from "../components/home/HighlightsCard";
 import LatestUpdates from "../components/home/LatestUpdates";
 import Store from "../components/home/Store";
 import FixturesBrief from "../components/shared/FixturesBrief";
-import ResultsBrief from "../components/shared/ResultsBrief";
 import SideBar from "../components/shared/SideBar";
 
 export default function Home() {
-  const [tabs, setTabs] = useState("fixture");
-  const tabItems = ["Fixtures", "Results"];
+  // const [tabs, setTabs] = useState("fixture");
+  // const tabItems = ["Fixtures", "Results"];
 
   return (
     <div className="bg-[#ece9e9]">
@@ -24,18 +23,10 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
-            <div className="tabs border-t-[5px] border-primary bg-white font-redhat flex items-center">
-              <a
-                className={`${tabs=== 'fixture' && 'tab-active'} tab tab-bordered text-lg text-black mt-2`}
-                onClick={() => setTabs("fixture")}>
-                Fixtures
-              </a>
-              <a className={`${tabs=== 'result' && 'tab-active'} tab tab-bordered text-lg text-black mt-2`} onClick={() => setTabs("result")}>
-                Results
-              </a>
-            </div>
-            {tabs === "fixture" && <FixturesBrief />}
-            {tabs === "result" && <ResultsBrief />}
+            {/* <div className="tabs  bg-white font-redhat flex items-center">
+              <a className="text-lg text-black mt-2">{settings?.CurrentStage?.StageName}</a>
+            </div> */}
+            <FixturesBrief />
           </div>
         </div>
       </div>
