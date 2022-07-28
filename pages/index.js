@@ -1,14 +1,12 @@
-import { useState } from "react";
+import React from "react";
 import HeadlinesCard from "../components/home/HeadlinesCard";
 import HighlightsCard from "../components/home/HighlightsCard";
 import LatestUpdates from "../components/home/LatestUpdates";
 import Store from "../components/home/Store";
 import FixturesBrief from "../components/shared/FixturesBrief";
-import ResultsBrief from "../components/shared/ResultsBrief";
 import SideBar from "../components/shared/SideBar";
-import axios from "axios";
 
-export default function Home({ settings }) {
+export default function Home() {
   // const [tabs, setTabs] = useState("fixture");
   // const tabItems = ["Fixtures", "Results"];
 
@@ -28,7 +26,7 @@ export default function Home({ settings }) {
             {/* <div className="tabs  bg-white font-redhat flex items-center">
               <a className="text-lg text-black mt-2">{settings?.CurrentStage?.StageName}</a>
             </div> */}
-            <FixturesBrief settings={settings} />
+            <FixturesBrief />
           </div>
         </div>
       </div>
@@ -51,24 +49,4 @@ export default function Home({ settings }) {
       </div>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  try {
-    const baseURL = process.env.BASE_URL;
-    const { data, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
-
-    if (errors || !data) {
-      return { notFound: true };
-    }
-
-    return {
-      props: {
-        settings: data.data,
-      },
-      revalidate: 15,
-    };
-  } catch (error) {
-    return { notFound: true };
-  }
 }

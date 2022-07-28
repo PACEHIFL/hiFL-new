@@ -1,14 +1,36 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import useFetch from "../../hooks/useFetch";
-import Moment from "react-moment";
+import axios from "axios";
 import { BeatLoader } from "react-spinners";
 
-const FixturesBrief = ({ settings }) => {
+const FixturesBrief = () => {
   const baseURL = process.env.BASE_URL;
-  const { data, loading } = useFetch(
-    `${baseURL}/leagues/season/fixtures/?Stage=${settings?.CurrentStage._id}&MatchStatus=RESULT`
-  );
+  const [settings, setSettings] = useState({});
+  const [fixtures, setFixtures] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchSettings = async () => {
+    setLoading(true);
+    const { data } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
+    setSettings(data?.data);
+  };
+
+  const fetchFixtures = async () => {
+    setLoading(true);
+    const { data } = await axios(
+      `${baseURL}/leagues/season/fixtures/?Stage=${settings?.CurrentStage?._id}&MatchStatus=RESULT`
+    );
+    setFixtures(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  useEffect(() => {
+    fetchFixtures();
+  }, [settings]);
 
   return (
     <div className="border-t-[5px] border-primary relative bg-white border-[5px] text-black font-redhat text-center border-x-0 w-full py-5 px-8 h-[90%]">
@@ -22,7 +44,7 @@ const FixturesBrief = ({ settings }) => {
         )}
 
         <div className="">
-          {data?.data
+          {fixtures?.data
             ?.slice(0, 6)
             .map(
               (
@@ -64,22 +86,3 @@ const FixturesBrief = ({ settings }) => {
 };
 
 export default FixturesBrief;
-
-// export const getStaticProps = async () => {
-//   try {
-//     const baseURL = process.env.BASE_URL;
-//     const { data, errors } = await axios(`${baseURL}/leagues/season/fixtures/?MatchStatus=FIXTURE`);
-
-//     if (!data || errors) {
-//       return { notFound: true };
-//     }
-
-//     return {
-//       props: {
-//         data: data.data,
-//       },
-//     };
-//   } catch (error) {
-//     return { notFound: true };
-//   }
-// };
