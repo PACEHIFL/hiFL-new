@@ -6,10 +6,11 @@ import Store from "../components/home/Store";
 import FixturesBrief from "../components/shared/FixturesBrief";
 import ResultsBrief from "../components/shared/ResultsBrief";
 import SideBar from "../components/shared/SideBar";
+import axios from "axios";
 
-export default function Home() {
-  const [tabs, setTabs] = useState("fixture");
-  const tabItems = ["Fixtures", "Results"];
+export default function Home({ settings }) {
+  // const [tabs, setTabs] = useState("fixture");
+  // const tabItems = ["Fixtures", "Results"];
 
   return (
     <div className="bg-[#ece9e9]">
@@ -24,18 +25,10 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
-            <div className="tabs border-t-[5px] border-primary bg-white font-redhat flex items-center">
-              <a
-                className={`${tabs=== 'fixture' && 'tab-active'} tab tab-bordered text-lg text-black mt-2`}
-                onClick={() => setTabs("fixture")}>
-                Fixtures
-              </a>
-              <a className={`${tabs=== 'result' && 'tab-active'} tab tab-bordered text-lg text-black mt-2`} onClick={() => setTabs("result")}>
-                Results
-              </a>
-            </div>
-            {tabs === "fixture" && <FixturesBrief />}
-            {tabs === "result" && <ResultsBrief />}
+            {/* <div className="tabs  bg-white font-redhat flex items-center">
+              <a className="text-lg text-black mt-2">{settings?.CurrentStage?.StageName}</a>
+            </div> */}
+            <FixturesBrief settings={settings} />
           </div>
         </div>
       </div>
@@ -58,4 +51,24 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  try {
+    const baseURL = process.env.BASE_URL;
+    const { data, errors } = await axios(`${baseURL}/settings/setting/league/?CurrentLeagueName=HiFL`);
+
+    if (errors || !data) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        settings: data.data,
+      },
+      revalidate: 15,
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 }
