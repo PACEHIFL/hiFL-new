@@ -101,7 +101,7 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 font-redhat">
                 {teams &&
                   teams.map((team, idx) => (
-                    <Link href={`${path}/${team._id}`} key={idx}>
+                    <Link href={`${path}/${team.Slug}`} key={idx}>
                       <div
                         className={`${
                           isOdd(idx) ? "bg-[url('/team-bg-blue.png')]" : "bg-[url('/team-bg-red.png')]"
