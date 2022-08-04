@@ -4,7 +4,6 @@ import { LocationMarkerIcon, ArrowRightIcon } from "@heroicons/react/solid";
 import Moment from "react-moment";
 
 const ResultCard = ({ data }) => {
-  console.log(data);
   return (
     <div className="grid grid-cols-3 bg-[#F8F8F8] px-10 py-3 mb-6 hover:bg-[#FFEBA4]">
       <div className="flex items-center justify-start col-span-2">

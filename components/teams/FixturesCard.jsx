@@ -9,11 +9,12 @@ const FixturesCard = ({ fixture }) => {
   const router = useRouter();
   const path = router.pathname;
 
-  console.log(fixture);
-
   return (
     <Link href={`${path}/${fixture._id}`}>
-      <div className="grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4] mt-3">
+      <div
+        className={`${
+          fixture?.MatchStatus === "RESULT" && "border-l-4 border-primary"
+        } grid cursor-pointer grid-cols-3 bg-[#F8F8F8] px-3 md:px-10 py-3 mb-6 hover:bg-[#FFEBA4] mt-3`}>
         <div className="flex items-center lg:justify-start col-span-3 lg:col-span-2 ">
           <div className="flex justify-end items-center w-[45%]">
             <span className="font-bold md:text-base">{fixture?.HomeTeam?.TeamAbbreviation}</span>
@@ -26,7 +27,14 @@ const FixturesCard = ({ fixture }) => {
             </div>
           </div>
           <div className="px-3 py-1 md:mx-8">
-            <span className="text-secondary">vs</span>{" "}
+            {fixture?.MatchStatus === "FIXTURE" && <span className="md:text-xl">vs</span>}
+            {fixture?.MatchStatus === "RESULT" && (
+              <div className="flex items-center justify-between w-full md:text-xl">
+                <span>{fixture?.MatchStat[0]?.GoalScored?.HomeTeam}</span>
+                <span className="px-3">:</span>
+                <span>{fixture?.MatchStat[0]?.GoalScored?.AwayTeam}</span>
+              </div>
+            )}
           </div>
           <div className="flex justify-start items-center w-[45%]">
             <div className="rounded-full bg-white p-[0.3rem] hidden md:flex w-14 h-14 items-center justify-center mr-3">
