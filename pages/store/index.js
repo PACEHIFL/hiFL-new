@@ -42,13 +42,13 @@ const Store = () => {
   return (
     <StoreLayout>
       <div className="mb-10">
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <Link href="#">
             <a>
               <img src="/store-banner1.png" alt="" className="w-full" />
             </a>
           </Link>
-        </div>
+        </div> */}
 
         <div className="flex flex-col md:flex-row gap-4">
           <Link href="#">
