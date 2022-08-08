@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const InnerSectionMaster = ({ title, img, parag, name, designation, date }) => {
+const InnerSectionMaster = ({ title, img, parag, name, designation, date, link }) => {
   return (
     <div className="flex align-top mb-5">
       {/* <div className="text-black xxl:w-[30%] relative  max-h-fit flex flex-col justify-between border-b border-l p-0 "> */}
@@ -27,7 +27,14 @@ const InnerSectionMaster = ({ title, img, parag, name, designation, date }) => {
           <p>{designation}</p>
         </div>
         <p className="sm:my-2 sm:mt-0 text-white  ">{parag}</p>
-        <div className=" text-[12px] flex  text-[#F4C316]  align-middle justify-between "></div>
+        <Link href={`${link}`}>
+          <div className=" text-[12px] flex  text-[#F4C316] cursor-pointer  align-middle justify-between ">
+            <p className="">View Session</p>
+            <a className="self-center  sm:mt-1  lg:mt-1 xl:m-0  ">
+              <img src="/arrow 1.png" width="100%" height="100%" alt="" />
+            </a>
+          </div>
+        </Link>
       </div>
     </div>
   );
