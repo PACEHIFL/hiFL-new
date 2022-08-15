@@ -20,6 +20,7 @@ const Masterclass = () => {
       name: "Dr Tunde Akinbinu",
       designation: "Health Consultant, HIFL",
       date: "June 13, 2022",
+      link: "https://youtu.be/B3BxYUZr_c8",
     },
     {
       title: "5-3-2: Financial Formation For Life",
@@ -29,6 +30,7 @@ const Masterclass = () => {
       name: "Obinna Lewis-Asonye",
       designation: "Business Development Manager of micro pension at Stanbic IBTC.",
       date: "June 14, 2022",
+      link: "https://youtu.be/Ep6jWOB1Zso",
     },
     {
       title: "COLLEGIATE SPORTS: Its Role In Promoting National Unity.",
@@ -38,6 +40,7 @@ const Masterclass = () => {
       name: "Emmanuel Amunike",
       designation: "FIFA U-17 World Cup-winning Coach",
       date: "June 15, 2022",
+      link: "https://youtu.be/O5RaFWP1gq8",
     },
 
     {
@@ -48,6 +51,7 @@ const Masterclass = () => {
       name: "Hon. Ayo Omidiran",
       designation: "Former member, FIFA Women Committee",
       date: "June 16, 2022",
+      link: "https://www.youtube.com/results?search_query=%23hiflmasterclass3",
     },
     {
       title: "HiFL: Made In Football",
@@ -57,6 +61,7 @@ const Masterclass = () => {
       name: "HiFL Legends",
       designation: "",
       date: "June 17, 2022",
+      link: "https://www.youtube.com/results?search_query=%23hiflmasterclass3",
     },
   ];
 
@@ -99,7 +104,7 @@ const Masterclass = () => {
               <div className="flex flex-col gap-6    mb-8     ">
                 <div className="    ">
                   <h1 className=" font-bold lg:text-2xl sm:mb-2 md:mb-5 sm:text-xl text-black">All Sessions</h1>
-                  {content.map(({ img, parag, name, arrow, title, designation, date }, ind) => {
+                  {content.map(({ img, parag, name, arrow, title, designation, date, link }, ind) => {
                     return (
                       <div key={ind}>
                         <InnerSectionMaster
@@ -110,6 +115,7 @@ const Masterclass = () => {
                           designation={designation}
                           date={date}
                           key={ind}
+                          link={link}
                         />
                       </div>
                     );

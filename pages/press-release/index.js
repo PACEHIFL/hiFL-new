@@ -23,7 +23,7 @@ export async function getStaticProps() {
       props: {
         data: data.data,
       },
-      revalidate: 15,
+      revalidate: 1,
     };
   } catch (error) {
     return { notFound: true };
