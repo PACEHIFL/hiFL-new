@@ -11,6 +11,9 @@ const Fixtures = () => {
   const [groups, setGroups] = useState([]);
   const [roundOf16, setRoundOf16] = useState([]);
   const [quarterFinal, setQuarterFinal] = useState([]);
+  const [semiFinal, setSemiFinal] = useState([]);
+  const [thirdPlace, setThirdFinal] = useState([]);
+  const [final, setFinal] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -24,9 +27,15 @@ const Fixtures = () => {
     const groups = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "GROUPS");
     const roundOf16 = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "ROUND OF 16");
     const quarterFinal = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "QUARTER FINALS");
+    const semiFinal = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "SEMI FINALS");
+    const thirdPlace = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "THIRD PLACE");
+    const final = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "FINAL");
     setGroups(groups);
     setRoundOf16(roundOf16);
     setQuarterFinal(quarterFinal);
+    setSemiFinal(semiFinal);
+    setThirdFinal(thirdPlace);
+    setFinal(final);
 
     setLoading(false);
   };
@@ -108,6 +117,9 @@ const Fixtures = () => {
                   <FixturesAccordion data={groups} title="GROUPS" />
                   <FixturesAccordion data={roundOf16} title="ROUND OF 16" />
                   <FixturesAccordion data={quarterFinal} title="QUARTER FINALS" />
+                  <FixturesAccordion data={semiFinal} title="SEMI FINALS" />
+                  <FixturesAccordion data={thirdPlace} title="THIRD PLACE" />
+                  <FixturesAccordion data={final} title="FINAL" />
                 </>
               )}
 
