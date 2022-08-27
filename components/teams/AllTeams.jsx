@@ -14,15 +14,22 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
   const [leagues, setLeagues] = useState([]);
   const [currentStageId, setCurrentStageId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [activeSeasonId, setActiveSeasonId] = useState(seasons[0]._id);
+
+  // Router
   const router = useRouter();
   const path = router.pathname;
   const baseURL = process.env.BASE_URL;
+
   const isOdd = (num) => num % 2 === 0;
 
   const fetchStages = async () => {
     setLoading(true);
     try {
-      const { data: allStages } = await axios(`${baseURL}/leagues/league/stages/?League=${settings.CurrentLeague._id}`);
+      const { data: currentLeague } = await axios(`${baseURL}/leagues/?Season=${activeSeasonId}`);
+      const { data: allStages } = await axios(
+        `${baseURL}/leagues/league/stages/?League=${currentLeague?.data[0]?._id}`
+      );
       setStages(allStages?.data);
       setLoading(false);
 
@@ -47,30 +54,22 @@ const AllTeams = ({ settings: allSettings, seasons }) => {
 
   useEffect(() => {
     fetchStages();
-  }, []);
+  }, [activeSeasonId]);
 
   useEffect(() => {
     if (currentStageId !== "") {
       fetchTeams();
     }
-  }, [currentStageId]);
+  }, [currentStageId, activeSeasonId]);
 
   const handleChange = (e) => {
-    // setTeams([])
     const { value } = e.target;
     setCurrentStageId(value);
   };
 
   const handleSeasonChange = (e) => {
-    const { name, value } = e.target;
-    // setLoading(true)
-    // console.log(value, settings.CurrentSeason._id)
-    // if(value !== settings.CurrentSeason._id) {
-    //   setTeams([])
-    //   setLoading(false)
-    // } else {
-    //   setTeams([...teams])
-    // }
+    const { value } = e.target;
+    setActiveSeasonId(value);
   };
 
   return (
