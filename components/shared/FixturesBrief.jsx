@@ -45,7 +45,8 @@ const FixturesBrief = () => {
 
           <div className="">
             {fixtures?.data
-              ?.slice(0, 6)
+              ?.slice(-7, -1)
+              .reverse()
               .map(
                 (
                   { HomeTeam: { TeamAbbreviation: HomeTeam }, AwayTeam: { TeamAbbreviation: AwayTeam }, MatchStat },
