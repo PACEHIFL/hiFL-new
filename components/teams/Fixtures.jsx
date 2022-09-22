@@ -6,19 +6,11 @@ import FixturesCard from "./FixturesCard";
 import Filter from "./Filter";
 import { BeatLoader } from "react-spinners";
 
-const Fixtures = ({ fixtures, loading, handleChange, handleSeasonChange, seasons, stages }) => {
+const Fixtures = ({ fixtures, loading, handleSeasonChange, seasons }) => {
   return (
     <div className="font-redhat">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mb-10">
         <Filter title="Select Season" onChange={handleSeasonChange} name="CurrentSeason" seasons={seasons} />
-        <select className="select w-full border-gray-500" name="hello" onChange={handleChange}>
-          {stages &&
-            stages?.map((stage, idx) => (
-              <option className="text-red-  600" key={idx} value={stage?._id}>
-                {stage?.StageName}
-              </option>
-            ))}
-        </select>
       </div>
 
       {loading && (

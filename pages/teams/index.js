@@ -3,7 +3,7 @@ import AllTeams from "../../components/teams/AllTeams";
 import axios from "axios";
 import { DatabaseIcon } from "@heroicons/react/outline";
 
-const index = ({ settings, allSeasons, seasons }) => {
+const index = ({ settings, seasons }) => {
   return (
     <div>
       <AllTeams settings={settings} seasons={seasons} />
@@ -26,7 +26,7 @@ export async function getStaticProps() {
     return {
       props: {
         settings: data.data,
-        seasons: seasons.data,
+        seasons: seasons?.data.reverse(),
       },
     };
   } catch (error) {

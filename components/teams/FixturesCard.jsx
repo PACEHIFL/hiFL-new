@@ -10,7 +10,7 @@ const FixturesCard = ({ fixture }) => {
   const path = router.pathname;
 
   return (
-    <Link href={`${path}/${fixture._id}`}>
+    <Link href={`${path}/${fixture._id} ? ${path}/${fixture._id} : ""`}>
       <div
         className={`${
           fixture?.MatchStatus === "RESULT" && "border-l-4 border-primary"
