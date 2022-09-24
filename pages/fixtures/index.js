@@ -7,7 +7,8 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import FixturesAccordion from "../../components/shared/FixturesAccordion";
 
-const Fixtures = ({ seasons }) => {
+const Fixtures = () => {
+  const [seasons, setSeasons] = useState([]);
   const [groups, setGroups] = useState([]);
   const [roundOf16, setRoundOf16] = useState([]);
   const [quarterFinal, setQuarterFinal] = useState([]);
@@ -15,11 +16,18 @@ const Fixtures = ({ seasons }) => {
   const [thirdPlace, setThirdFinal] = useState([]);
   const [final, setFinal] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [activeSeasonId, setActiveSeasonId] = useState(seasons[0]._id);
+  const [activeSeasonId, setActiveSeasonId] = useState(seasons[0]?._id);
+  const baseURL = process.env.BASE_URL;
+
+  const fetchSeasons = async () => {
+    setLoading(true);
+    const { data, errors } = await axios(`${baseURL}/leagues/seasons`);
+    setSeasons(data?.data.reverse())
+    setLoading(false)
+  };
 
   const fetchData = async () => {
     setLoading(true);
-    const baseURL = process.env.BASE_URL;
     const { data: fixtures } = await axios(`${baseURL}/leagues/season/fixtures/?Season=${activeSeasonId}`);
 
     const groups = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "GROUPS");
@@ -28,23 +36,28 @@ const Fixtures = ({ seasons }) => {
     const semiFinal = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "SEMI FINALS");
     const thirdPlace = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "THIRD PLACE");
     const final = fixtures?.data?.filter((fixture) => fixture?.Stage?.StageName === "FINAL");
+
     setGroups(groups);
     setRoundOf16(roundOf16);
     setQuarterFinal(quarterFinal);
     setSemiFinal(semiFinal);
     setThirdFinal(thirdPlace);
     setFinal(final);
-
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchData();
+    fetchSeasons()
+  }, []);
+  
+  useEffect(() => {
+    if(seasons.length > 0) {
+      fetchData();
+    }
   }, [activeSeasonId]);
-
+  
   const handleChange = (e) => {
     const { value } = e.target;
-    console.log(value);
     setActiveSeasonId(value);
   };
 
@@ -98,21 +111,21 @@ const Fixtures = ({ seasons }) => {
 
 export default Fixtures;
 
-export const getStaticProps = async () => {
-  try {
-    const baseURL = process.env.BASE_URL;
-    const { data, errors } = await axios(`${baseURL}/leagues/seasons`);
+// export const getStaticProps = async () => {
+//   try {
+//     const baseURL = process.env.BASE_URL;
+//     const { data, errors } = await axios(`${baseURL}/leagues/seasons`);
 
-    if (!data) {
-      return { notFound: true };
-    }
+//     if (!data) {
+//       return { notFound: true };
+//     }
 
-    return {
-      props: {
-        seasons: data?.data.reverse(),
-      },
-    };
-  } catch (error) {
-    return { notFound: true };
-  }
-};
+//     return {
+//       props: {
+//         seasons: data?.data.reverse(),
+//       },
+//     };
+//   } catch (error) {
+//     return { notFound: true };
+//   }
+// };
